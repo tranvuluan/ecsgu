@@ -7,14 +7,16 @@
   $path = dirname(__FILE__);
   require_once $path . '/includes/sidebar.php';
   ?>
+  <?php
+  $path = dirname(__FILE__);
+  require_once $path . '/includes/headhtml.php';
+  ?>
   <!-- end header html -->
-
+  >
   <title>Blackdash - Bootstrap5 Admin Template</title>
 </head>
 
 <body>
-
-
   <!--start wrapper-->
   <div class="wrapper">
 
@@ -31,7 +33,6 @@
     require_once $path . '/includes/header.php';
     ?>
     <!--end top header-->
-
 
     <!-- start page content wrapper-->
     <div class="page-content-wrapper">
@@ -68,56 +69,37 @@
         <!--end breadcrumb-->
 
 
-        <!-- Form Info -->
+        <!-- Form nhập hàng -->
         <div class="row">
           <div class="col-xl-12 mx-auto">
-            <h6 class="mb-0 text-uppercase">Basic Validation</h6>
+            <h6 class="mb-0 text-uppercase">Quảng lý phiếu nhập</h6>
             <hr />
             <div class="card">
               <div class="card-body">
                 <div class="p-4 border rounded">
                   <form class="row g-3 needs-validation" novalidate>
                     <div class="col-md-4">
-                      <label for="validationCustom01" class="form-label">First name</label>
-                      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-                      <div class="valid-feedback">Looks good!</div>
+                      <label for="validationCustom01" class="form-label">Mã phiếu nhập</label>
+                      <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
                     </div>
                     <div class="col-md-4">
-                      <label for="validationCustom02" class="form-label">Last name</label>
-                      <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                      <div class="valid-feedback">Looks good!</div>
+                      <label for="validationCustom02" class="form-label">Tổng (triệu đ)</label>
+                      <input type="text" class="form-control" id="validationCustom02" value="" required>
                     </div>
                     <div class="col-md-4">
-                      <label for="validationCustomUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                        <div class="invalid-feedback">Please choose a username.</div>
-                      </div>
+                      <label for="validationCustom03" class="form-label">Chọn Nhà cung cấp</label>
+                      <select class="form-select" aria-label="Default select example">
+                        <option value="1">Nhà máy Á Châu</option>
+                        <option value="2">Nhà máy Thượng Hải</option>
+                      </select>
                     </div>
                     <div class="col-md-6">
-                      <label for="validationCustom03" class="form-label">City</label>
+                      <label for="validationCustom04" class="form-label">Mã nhân viên</label>
                       <input type="text" class="form-control" id="validationCustom03" required>
-                      <div class="invalid-feedback">Please provide a valid city.</div>
                     </div>
-                    <div class="col-md-3">
-                      <label for="validationCustom04" class="form-label">State</label>
-                      <select class="form-select" id="validationCustom04" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                      </select>
-                      <div class="invalid-feedback">Please select a valid state.</div>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="validationCustom05" class="form-label">Zip</label>
-                      <input type="text" class="form-control" id="validationCustom05" required>
-                      <div class="invalid-feedback">Please provide a valid zip.</div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                        <label class="form-check-label" for="invalidCheck">Agree to terms and conditions</label>
-                        <div class="invalid-feedback">You must agree before submitting.</div>
-                      </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Ngày nhập</label>
+                      <input type="text" class="form-control datepicker" />
                     </div>
                     <div class="col-12">
                       <button class="btn btn-primary" type="submit">Submit form</button>
@@ -126,15 +108,13 @@
                 </div>
               </div>
             </div>
-            <h6 class="mb-0 text-uppercase">Browser defaults</h6>
             <hr />
-            <!-- End Form Info -->
-
-
+            <!-- End Form nhập hàng -->
+            
             <div class="card radius-10 w-100">
               <div class="card-body">
                 <div class="d-flex align-items-center">
-                  <h6 class="mb-0">Recent Orders</h6>
+                  <h6 class="mb-0">Danh sách phiếu nhập</h6>
                   <div class="fs-5 ms-auto dropdown">
                     <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
                     <ul class="dropdown-menu">
@@ -151,12 +131,11 @@
                   <table class="table align-middle mb-0">
                     <thead class="table-light">
                       <tr>
-                        <th>#ID</th>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Date</th>
-                        <th>Status</th>
+                        <th>Mã phiếu nhập</th>
+                        <th>Tổng tiền</th>
+                        <th>Nhà cung cấp</th>
+                        <th>Mã nhân viên</th>
+                        <th>Ngày nhâp</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -175,158 +154,7 @@
                         </td>
                         <td>2</td>
                         <td>$214</td>
-                        <td><span class="badge alert-dark">Completed</span></td>
                         <td>Apr 8, 2021</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3 fs-6">
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                              <ion-icon name="eye-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                              <ion-icon name="pencil-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                              <ion-icon name="trash-sharp"></ion-icon>
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#68570</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                              <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                            </div>
-                            <div class="product-info">
-                              <h6 class="product-name mb-1">Sports Time Watch</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>1</td>
-                        <td>$185</td>
-                        <td><span class="badge alert-dark">Completed</span></td>
-                        <td>Apr 9, 2021</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3 fs-6">
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                              <ion-icon name="eye-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                              <ion-icon name="pencil-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                              <ion-icon name="trash-sharp"></ion-icon>
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#38567</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                              <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                            </div>
-                            <div class="product-info">
-                              <h6 class="product-name mb-1">Women Red Heals</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>3</td>
-                        <td>$356</td>
-                        <td><span class="badge alert-dark">Cancelled</span></td>
-                        <td>Apr 10, 2021</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3 fs-6">
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                              <ion-icon name="eye-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                              <ion-icon name="pencil-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                              <ion-icon name="trash-sharp"></ion-icon>
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#48572</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                              <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                            </div>
-                            <div class="product-info">
-                              <h6 class="product-name mb-1">Yellow Winter Jacket</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>1</td>
-                        <td>$149</td>
-                        <td><span class="badge alert-dark">Completed</span></td>
-                        <td>Apr 11, 2021</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3 fs-6">
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                              <ion-icon name="eye-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                              <ion-icon name="pencil-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                              <ion-icon name="trash-sharp"></ion-icon>
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#96857</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                              <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                            </div>
-                            <div class="product-info">
-                              <h6 class="product-name mb-1">Orange Micro Headphone</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>2</td>
-                        <td>$199</td>
-                        <td><span class="badge alert-dark">Cancelled</span></td>
-                        <td>Apr 15, 2021</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3 fs-6">
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                              <ion-icon name="eye-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                              <ion-icon name="pencil-sharp"></ion-icon>
-                            </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                              <ion-icon name="trash-sharp"></ion-icon>
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#96857</td>
-                        <td>
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                              <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                            </div>
-                            <div class="product-info">
-                              <h6 class="product-name mb-1">Pro Samsung Laptop</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>1</td>
-                        <td>$699</td>
-                        <td><span class="badge alert-dark">Pending</span></td>
-                        <td>Apr 18, 2021</td>
                         <td>
                           <div class="d-flex align-items-center gap-3 fs-6">
                             <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
