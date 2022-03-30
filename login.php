@@ -1,5 +1,5 @@
 <?php
-    $path = realpath(dirname(__FILE__));
+$path = realpath(dirname(__FILE__));
 ?>
 
 <!DOCTYPE html>
@@ -44,17 +44,17 @@
     <!--Top bar, Header Area Start -->
     <?php require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-<?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-<?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-<?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
     <!-- login area start -->
@@ -95,10 +95,29 @@
                                     <div class="login-register-form">
                                         <form action="#" method="post">
                                             <input type="text" name="user-name" placeholder="Username" />
-                                            <input type="password" name="user-password" placeholder="Password" />
                                             <input name="user-email" placeholder="Email" type="email" />
+                                            <input type="password" name="user-password" placeholder="Password" />
                                             <div class="button-box">
+                                                <div class="login-toggle-btn">
+                                                    <input type="checkbox" />
+                                                    <a class="flote-none" href="javascript:void(0)">I agree the Terms and Conditions</a>
+                                                </div>
                                                 <button type="submit"><span>Register</span></button>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <div class="position-relative border-bottom my-3">
+                                                    <div class="position-absolute seperator translate-middle-y">or continue with</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <div class="social-login d-flex flex-row align-items-center justify-content-center gap-2 my-2">
+                                                    <a href="javascript:;" class=""><img src="assets/images/icons/facebook.png" alt=""></a>
+                                                    <a href="javascript:;" class=""><img src="assets/images/icons/apple-black-logo.png" alt=""></a>
+                                                    <a href="javascript:;" class=""><img src="assets/images/icons/google.png" alt=""></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12 text-center">
+                                                <p class="mb-0">Already have an account? <a href="authentication-sign-in-simple.html">Sign in</a></p>
                                             </div>
                                         </form>
                                     </div>
@@ -120,9 +139,9 @@
     <?php require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
-<!-- JavaScripts -->
-<?php require_once($path . '/includes/scripts.php')?>
-<!-- END JavaScripts -->
+    <!-- JavaScripts -->
+    <?php require_once($path . '/includes/scripts.php') ?>
+    <!-- END JavaScripts -->
 </body>
 
 </html>

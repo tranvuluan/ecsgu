@@ -1406,6 +1406,28 @@ ul.categories-list li {
 }
 
 
+/* -----------Stylessssss-------------- */
+
+.social-login a {
+    width: 50px;
+    height: 50px;
+    
+}
+
+.social-login a img {
+    width: 100%;
+    border: 1px solid #e4e6eb;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.social-login-footer a {
+    color: #3c3e40;
+}
+
+
+/* -----------Stylessssss-------------- */
+
 
 /* Responsive */
 
