@@ -16,6 +16,7 @@
 <!-- CSS Files -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
+
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="assets/css/icons.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -29,3 +30,4 @@
 <!-- date pick -->
 <link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" />
 <link href="assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" />
+
