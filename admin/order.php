@@ -107,13 +107,13 @@
                                         <td>Apr 8, 2021</td>
                                         <td>
                                             <div class="d-flex align-items-center gap-3 fs-6">
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
                                                     <ion-icon name="eye-sharp"></ion-icon>
                                                 </a>
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                 </a>
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                                                <a href="javascript:;" class="text-dark">
                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                 </a>
                                             </div>
@@ -205,6 +205,173 @@
 
             </div>
             <!--end wrapper-->
+
+            <!-- start modal xem chi tiết hóa đơn -->
+            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content ">
+                        <div class="row">
+                            <!-- start view chi tiết hóa đơn -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="mb-0">Chi tiết hóa đơn</h6>
+                                        <div class="p-4 border rounded">
+                                            <form class="row g-3 needs-validation" novalidate>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom01" class="form-label">Mã hóa đơn</label>
+                                                    <input type="text" class="form-control" id="validationCustom01" value="" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom02" class="form-label">Mã nhân viên</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom02" class="form-label">Mã khách hàng</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom02" class="form-label">Tên khách hàng</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="validationCustom02" class="form-label">Ngày lập</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="validationCustom02" class="form-label">Voucher</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="validationCustom02" class="form-label">Tổng tiền (đ)</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- start view chi tiết hóa đơn -->
+
+                            <!-- start table ds sản phâm trong chi tiết hóa đơn -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label for="validationCustom01" class="form-label">Danh sách sản phẩm trong hóa đơn</label>
+                                        <div class="p-4 border rounded">
+                                            <table class="table align-middle mb-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Mã SP</th>
+                                                        <th>Tên SP</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Giá tiền(đ)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>#89742</td>
+                                                        <td>Nguyễn Văn A</td>
+                                                        <td>500$</td>
+                                                        <td>Apr 8, 2021</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- start modal xem chi tiết hóa đơn -->
+
+            <!-- start modal sửa chi tiết hóa đơn -->
+            <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content ">
+                        <div class="row">
+                            <!-- start view chi tiết hóa đơn -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="mb-0">Chi tiết hóa đơn</h6>
+                                        <div class="p-4 border rounded">
+                                            <form class="row g-3 needs-validation" novalidate>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom01" class="form-label">Mã hóa đơn</label>
+                                                    <input type="text" class="form-control" id="validationCustom01" value="" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom02" class="form-label">Mã nhân viên</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom02" class="form-label">Mã khách hàng</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom02" class="form-label">Tên khách hàng</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="validationCustom02" class="form-label">Ngày lập</label>
+                                                    <input type="text" class="form-control datepicker" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="validationCustom02" class="form-label">Voucher</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="validationCustom02" class="form-label">Tổng tiền (đ)</label>
+                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary" type="submit">Submit form</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- start view chi tiết hóa đơn -->
+
+                            <!-- start table ds sản phâm trong chi tiết hóa đơn -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label for="validationCustom01" class="form-label">Danh sách sản phẩm trong hóa đơn</label>
+                                        <div class="p-4 border rounded">
+                                            <table class="table align-middle mb-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Mã SP</th>
+                                                        <th>Tên SP</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Giá tiền(đ)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>#89742</td>
+                                                        <td>Nguyễn Văn A</td>
+                                                        <td>500$</td>
+                                                        <td>Apr 8, 2021</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- start modal sửa chi tiết hóa đơn -->
 
 
             <!-- Scripts-->

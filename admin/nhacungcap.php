@@ -68,35 +68,15 @@
                 </div>
                 <!--end breadcrumb-->
 
-
+                <!-- start quản lý ncc -->
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
                         <!-- begin form nhà cc-->
-                        <h6 class="mb-0 text-uppercase">Quản lý nhà cung cấp</h6>
+                        <h4 class="mb-0 text-uppercase">Quản lý nhà cung cấp</h4>
                         <hr />
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom01" class="form-label">Mã NCC</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MCC001" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom01" class="form-label">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label for="validationCustom02" class="form-label">Tên nhà cung cấp</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                            Thêm nhà cung cấp
+                        </button>
                         <hr />
                         <!-- end form nhà cc -->
 
@@ -143,13 +123,13 @@
                                                 <td>Trung quốc</td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
                                                             <ion-icon name="eye-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
                                                             <ion-icon name="pencil-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                                                        <a href="javascript:;" class="text-dark">
                                                             <ion-icon name="trash-sharp"></ion-icon>
                                                         </a>
                                                     </div>
@@ -162,12 +142,9 @@
                         </div>
                         <!-- end table nhà cc -->
                     </div>
-        
+                    <!-- end page content-->
 
-                        <!-- end page content-->
-                  
                     <!--end page content wrapper-->
-
 
                     <!--start footer-->
                     <?php
@@ -175,9 +152,6 @@
                     require_once $path . '/includes/footer.php';
                     ?>
                     <!--end footer-->
-
-
-
 
                     <!--start switcher-->
                     <div class="switcher-body">
@@ -242,6 +216,104 @@
                 </div>
                 <!--end wrapper-->
 
+                <!-- start modal thêm nhà cung cấp -->
+                <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-0">Thông tin nhà cung cấp</h6>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Mã NCC</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MCC001" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Địa chỉ</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="validationCustom02" class="form-label">Tên nhà cung cấp</label>
+                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal thêm nhà cung cấp -->
+
+                <!-- start modal xem nhà cung cấp -->
+                <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-0">Thông tin nhà cung cấp</h6>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Mã NCC</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MCC001" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Địa chỉ</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="validationCustom02" class="form-label">Tên nhà cung cấp</label>
+                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal xem nhà cung cấp -->
+
+                <!-- start modal sửa nhà cung cấp -->
+                <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-0">Thông tin nhà cung cấp</h6>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Mã NCC</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MCC001" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Địa chỉ</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="validationCustom02" class="form-label">Tên nhà cung cấp</label>
+                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal sửa nhà cung cấp -->
 
                 <!-- Scripts-->
                 <?php

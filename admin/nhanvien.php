@@ -150,16 +150,12 @@
                 </div>
                 <!--end page content wrapper-->
 
-
                 <!--start footer-->
                 <?php
                 $path = dirname(__FILE__);
                 require_once $path . '/includes/footer.php';
                 ?>
                 <!--end footer-->
-
-
-
 
                 <!--start switcher-->
                 <div class="switcher-body">
@@ -216,7 +212,6 @@
                 </div>
                 <!--end switcher-->
 
-
                 <!--start overlay-->
                 <div class="overlay nav-toggle-icon"></div>
                 <!--end overlay-->
@@ -224,12 +219,10 @@
             </div>
             <!--end wrapper-->
 
-
-
             <!-- Modal thêm thông tin nhân viên    -->
             <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content p-2">
+                    <div class="modal-content ">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="mb-0">Thông tin nhân viên</h6>
@@ -315,7 +308,7 @@
             <!-- Modal xem thông tin nhân viên -->
             <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content p-2">
+                    <div class="modal-content">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="mb-0">Thông tin nhân viên</h6>
@@ -398,7 +391,7 @@
             <!-- Modal sửa thông tin nhân viên    -->
             <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content p-2">
+                    <div class="modal-content">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="mb-0">Thông tin nhân viên</h6>

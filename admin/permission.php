@@ -68,74 +68,12 @@
                 </div>
                 <!--end breadcrumb-->
 
-                <!-- start form details of product -->
-
                 <!-- Start permission form -->
 
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
                         <h4 class="mb-0 text-uppercase">Phân quyền</h4>
                         <hr />
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                    <div class="col-md-6">
-                                            <label for="validationCustom03" class="form-label">Mã chức vụ</label>
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option value="1" selected>p1</option>
-                                                <option value="2">p2</option>
-                                                <option value="2">p3</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="Áo thun BK" required>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                        <br><br><br>
-                                        <br><br><br>
-                                        <div class="col-md-3">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -181,13 +119,13 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center gap-3 fs-6">
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
                                                     <ion-icon name="eye-sharp"></ion-icon>
                                                 </a>
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                 </a>
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                                                <a href="javascript:;" class="text-dark">
                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                 </a>
                                             </div>
@@ -201,9 +139,6 @@
                 <!-- End table permission -->
 
                 <!-- End permission form -->
-
-                <!-- end form details of product -->
-
 
                 <!--end page content wrapper-->
 
@@ -280,7 +215,260 @@
 
             </div>
             <!--end wrapper-->
+            <!-- start modal thêm phân quyền -->
+            <!-- <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true"phân quyền
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin nhà cung cấp</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom03" class="form-label">Mã chức vụ</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1" selected>p1</option>
+                                                <option value="2">p2</option>
+                                                <option value="2">p3</option>
+                                            </select>
+                                            <label for="validationCustom01" class="form-label">Tên chức vụ</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table align-middle mb-0 p-4 border rounded">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Mã chức vụ</th>
+                                                        <th>Tên chức vụ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>p1</td>
+                                                        <td>Quản lý</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>p2</td>
+                                                        <td>Nhân viên kho</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>p2</td>
+                                                        <td>Nhân viên kinh doanh</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- end modal thêm phân quyền -->
 
+            <!-- start modal xem phân quyền -->
+            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin phân quyền</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom03" class="form-label">Mã chức vụ</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1" selected>p1</option>
+                                                <option value="2">p2</option>
+                                                <option value="2">p3</option>
+                                            </select>
+                                            <label for="validationCustom01" class="form-label">Tên chức vụ</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table align-middle mb-0 p-4 border rounded">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Mã chức vụ</th>
+                                                        <th>Tên chức vụ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>p1</td>
+                                                        <td>Quản lý</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>p2</td>
+                                                        <td>Nhân viên kho</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>p2</td>
+                                                        <td>Nhân viên kinh doanh</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal xem phân quyền -->
+
+            <!-- start modal sửa phân quyền -->
+            <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin phân quyền</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom03" class="form-label">Mã chức vụ</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1" selected>p1</option>
+                                                <option value="2">p2</option>
+                                                <option value="2">p3</option>
+                                            </select>
+                                            <label for="validationCustom01" class="form-label">Tên chức vụ</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table align-middle mb-0 p-4 border rounded">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Mã chức vụ</th>
+                                                        <th>Tên chức vụ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>p1</td>
+                                                        <td>Quản lý</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>p2</td>
+                                                        <td>Nhân viên kho</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>p2</td>
+                                                        <td>Nhân viên kinh doanh</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                </div>
+                                                <span class="form-control">Quản lý sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal sửa phân quyền -->
 
             <!-- Scripts-->
             <?php

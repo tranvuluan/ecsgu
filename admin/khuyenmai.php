@@ -12,7 +12,7 @@
     require_once $path . '/includes/headhtml.php';
     ?>
     <!-- end header html -->
-    
+
     <title>Blackdash - Bootstrap5 Admin Template</title>
 </head>
 
@@ -69,58 +69,16 @@
                 <!--end breadcrumb-->
 
 
-                <!-- Form Info -->
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
-                        <h6 class="mb-0 text-uppercase">Basic Validation</h6>
+                        <h4 class="mb-0 text-uppercase">Quản lý khuyến mãi</h4>
+                        <!-- start thêm khuyến mãi  -->
                         <hr />
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom01" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                            <div class="valid-feedback">Enter ID!</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom02" class="form-label">Code</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            <div class="valid-feedback">Enter code</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustomUsername" class="form-label">Discount percent</label>
-                                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Start Date</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">End Date</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                                <label class="form-check-label" for="invalidCheck">Agree to add discount?</label>
-                                                <div class="invalid-feedback">You must agree before submitting.</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="mb-0 text-uppercase">Browser defaults</h6>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                            Thêm khuyến mãi
+                        </button>
                         <hr />
                         <!-- End Form Info -->
-
 
                         <div class="card radius-10 w-100">
                             <div class="card-body">
@@ -168,19 +126,19 @@
                                                 <td>Apr 8, 2021</td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
                                                             <ion-icon name="eye-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
                                                             <ion-icon name="pencil-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                                                        <a href="javascript:;" class="text-dark">
                                                             <ion-icon name="trash-sharp"></ion-icon>
                                                         </a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -198,9 +156,6 @@
                 require_once $path . '/includes/footer.php';
                 ?>
                 <!--end footer-->
-
-
-
 
                 <!--start switcher-->
                 <div class="switcher-body">
@@ -257,15 +212,170 @@
                 </div>
                 <!--end switcher-->
 
-
                 <!--start overlay-->
                 <div class="overlay nav-toggle-icon"></div>
                 <!--end overlay-->
 
             </div>
             <!--end wrapper-->
+            <!-- start modal thêm khuyến mãi -->
+            <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin khuyến mãi</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom01" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
+                                            <div class="valid-feedback">Enter ID!</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">Code</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            <div class="valid-feedback">Enter code</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustomUsername" class="form-label">Discount percent</label>
+                                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Start Date</label>
+                                            <input type="text" class="form-control datepicker" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">End Date</label>
+                                            <input type="text" class="form-control datepicker" />
+                                        </div>
 
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                                <label class="form-check-label" for="invalidCheck">Agree to add discount?</label>
+                                                <div class="invalid-feedback">You must agree before submitting.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal thêm khuyến mãi -->
 
+            <!-- start modal xem khuyến mãi -->
+            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin khuyến mãi</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom01" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
+                                            <div class="valid-feedback">Enter ID!</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">Code</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            <div class="valid-feedback">Enter code</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustomUsername" class="form-label">Discount percent</label>
+                                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Start Date</label>
+                                            <input type="text" class="form-control datepicker" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">End Date</label>
+                                            <input type="text" class="form-control datepicker" />
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                                <label class="form-check-label" for="invalidCheck">Agree to add discount?</label>
+                                                <div class="invalid-feedback">You must agree before submitting.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal xem khuyến mãi -->
+
+            <!-- start modal sửa khuyến mãi -->
+            <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin khuyến mãi</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom01" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
+                                            <div class="valid-feedback">Enter ID!</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">Code</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            <div class="valid-feedback">Enter code</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustomUsername" class="form-label">Discount percent</label>
+                                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Start Date</label>
+                                            <input type="text" class="form-control datepicker" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">End Date</label>
+                                            <input type="text" class="form-control datepicker" />
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                                <label class="form-check-label" for="invalidCheck">Agree to add discount?</label>
+                                                <div class="invalid-feedback">You must agree before submitting.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal sửa khuyến mãi -->
             <!-- Scripts-->
             <?php
             $path = dirname(__FILE__);
