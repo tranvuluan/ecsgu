@@ -208,7 +208,7 @@
 
             <!-- start modal xem chi tiết hóa đơn -->
             <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content ">
                         <div class="row">
                             <!-- start view chi tiết hóa đơn -->
@@ -290,7 +290,7 @@
 
             <!-- start modal sửa chi tiết hóa đơn -->
             <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content ">
                         <div class="row">
                             <!-- start view chi tiết hóa đơn -->
