@@ -5,7 +5,6 @@
     <!-- head html -->
     <?php
     $path = dirname(__FILE__);
-    echo $path;
     require_once $path . '/includes/sidebar.php';
     ?>
     <?php

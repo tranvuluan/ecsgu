@@ -74,7 +74,7 @@
 
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
-                        <h6 class="mb-0 text-uppercase">Phân quyền</h6>
+                        <h4 class="mb-0 text-uppercase">Phân quyền</h4>
                         <hr />
                         <div class="card">
                             <div class="card-body">
