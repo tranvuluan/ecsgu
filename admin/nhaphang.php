@@ -101,9 +101,6 @@
                       <label class="form-label">Ngày nhập</label>
                       <input type="text" class="form-control datepicker" />
                     </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary" type="submit">Submit form</button>
-                    </div>
                   </form>
                 </div>
               </div>
@@ -113,9 +110,14 @@
 
             <div class="card radius-10 w-100">
               <div class="card-body">
-                <div class="d-flex align-items-center">
-                  <h6 class="mb-0">Danh sách phiếu nhập</h6>
-                  <div class="fs-5 ms-auto dropdown">
+                <div class="d-flex align-items-center ">
+                  <div class="p-2 mb-0">
+                    <h6>Danh sách phiếu nhập</h6>
+                  </div>
+                  <div class="ms-auto p-2">
+                    <button class="btn btn-primary" type="submit">Thêm phiếu nhập</button>
+                  </div>
+                  <div class="fs-5 p-2 dropdown">
                     <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">Action</a></li>

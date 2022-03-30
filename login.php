@@ -41,6 +41,36 @@ $path = realpath(dirname(__FILE__));
 
 <body>
 
+    <style>
+        .social-login a {
+            width: 50px;
+            height: 50px;
+
+        }
+
+        .social-login a img {
+            width: 100%;
+            border: 1px solid #e4e6eb;
+            padding: 13px;
+            border-radius: 10px;
+        }
+
+        .social-login-footer a {
+            color: #3c3e40;
+        }
+
+        .seperator {
+            background-color: #ffffff;
+            left: 35%;
+            padding: 0px 10px;
+        }
+
+        .seperator-2 {
+            background-color: #ffffff;
+            left: 45%;
+            padding: 0px 10px;
+        }
+    </style>
     <!--Top bar, Header Area Start -->
     <?php require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
@@ -84,7 +114,11 @@ $path = realpath(dirname(__FILE__));
                                                     <a class="flote-none" href="javascript:void(0)">Remember me</a>
                                                     <a href="#">Forgot Password?</a>
                                                 </div>
-                                                <button type="submit"><span>Login</span></button>
+                                                <div class="col-12 col-lg-12">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-dark">Sign In</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -102,21 +136,25 @@ $path = realpath(dirname(__FILE__));
                                                     <input type="checkbox" />
                                                     <a class="flote-none" href="javascript:void(0)">I agree the Terms and Conditions</a>
                                                 </div>
-                                                <button type="submit"><span>Register</span></button>
+                                                <div class="">
+                                                    <div class="d-grid">
+                                                        <button type="button" class="btn btn-dark">Register</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-12 col-lg-12">
+                                            <div class="">
                                                 <div class="position-relative border-bottom my-3">
                                                     <div class="position-absolute seperator translate-middle-y">or continue with</div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-lg-12">
+                                            <div class="">
                                                 <div class="social-login d-flex flex-row align-items-center justify-content-center gap-2 my-2">
                                                     <a href="javascript:;" class=""><img src="assets/images/icons/facebook.png" alt=""></a>
                                                     <a href="javascript:;" class=""><img src="assets/images/icons/apple-black-logo.png" alt=""></a>
                                                     <a href="javascript:;" class=""><img src="assets/images/icons/google.png" alt=""></a>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-lg-12 text-center">
+                                            <div class="text-center">
                                                 <p class="mb-0">Already have an account? <a href="authentication-sign-in-simple.html">Sign in</a></p>
                                             </div>
                                         </form>

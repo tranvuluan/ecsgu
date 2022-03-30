@@ -5,6 +5,7 @@
     <!-- head html -->
     <?php
     $path = dirname(__FILE__);
+    echo $path;
     require_once $path . '/includes/sidebar.php';
     ?>
     <?php
@@ -73,7 +74,7 @@
                 <!-- Form nhập hàng -->
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
-                        <h6 class="mb-0 text-uppercase">Chi tiết sản phẩm</h6>
+                        <h6 class="mb-0 text-uppercase">Thêm sản phẩm</h6>
                         <hr />
                         <div class="card">
                             <div class="card-body">
@@ -81,11 +82,11 @@
                                     <form class="row g-3 needs-validation" novalidate>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="Áo thun BK" required>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                         </div>
                                         <div class="col-md-3">
                                             <label for="validationCustom03" class="form-label">Danh mục</label>
@@ -115,24 +116,22 @@
                                                 <option value="3">L</option>
                                                 <option value="4">XL</option>
                                             </select>
-                                        </div>                                        
-                                        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-3">
                                             <label for="validationCustom02" class="form-label">Giá nhập ( đồng )</label>
                                             <input type="text" class="form-control" id="validationCustom02" value="" required>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom02" class="form-label">Giá bán ( đồng )</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                        </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="validationCustom02" class="form-label">Số lượng</label>
                                             <input type="text" class="form-control" id="validationCustom02" value="" required>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="validationCustom02" class="form-label">Weight</label>
                                             <input type="text" class="form-control" id="validationCustom02" value="" required>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-3">
                                             <label for="validationCustom03" class="form-label">Dimensions</label>
                                             <select class="form-select" aria-label="Default select example">
                                                 <option value="1">10 x 10 x 15 cm</option>
@@ -140,8 +139,8 @@
                                                 <option value="3">10 x 10 x 15 cm</option>
                                                 <option value="4">10 x 10 x 15 cm</option>
                                             </select>
-                                        </div>  
-                                        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-3">
                                             <label for="validationCustom03" class="form-label">Materials</label>
                                             <select class="form-select" aria-label="Default select example">
                                                 <option value="1">60% cotton, 40% polyester</option>
@@ -150,21 +149,25 @@
                                                 <option value="4">60% cotton, 40% polyester</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label for="validationCustom04" class="form-label">Other info</label>
                                             <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Ngày nhập</label>
-                                            <input type="text" class="form-control datepicker" />
                                         </div>
                                         <div class="col-md-12">
                                             <label for="validationCustom04" class="form-label">Description</label>
                                             <input type="text" class="form-control" id="validationCustom03" required>
                                         </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                        <div class="col-6">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                            <input type="file" class="form-control" id="inputGroupFile01">
                                         </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Add product</button>
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
