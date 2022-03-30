@@ -115,7 +115,7 @@
                     <h6>Danh sách phiếu nhập</h6>
                   </div>
                   <div class="ms-auto p-2">
-                    <button class="btn btn-primary" type="submit">Thêm phiếu nhập</button>
+                    <a href="addwarehouse-receipt.php" class="btn btn-primary">Thêm phiếu nhập</a>
                   </div>
                   <div class="fs-5 p-2 dropdown">
                     <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
