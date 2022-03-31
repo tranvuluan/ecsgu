@@ -72,52 +72,19 @@
         <!-- Form nhập hàng -->
         <div class="row">
           <div class="col-xl-12 mx-auto">
-            <h6 class="mb-0 text-uppercase">Quảng lý phiếu nhập</h6>
+            <h4 class="mb-0 text-uppercase">Quảng lý phiếu nhập</h4>
             <hr />
-            <div class="card">
-              <div class="card-body">
-                <div class="p-4 border rounded">
-                  <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-md-4">
-                      <label for="validationCustom01" class="form-label">Mã phiếu nhập</label>
-                      <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="validationCustom02" class="form-label">Tổng (triệu đ)</label>
-                      <input type="text" class="form-control" id="validationCustom02" value="" required>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="validationCustom03" class="form-label">Chọn Nhà cung cấp</label>
-                      <select class="form-select" aria-label="Default select example">
-                        <option value="1">Nhà máy Á Châu</option>
-                        <option value="2">Nhà máy Thượng Hải</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="validationCustom04" class="form-label">Mã nhân viên</label>
-                      <input type="text" class="form-control" id="validationCustom03" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label">Ngày nhập</label>
-                      <input type="text" class="form-control datepicker" />
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+              Thêm phiếu nhập
+            </button>
             <hr />
-            <!-- End Form nhập hàng -->
 
             <div class="card radius-10 w-100">
               <div class="card-body">
                 <div class="d-flex align-items-center ">
-                  <div class="p-2 mb-0">
-                    <h6>Danh sách phiếu nhập</h6>
-                  </div>
-                  <div class="ms-auto p-2">
-                    <a href="addwarehouse-receipt.php" class="btn btn-primary">Thêm phiếu nhập</a>
-                  </div>
-                  <div class="fs-5 p-2 dropdown">
+                  <h6 class="mb-0 text-uppercase">Danh sách phiếu nhập</h6>
+                  <div class="fs-5 ms-auto dropdown">
                     <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">Action</a></li>
@@ -159,13 +126,13 @@
                         <td>Apr 8, 2021</td>
                         <td>
                           <div class="d-flex align-items-center gap-3 fs-6">
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                            <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
                               <ion-icon name="eye-sharp"></ion-icon>
                             </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                            <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
                               <ion-icon name="pencil-sharp"></ion-icon>
                             </a>
-                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                            <a href="javascript:;" class="text-dark" >
                               <ion-icon name="trash-sharp"></ion-icon>
                             </a>
                           </div>
@@ -246,6 +213,318 @@
           </div>
         </div>
         <!--end switcher-->
+
+
+        <!-- Modal thêm thông tin phiếu nhập    -->
+        <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thêm phiếu nhập</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                    <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Danh mục</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Áo thun</option>
+                                                <option value="2">Áo sơ mi</option>
+                                                <option value="2">Áo 3 lỗ</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Thương hiệu</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Adidas</option>
+                                                <option value="2">Nike</option>
+                                                <option value="2">Gucci</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Màu sắc</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Kích cỡ</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">S</option>
+                                                <option value="2">M</option>
+                                                <option value="3">L</option>
+                                                <option value="4">XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Giá nhập ( đồng )</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Số lượng</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Weight</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Dimensions</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">10 x 10 x 15 cm</option>
+                                                <option value="2">10 x 10 x 15 cm</option>
+                                                <option value="3">10 x 10 x 15 cm</option>
+                                                <option value="4">10 x 10 x 15 cm</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Materials</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">60% cotton, 40% polyester</option>
+                                                <option value="2">60% cotton, 40% polyester</option>
+                                                <option value="3">60% cotton, 40% polyester</option>
+                                                <option value="4">60% cotton, 40% polyester</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom04" class="form-label">Other info</label>
+                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom04" class="form-label">Description</label>
+                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Add WarehouseReceipt</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal thêm thông tin phiếu nhập -->
+
+            <!-- Modal xem thông tin phiếu nhập -->
+            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin nhân viên</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                    <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Danh mục</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Áo thun</option>
+                                                <option value="2">Áo sơ mi</option>
+                                                <option value="2">Áo 3 lỗ</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Thương hiệu</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Adidas</option>
+                                                <option value="2">Nike</option>
+                                                <option value="2">Gucci</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Màu sắc</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Kích cỡ</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">S</option>
+                                                <option value="2">M</option>
+                                                <option value="3">L</option>
+                                                <option value="4">XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Giá nhập ( đồng )</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Số lượng</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Weight</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Dimensions</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">10 x 10 x 15 cm</option>
+                                                <option value="2">10 x 10 x 15 cm</option>
+                                                <option value="3">10 x 10 x 15 cm</option>
+                                                <option value="4">10 x 10 x 15 cm</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Materials</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">60% cotton, 40% polyester</option>
+                                                <option value="2">60% cotton, 40% polyester</option>
+                                                <option value="3">60% cotton, 40% polyester</option>
+                                                <option value="4">60% cotton, 40% polyester</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom04" class="form-label">Other info</label>
+                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom04" class="form-label">Description</label>
+                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                        </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Modal xem thông tin phiếu nhập -->
+
+            <!-- Modal sửa thông tin phiếu nhập    -->
+            <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-0">Thông tin nhân viên</h6>
+                                <div class="p-4 border rounded">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                    <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Danh mục</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Áo thun</option>
+                                                <option value="2">Áo sơ mi</option>
+                                                <option value="2">Áo 3 lỗ</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Thương hiệu</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Adidas</option>
+                                                <option value="2">Nike</option>
+                                                <option value="2">Gucci</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Màu sắc</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Kích cỡ</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">S</option>
+                                                <option value="2">M</option>
+                                                <option value="3">L</option>
+                                                <option value="4">XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Giá nhập ( đồng )</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Số lượng</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom02" class="form-label">Weight</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Dimensions</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">10 x 10 x 15 cm</option>
+                                                <option value="2">10 x 10 x 15 cm</option>
+                                                <option value="3">10 x 10 x 15 cm</option>
+                                                <option value="4">10 x 10 x 15 cm</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom03" class="form-label">Materials</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">60% cotton, 40% polyester</option>
+                                                <option value="2">60% cotton, 40% polyester</option>
+                                                <option value="3">60% cotton, 40% polyester</option>
+                                                <option value="4">60% cotton, 40% polyester</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom04" class="form-label">Other info</label>
+                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom04" class="form-label">Description</label>
+                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Update WarehouseReceipt</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal sửa thông tin phiếu nhập -->
 
 
         <!--start overlay-->
