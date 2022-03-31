@@ -74,6 +74,11 @@
                     <div class="col-xl-12 mx-auto">
                         <h4 class="mb-0 text-uppercase">Phân quyền</h4>
                         <hr />
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                            Thêm chức vụ
+                        </button>
+                        <hr />
                     </div>
                 </div>
 
@@ -216,25 +221,24 @@
             </div>
             <!--end wrapper-->
             <!-- start modal thêm phân quyền -->
-            <!-- <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true"phân quyền
+            <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content ">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="mb-0">Thông tin nhà cung cấp</h6>
+                                <h6 class="mb-0">Thêm chức vụ</h6>
                                 <div class="p-4 border rounded">
                                     <form class="row g-3 needs-validation" novalidate>
                                         <div class="col-md-6">
                                             <label for="validationCustom03" class="form-label">Mã chức vụ</label>
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option value="1" selected>p1</option>
-                                                <option value="2">p2</option>
-                                                <option value="2">p3</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                             <label for="validationCustom01" class="form-label">Tên chức vụ</label>
                                             <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12"></div>
+                                        <!-- <div class="col-md-6">
                                             <table class="table align-middle mb-0 p-4 border rounded">
                                                 <thead class="table-light">
                                                     <tr>
@@ -257,8 +261,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="col-md-3">
+                                        </div> -->
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -266,7 +270,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -274,7 +278,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -282,13 +286,16 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
                                                 </div>
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Thêm</button>
                                         </div>
                                     </form>
                                 </div>
@@ -296,7 +303,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <!-- end modal thêm phân quyền -->
 
             <!-- start modal xem phân quyền -->
@@ -308,17 +315,16 @@
                                 <h6 class="mb-0">Thông tin phân quyền</h6>
                                 <div class="p-4 border rounded">
                                     <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-6">
+                                    <div class="col-md-6">
                                             <label for="validationCustom03" class="form-label">Mã chức vụ</label>
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option value="1" selected>p1</option>
-                                                <option value="2">p2</option>
-                                                <option value="2">p3</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                             <label for="validationCustom01" class="form-label">Tên chức vụ</label>
                                             <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12"></div>
+                                        <!-- <div class="col-md-6">
                                             <table class="table align-middle mb-0 p-4 border rounded">
                                                 <thead class="table-light">
                                                     <tr>
@@ -341,8 +347,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="col-md-6">
+                                        </div> -->
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -350,7 +356,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -358,7 +364,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -366,7 +372,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -392,17 +398,16 @@
                                 <h6 class="mb-0">Thông tin phân quyền</h6>
                                 <div class="p-4 border rounded">
                                     <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-6">
+                                    <div class="col-md-6">
                                             <label for="validationCustom03" class="form-label">Mã chức vụ</label>
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option value="1" selected>p1</option>
-                                                <option value="2">p2</option>
-                                                <option value="2">p3</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                             <label for="validationCustom01" class="form-label">Tên chức vụ</label>
                                             <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12"></div>
+                                        <!-- <div class="col-md-6">
                                             <table class="table align-middle mb-0 p-4 border rounded">
                                                 <thead class="table-light">
                                                     <tr>
@@ -425,8 +430,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="col-md-6">
+                                        </div> -->
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -434,7 +439,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -442,7 +447,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
@@ -450,7 +455,7 @@
                                                 <span class="form-control">Quản lý sản phẩm</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
                                                     <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
