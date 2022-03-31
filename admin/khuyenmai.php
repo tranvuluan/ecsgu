@@ -251,16 +251,8 @@
                                             <label class="form-label">End Date</label>
                                             <input type="text" class="form-control datepicker" />
                                         </div>
-
                                         <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                                <label class="form-check-label" for="invalidCheck">Agree to add discount?</label>
-                                                <div class="invalid-feedback">You must agree before submitting.</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                            <button class="btn btn-primary" type="submit">Thêm</button>
                                         </div>
                                     </form>
                                 </div>
@@ -304,17 +296,6 @@
                                             <label class="form-label">End Date</label>
                                             <input type="text" class="form-control datepicker" />
                                         </div>
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                                <label class="form-check-label" for="invalidCheck">Agree to add discount?</label>
-                                                <div class="invalid-feedback">You must agree before submitting.</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
-                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -357,16 +338,8 @@
                                             <label class="form-label">End Date</label>
                                             <input type="text" class="form-control datepicker" />
                                         </div>
-
                                         <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                                <label class="form-check-label" for="invalidCheck">Agree to add discount?</label>
-                                                <div class="invalid-feedback">You must agree before submitting.</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                            <button class="btn btn-primary" type="submit">Sửa</button>
                                         </div>
                                     </form>
                                 </div>

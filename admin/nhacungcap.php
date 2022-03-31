@@ -270,9 +270,6 @@
                                                 <label for="validationCustom02" class="form-label">Tên nhà cung cấp</label>
                                                 <input type="text" class="form-control" id="validationCustom02" value="" required>
                                             </div>
-                                            <div class="col-12">
-                                                <button class="btn btn-primary" type="submit">Thêm</button>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -304,7 +301,7 @@
                                                 <input type="text" class="form-control" id="validationCustom02" value="" required>
                                             </div>
                                             <div class="col-12">
-                                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                                <button class="btn btn-primary" type="submit">Sửa</button>
                                             </div>
                                         </form>
                                     </div>

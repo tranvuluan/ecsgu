@@ -257,7 +257,7 @@
                                             <input type="text" class="form-control" id="validationCustom03" required>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                            <button class="btn btn-primary" type="submit">Thêm</button>
                                         </div>
                                     </form>
                                 </div>
@@ -304,9 +304,6 @@
                                         <div class="col-md-4">
                                             <label for="validationCustom04" class="form-label">Điểm</label>
                                             <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
                                         </div>
                                     </form>
                                 </div>
@@ -355,7 +352,7 @@
                                             <input type="text" class="form-control" id="validationCustom03" required>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                            <button class="btn btn-primary" type="submit">Sửa</button>
                                         </div>
                                     </form>
                                 </div>

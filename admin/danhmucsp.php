@@ -74,25 +74,9 @@
                     <div class="col-md-6">
                         <h6 class="mb-0 text-uppercase">Danh mục mẹ</h6>
                         <hr />
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom01" class="form-label">Mã danh mục</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Submit form</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                            Thêm danh mục mẹ
+                        </button>
                         <hr />
 
                         <div class="card radius-10 w-100">
@@ -135,13 +119,10 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                                                            <ion-icon name="eye-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
                                                             <ion-icon name="pencil-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                                                        <a href="javascript:;" class="text-dark">
                                                             <ion-icon name="trash-sharp"></ion-icon>
                                                         </a>
                                                     </div>
@@ -157,91 +138,72 @@
 
                     <!-- begin danh mục con -->
                     <div class="col-md-6 ">
-                            <h6 class="mb-0 text-uppercase">Danh mục con</h6>
-                            <hr />
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="p-4 border rounded">
-                                        <form class="row g-3 needs-validation" novalidate>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Mã danh mục con</label>
-                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom02" class="form-label">Tên danh mục con</label>
-                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="btn btn-primary" type="submit">Submit form</button>
-                                            </div>
-                                        </form>
+                        <h6 class="mb-0 text-uppercase">Danh mục con</h6>
+                        <hr />
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addSubModalId">
+                            Thêm danh mục con
+                        </button>
+                        <hr />
+
+                        <div class="card radius-10 w-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">Danh sách danh mục con</h6>
+                                    <div class="fs-5 ms-auto dropdown">
+                                        <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <hr />
-
-                            <div class="card radius-10 w-100">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <h6 class="mb-0">Danh sách danh mục con</h6>
-                                        <div class="fs-5 ms-auto dropdown">
-                                            <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="table-responsive mt-2">
-                                        <table class="table align-middle mb-0">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>Mã danh mục con</th>
-                                                    <th>Tên danh mục con</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>#89742</td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="product-box border">
-                                                                <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                                            </div>
+                                <div class="table-responsive mt-2">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã danh mục con</th>
+                                                <th>Tên danh mục con</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#89742</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="product-box border">
+                                                            <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
                                                         </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center gap-3 fs-6">
-                                                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                                                                <ion-icon name="eye-sharp"></ion-icon>
-                                                            </a>
-                                                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                                                                <ion-icon name="pencil-sharp"></ion-icon>
-                                                            </a>
-                                                            <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                                                                <ion-icon name="trash-sharp"></ion-icon>
-                                                            </a>
+                                                        <div class="product-info">
+                                                            <h6 class="product-name mb-1">Smart Mobile Phone</h6>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3 fs-6">
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateSubModalId">
+                                                            <ion-icon name="pencil-sharp"></ion-icon>
+                                                        </a>
+                                                        <a href="javascript:;" class="text-dark">
+                                                            <ion-icon name="trash-sharp"></ion-icon>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
+
                     <!-- begin danh mục con -->
-                        <!-- end page content-->
-                  
+                    <!-- end page content-->
+
 
                     <!--end page content wrapper-->
 
@@ -319,7 +281,121 @@
                 </div>
                 <!--end wrapper-->
 
+                <!-- start modal thêm danh mục mẹ -->
+                <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-0">Thông tin danh mục mẹ</h6>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal thêm danh mục mẹ -->
 
+                <!-- start modal sửa danh mục mẹ -->
+                <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-0">Thông tin danh mục mẹ</h6>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Sửa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal sửa danh mục mẹ -->
+
+                <!-- start modal thêm danh mục con -->
+                <div class="modal fade" id="addSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-0">Thông tin danh mục con</h6>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal thêm danh mục con -->
+
+                <!-- start modal sửa danh mục con -->
+                <div class="modal fade" id="updateSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-0">Thông tin danh mục con</h6>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
+                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Sửa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal sửa danh mục con -->
                 <!-- Scripts-->
                 <?php
                 $path = dirname(__FILE__);
