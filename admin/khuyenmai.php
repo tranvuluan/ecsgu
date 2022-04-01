@@ -1,3 +1,10 @@
+<?php
+$path = dirname(__FILE__);
+require_once $path . '/../class/voucher.php';
+?>
+
+
+
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -17,6 +24,10 @@
 </head>
 
 <body>
+    <?php
+    $voucherModel = new Voucher();
+    ?>
+
     <!--start wrapper-->
     <div class="wrapper">
 
@@ -108,38 +119,39 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>#89742</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="product-box border">
-                                                            <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>2%</td>
-                                                <td>Apr 8, 2021</td>
-                                                <td>Apr 8, 2021</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
-                                                            <ion-icon name="eye-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <?php
+                                        $voucherList = $voucherModel->getVouchers();
+                                        if ($voucherList) {
+                                            while ($row = $voucherList->fetch_assoc()) {
+                                        ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $row['id_voucher'] ?></td>
+                                                        <td><?php echo $row['code'] ?></td>
+                                                        <td><?php echo $row['discountpercent'] ?></td>
+                                                        <td><?php echo $row['startdate'] ?></td>
+                                                        <td><?php echo $row['enddate'] ?></td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3 fs-6">
+                                                                <a href="javascript:;" class="text-dark"  onclick="getDetail('<?php print($row['id_voucher']) ?>')" >
+                                                                    <ion-icon name="eye-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_voucher']) ?>')">
+                                                                    <ion-icon name="pencil-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark">
+                                                                    <ion-icon name="trash-sharp"></ion-icon>
+                                                                </a>
+                                                            </div>
 
-                                        </tbody>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+
                                     </table>
                                 </div>
                             </div>
@@ -219,6 +231,10 @@
             </div>
             <!--end wrapper-->
             <!-- start modal thêm khuyến mãi -->
+            <?php
+            $path = dirname(__FILE__);
+            ?>
+
             <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content ">
@@ -226,30 +242,30 @@
                             <div class="card-body">
                                 <h6 class="mb-0">Thông tin khuyến mãi</h6>
                                 <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
+                                    <form class="row g-3 needs-validation" action="lib/addvoucher.php" method="POST" novalidate>
                                         <div class="col-md-4">
                                             <label for="validationCustom01" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
+                                            <input type="text" class="form-control" id="validationCustom01" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" required>
                                             <div class="valid-feedback">Enter ID!</div>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="validationCustom02" class="form-label">Code</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                            <input type="text" class="form-control" id="validationCustom02" value="" name="code" required>
                                             <div class="valid-feedback">Enter code</div>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="validationCustomUsername" class="form-label">Discount percent</label>
                                             <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="discountPercent" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Start Date</label>
-                                            <input type="text" class="form-control datepicker" />
+                                            <input type="text" class="form-control datepicker" name="startDate" />
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">End Date</label>
-                                            <input type="text" class="form-control datepicker" />
+                                            <input type="text" class="form-control datepicker" name="endDate" />
                                         </div>
                                         <div class="col-12">
                                             <button class="btn btn-primary" type="submit">Thêm</button>
@@ -263,99 +279,19 @@
             </div>
             <!-- end modal thêm khuyến mãi -->
 
-            <!-- start modal xem khuyến mãi -->
-            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin khuyến mãi</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom01" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                            <div class="valid-feedback">Enter ID!</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom02" class="form-label">Code</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            <div class="valid-feedback">Enter code</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustomUsername" class="form-label">Discount percent</label>
-                                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Start Date</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">End Date</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal xem khuyến mãi -->
-
-            <!-- start modal sửa khuyến mãi -->
-            <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin khuyến mãi</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom01" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                            <div class="valid-feedback">Enter ID!</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom02" class="form-label">Code</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            <div class="valid-feedback">Enter code</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustomUsername" class="form-label">Discount percent</label>
-                                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Start Date</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">End Date</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Sửa</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal sửa khuyến mãi -->
             <!-- Scripts-->
+
+            <div id="modal"></div>
+
+
             <?php
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
+            
+            <script src="assets/js/voucher.js"></script>
             <!-- END Scripts -->
-
+           
 </body>
 
 </html>
