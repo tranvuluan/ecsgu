@@ -242,7 +242,7 @@ require_once $path . '/../class/voucher.php';
                             <div class="card-body">
                                 <h6 class="mb-0">Thông tin khuyến mãi</h6>
                                 <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" action="lib/addvoucher.php" method="POST" novalidate>
+                                    <form class="row g-3 needs-validation" id="addForm" action="lib/addvoucher.php" method="POST" novalidate>
                                         <div class="col-md-4">
                                             <label for="validationCustom01" class="form-label">ID</label>
                                             <input type="text" class="form-control" id="validationCustom01" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" required>
@@ -281,7 +281,7 @@ require_once $path . '/../class/voucher.php';
 
             <!-- Scripts-->
 
-            <div id="modal"></div>
+            <div id="switchModal"></div>
 
 
             <?php

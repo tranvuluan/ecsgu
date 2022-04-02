@@ -10,7 +10,7 @@ function getDetail(id) {
         },
         
         success: function(data) {
-           $('<div class="modal fade">' +data+' <div>').modal();
+            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
         }
     });
 }
@@ -27,23 +27,25 @@ function viewToUpdate(id) {
             viewToUpdate: true
         },
         success: function(data) {
-           $('<div class="modal fade">' +data+' <div>').modal();
+            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
         }
     });
 }
 
 function update() {
     event.preventDefault();
-    let formdata = $('form').serializeArray();
-    $.ajax({
-        url: './process/khuyenmai.php',
-        type: 'POST',
-        data: {
-            data: formdata,
-            update: true
-        },
-        success: function(data) {
-          console.log(formdata);
-        }
-    });
+    let id = $('input[name="update_voucherId"]').val();
+    // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+    console.log(id);
+    // $.ajax({
+    //     url: './process/khuyenmai.php',
+    //     type: 'POST',
+    //     data: {
+    //         data: formdata,
+    //         update: true
+    //     },
+    //     success: function(data) {
+    //       console.log(formdata);
+    //     }
+    // });
 }
