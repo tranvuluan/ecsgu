@@ -8,6 +8,7 @@ function getDetail(id) {
             id: id,
             view: true
         },
+        
         success: function(data) {
            $('<div class="modal fade">' +data+' <div>').modal();
         }
@@ -42,8 +43,7 @@ function update() {
             update: true
         },
         success: function(data) {
-            console.log('......');
-          console.log(data);
+          console.log(formdata);
         }
     });
 }
