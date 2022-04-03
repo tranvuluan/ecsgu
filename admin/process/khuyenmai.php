@@ -75,22 +75,22 @@ if (isset($_POST['id']) && $_POST['viewToUpdate'] == 'true') {
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">Code</label>
-                                <input type="text" class="form-control" name="code" value="<?php echo $voucherById['code'] ?>" required>
+                                <input type="text" class="form-control" name="update_code" value="<?php echo $voucherById['code'] ?>" required>
                                 <div class="valid-feedback">Enter code</div>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustomUsername" class="form-label">Discount percent</label>
                                 <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                    <input type="text" class="form-control" name="discountPercent" aria-describedby="inputGroupPrepend" value="<?php echo $voucherById['discountpercent'] ?>" required>
+                                    <input type="text" class="form-control" name="update_discount" aria-describedby="inputGroupPrepend" value="<?php echo $voucherById['discountpercent'] ?>" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Start Date</label>
-                                <input type="text" class="form-control datepicker" name="startDate" value="<?php echo $voucherById['startdate'] ?>" />
+                                <input type="text" class="form-control datepicker" name="update_startdate" value="<?php echo $voucherById['startdate'] ?>" />
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">End Date</label>
-                                <input type="text" class="form-control datepicker" name="endDate" value="<?php echo $voucherById['enddate'] ?>" />
+                                <input type="text" class="form-control datepicker" name="update_enddate" value="<?php echo $voucherById['enddate'] ?>" />
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Sửa</button>
@@ -108,8 +108,26 @@ if (isset($_POST['id']) && $_POST['viewToUpdate'] == 'true') {
 
 
 <?php
+
 if (isset($_POST['update']) && $_POST['update'] == 'true') {
-    $id = $_POST['data'][0]['value'];
+    $voucherId = $_POST['id'];
+    $code = $_POST['code'];
+    $discount = $_POST['discount'];
+    $startdate = $_POST['startdate'];
+    $enddate = $_POST['enddate'];
+
+    $voucherModel = new Voucher();
+
+    $updateVoucher = $voucherModel->update($voucherId, $code, $discount, $startdate, $enddate);
+    if ($updateVoucher) {
+        echo 1;
+        // echo '<script>alert("Update voucher success!");</script>';
+        // echo '<script>window.location.href = "../khuyenmai.php";</script>';
+    } else {
+        echo 0;
+        // echo '<script>alert("Update voucher failed!");</script>';
+        // echo '<script>window.location.href = "../khuyenmai.php";</script>'; 
+    }
 }
 
 

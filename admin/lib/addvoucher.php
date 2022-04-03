@@ -13,8 +13,8 @@
      
 
 
-    $addvoucher = $voucherModel -> insert($voucherId, $code, $discountPercent, $startDate, $endDate);
-    if ($addvoucher) {
+    $addVoucher = $voucherModel -> insert($voucherId, $code, $discountPercent, $startDate, $endDate);
+    if ($addVoucher) {
         echo '<script>alert("Add voucher success!");</script>';
         echo '<script>window.location.href = "../../admin/khuyenmai.php";</script>';
     } else {

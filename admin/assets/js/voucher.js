@@ -35,17 +35,37 @@ function viewToUpdate(id) {
 function update() {
     event.preventDefault();
     let id = $('input[name="update_voucherId"]').val();
+    let code = $('input[name="update_code"]').val();
+    let discount = $('input[name="update_discount"]').val();
+    let startdate = $('input[name="update_startdate"]').val();
+    let enddate = $('input[name="update_enddate"]').val();
+
+    var data = {
+        'id': id,
+        'code': code,
+        'discount': discount,
+        'startdate': startdate,
+        'enddate': enddate,
+    };
     // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
-    console.log(id);
-    // $.ajax({
-    //     url: './process/khuyenmai.php',
-    //     type: 'POST',
-    //     data: {
-    //         data: formdata,
-    //         update: true
-    //     },
-    //     success: function(data) {
-    //       console.log(formdata);
-    //     }
-    // });
+
+    $.ajax({
+        url: './process/khuyenmai.php',
+        type: 'POST',
+        data: {
+            data: data,
+            update: true
+        },
+        success: function(response) {
+            console.log(response);
+            if(response == 0){
+                console.log(response);
+            }
+            else{
+                // window.location.href = "./khuyenmai.php";
+                console.log(response);
+
+            }
+        }
+    });
 }
