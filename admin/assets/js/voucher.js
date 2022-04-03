@@ -40,21 +40,19 @@ function update() {
     let startdate = $('input[name="update_startdate"]').val();
     let enddate = $('input[name="update_enddate"]').val();
 
-    var data = {
-        'id': id,
-        'code': code,
-        'discount': discount,
-        'startdate': startdate,
-        'enddate': enddate,
-    };
+    var data = 
     // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
 
     $.ajax({
         url: './process/khuyenmai.php',
         type: 'POST',
         data: {
-            data: data,
-            update: true
+            id: id,
+            code: code,
+            discount: discount,
+            startdate: startdate,
+            enddate: enddate,
+            update : true
         },
         success: function(response) {
             console.log(response);
@@ -62,9 +60,7 @@ function update() {
                 console.log(response);
             }
             else{
-                // window.location.href = "./khuyenmai.php";
-                console.log(response);
-
+                window.location.href = "./khuyenmai.php";
             }
         }
     });

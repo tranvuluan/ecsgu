@@ -121,12 +121,8 @@ if (isset($_POST['update']) && $_POST['update'] == 'true') {
     $updateVoucher = $voucherModel->update($voucherId, $code, $discount, $startdate, $enddate);
     if ($updateVoucher) {
         echo 1;
-        // echo '<script>alert("Update voucher success!");</script>';
-        // echo '<script>window.location.href = "../khuyenmai.php";</script>';
     } else {
         echo 0;
-        // echo '<script>alert("Update voucher failed!");</script>';
-        // echo '<script>window.location.href = "../khuyenmai.php";</script>'; 
     }
 }
 
