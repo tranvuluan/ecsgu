@@ -82,7 +82,8 @@ function deleteVoucher(id){
                 console.log(response);
             }
             else{
-                window.location.href = "./khuyenmai.php";
+                console.log('xoa thanh cong');
+                // window.location.href = "./khuyenmai.php";
             }
         }
     });

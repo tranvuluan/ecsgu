@@ -56,7 +56,7 @@ class Voucher{
 
     public function delete($id_voucher){
         $id_voucher = $this->conn->real_escape_string($id_voucher);
-        $sql = "DELETE * FROM tbl_voucher WHERE `id_voucher` = '$id_voucher'";
+        $sql = "DELETE FROM tbl_voucher WHERE `id_voucher` = '$id_voucher'";
         $result = $this->conn->query($sql);
         return $result;
     }

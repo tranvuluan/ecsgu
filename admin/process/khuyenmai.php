@@ -135,6 +135,7 @@ if (isset($_POST['update']) && $_POST['update'] == 'true') {
 <?php 
     if (isset($_POST['delete']) && $_POST['delete'] == 'true') {
         $id = $_POST['id'];
+        var_dump($id);
         $voucherModel = new Voucher();
         $deleteVoucher = $voucherModel->delete($id);
         if ($deleteVoucher) {
