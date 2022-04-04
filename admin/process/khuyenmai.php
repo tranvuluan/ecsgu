@@ -67,7 +67,7 @@ if (isset($_POST['id']) && $_POST['viewToUpdate'] == 'true') {
                 <div class="card-body">
                     <h6 class="mb-0">Thông tin khuyến mãi</h6>
                     <div class="p-4 border rounded">
-                        <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="update()" >
+                        <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="update()">
                             <div class="col-md-4">
                                 <label for="validationCustom01" class="form-label">ID</label>
                                 <input type="text" class="form-control" name="update_voucherId" value="<?php echo $voucherById['id_voucher'] ?>" required>
@@ -104,7 +104,11 @@ if (isset($_POST['id']) && $_POST['viewToUpdate'] == 'true') {
 
 
 
-<?php } ?>
+<?php
+
+}
+
+?>
 
 
 <?php
@@ -126,5 +130,18 @@ if (isset($_POST['update']) && $_POST['update'] == 'true') {
     }
 }
 
+
+?>
+<?php 
+    if (isset($_POST['delete']) && $_POST['delete'] == 'true') {
+        $id = $_POST['id'];
+        $voucherModel = new Voucher();
+        $deleteVoucher = $voucherModel->delete($id);
+        if ($deleteVoucher) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
 
 ?>

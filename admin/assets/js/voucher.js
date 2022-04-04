@@ -65,3 +65,25 @@ function update() {
         }
     });
 }
+
+function deleteVoucher(id){
+
+    console.log(id);
+    $.ajax({
+        url: './process/khuyenmai.php',
+        type: 'POST',
+        data: {
+            id: id,
+            delete: true
+        },
+        success: function(response) {
+            console.log(response);
+            if(response == 0){
+                console.log(response);
+            }
+            else{
+                window.location.href = "./khuyenmai.php";
+            }
+        }
+    });
+}
