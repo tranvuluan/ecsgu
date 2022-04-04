@@ -3,8 +3,6 @@ $path = dirname(__FILE__);
 require_once $path . '/../class/voucher.php';
 ?>
 
-
-
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -85,7 +83,7 @@ require_once $path . '/../class/voucher.php';
                         <h4 class="mb-0 text-uppercase">Quản lý khuyến mãi</h4>
                         <!-- start thêm khuyến mãi  -->
                         <hr />
-                        <button onclick="viewToAdd()"  type="button" class="btn btn-primary btn-lg">
+                        <button onclick="viewToAdd()" type="button" class="btn btn-primary btn-lg">
                             Thêm khuyến mãi
                         </button>
                         <hr />
@@ -133,13 +131,13 @@ require_once $path . '/../class/voucher.php';
                                                         <td><?php echo $row['enddate'] ?></td>
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark"  onclick="getDetail('<?php print($row['id_voucher']) ?>')" >
+                                                                <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print($row['id_voucher']) ?>')">
                                                                     <ion-icon name="eye-sharp"></ion-icon>
                                                                 </a>
                                                                 <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_voucher']) ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
-                                                                <a onclick=" confirm('Xoa khong?') ? deleteVoucher('<?php print($row['id_voucher']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark" >
+                                                                <a onclick=" confirm('Xoa khong?') ? deleteVoucher('<?php print($row['id_voucher']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
                                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                                 </a>
                                                             </div>
@@ -239,10 +237,10 @@ require_once $path . '/../class/voucher.php';
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
-            
+
             <script src="assets/js/voucher.js"></script>
             <!-- END Scripts -->
-           
+
 </body>
 
 </html>
