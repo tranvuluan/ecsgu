@@ -3,6 +3,79 @@ $path = dirname(__FILE__);
 require_once $path . '/../../class/voucher.php';
 ?>
 
+<?php
+if (isset($_POST['viewToAdd'])) {
+
+?>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="mb-0">Thông tin khuyến mãi</h6>
+                    <div class="p-4 border rounded">
+                        <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()">
+                            <div class="col-md-4">
+                                <label for="validationCustom01" class="form-label">ID</label>
+                                <input type="text" class="form-control" id="validationCustom01" name="add_voucherId" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" required>
+                                <div class="valid-feedback">Enter ID!</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationCustom02" class="form-label">Code</label>
+                                <input type="text" class="form-control" id="validationCustom02" value="" name="add_code" required>
+                                <div class="valid-feedback">Enter code</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationCustomUsername" class="form-label">Discount percent</label>
+                                <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="add_discount" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Start Date</label>
+                                <input type="text" class="form-control datepicker" name="add_startdate" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">End Date</label>
+                                <input type="text" class="form-control datepicker" name="add_enddate" />
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php
+
+}
+
+?>
+
+<?php
+
+if (isset($_POST['add'])) {
+    $voucherId = $_POST['id'];
+    $code = $_POST['code'];
+    $discount = $_POST['discount'];
+    $startdate = $_POST['startdate'];
+    $enddate = $_POST['enddate'];
+
+    $voucherModel = new Voucher();
+
+    $addVoucher = $voucherModel->insert($voucherId, $code, $discount, $startdate, $enddate);
+    if ($updateVoucher) {
+        echo 1;
+    } else {
+        echo 0;
+    }
+}
+
+
+?>
+
 
 <?php
 if (isset($_POST['view']) && isset($_POST['id'])) {
@@ -56,7 +129,7 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
 
 
 <?php
-if (isset($_POST['viewToUpdate']) && isset($_POST['id']) ) {
+if (isset($_POST['viewToUpdate']) && isset($_POST['id'])) {
     $id = $_POST['id'];
     $voucherModel = new Voucher();
     $voucherById = $voucherModel->getVoucherById($id)->fetch_assoc();
@@ -113,7 +186,7 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id']) ) {
 
 <?php
 
-if ($_POST['update'] && isset($_POST['update'])) {
+if (isset($_POST['update']) && isset($_POST['id'])) {
     $voucherId = $_POST['id'];
     $code = $_POST['code'];
     $discount = $_POST['discount'];
@@ -132,16 +205,16 @@ if ($_POST['update'] && isset($_POST['update'])) {
 
 
 ?>
-<?php 
-    if ($_POST['delete'] && isset($_POST['delete'])) {
-        $id = $_POST['id'];
-        $voucherModel = new Voucher();
-        $deleteVoucher = $voucherModel->delete($id);
-        if ($deleteVoucher) {
-            echo 1;
-        } else {
-            echo 0;
-        }
+<?php
+if (isset($_POST['delete']) && isset($_POST['id'])) {
+    $id = $_POST['id'];
+    $voucherModel = new Voucher();
+    $deleteVoucher = $voucherModel->delete($id);
+    if ($deleteVoucher) {
+        echo 1;
+    } else {
+        echo 0;
     }
+}
 
 ?>

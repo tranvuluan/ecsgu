@@ -1,3 +1,9 @@
+<?php
+    $path = dirname(__FILE__);
+    require_once $path . '/../class/permission.php';
+
+?>
+
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -238,62 +244,25 @@
                                         <div class="col-md-12"></div>
                                         <div class="col-md-12"></div>
                                         <div class="col-md-12"></div>
-                                        <!-- <div class="col-md-6">
-                                            <table class="table align-middle mb-0 p-4 border rounded">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Mã chức vụ</th>
-                                                        <th>Tên chức vụ</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>p1</td>
-                                                        <td>Quản lý</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p2</td>
-                                                        <td>Nhân viên kho</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p2</td>
-                                                        <td>Nhân viên kinh doanh</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div> -->
-                                        <div class="col-md-4">
+                                        <?php
+                                            $permissionModel = new Permission();
+                                            $getPermission = $permissionModel->getPermissions();
+                                            if($getPermission){
+                                                while($result = $getPermission->fetch_assoc()){
+                                                    ?>
+                                                    <div class="col-md-4">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                                    <input class="form-check-input" type="checkbox" value="<?php echo $result['id_permission'] ?>" aria-label="Checkbox for following text input">
                                                 </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
+                                                <span class="form-control"><?php echo $result['name']?></span>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
+                                                    <?php
+                                                }
+                                            }
+                                            
+                                        ?>
                                         <div class="col-12">
                                             <button class="btn btn-primary" type="submit">Thêm</button>
                                         </div>

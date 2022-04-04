@@ -85,7 +85,7 @@ require_once $path . '/../class/voucher.php';
                         <h4 class="mb-0 text-uppercase">Quản lý khuyến mãi</h4>
                         <!-- start thêm khuyến mãi  -->
                         <hr />
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                        <button onclick="viewToAdd()"  type="button" class="btn btn-primary btn-lg">
                             Thêm khuyến mãi
                         </button>
                         <hr />
@@ -230,55 +230,6 @@ require_once $path . '/../class/voucher.php';
 
             </div>
             <!--end wrapper-->
-            <!-- start modal thêm khuyến mãi -->
-            <?php
-            $path = dirname(__FILE__);
-            ?>
-
-            <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin khuyến mãi</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" id="addForm" action="lib/addvoucher.php" method="POST" novalidate>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom01" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" required>
-                                            <div class="valid-feedback">Enter ID!</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom02" class="form-label">Code</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" name="code" required>
-                                            <div class="valid-feedback">Enter code</div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustomUsername" class="form-label">Discount percent</label>
-                                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="discountPercent" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Start Date</label>
-                                            <input type="text" class="form-control datepicker" name="startDate" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">End Date</label>
-                                            <input type="text" class="form-control datepicker" name="endDate" />
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Thêm</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal thêm khuyến mãi -->
-
             <!-- Scripts-->
 
             <div id="switchModal"></div>

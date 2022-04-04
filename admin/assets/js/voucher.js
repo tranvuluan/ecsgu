@@ -1,3 +1,51 @@
+function viewToAdd() {
+
+    $.ajax({
+        url: './process/khuyenmai.php',
+        type: 'POST',
+        data: {
+            viewToAdd: true
+        },
+        
+        success: function(data) {
+            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+        }
+    });
+}
+
+function add() {
+    event.preventDefault();
+    let id = $('input[name="add_voucherId"]').val();
+    let code = $('input[name="add_code"]').val();
+    let discount = $('input[name="add_discount"]').val();
+    let startdate = $('input[name="add_startdate"]').val();
+    let enddate = $('input[name="add_enddate"]').val();
+
+    // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+    $.ajax({
+        url: './process/khuyenmai.php',
+        type: 'POST',
+        data: {
+            id: id,
+            code: code,
+            discount: discount,
+            startdate: startdate,
+            enddate: enddate,
+            add : true
+        },
+        success: function(response) {
+            console.log(response);
+            if(response == 0){
+                console.log(response);
+            }
+            else{
+                window.location.href = "./khuyenmai.php";
+            }
+        }
+    });
+}
+
 function getDetail(id) {
     console.log(id);
 
