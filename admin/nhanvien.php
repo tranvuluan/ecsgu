@@ -1,3 +1,9 @@
+<?php
+$path = dirname(__FILE__);
+require_once $path . '/../class/employee.php';
+require_once $path . '/../class/position.php';
+?>
+
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -109,37 +115,57 @@
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>#89742</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="product-box border">
-                                                            <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>2</td>
-                                                <td>$214</td>
-                                                <td>Apr 8, 2021</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
-                                                            <ion-icon name="eye-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <?php
+                                        $employeeModel = new Employee();
+                                        $employeeList = $employeeModel->getEmployees();
+                                        if ($employeeList) {
+                                            while ($row = $employeeList->fetch_assoc()) {
+                                        ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $row['id_employee'] ?></td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3">
+                                                                <div class="product-box border">
+                                                                    <img src="<?php echo $row['image'] ?>" alt="">
+                                                                </div>
+                                                                <div class="product-info">
+                                                                    <h6 class="product-name mb-1"><?php echo $row['fullname'] ?></h6>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td><?php echo $row['email'] ?></td>
+                                                        <td><?php echo $row['address'] ?></td>
+                                                        <?php
+                                                        $positionModel = new Position();
+                                                        $nameEmployee = $positionModel->getPositionFromTbl_Employee($row['id_position']);
+                                                        if ($nameEmployee) {
+                                                            $rowName = $nameEmployee->fetch_assoc();
+                                                        ?>
+                                                            <td><?php echo $rowName['name'] ?></td>
+                                                        <?php
+                                                        }
+
+                                                        ?>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3 fs-6">
+                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
+                                                                    <ion-icon name="eye-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                                    <ion-icon name="pencil-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark">
+                                                                    <ion-icon name="trash-sharp"></ion-icon>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
                                     </table>
                                     <!-- end table nhân viên -->
                                 </div>

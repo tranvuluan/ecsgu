@@ -1,7 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
 
-require_once($path.'/config/connection.php');
+require_once($path.'/../config/connection.php');
 
 class Position{
     public $conn;
@@ -11,6 +11,18 @@ class Position{
     
     public function getPositions() {
         $sql = "SELECT * FROM tbl_position";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getPositionFromTbl_Employee($id_position){
+        $id_position = $this->conn->real_escape_string($id_position);
+        $sql = "SELECT tbl_position.name FROM tbl_employee,tbl_position WHERE  tbl_employee.id_position = tbl_position.id_position AND tbl_position.id_position = '$id_position'";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
