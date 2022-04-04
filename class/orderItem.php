@@ -44,7 +44,7 @@ class OrderItem{
 
     public function delete($id_order){
         $id_order = $this->conn->real_escape_string($id_order);
-        $sql = "DELETE * FROM tbl_order_item WHERE `id_order` = '$id_order'";
+        $sql = "DELETE FROM tbl_order_item WHERE `id_order` = '$id_order'";
         $result = $this->conn->query($sql);
         return $result;
     }

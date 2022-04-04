@@ -50,7 +50,7 @@ class Brand{
 
     public function delete($id_brand){
         $id_brand = $this->conn->real_escape_string($id_brand);
-        $sql = "DELETE * FROM tbl_brand WHERE `id_brand` = '$id_brand'";
+        $sql = "DELETE FROM tbl_brand WHERE `id_brand` = '$id_brand'";
         $result = $this->conn->query($sql);
         return $result;
     }

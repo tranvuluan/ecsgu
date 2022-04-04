@@ -63,7 +63,7 @@ class CategoryChild{
 
     public function delete($id_categorychild){
         $id_categorychild = $this->conn->real_escape_string($id_categorychild);
-        $sql = "DELETE * FROM tbl_categorychild WHERE `id_categorychild` = '$id_categorychild'";
+        $sql = "DELETE FROM tbl_categorychild WHERE `id_categorychild` = '$id_categorychild'";
         $result = $this->conn->query($sql);
         return $result;
     }

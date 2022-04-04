@@ -56,7 +56,7 @@ class WarehouseReceipt{
 
     public function delete($id_warehousereceipt){
         $id_warehousereceipt = $this->conn->real_escape_string($id_warehousereceipt);
-        $sql = "DELETE * FROM tbl_warehouse_receipt WHERE `id_warehousereceipt` = '$id_warehousereceipt'";
+        $sql = "DELETE FROM tbl_warehouse_receipt WHERE `id_warehousereceipt` = '$id_warehousereceipt'";
         $result = $this->conn->query($sql);
         return $result;
     }

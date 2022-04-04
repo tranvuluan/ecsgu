@@ -50,7 +50,7 @@ class Position{
 
     public function delete($id_position){
         $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "DELETE * FROM tbl_position WHERE `id_position` = '$id_position'";
+        $sql = "DELETE FROM tbl_position WHERE `id_position` = '$id_position'";
         $result = $this->conn->query($sql);
         return $result;
     }

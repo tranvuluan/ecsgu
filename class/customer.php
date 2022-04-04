@@ -60,7 +60,7 @@ class Customer{
 
     public function delete($id_customer){
         $id_customer = $this->conn->real_escape_string($id_customer);
-        $sql = "DELETE * FROM tbl_customer WHERE `id_customer` = '$id_customer'";
+        $sql = "DELETE FROM tbl_customer WHERE `id_customer` = '$id_customer'";
         $result = $this->conn->query($sql);
         return $result;
     }

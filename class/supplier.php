@@ -52,7 +52,7 @@ class Supplier{
 
     public function delete($id_supplier){
         $id_supplier = $this->conn->real_escape_string($id_supplier);
-        $sql = "DELETE * FROM tbl_supplier WHERE `id_supplier` = '$id_supplier'";
+        $sql = "DELETE FROM tbl_supplier WHERE `id_supplier` = '$id_supplier'";
         $result = $this->conn->query($sql);
         return $result;
     }

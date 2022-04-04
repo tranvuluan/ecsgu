@@ -50,7 +50,7 @@ class Permission{
     
     public function delete($id_permission){
         $id_permission = $this->conn->real_escape_string($id_permission);
-        $sql = "DELETE * FROM tbl_permission WHERE `id_permission` = '$id_permission'";
+        $sql = "DELETE FROM tbl_permission WHERE `id_permission` = '$id_permission'";
         $result = $this->conn->query($sql);
         return $result;
     }
