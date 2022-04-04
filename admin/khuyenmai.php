@@ -139,7 +139,7 @@ require_once $path . '/../class/voucher.php';
                                                                 <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_voucher']) ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
-                                                                <a href="javascript:;" class="text-dark" onclick="deleteVoucher('<?php print($row['id_voucher']) ?>')">
+                                                                <a onclick=" confirm('Xoa khong?') ? deleteVoucher('<?php print($row['id_voucher']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark" >
                                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                                 </a>
                                                             </div>

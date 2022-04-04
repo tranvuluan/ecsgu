@@ -5,7 +5,7 @@ require_once $path . '/../../class/voucher.php';
 
 
 <?php
-if (isset($_POST['id']) && $_POST['view'] == 'true') {
+if (isset($_POST['view']) && isset($_POST['id'])) {
     $id = $_POST['id'];
     $voucherModel = new Voucher();
     $voucherById = $voucherModel->getVoucherById($id)->fetch_assoc();
@@ -56,7 +56,7 @@ if (isset($_POST['id']) && $_POST['view'] == 'true') {
 
 
 <?php
-if (isset($_POST['id']) && $_POST['viewToUpdate'] == 'true') {
+if (isset($_POST['viewToUpdate']) && isset($_POST['id']) ) {
     $id = $_POST['id'];
     $voucherModel = new Voucher();
     $voucherById = $voucherModel->getVoucherById($id)->fetch_assoc();
@@ -135,7 +135,6 @@ if (isset($_POST['update']) && $_POST['update'] == 'true') {
 <?php 
     if (isset($_POST['delete']) && $_POST['delete'] == 'true') {
         $id = $_POST['id'];
-        var_dump($id);
         $voucherModel = new Voucher();
         $deleteVoucher = $voucherModel->delete($id);
         if ($deleteVoucher) {

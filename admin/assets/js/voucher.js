@@ -80,10 +80,11 @@ function deleteVoucher(id){
             console.log(response);
             if(response == 0){
                 console.log(response);
+                alert('Lỗi');
             }
             else{
-                console.log('xoa thanh cong');
-                // window.location.href = "./khuyenmai.php";
+                alert('Xóa thành công');
+                location.reload();
             }
         }
     });
