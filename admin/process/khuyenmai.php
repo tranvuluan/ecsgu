@@ -113,7 +113,7 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id']) ) {
 
 <?php
 
-if (isset($_POST['update']) && $_POST['update'] == 'true') {
+if ($_POST['update'] && isset($_POST['update'])) {
     $voucherId = $_POST['id'];
     $code = $_POST['code'];
     $discount = $_POST['discount'];
@@ -133,7 +133,7 @@ if (isset($_POST['update']) && $_POST['update'] == 'true') {
 
 ?>
 <?php 
-    if (isset($_POST['delete']) && $_POST['delete'] == 'true') {
+    if ($_POST['delete'] && isset($_POST['delete'])) {
         $id = $_POST['id'];
         $voucherModel = new Voucher();
         $deleteVoucher = $voucherModel->delete($id);
