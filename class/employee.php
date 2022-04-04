@@ -1,7 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
 
-require_once($path.'/config/connection.php');
+require_once($path.'/../config/connection.php');
 
 
 class Employee{

@@ -133,7 +133,7 @@
                                                         <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
                                                             <ion-icon name="pencil-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" >
+                                                        <a href="javascript:;" class="text-dark">
                                                             <ion-icon name="trash-sharp"></ion-icon>
                                                         </a>
                                                     </div>
@@ -397,6 +397,8 @@
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
+
+            <script src="assets/js/employee.js"></script>
             <!-- END Scripts -->
 
 
