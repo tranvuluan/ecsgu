@@ -7,7 +7,7 @@ require_once $path . '/../../class/supplier.php';
 if (isset($_POST['viewToAdd'])) {
 
 ?>
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog " role="document">
         <div class="modal-content ">
             <div class="card">
                 <div class="card-body">
@@ -19,12 +19,12 @@ if (isset($_POST['viewToAdd'])) {
                                 <input type="text" class="form-control" id="validationCustom01" value="" name="add_Id" placeholder="SU01" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom01" class="form-label">Địa chỉ</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="" name="add_address" placeholder="" required>
-                            </div>
-                            <div class="col-md-12">
                                 <label for="validationCustom02" class="form-label">Tên nhà cung cấp</label>
                                 <input type="text" class="form-control" id="validationCustom02" value="" name="add_name" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="validationCustom01" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" id="validationCustom01" value="" name="add_address"  required>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
@@ -47,7 +47,7 @@ if (isset($_POST['viewToAdd'])) {
 if (isset($_POST['add'])) {
     $suppId = $_POST['id'];
     $suppName = $_POST['name'];
-    $suppAdrr = $_POST['adress'];
+    $suppAdrr = $_POST['address'];
 
     $supplierModel = new Supplier();
 
@@ -59,9 +59,7 @@ if (isset($_POST['add'])) {
     }
 }
 
-
 ?>
-
 
 <?php
 if (isset($_POST['view']) && isset($_POST['id'])) {
@@ -151,7 +149,7 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id'])) {
 if (isset($_POST['update']) && isset($_POST['id'])) {
     $supplierId = $_POST['id'];
     $name = $_POST['name'];
-    $address = $_POST['adress'];
+    $address = $_POST['address'];
 
     $supplierModel = new Supplier();
 

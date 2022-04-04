@@ -16,8 +16,8 @@ function viewToAdd() {
 function add() {
     event.preventDefault();
     let id = $('input[name="add_Id"]').val();
-    let address = $('input[name="add_address"]').val();
     let name = $('input[name="add_name"]').val();
+    let address = $('input[name="add_address"]').val();
 
 
     // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
@@ -27,8 +27,8 @@ function add() {
         type: 'POST',
         data: {
             id: id,
-            address: address,
             name: name,
+            address: address,
             add : true
         },
         success: function(response) {
@@ -107,7 +107,7 @@ function update() {
     });
 }
 
-function deleteVoucher(id){
+function deleteSupplier(id){
 
     console.log(id);
     $.ajax({
@@ -118,6 +118,7 @@ function deleteVoucher(id){
             delete: true
         },
         success: function(response) {
+            console.log(id);
             console.log(response);
             if(response == 0){
                 console.log(response);

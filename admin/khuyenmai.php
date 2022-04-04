@@ -3,8 +3,6 @@ $path = dirname(__FILE__);
 require_once $path . '/../class/voucher.php';
 ?>
 
-
-
 <!doctype html>
 <html lang="en" class="semi-dark">
 

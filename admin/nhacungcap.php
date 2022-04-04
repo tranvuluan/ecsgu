@@ -1,6 +1,6 @@
 <?php
-    $path = dirname(__FILE__);
-    require_once $path . '/../class/supplier.php'
+$path = dirname(__FILE__);
+require_once $path . '/../class/supplier.php'
 ?>
 
 <!doctype html>
@@ -82,7 +82,7 @@
                         <!-- begin theem nhà cc-->
                         <h4 class="mb-0 text-uppercase">Quản lý nhà cung cấp</h4>
                         <hr />
-                        <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg" >
+                        <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg">
                             Thêm nhà cung cấp
                         </button>
                         <hr />
@@ -110,8 +110,8 @@
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã NCC</th>
-                                                <th>Địa chỉ</th>
                                                 <th>Tên NCC</th>
+                                                <th>Địa chỉ</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
