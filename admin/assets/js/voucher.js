@@ -15,11 +15,11 @@ function viewToAdd() {
 
 function add() {
     event.preventDefault();
-    let id = $('input[name="add_voucherId"]').val();
-    let code = $('input[name="add_code"]').val();
-    let discount = $('input[name="add_discount"]').val();
-    let startdate = $('input[name="add_startdate"]').val();
-    let enddate = $('input[name="add_enddate"]').val();
+    let id = $('input[name="voucherId"]').val();
+    let code = $('input[name="code"]').val();
+    let discount = $('input[name="discount"]').val();
+    let startdate = $('input[name="startdate"]').val();
+    let enddate = $('input[name="enddate"]').val();
 
     // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
 
@@ -82,11 +82,11 @@ function viewToUpdate(id) {
 
 function update() {
     event.preventDefault();
-    let id = $('input[name="update_voucherId"]').val();
-    let code = $('input[name="update_code"]').val();
-    let discount = $('input[name="update_discount"]').val();
-    let startdate = $('input[name="update_startdate"]').val();
-    let enddate = $('input[name="update_enddate"]').val();
+    let id = $('input[name="voucherId"]').val();
+    let code = $('input[name="code"]').val();
+    let discount = $('input[name="discount"]').val();
+    let startdate = $('input[name="startdate"]').val();
+    let enddate = $('input[name="enddate"]').val();
 
     var data = 
     // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
