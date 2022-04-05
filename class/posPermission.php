@@ -56,17 +56,5 @@ class PosPermission{
         return $result;
     }
 
-    public function checkInit($id_permission, $id_position){
-        $id_permission = $this->conn->real_escape_string($id_permission);
-        $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "SELECT * FROM tbl_pos_permission WHERE id_position = '$id_position' AND id_permission = '$id_permission' ";
-        $result = $this->conn->query($sql);
-        if($result -> num_rows > 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 }
 ?>

@@ -148,8 +148,6 @@ require_once $path . '/../class/permission.php';
                                                 }
                                             }
                                             ?>
-                                            ?>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -177,7 +175,7 @@ require_once $path . '/../class/permission.php';
 
                                     ?>
                                             <div class="form-check-danger form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDanger" value="<?php ?>">
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDanger" value="<?php echo $row['id_permission'] ?>">
                                                 <label class="form-check-label" for="flexSwitchCheckCheckedDanger"> <?php echo $row['name'] ?> </label>
                                             </div>
                                     <?php
