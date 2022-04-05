@@ -102,7 +102,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="statistical.php">
             <div class="parent-icon">
               <i class="bi bi-check2-square"></i>
             </div>
