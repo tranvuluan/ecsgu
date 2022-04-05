@@ -167,10 +167,24 @@ require_once $path . '/../class/permission.php';
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="form-check-danger form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDanger">
-                                        <label class="form-check-label" for="flexSwitchCheckCheckedDanger"> ABC </label>
-                                    </div>
+                                    <?php
+                                    $path = dirname(__FILE__);
+                                    require_once $path . '/../class/permission.php';
+                                    $PermissionModel = new Permission();
+                                    $permissions = $PermissionModel->getPermissions();
+                                    if ($permissions) {
+                                        while ($row = $permissions->fetch_assoc()) {
+
+                                    ?>
+                                            <div class="form-check-danger form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDanger" value="<?php ?>">
+                                                <label class="form-check-label" for="flexSwitchCheckCheckedDanger"> <?php echo $row['name'] ?> </label>
+                                            </div>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+
                                 </div>
                             </div>
                         </div>
