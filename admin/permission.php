@@ -1,6 +1,6 @@
 <?php
-    $path = dirname(__FILE__);
-    require_once $path . '/../class/permission.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/permission.php';
 
 ?>
 
@@ -88,68 +88,97 @@
                     </div>
                 </div>
 
-                <!-- Start table permission -->
+                <div class="row">
+                    <!-- Start table position -->
+                    <div class="col-6 col-sm-6">
+                        <div class="card radius-10 w-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0">Danh sách chức vụ</h6>
+                                    <div class="fs-5 ms-auto dropdown">
+                                        <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Mã chức vụ</a></li>
+                                            <li><a class="dropdown-item" href="#">Tên chức vụ</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="table-responsive mt-2">
+                                    <table class="table align-middle mb-0 table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã chức vụ</th>
+                                                <th>Tên chức vụ</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $path = dirname(__FILE__);
+                                            require_once $path . '/../class/position.php';
+                                            $PositionModel = new Position();
+                                            $positions = $PositionModel->getPositions();
+                                            if ($positions) {
+                                                while ($row = $positions->fetch_assoc()) {
+                                            ?>
+                                                    <tr onclick="getPermission('<?php echo $row['id_position'] ?>')">
+                                                        <td><?php echo $row['id_position'] ?></td>
+                                                        <td>
+                                                            <?php echo $row['name'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3 fs-6">
+                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
+                                                                    <ion-icon name="eye-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                                    <ion-icon name="pencil-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark">
+                                                                    <ion-icon name="trash-sharp"></ion-icon>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                            ?>
 
-                <div class="card radius-10 w-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <h6 class="mb-0">Danh sách chức vụ</h6>
-                            <div class="fs-5 ms-auto dropdown">
-                                <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="table-responsive mt-2">
-                            <table class="table align-middle mb-0">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Mã chức vụ</th>
-                                        <th>Tên chức vụ</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#89742</td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="product-box border">
-                                                    <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                                                </div>
-                                                <div class="product-info">
-                                                    <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3 fs-6">
-                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
-                                                    <ion-icon name="eye-sharp"></ion-icon>
-                                                </a>
-                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                    <ion-icon name="pencil-sharp"></ion-icon>
-                                                </a>
-                                                <a href="javascript:;" class="text-dark">
-                                                    <ion-icon name="trash-sharp"></ion-icon>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+                    <!-- End table position -->
+
+                    <!-- Start table permission -->
+                    <div class="col-6 col-sm-6">
+                        <!-- List check box -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="mb-0">Danh sách quyền</h6>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-check-danger form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDanger">
+                                        <label class="form-check-label" for="flexSwitchCheckCheckedDanger"> ABC </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- End table permission -->
                 </div>
-                <!-- End table permission -->
 
-                <!-- End permission form -->
+
 
                 <!--end page content wrapper-->
 
@@ -226,229 +255,15 @@
 
             </div>
             <!--end wrapper-->
-            <!-- start modal thêm phân quyền -->
-            <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thêm chức vụ</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom03" class="form-label">Mã chức vụ</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
-                                            <label for="validationCustom01" class="form-label">Tên chức vụ</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
-                                        </div>
-                                        <div class="col-md-12"></div>
-                                        <div class="col-md-12"></div>
-                                        <div class="col-md-12"></div>
-                                        <?php
-                                            $permissionModel = new Permission();
-                                            $getPermission = $permissionModel->getPermissions();
-                                            if($getPermission){
-                                                while($result = $getPermission->fetch_assoc()){
-                                                    ?>
-                                                    <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="<?php echo $result['id_permission'] ?>" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control"><?php echo $result['name']?></span>
-                                            </div>
-                                        </div>
-                                                    <?php
-                                                }
-                                            }
-                                            
-                                        ?>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Thêm</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal thêm phân quyền -->
 
-            <!-- start modal xem phân quyền -->
-            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin phân quyền</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                    <div class="col-md-6">
-                                            <label for="validationCustom03" class="form-label">Mã chức vụ</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
-                                            <label for="validationCustom01" class="form-label">Tên chức vụ</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
-                                        </div>
-                                        <div class="col-md-12"></div>
-                                        <div class="col-md-12"></div>
-                                        <div class="col-md-12"></div>
-                                        <!-- <div class="col-md-6">
-                                            <table class="table align-middle mb-0 p-4 border rounded">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Mã chức vụ</th>
-                                                        <th>Tên chức vụ</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>p1</td>
-                                                        <td>Quản lý</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p2</td>
-                                                        <td>Nhân viên kho</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p2</td>
-                                                        <td>Nhân viên kinh doanh</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div> -->
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal xem phân quyền -->
 
-            <!-- start modal sửa phân quyền -->
-            <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin phân quyền</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                    <div class="col-md-6">
-                                            <label for="validationCustom03" class="form-label">Mã chức vụ</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
-                                            <label for="validationCustom01" class="form-label">Tên chức vụ</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" placeholder="" required>
-                                        </div>
-                                        <div class="col-md-12"></div>
-                                        <div class="col-md-12"></div>
-                                        <div class="col-md-12"></div>
-                                        <!-- <div class="col-md-6">
-                                            <table class="table align-middle mb-0 p-4 border rounded">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Mã chức vụ</th>
-                                                        <th>Tên chức vụ</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>p1</td>
-                                                        <td>Quản lý</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p2</td>
-                                                        <td>Nhân viên kho</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>p2</td>
-                                                        <td>Nhân viên kinh doanh</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div> -->
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                                                </div>
-                                                <span class="form-control">Quản lý sản phẩm</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Sửa</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal sửa phân quyền -->
 
             <!-- Scripts-->
             <?php
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
+            <script src="assets/js/permission.js"></script>
             <!-- END Scripts -->
 
 
