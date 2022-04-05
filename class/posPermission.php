@@ -10,7 +10,7 @@ class PosPermission{
     }
     
     public function getPosPermissions() {
-        $sql = "SELECT * FROM tbl_permission";
+        $sql = "SELECT * FROM tbl_pos_permission ORDER BY id_permission  ASC";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
@@ -22,7 +22,7 @@ class PosPermission{
     
     public function getPermissionByPosId($id_position) {
         $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "SELECT * FROM tbl_permission WHERE id_position = '$id_position'";
+        $sql = "SELECT * FROM tbl_pos_permission WHERE id_position = '$id_position' ";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
@@ -35,7 +35,7 @@ class PosPermission{
     public function insert($id_permission, $id_position){
         $id_permission = $this->conn->real_escape_string($id_permission);
         $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "INSERT INTO tbl_permission(`id_permission`, `id_position`) VALUES ('$id_permission', '$id_position')";
+        $sql = "INSERT INTO tbl_pos_permission(`id_permission`, `id_position`) VALUES ('$id_permission', '$id_position')";
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -43,7 +43,7 @@ class PosPermission{
     public function update($id_permission, $id_position){
         $id_permission = $this->conn->real_escape_string($id_permission);
         $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "UPDATE tbl_permission SET id_permission = '$id_permission' WHERE `id_position` = '$id_position'";
+        $sql = "UPDATE tbl_pos_permission SET id_permission = '$id_permission' WHERE id_position = '$id_position'";
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -51,7 +51,7 @@ class PosPermission{
     public function delete($id_permission, $id_position){
         $id_permission = $this->conn->real_escape_string($id_permission);
         $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "DELETE * FROM tbl_permission WHERE `id_permission` = '$id_permission' AND `id_position` = '$id_position'";
+        $sql = "DELETE FROM tbl_pos_permission WHERE `id_permission` = '$id_permission' AND `id_position` = '$id_position'";
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -59,7 +59,7 @@ class PosPermission{
     public function checkInit($id_permission, $id_position){
         $id_permission = $this->conn->real_escape_string($id_permission);
         $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "SELECT * FROM tbl_permission WHERE id_permission = '$id_permission' AND id_position = '$id_position'";
+        $sql = "SELECT * FROM tbl_pos_permission WHERE id_position = '$id_position' AND id_permission = '$id_permission' ";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return true;
