@@ -8,3 +8,14 @@ function getPersition(id_position) {
         }
     });
 }
+
+
+function getModalAddPosition() {
+    $.ajax({
+        url: './process/modal_add_position.php',
+        type: 'GET',
+        success: function (data) {
+            $('#modal_add_position').html(data);
+        }
+    });
+}

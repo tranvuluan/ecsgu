@@ -15,9 +15,14 @@ if (isset($_GET['get_permission']) && isset($_GET['position'])) {
     }
     
 }
-else {
-    $id_position = 0;
-}
-
-
 ?>
+
+<?php 
+if (isset($_GET['get_modal_add_position'])) {
+?>
+    
+
+<?php
+    }
+?>
+

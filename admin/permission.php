@@ -81,7 +81,7 @@ require_once $path . '/../class/permission.php';
                         <h4 class="mb-0 text-uppercase">Phân quyền</h4>
                         <hr />
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId" onclick="getModalAddPosition()">
                             Thêm chức vụ
                         </button>
                         <hr />
