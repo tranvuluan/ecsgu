@@ -1,3 +1,9 @@
+<?php
+$path = dirname(__FILE__);
+require_once $path . '/../class/category.php';
+require_once $path . '/../class/categoryChild.php';
+?>
+
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -17,6 +23,9 @@
 </head>
 
 <body>
+    <?php
+    $categoryModal = new Category();
+    ?>
     <!--start wrapper-->
     <div class="wrapper">
 
@@ -74,7 +83,7 @@
                     <div class="col-md-6">
                         <h6 class="mb-0 text-uppercase">Danh mục mẹ</h6>
                         <hr />
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                        <button onclick="viewToAdd()" type="button" class="btn btn-primary btn-lg" >
                             Thêm danh mục mẹ
                         </button>
                         <hr />
@@ -105,30 +114,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>#89742</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="product-box border">
-                                                            <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $categoryList = $categoryModal->getCategories();
+                                            if ($categoryList) {
+                                                while ($row = $categoryList->fetch_assoc()) {
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $row['id_category'] ?></td>
+                                                    <td><?php echo $row['name'] ?></td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center gap-3 fs-6">
+                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_category']) ?>')">
+                                                                    <ion-icon name="pencil-sharp"></ion-icon>
+                                                                </a>
+                                                                <a onclick=" confirm('Xoa khong?') ? deleteCategory('<?php print($row['id_category']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
+                                                                    <ion-icon name="trash-sharp"></ion-icon>
+                                                                </a>
+                                                            </div>
+                                                    </td>
+                                                </tr>
                                         </tbody>
+                                    <?php
+                                                }
+                                                }
+                                    ?>
                                     </table>
                                 </div>
                             </div>
@@ -281,66 +290,9 @@
                 </div>
                 <!--end wrapper-->
 
-                <!-- start modal thêm danh mục mẹ -->
-                <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content ">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="mb-0">Thông tin danh mục mẹ</h6>
-                                    <div class="p-4 border rounded">
-                                        <form class="row g-3 needs-validation" novalidate>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="btn btn-primary" type="submit">Thêm</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end modal thêm danh mục mẹ -->
-
-                <!-- start modal sửa danh mục mẹ -->
-                <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content ">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="mb-0">Thông tin danh mục mẹ</h6>
-                                    <div class="p-4 border rounded">
-                                        <form class="row g-3 needs-validation" novalidate>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="btn btn-primary" type="submit">Sửa</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end modal sửa danh mục mẹ -->
 
                 <!-- start modal thêm danh mục con -->
-                <div class="modal fade" id="addSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <!-- <div class="modal fade" id="addSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content ">
                             <div class="card">
@@ -365,11 +317,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- end modal thêm danh mục con -->
 
                 <!-- start modal sửa danh mục con -->
-                <div class="modal fade" id="updateSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <!-- <div class="modal fade" id="updateSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content ">
                             <div class="card">
@@ -394,13 +346,17 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- end modal sửa danh mục con -->
                 <!-- Scripts-->
+                <div id="switchModal"></div>
+
                 <?php
                 $path = dirname(__FILE__);
                 require_once $path . '/includes/scripts.php';
                 ?>
+
+                <script src="assets/js/category.js"></script>
                 <!-- END Scripts -->
 
 

@@ -74,13 +74,15 @@ require_once $path . '/../class/permission.php';
                 </div>
                 <!--end breadcrumb-->
 
-                <h6 class="mb-0 text-uppercase">Line Chart</h6>
+                <h6 class="mb-0 text-uppercase">Thống kê doanh thu</h6>
                 <hr />
                 <div class="card">
                     <div class="card-body">
                         <div id="chart1"></div>
                     </div>
                 </div>
+                <h6 class="mb-0 text-uppercase">Thống kê sản phẩm</h6>
+                <hr />
                 <div class="card">
                     <div class="card-body">
                         <div id="chart5"></div>

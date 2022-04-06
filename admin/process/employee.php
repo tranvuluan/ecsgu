@@ -132,7 +132,7 @@ if (isset($_POST['viewToAdd'])) {
 
         $accountModel = new Account();
         if($password == $confirm_password){
-            $addAccount = $accountModel->insert($employeeId, $username, $password)
+            $addAccount = $accountModel->insert($employeeId, $username, $password);
         }
         
 
