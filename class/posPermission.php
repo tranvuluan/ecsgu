@@ -1,7 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
 
-require_once($path.'/config/connection.php');
+require_once($path.'/../config/connection.php');
 
 class PosPermission{
     public $conn;
@@ -32,10 +32,10 @@ class PosPermission{
         }
     }
     
-    public function insert($id_permission, $id_position){
+    public function insert($id_permission, $id_position, $status){
         $id_permission = $this->conn->real_escape_string($id_permission);
         $id_position = $this->conn->real_escape_string($id_position);
-        $sql = "INSERT INTO tbl_pos_permission(`id_permission`, `id_position`) VALUES ('$id_permission', '$id_position')";
+        $sql = "INSERT INTO tbl_pos_permission(`id_permission`, `id_position`, `status`) VALUES ('$id_permission', '$id_position', '$status')";
         $result = $this->conn->query($sql);
         return $result;
     }

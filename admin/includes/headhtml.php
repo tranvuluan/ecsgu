@@ -7,8 +7,7 @@
 <script src="assets/js/pace.min.js"></script>
 
 <!--plugins-->
-<link href="assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
-<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+<!-- <link href="assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" /> -->
 <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
 <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
@@ -28,6 +27,6 @@
 <link href="assets/css/header-colors.css" rel="stylesheet" />
 
 <!-- date pick -->
-<link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" />
-<link href="assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" />
+<!-- <link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" /> -->
+<!-- <link href="assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" /> -->
 
