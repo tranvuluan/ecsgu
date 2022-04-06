@@ -52,3 +52,20 @@ function add(){
         }
     });
 }
+
+function getDetail(id){
+    console.log(id);
+
+    $.ajax({
+        url: './process/employee.php',
+        type: 'POST',
+        data: {
+            id: id,
+            view: true
+        },
+
+        success: function(data) {
+            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+        }
+    });
+}

@@ -149,7 +149,7 @@ require_once $path . '/../class/position.php';
                                                         ?>
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
+                                                                <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_employee']?>')">
                                                                     <ion-icon name="eye-sharp"></ion-icon>
                                                                 </a>
                                                                 <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
@@ -245,88 +245,7 @@ require_once $path . '/../class/position.php';
             </div>
             <!--end wrapper-->
 
-            <!-- Modal xem thông tin nhân viên -->
-            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin nhân viên</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-3">
-                                            <label for="validationCustom01" class="form-label">Mã nhân viên</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                        </div>
 
-                                        <div class="col-md-3">
-                                            <label for="validationCustom03" class="form-label">Giới tính</label>
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option value="1">Nam</option>
-                                                <option value="2">Nữ</option>
-                                                <option value="3">Khác</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Ngày sinh</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="validationCustom04" class="form-label">CMND/CCCD</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom02" class="form-label">Tên nhân viên</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom04" class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <label for="validationCustom04" class="form-label">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom04" class="form-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <label for="validationCustom03" class="form-label">Chức vụ</label>
-                                            <select class="form-select col-md-2" aria-label="Default select example">
-                                                <option value="1">Quản lý</option>
-                                                <option value="2">Nhân viên</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom04" class="form-label">Tài khoản</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <label for="validationCustom04" class="form-label">Trạng thái</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked="">
-                                                <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom04" class="form-label">Mật khẩu</label>
-                                            <input type="password" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END Modal xem thông tin nhân viên -->
 
             <!-- Modal sửa thông tin nhân viên    -->
             <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

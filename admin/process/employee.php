@@ -115,38 +115,132 @@ if (isset($_POST['viewToAdd'])) {
 
 <?php
 
-    if(isset($_POST['add'])){
+if (isset($_POST['add'])) {
 
-        $employeeId = $_POST['id'];
-        $gender = $_POST['gender'];
-        $birthday = $_POST['birthday'];
-        $cmnd = $_POST['cmnd'];
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $address = $_POST['address'];
-        $phone = $_POST['phone'];
-        $position = $_POST['position'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm_password'];
+    $employeeId = $_POST['id'];
+    $gender = $_POST['gender'];
+    $birthday = $_POST['birthday'];
+    $cmnd = $_POST['cmnd'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+    $position = $_POST['position'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-        $accountModel = new Account();
-        if($password == $confirm_password){
-            $addAccount = $accountModel->insert($employeeId, $username, $password);
-        }
-        
-        if($addAccount){
-            $employeeModel = new Employee();
-            $addEmployee = $employeeModel->insert($employeeId, $position, $name, $gender, $birthday, $address, $phone, $email,'abc', $cmnd);
-            if($addEmployee){
-                echo 'Success';
-            }
-            else{
-                echo 'Fail';
-            }
-        }
-    
-    
+    $accountModel = new Account();
+    if ($password == $confirm_password) {
+        $addAccount = $accountModel->insert($employeeId, $username, $password);
     }
+
+    if ($addAccount) {
+        $employeeModel = new Employee();
+        $addEmployee = $employeeModel->insert($employeeId, $position, $name, $gender, $birthday, $address, $phone, $email, 'abc', $cmnd);
+        if ($addEmployee) {
+            echo 'Success';
+        } else {
+            echo 'Fail';
+        }
+    }
+}
+
+?>
+
+<?php
+if (isset($_POST['view']) && isset($_POST['id'])) {
+    $employeeId = $_POST['id'];
+    $employeeModel = new Employee();
+    $getEmployee = $employeeModel->getEmployeeById($employeeId)->fetch_assoc();
+?>
+    <!-- Modal xem thông tin nhân viên -->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="mb-0">Thông tin nhân viên</h6>
+                    <div class="p-4 border rounded">
+                        <form class="row g-3 needs-validation" novalidate>
+                            <div class="col-md-3">
+                                <label for="validationCustom01" class="form-label">Mã nhân viên</label>
+                                <input type="text" class="form-control" id="validationCustom01" value="<?php echo $getEmployee['id_employee'] ?>" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="validationCustom03" class="form-label">Giới tính</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="<?php echo $getEmployee['gender'] ?>"><?php echo $getEmployee['gender'] ?></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Ngày sinh</label>
+                                <input type="text" class="form-control datepicker" value="<?php echo $getEmployee['birthday'] ?>" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom04" class="form-label">CMND/CCCD</label>
+                                <input type="text" class="form-control" id="validationCustom03" value="<?php echo $getEmployee['cmnd'] ?>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationCustom02" class="form-label">Tên nhân viên</label>
+                                <input type="text" class="form-control" id="validationCustom02" value="<?php echo $getEmployee['fullname'] ?>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationCustom04" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="validationCustom03" value="<?php echo $getEmployee['email'] ?>" required>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="validationCustom04" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" id="validationCustom03" value="<?php echo $getEmployee['address'] ?>" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationCustom04" class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control" id="validationCustom03" value="<?php echo $getEmployee['phone'] ?>" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="validationCustom04" class="form-label">Chức vụ</label>
+                                <?php
+                                $positionModel = new Position();
+                                $nameEmployee = $positionModel->getPositionFromTbl_Employee($getEmployee);
+                                if ($nameEmployee) {
+                                    $rowName = $nameEmployee->fetch_assoc();
+                                ?>
+                                    <td><?php echo $rowName['name'] ?></td>
+                                <?php
+                                }
+
+                                ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationCustom04" class="form-label">Tài khoản</label>
+                                <?php
+                                $AccountModel = new Account();
+                                $getAccount = $AccountModel->getAccountById($getEmployee)->fetch_assoc();
+                                ?>
+                                <input type="text" class="form-control" id="validationCustom03" value="<?php echo $getAccount['username'] ?>" required>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="validationCustom04" class="form-label">Trạng thái</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked="">
+                                    <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Modal xem thông tin nhân viên -->
+<?php
+}
 
 ?>
