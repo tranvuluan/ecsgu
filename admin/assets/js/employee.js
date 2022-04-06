@@ -26,7 +26,7 @@ function add(){
 
     let username = $('input[name="username"]').val();
     let password = $('input[name="password"]').val();
-    let confirmPassword = $('input[name="confirmPassword"]').val();
+    let confirm_password = $('input[name="confirm_password"]').val();
 
     $.ajax({
         url: './process/employee.php',
@@ -43,7 +43,7 @@ function add(){
             position : position,
             username : username,
             password : password,
-            confirmPassword : confirmPassword,
+            confirm_password : confirm_password,
             add: true,
         },
 

@@ -33,11 +33,11 @@ class Account{
         }
     }
 
-    public function insert($id_user, $username, $password){
-        $id_user = $this->conn->real_escape_string($id_user);
+    public function insert($id_account, $username, $password){
+        $id_account = $this->conn->real_escape_string($id_account);
         $username = $this->conn->real_escape_string($username);
         $password = $this->conn->real_escape_string($password);
-        $sql = "INSERT INTO tbl_account(`id_user`, `username`, `password`) VALUES ('$id_user', '$username', '$password')";
+        $sql = "INSERT INTO tbl_account(`id_account`, `username`, `password`) VALUES ('$id_account', '$username', '$password')";
         $result = $this->conn->query($sql);
         if($result){
             return $result;

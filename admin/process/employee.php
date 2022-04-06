@@ -132,18 +132,21 @@ if (isset($_POST['viewToAdd'])) {
 
         $accountModel = new Account();
         if($password == $confirm_password){
-            $addAccount = $accountModel->insert($employeeId, $username, $password)
+            $addAccount = $accountModel->insert($employeeId, $username, $password);
         }
         
-
-        $employeeModel = new Employee();
-            $addEmployee = $employeeModel->insert($employeeId, $position, $name, $gender, $birthday, $phone, $email, $address,'abc', $cmnd);
+        if($addAccount){
+            $employeeModel = new Employee();
+            $addEmployee = $employeeModel->insert($employeeId, $position, $name, $gender, $birthday, $address, $phone, $email,'abc', $cmnd);
             if($addEmployee){
-                echo 'add thanh cong';
-            }else{
-                echo 'and fail';
+                echo 'Success';
             }
-        
+            else{
+                echo 'Fail';
+            }
+        }
+    
+    
     }
 
 ?>
