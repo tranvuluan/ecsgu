@@ -25,6 +25,7 @@ require_once $path . '/../class/categoryChild.php';
 <body>
     <?php
     $categoryModal = new Category();
+    $categoryChildModal = new CategoryChild();
     ?>
     <!--start wrapper-->
     <div class="wrapper">
@@ -80,10 +81,10 @@ require_once $path . '/../class/categoryChild.php';
 
                 <div class="row">
                     <!-- begin danh mục mẹ-->
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <h6 class="mb-0 text-uppercase">Danh mục mẹ</h6>
                         <hr />
-                        <button onclick="viewToAdd()" type="button" class="btn btn-primary btn-lg" >
+                        <button onclick="viewToAdd()" type="button" class="btn btn-primary btn-lg">
                             Thêm danh mục mẹ
                         </button>
                         <hr />
@@ -119,11 +120,11 @@ require_once $path . '/../class/categoryChild.php';
                                             if ($categoryList) {
                                                 while ($row = $categoryList->fetch_assoc()) {
                                             ?>
-                                                <tr>
-                                                    <td><?php echo $row['id_category'] ?></td>
-                                                    <td><?php echo $row['name'] ?></td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center gap-3 fs-6">
+                                                    <tr>
+                                                        <td><?php echo $row['id_category'] ?></td>
+                                                        <td><?php echo $row['name'] ?></td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3 fs-6">
                                                                 <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_category']) ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
@@ -131,13 +132,13 @@ require_once $path . '/../class/categoryChild.php';
                                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                                 </a>
                                                             </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
                                         </tbody>
-                                    <?php
+                                <?php
                                                 }
-                                                }
-                                    ?>
+                                            }
+                                ?>
                                     </table>
                                 </div>
                             </div>
@@ -146,10 +147,10 @@ require_once $path . '/../class/categoryChild.php';
                     <!-- End danh mục mẹ -->
 
                     <!-- begin danh mục con -->
-                    <div class="col-md-6 ">
+                    <div class="col-md-7 ">
                         <h6 class="mb-0 text-uppercase">Danh mục con</h6>
                         <hr />
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addSubModalId">
+                        <button onclick="viewToAddChild()" type="button" class="btn btn-primary btn-lg" >
                             Thêm danh mục con
                         </button>
                         <hr />
@@ -175,35 +176,37 @@ require_once $path . '/../class/categoryChild.php';
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã danh mục con</th>
+                                                <th>Mã danh mục</th>
                                                 <th>Tên danh mục con</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>#89742</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="product-box border">
-                                                            <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateSubModalId">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $categoryChildList = $categoryChildModal->getCategoryChilds();
+                                            if ($categoryChildList) {
+                                                while ($row = $categoryChildList->fetch_assoc()) {
+                                            ?>
+                                                    <tr>
+                                                        <td><?php echo $row['id_categorychild'] ?></td>
+                                                        <td><?php echo $row['id_category'] ?></td>
+                                                        <td><?php echo $row['name'] ?></td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3 fs-6">
+                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdateChild('<?php print($row['id_categorychild']) ?>')">
+                                                                    <ion-icon name="pencil-sharp"></ion-icon>
+                                                                </a>
+                                                                <a onclick=" confirm('Xoa khong?') ? deleteCategoryChild('<?php print($row['id_categorychild']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
+                                                                    <ion-icon name="trash-sharp"></ion-icon>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                         </tbody>
+                                <?php
+                                                }
+                                            }
+                                ?>
                                     </table>
                                 </div>
                             </div>
