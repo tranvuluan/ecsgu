@@ -21,9 +21,9 @@ class Account{
         }
     }
     
-    public function getAccountById($id_user) {
-        $id_user = $this->conn->real_escape_string($id_user);
-        $sql = "SELECT * FROM tbl_account WHERE id_user = '$id_user'";
+    public function getAccountById($id_account) {
+        $id_account = $this->conn->real_escape_string($id_account);
+        $sql = "SELECT * FROM tbl_account WHERE `id_account` = '$id_account'";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
@@ -47,16 +47,16 @@ class Account{
         }
     }
 
-    public function active($id_user){
-        $id_user = $this->conn->real_escape_string($id_user);
-        $sql = "UPDATE tbl_account SET status = 1 WHERE id_user = '$id_user'";
+    public function active($id_account){
+        $id_account = $this->conn->real_escape_string($id_account);
+        $sql = "UPDATE tbl_account SET status = 1 WHERE id_account = '$id_account'";
         $result = $this->conn->query($sql);
         return $result;
     }
 
-    public function suspend($id_user){
-        $id_user = $this->conn->real_escape_string($id_user);
-        $sql = "UPDATE tbl_account SET status = 0 WHERE id_user = '$id_user'";
+    public function suspend($id_account){
+        $id_account = $this->conn->real_escape_string($id_account);
+        $sql = "UPDATE tbl_account SET status = 0 WHERE id_account = '$id_account'";
         $result = $this->conn->query($sql);
         return $result;
     }

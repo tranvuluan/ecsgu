@@ -202,24 +202,27 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                                 <label for="validationCustom04" class="form-label">Chức vụ</label>
                                 <?php
                                 $positionModel = new Position();
-                                $nameEmployee = $positionModel->getPositionFromTbl_Employee($getEmployee);
+                                $nameEmployee = $positionModel->getPositionFromTbl_Employee($getEmployee['id_position']);
                                 if ($nameEmployee) {
                                     $rowName = $nameEmployee->fetch_assoc();
                                 ?>
-                                    <td><?php echo $rowName['name'] ?></td>
+                                    <input type="text" class="form-control" value="<?php echo $rowName['name'] ?>" required>
                                 <?php
                                 }
-
                                 ?>
                             </div>
                             <div class="col-md-6">
                                 <label for="validationCustom04" class="form-label">Tài khoản</label>
                                 <?php
                                 $AccountModel = new Account();
-                                $getAccount = $AccountModel->getAccountById($getEmployee)->fetch_assoc();
+                                $getAccount = $AccountModel->getAccountById($employeeId)->fetch_assoc();
+                                if ($getAccount) {
                                 ?>
-                                <input type="text" class="form-control" id="validationCustom03" value="<?php echo $getAccount['username'] ?>" required>
+                                    <input type="text" class="form-control" value="<?php echo $getAccount['username'] ?>" required>
 
+                                <?php
+                                }
+                                ?>
                             </div>
 
                             <div class="col-md-6">
