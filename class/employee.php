@@ -1,7 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
 
-require_once($path.'/config/connection.php');
+require_once($path.'/../config/connection.php');
 
 
 class Employee{
@@ -44,8 +44,8 @@ class Employee{
         $email = $this->conn->real_escape_string($email);
         $image = $this->conn->real_escape_string($image);
         $cmnd = $this->conn->real_escape_string($cmnd);
-        $sql = "INSERT INTO tbl_employee(`id_employee`, `id_position`, `fullname`, `gender`,`birthday`,`address`,`phone`,`email`,`image`,`cmnd` VALUES('$id_employee','$id_position','$fullname','$gender','$birthday','$address','$phone','$email','$image','$cmnd')";
-        $result = $this->conn->query($sql);
+        $sql = "INSERT INTO tbl_employee(`id_employee`, `id_position`, `fullname`, `gender`,`birthday`,`address`,`phone`,`email`,`image`,`cmnd`) VALUES('$id_employee','$id_position','$fullname','$gender','$birthday','$address','$phone','$email','$image','$cmnd')";
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
 
@@ -73,4 +73,3 @@ class Employee{
     }
 
 }
-?>
