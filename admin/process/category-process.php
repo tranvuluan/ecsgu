@@ -4,6 +4,41 @@ require_once $path . '/../../class/category.php';
 require_once $path . '/../class/categoryChild.php';
 ?>
 
+
+<?php
+if (isset($_GET['getCategoryChild']) && isset($_GET['id_category'])) {
+    $id_category = $_GET['id_category'];
+    $categoryChild = new CategoryChild();
+    $result = $categoryChild->getCategoryChildsByCategoryId($id_category);
+    if ($result) {
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+?>
+            <tr>
+                <td><?php echo $row['id_categorychild'] ?></td>
+                <td><?php echo $row['id_category'] ?></td>
+                <td><?php echo $row['name'] ?></td>
+                <td>
+                    <div class="d-flex align-items-center gap-3 fs-6">
+                        <a href="javascript:;" class="text-dark" onclick="viewToUpdateChild('<?php print($row['id_categorychild']) ?>')">
+                            <ion-icon name="pencil-sharp"></ion-icon>
+                        </a>
+                        <a onclick=" confirm('Xoa khong?') ? deleteCategoryChild('<?php print($row['id_categorychild']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
+                            <ion-icon name="trash-sharp"></ion-icon>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+
+<?php
+        }
+    }
+}
+
+
+
+?>
+
 <?php
 if (isset($_POST['viewToAdd'])) {
 ?>
@@ -120,7 +155,6 @@ if (isset($_POST['delete']) && isset($_POST['id'])) {
 
 ?>
 
-<!-- danh mục con -->
 <?php
 if (isset($_POST['viewToAddChild'])) {
 ?>
@@ -215,10 +249,12 @@ if (isset($_POST['viewToUpdateChild']) && isset($_POST['sub_id'])) {
                                     $rowOfCateSelected = $getCateById->fetch_assoc();
                                     if ($getCate) {
                                         while ($rowCate = $getCate->fetch_assoc()) {
-                                    ?>
-                                            <option value="<?php echo $rowCate['id_category'] ?>" selected="<?php echo $rowOfCateSelected['name'] ?>"><?php echo $rowCate['name'] ?></option>
-                                    <?php
+                                            if ($categoryChildById['id_category'] == $rowCate['id_category']) 
+                                                 echo  '<option value="'.$rowCate['id_category'].'" selected>'.$rowCate['name'].'</option>';
+                                            else 
+                                                 echo  '<option value="'.$rowCate['id_category'].'" >'.$rowCate['name'].'</option>';
                                         }
+                                    
                                     }
                                     ?>
                                 </select>
@@ -252,7 +288,7 @@ if (isset($_POST['updateChild']) && isset($_POST['sub_id'])) {
 
     $categoryChildModal = new CategoryChild();
 
-    $updatecategory = $categoryChildModal->update($sub_id,$id, $name);
+    $updatecategory = $categoryChildModal->update($sub_id, $id, $name);
     if ($updatecategory) {
         echo 1;
     } else {
@@ -263,7 +299,9 @@ if (isset($_POST['updateChild']) && isset($_POST['sub_id'])) {
 
 ?>
 <?php
-if (isset($_POST['deleteCategoryChild']) && isset($_POST['sub_id'])) {
+//sdfdf
+
+if (isset($_POST['deleteChild']) && isset($_POST['sub_id'])) {
     $sub_id = $_POST['sub_id'];
     $categoryChildeModal = new CategoryChild();
     $deletecategoryChild = $categoryChildeModal->delete($sub_id);

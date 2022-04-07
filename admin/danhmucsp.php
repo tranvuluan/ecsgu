@@ -106,7 +106,7 @@ require_once $path . '/../class/categoryChild.php';
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0">
+                                    <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã danh mục</th>
@@ -120,7 +120,7 @@ require_once $path . '/../class/categoryChild.php';
                                             if ($categoryList) {
                                                 while ($row = $categoryList->fetch_assoc()) {
                                             ?>
-                                                    <tr>
+                                                    <tr onclick="getCategoryChild('<?php print($row['id_category']) ?>')" >
                                                         <td><?php echo $row['id_category'] ?></td>
                                                         <td><?php echo $row['name'] ?></td>
                                                         <td>
@@ -172,7 +172,7 @@ require_once $path . '/../class/categoryChild.php';
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0">
+                                    <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã danh mục con</th>
@@ -181,32 +181,10 @@ require_once $path . '/../class/categoryChild.php';
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <?php
-                                            $categoryChildList = $categoryChildModal->getCategoryChilds();
-                                            if ($categoryChildList) {
-                                                while ($row = $categoryChildList->fetch_assoc()) {
-                                            ?>
-                                                    <tr>
-                                                        <td><?php echo $row['id_categorychild'] ?></td>
-                                                        <td><?php echo $row['id_category'] ?></td>
-                                                        <td><?php echo $row['name'] ?></td>
-                                                        <td>
-                                                            <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdateChild('<?php print($row['id_categorychild']) ?>')">
-                                                                    <ion-icon name="pencil-sharp"></ion-icon>
-                                                                </a>
-                                                                <a onclick=" confirm('Xoa khong?') ? deleteCategoryChild('<?php print($row['id_categorychild']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
-                                                                    <ion-icon name="trash-sharp"></ion-icon>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                        <tbody id="tbody_categorychild">
+                                            
+                                
                                         </tbody>
-                                <?php
-                                                }
-                                            }
-                                ?>
                                     </table>
                                 </div>
                             </div>
@@ -359,7 +337,7 @@ require_once $path . '/../class/categoryChild.php';
                 require_once $path . '/includes/scripts.php';
                 ?>
 
-                <script src="assets/js/category.js"></script>
+                <script src="./assets/js/category.js"></script>
                 <!-- END Scripts -->
 
 

@@ -105,6 +105,21 @@ function deleteCategory(id){
         }
     });
 }
+
+function getCategoryChild(id_category) {
+    $.ajax({
+        url: './process/category-process.php',
+        type: 'GET',
+        data: {
+            getCategoryChild: true,
+            id_category: id_category
+        },
+        success: function(response) {
+           $('#tbody_categorychild').html(response); //innerHtml    
+        }
+    });
+}
+
 // end danh muc mẹ
 
 // start danh mục con
@@ -203,7 +218,6 @@ function updateChild() {
 
 function deleteCategoryChild(sub_id){
 
-    console.log(sub_id);
     $.ajax({
         url: './process/category-process.php',
         type: 'POST',
@@ -219,8 +233,8 @@ function deleteCategoryChild(sub_id){
                 alert('Lỗi');
             }
             else{
-                // alert('Xóa thành công');
-                // location.reload();
+                alert('Xóa thành công');
+                location.reload();
             }
         }
     });
