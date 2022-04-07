@@ -245,25 +245,25 @@ if (isset($_POST['viewToUpdateChild']) && isset($_POST['sub_id'])) {
 
 <?php
 
-if (isset($_POST['update']) && isset($_POST['sub_id'])) {
+if (isset($_POST['updateChild']) && isset($_POST['sub_id'])) {
     $sub_id = $_POST['sub_id'];
     $id = $_POST['id'];
     $name = $_POST['name'];
 
     $categoryChildModal = new CategoryChild();
 
-    // $updatecategory = $categoryChildModal->update($sub_id,$id, $name);
-    // if ($updatecategory) {
-    //     echo 1;
-    // } else {
-    //     echo 0;
-    // }
+    $updatecategory = $categoryChildModal->update($sub_id,$id, $name);
+    if ($updatecategory) {
+        echo 1;
+    } else {
+        echo 0;
+    }
 }
 
 
 ?>
 <?php
-if (isset($_POST['delete']) && isset($_POST['sub_id'])) {
+if (isset($_POST['deleteCategoryChild']) && isset($_POST['sub_id'])) {
     $sub_id = $_POST['sub_id'];
     $categoryChildeModal = new CategoryChild();
     $deletecategoryChild = $categoryChildeModal->delete($sub_id);

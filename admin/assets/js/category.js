@@ -195,7 +195,7 @@ function updateChild() {
                 console.log(response);
             }
             else{
-                //window.location.href = "./danhmucsp.php";
+                window.location.href = "./danhmucsp.php";
             }
         }
     });
@@ -213,13 +213,14 @@ function deleteCategoryChild(sub_id){
         },
         success: function(response) {
             console.log(response);
+            // console.log(sub_id);
             if(response == 0){
                 console.log(response);
                 alert('Lỗi');
             }
             else{
-                alert('Xóa thành công');
-                location.reload();
+                // alert('Xóa thành công');
+                // location.reload();
             }
         }
     });
