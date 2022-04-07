@@ -14,6 +14,9 @@ function getModalAddPosition() {
     $.ajax({
         url: './process/permission.php',
         type: 'GET',
+        data: {
+            get_modal_add_position: true
+        },
         success: function (data) {
             $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
         }
