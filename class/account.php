@@ -46,7 +46,7 @@ class Account{
             return false;
         }
     }
-
+    
     public function active($id_account){
         $id_account = $this->conn->real_escape_string($id_account);
         $sql = "UPDATE tbl_account SET status = 1 WHERE id_account = '$id_account'";

@@ -60,7 +60,7 @@ class Employee{
         $email = $this->conn->real_escape_string($email);
         $image = $this->conn->real_escape_string($image);
         $cmnd = $this->conn->real_escape_string($cmnd);
-        $sql = "UPDATE tbl_employee SET id_position = '$id_position', fullname = '$fullname', gender = '$gender', birthday = '$birthday', address = '$address', phone = '$phone', email = '$email', image = '$image', cmnd = '$cmnd' WHERE id_position = '$id_position'";
+        $sql = "UPDATE tbl_employee SET `id_position` = '$id_position', `fullname` = '$fullname', `gender` = '$gender', `birthday` = '$birthday', address = '$address', `phone` = '$phone', `email` = '$email', `image` = '$image', `cmnd` = '$cmnd' WHERE `id_employee` = '$id_employee'";
         $result = $this->conn->query($sql);
         return $result;
     }
