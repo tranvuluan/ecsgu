@@ -27,30 +27,31 @@ function add(){
     let username = $('input[name="username"]').val();
     let password = $('input[name="password"]').val();
     let confirm_password = $('input[name="confirm_password"]').val();
+    let status = $('input[name="status"]:checked').val(); // 1==active, 2==lock
+    console.log(status); 
+    // $.ajax({
+    //     url: './process/employee.php',
+    //     type: 'POST',
+    //     data: {
+    //         id: id,
+    //         gender : gender,
+    //         birthday : birthday,
+    //         cmnd : cmnd,
+    //         name : name,
+    //         email : email,
+    //         address : address,
+    //         phone : phone,
+    //         position : position,
+    //         username : username,
+    //         password : password,
+    //         confirm_password : confirm_password,
+    //         add: true,
+    //     },
 
-    $.ajax({
-        url: './process/employee.php',
-        type: 'POST',
-        data: {
-            id: id,
-            gender : gender,
-            birthday : birthday,
-            cmnd : cmnd,
-            name : name,
-            email : email,
-            address : address,
-            phone : phone,
-            position : position,
-            username : username,
-            password : password,
-            confirm_password : confirm_password,
-            add: true,
-        },
-
-        success: function(response) {
-            console.log(response)
-        }
-    });
+    //     success: function(response) {
+    //         console.log(response)
+    //     }
+    // });
 }
 
 function getDetail(id){

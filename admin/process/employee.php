@@ -76,11 +76,11 @@ if (isset($_POST['viewToAdd'])) {
                             <div class="col-md-6">
                                 <label for="validationCustom04" class="form-label">Trạng thái</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="active" value="1" id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="lock" value="0" id="flexRadioDefault2" checked="">
+                                    <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" checked="">
                                     <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
                                 </div>
                             </div>
