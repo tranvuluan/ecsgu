@@ -1,3 +1,9 @@
+<?php 
+    $path = dirname(__FILE__);
+    require_once $path . '/../class/customer.php';
+    require_once $path . '/../class/account.php';
+?>
+
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -74,7 +80,7 @@
                     <div class="col-xl-12 mx-auto">
                         <h4 class="mb-0 text-uppercase">Quản lý khách hàng</h4>
                         <hr />
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
+                        <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg">
                             Thêm khách hàng
                         </button>
                         <hr />
@@ -109,37 +115,46 @@
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>#89742</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="product-box border">
-                                                            <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>2</td>
-                                                <td>$214</td>
-                                                <td>Apr 8, 2021</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
-                                                            <ion-icon name="eye-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <?php
+                                        $customerModel = new Customer();
+                                        $customerList = $customerModel->getCustomers();
+                                        if ($customerList) {
+                                            while ($row = $customerList->fetch_assoc()) {
+                                        ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $row['id_customer'] ?></td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3">
+                                                                <div class="product-info">
+                                                                    <h6 class="product-name mb-1"><?php echo $row['fullname'] ?></h6>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td><?php echo $row['email'] ?></td>
+                                                        <td><?php echo $row['address'] ?></td>
+                                                        <td><?php echo $row['point'] ?></td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3 fs-6">
+                                                                <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_customer'] ?>')">
+                                                                    <ion-icon name="eye-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                                    <ion-icon name="pencil-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark">
+                                                                    <ion-icon name="trash-sharp"></ion-icon>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+
                                     </table>
                                     <!-- end table khách hàng -->
                                 </div>
@@ -219,101 +234,6 @@
             </div>
             <!--end wrapper-->
 
-            <!-- start modal thêm khách hàng -->
-            <div class="modal fade" id="addModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin khách hàng</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom01" class="form-label">Mã khách hàng</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom04" class="form-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Ngày tạo</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom02" class="form-label">Tên khách hàng</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom04" class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <label for="validationCustom04" class="form-label">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom04" class="form-label">Điểm</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Thêm</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal thêm khách hàng -->
-
-            <!-- start modal xem khách hàng -->
-            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin khách hàng</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom01" class="form-label">Mã khách hàng</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom04" class="form-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Ngày tạo</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom02" class="form-label">Tên khách hàng</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom04" class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <label for="validationCustom04" class="form-label">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom04" class="form-label">Điểm</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal xem khách hàng -->
-
             <!-- start modal sửa khách hàng -->
             <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -362,11 +282,15 @@
                 </div>
             </div>
             <!-- end modal sửa khách hàng -->
+            <div class="switch_modal"></div>
+
             <!-- Scripts-->
             <?php
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
+
+            <script src="./assets/js/customer.js"></script>
             <!-- END Scripts -->
 
 

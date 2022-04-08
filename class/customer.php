@@ -32,16 +32,17 @@ class Customer{
         }
     }
 
-    public function insert($id_customer, $fullname, $email, $address, $phone, $createdate, $points){
+    public function insert($id_customer, $id_account,$fullname, $email, $address, $phone, $createdate, $point){
         $id_customer = $this->conn->real_escape_string($id_customer);
+        $id_customer = $this->conn->real_escape_string($id_account);
         $fullname = $this->conn->real_escape_string($fullname);
         $email = $this->conn->real_escape_string($email);
         $address = $this->conn->real_escape_string($address);
         $phone = $this->conn->real_escape_string($phone);
         $createdate = $this->conn->real_escape_string($createdate);
-        $points = $this->conn->real_escape_string($points);
-        $sql = "INSERT INTO tbl_customer(`id_customer`, `fullname`, `email`, `address`, `phone`, `createdate`, `points`) VALUES ('$id_customer', '$fullname', '$email', '$address', '$phone', '$createdate', '$points')";
-        $result = $this->conn->query($sql);
+        $point = $this->conn->real_escape_string($point);
+        $sql = "INSERT INTO tbl_customer(`id_customer`,`id_account`, `fullname`, `email`, `address`, `phone`, `createdate`,`point`) VALUES ('$id_customer','$id_account', '$fullname', '$email', '$address', '$phone', '$createdate', '$point')";
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
 
