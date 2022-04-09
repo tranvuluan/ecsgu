@@ -1,3 +1,11 @@
+<?php
+$path = dirname(__FILE__);
+
+require_once($path . '/../class/product.php');
+require_once $path . '/../class/brand.php';
+require_once $path . '/../class/categoryChild.php';
+?>
+
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -17,6 +25,13 @@
 </head>
 
 <body>
+    <?php
+    $productModel = new Product();
+    $brandModel = new Brand();
+    $categoryChildModel = new CategoryChild();
+
+    ?>
+
     <!--start wrapper-->
     <div class="wrapper">
 
@@ -102,41 +117,64 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#89742</td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="product-box border">
-                                                    <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
+                                <?php
+                                $getDetailProduct = $productModel->getProducts()->fetch_assoc();
+                                if ($getDetailProduct) {
+                                ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?php echo $getDetailProduct['id_product'] ?></td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="product-box border">
+                                                        <img src="<?php echo $getDetailProduct['image'] ?>" alt="">
+                                                    </div>
+                                                    <div class="product-info">
+                                                        <h6 class="product-name mb-1"><?php echo $getDetailProduct['name'] ?></h6>
+                                                    </div>
                                                 </div>
-                                                <div class="product-info">
-                                                    <h6 class="product-name mb-1">Smart Mobile Phone</h6>
+                                            </td>
+                                            <?php
+                                            $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($getDetailProduct['id_categorychild'])->fetch_assoc();
+                                            if ($getNameCategoryChild) {
+                                            ?>
+                                                <td><?php echo $getNameCategoryChild['name'] ?></td>
+                                            <?php
+                                            }
+                                            ?>
+
+                                            <?php
+                                            $getNameBrand = $brandModel->getBrandById($getDetailProduct['id_brand'])->fetch_assoc();
+                                            if ($getNameBrand) {
+                                            ?>
+                                                <td><?php echo $getNameBrand['name'] ?></td>
+                                            <?php
+                                            }
+                                            ?>
+
+                                            <td><?php echo $getDetailProduct['quantity'] ?></td>
+                                            <td><?php echo $getDetailProduct['price'] ?></td>
+                                            <td>
+                                                <div class="badge alert-dark">Complete</div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-3 fs-6">
+                                                    <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                                                        <ion-icon name="eye-sharp"></ion-icon>
+                                                    </a>
+                                                    <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                        <ion-icon name="pencil-sharp"></ion-icon>
+                                                    </a>
+                                                    <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                                                        <ion-icon name="trash-sharp"></ion-icon>
+                                                    </a>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>Áo thun</td>
-                                        <td>Adidas</td>
-                                        <td>2</td>
-                                        <td>$100</td>
-                                        <td>
-                                            <div class="badge alert-dark">Complete</div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3 fs-6">
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                                                    <ion-icon name="eye-sharp"></ion-icon>
-                                                </a>
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                                                    <ion-icon name="pencil-sharp"></ion-icon>
-                                                </a>
-                                                <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                                                    <ion-icon name="trash-sharp"></ion-icon>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                <?php
+                                }
+                                ?>
                             </table>
                         </div>
                     </div>
