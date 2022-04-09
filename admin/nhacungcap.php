@@ -1,8 +1,3 @@
-<?php
-$path = dirname(__FILE__);
-require_once $path . '/../class/supplier.php';
-?>
-
 <!doctype html>
 <html lang="en" class="semi-dark">
 
@@ -22,10 +17,6 @@ require_once $path . '/../class/supplier.php';
 </head>
 
 <body>
-    <?php
-    $supplierModel = new Supplier();
-    ?>
-
     <!--start wrapper-->
     <div class="wrapper">
 
@@ -83,7 +74,7 @@ require_once $path . '/../class/supplier.php';
                         <!-- begin form nhà cc-->
                         <h4 class="mb-0 text-uppercase">Quản lý nhà cung cấp</h4>
                         <hr />
-                        <button type="button" class="btn btn-primary btn-lg" onclick="viewToAdd()">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModalId">
                             Thêm nhà cung cấp
                         </button>
                         <hr />
@@ -116,43 +107,35 @@ require_once $path . '/../class/supplier.php';
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <?php
-                                        $supplierList = $supplierModel->getSuppliers();
-                                        if ($supplierList) {
-                                            while ($row = $supplierList->fetch_assoc()) {
-                                        ?>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><?php echo $row['id_supplier'] ?></td>
-                                                        <td>
-                                                            <div class="d-flex align-items-center gap-3">
-                                                                <div class="product-info">
-                                                                    <h6 class="product-name mb-1"><?php echo $row['name'] ?></h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td><?php echo $row['address'] ?></td>
-                                                        <td>
-                                                            <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
-                                                                    <ion-icon name="eye-sharp"></ion-icon>
-                                                                </a>
-                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                                    <ion-icon name="pencil-sharp"></ion-icon>
-                                                                </a>
-                                                                <a href="javascript:;" class="text-dark">
-                                                                    <ion-icon name="trash-sharp"></ion-icon>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                        <?php
-                                            }
-                                        }
-
-
-                                        ?>
+                                        <tbody>
+                                            <tr>
+                                                <td>#89742</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="product-box border">
+                                                            <img src="https://via.placeholder.com/110X110/212529/fff" alt="">
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <h6 class="product-name mb-1">Smart Mobile Phone</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Trung quốc</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3 fs-6">
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
+                                                            <ion-icon name="eye-sharp"></ion-icon>
+                                                        </a>
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                            <ion-icon name="pencil-sharp"></ion-icon>
+                                                        </a>
+                                                        <a href="javascript:;" class="text-dark">
+                                                            <ion-icon name="trash-sharp"></ion-icon>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -329,14 +312,11 @@ require_once $path . '/../class/supplier.php';
                 </div>
                 <!-- end modal sửa nhà cung cấp -->
 
-                <div class="switchModal"></div>
-
                 <!-- Scripts-->
                 <?php
                 $path = dirname(__FILE__);
                 require_once $path . '/includes/scripts.php';
                 ?>
-                <script src="assets/js/supplier.js"></script>
                 <!-- END Scripts -->
 
 
