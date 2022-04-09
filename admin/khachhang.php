@@ -142,7 +142,7 @@
                                                                 <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print $row['id_customer'] ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
-                                                                <a href="javascript:;" class="text-dark">
+                                                                <a href="javascript:;" class="text-dark" onclick="confirm('Xoa khong?') ? deleteCustomer('<?php print $row['id_customer'] ?>'): event.preventDefault()">
                                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                                 </a>
                                                             </div>

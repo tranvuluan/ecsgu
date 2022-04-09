@@ -107,3 +107,25 @@ function update(){
         
     });
 }
+
+function deleteCustomer(id){
+    $.ajax({
+        url: './process/customer.php',
+        type: 'POST',
+        data: {
+            id: id,
+            delete: true
+        },
+        success: function(response){
+
+            if(response == 0){
+                alert('Delete success');
+                location.reload();
+            }
+            else{
+                alert('Delete fail');
+            }
+        }
+        
+    });
+}

@@ -135,3 +135,17 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
         }
     }
 ?>
+
+<?php 
+    if(isset($_POST['delete']) && $_POST['id']){
+        $id = $_POST['id'];
+        $customerModel = new Customer();
+        $deleteCustomer = $customerModel->delete($id);
+        if($deleteCustomer){
+            echo 0;
+        }
+        else{
+            echo 1;
+        }
+    }
+?>
