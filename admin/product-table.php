@@ -118,61 +118,63 @@ require_once $path . '/../class/categoryChild.php';
                                     </tr>
                                 </thead>
                                 <?php
-                                $getDetailProduct = $productModel->getProducts()->fetch_assoc();
+                                $getDetailProduct = $productModel->getProducts();
                                 if ($getDetailProduct) {
+                                    while ($row = $getDetailProduct->fetch_assoc()) {
                                 ?>
-                                    <tbody>
-                                        <tr>
-                                            <td><?php echo $getDetailProduct['id_product'] ?></td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="product-box border">
-                                                        <img src="<?php echo $getDetailProduct['image'] ?>" alt="">
+                                        <tbody>
+                                            <tr>
+                                                <td><?php echo $row['id_product'] ?></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="product-box border">
+                                                            <img src="<?php echo $row['image'] ?>" alt="">
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <h6 class="product-name mb-1"><?php echo $row['name'] ?></h6>
+                                                        </div>
                                                     </div>
-                                                    <div class="product-info">
-                                                        <h6 class="product-name mb-1"><?php echo $getDetailProduct['name'] ?></h6>
+                                                </td>
+                                                <?php
+                                                $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($row['id_categorychild'])->fetch_assoc();
+                                                if ($getNameCategoryChild) {
+                                                ?>
+                                                    <td><?php echo $getNameCategoryChild['name'] ?></td>
+                                                <?php
+                                                }
+                                                ?>
+
+                                                <?php
+                                                $getNameBrand = $brandModel->getBrandById($row['id_brand'])->fetch_assoc();
+                                                if ($getNameBrand) {
+                                                ?>
+                                                    <td><?php echo $getNameBrand['name'] ?></td>
+                                                <?php
+                                                }
+                                                ?>
+
+                                                <td><?php echo $row['quantity'] ?></td>
+                                                <td><?php echo $row['price'] ?></td>
+                                                <td>
+                                                    <div class="badge alert-dark">Complete</div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3 fs-6">
+                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                                                            <ion-icon name="eye-sharp"></ion-icon>
+                                                        </a>
+                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                            <ion-icon name="pencil-sharp"></ion-icon>
+                                                        </a>
+                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
+                                                            <ion-icon name="trash-sharp"></ion-icon>
+                                                        </a>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <?php
-                                            $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($getDetailProduct['id_categorychild'])->fetch_assoc();
-                                            if ($getNameCategoryChild) {
-                                            ?>
-                                                <td><?php echo $getNameCategoryChild['name'] ?></td>
-                                            <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            $getNameBrand = $brandModel->getBrandById($getDetailProduct['id_brand'])->fetch_assoc();
-                                            if ($getNameBrand) {
-                                            ?>
-                                                <td><?php echo $getNameBrand['name'] ?></td>
-                                            <?php
-                                            }
-                                            ?>
-
-                                            <td><?php echo $getDetailProduct['quantity'] ?></td>
-                                            <td><?php echo $getDetailProduct['price'] ?></td>
-                                            <td>
-                                                <div class="badge alert-dark">Complete</div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-3 fs-6">
-                                                    <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
-                                                        <ion-icon name="eye-sharp"></ion-icon>
-                                                    </a>
-                                                    <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
-                                                        <ion-icon name="pencil-sharp"></ion-icon>
-                                                    </a>
-                                                    <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                                                        <ion-icon name="trash-sharp"></ion-icon>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                 <?php
+                                    }
                                 }
                                 ?>
                             </table>
