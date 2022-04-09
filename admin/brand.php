@@ -1,6 +1,6 @@
 <?php
 $path = dirname(__FILE__);
-require_once $path . '/../class/supplier.php'
+require_once $path . '/../class/brand.php'
 ?>
 
 <!doctype html>
@@ -23,7 +23,7 @@ require_once $path . '/../class/supplier.php'
 
 <body>
     <?php
-    $supplierModel = new Supplier();
+    $BrandModal = new Brand();
     ?>
     <!--start wrapper-->
     <div class="wrapper">
@@ -80,10 +80,10 @@ require_once $path . '/../class/supplier.php'
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
                         <!-- begin theem nhà cc-->
-                        <h4 class="mb-0 text-uppercase">Quản lý nhà cung cấp</h4>
+                        <h4 class="mb-0 text-uppercase">Quản lý thương hiệu</h4>
                         <hr />
                         <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg">
-                            Thêm nhà cung cấp
+                            Thêm thương hiệu
                         </button>
                         <hr />
                         <!-- end them nhà cc -->
@@ -92,7 +92,7 @@ require_once $path . '/../class/supplier.php'
                         <div class="card radius-10 w-100">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <h6 class="mb-0">Danh sách nhà cung cấp</h6>
+                                    <h6 class="mb-0">Danh sách thương hiệu</h6>
                                     <div class="fs-5 ms-auto dropdown">
                                         <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
                                         <ul class="dropdown-menu">
@@ -109,31 +109,29 @@ require_once $path . '/../class/supplier.php'
                                     <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>Mã NCC</th>
-                                                <th>Tên NCC</th>
-                                                <th>Địa chỉ</th>
+                                                <th>Mã thương hiệu</th>
+                                                <th>Tên thương hiệu</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <?php
-                                        $supplierList = $supplierModel->getSuppliers();
-                                        if ($supplierList) {
-                                            while ($row = $supplierList->fetch_assoc()) {
+                                        $brandList = $BrandModal->getBrands();
+                                        if ($brandList) {
+                                            while ($row = $brandList->fetch_assoc()) {
                                         ?>
-                                                <tbody>
+                                                <tbody >
                                                     <tr>
-                                                        <td><?php echo $row['id_supplier'] ?></td>
+                                                        <td><?php echo $row['id_brand'] ?></td>
                                                         <td><?php echo $row['name'] ?></td>
-                                                        <td><?php echo $row['address'] ?></td>
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print($row['id_supplier']) ?>')">
+                                                                <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print($row['id_brand']) ?>')">
                                                                     <ion-icon name="eye-sharp"></ion-icon>
                                                                 </a>
-                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_supplier']) ?>')">
+                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_brand']) ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
-                                                                <a onclick=" confirm('Xoa khong?') ? deleteSupplier('<?php print($row['id_supplier']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
+                                                                <a onclick=" confirm('Xoa khong?') ? deleteBrand('<?php print($row['id_brand']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
                                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                                 </a>
                                                             </div>
@@ -232,7 +230,7 @@ require_once $path . '/../class/supplier.php'
                 require_once $path . '/includes/scripts.php';
                 ?>
 
-                <script src="assets/js/supplier.js"></script>
+                <script src="assets/js/brand.js"></script>
                 <!-- END Scripts -->
 
 
