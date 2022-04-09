@@ -80,9 +80,9 @@
                     <div class="col-xl-12 mx-auto">
                         <h4 class="mb-0 text-uppercase">Quản lý khách hàng</h4>
                         <hr />
-                        <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg">
+                        <!-- <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg">
                             Thêm khách hàng
-                        </button>
+                        </button> -->
                         <hr />
                         <!-- End Form khách hàng -->
 
@@ -139,7 +139,7 @@
                                                                 <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_customer'] ?>')">
                                                                     <ion-icon name="eye-sharp"></ion-icon>
                                                                 </a>
-                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print $row['id_customer'] ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
                                                                 <a href="javascript:;" class="text-dark">
@@ -233,55 +233,6 @@
 
             </div>
             <!--end wrapper-->
-
-            <!-- start modal sửa khách hàng -->
-            <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="mb-0">Thông tin khách hàng</h6>
-                                <div class="p-4 border rounded">
-                                    <form class="row g-3 needs-validation" novalidate>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom01" class="form-label">Mã khách hàng</label>
-                                            <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom04" class="form-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Ngày tạo</label>
-                                            <input type="text" class="form-control datepicker" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom02" class="form-label">Tên khách hàng</label>
-                                            <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="validationCustom04" class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <label for="validationCustom04" class="form-label">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="validationCustom04" class="form-label">Điểm</label>
-                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Sửa</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal sửa khách hàng -->
             <div class="switch_modal"></div>
 
             <!-- Scripts-->

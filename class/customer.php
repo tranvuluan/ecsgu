@@ -46,15 +46,15 @@ class Customer{
         return $result;
     }
 
-    public function update($id_customer, $fullname, $email, $address, $phone, $createdate, $points){
+    public function update($id_customer, $fullname, $email, $address, $phone, $createdate, $point){
         $id_customer = $this->conn->real_escape_string($id_customer);
         $fullname = $this->conn->real_escape_string($fullname);
         $email = $this->conn->real_escape_string($email);
         $address = $this->conn->real_escape_string($address);
         $phone = $this->conn->real_escape_string($phone);
         $createdate = $this->conn->real_escape_string($createdate);
-        $points = $this->conn->real_escape_string($points);
-        $sql = "UPDATE tbl_customer SET `fullname` = '$fullname', `email` = '$email', `address` = '$address', `phone` = '$phone', `createdate` = '$createdate', `points` = '$points' WHERE `id_customer` = '$id_customer'";
+        $point = $this->conn->real_escape_string($point);
+        $sql = "UPDATE tbl_customer SET `fullname` = '$fullname', `email` = '$email', `address` = '$address', `phone` = '$phone', `createdate` = '$createdate', `point` = '$point' WHERE `id_customer` = '$id_customer'";
         $result = $this->conn->query($sql);
         return $result;
     }
