@@ -30,14 +30,13 @@ function add() {
         },
         success: function(response) {
             console.log(response);
-             console.log(id);
             
-            // if(response == 0){
-            //     console.log(response);
-            // }
-            // else{
-            //     window.location.href = "./brand.php";
-            // }
+            if(response == 0){
+                console.log(response);
+            }
+            else{
+                window.location.href = "./brand.php";
+            }
         }
     });
 }
