@@ -56,7 +56,7 @@ if (isset($_POST['add'])) {
 
 ?>
 
-<?php
+<?php 
 if (isset($_POST['view']) && isset($_POST['id'])) {
     $id = $_POST['id'];
     $BrandModel = new Brand();
