@@ -4,6 +4,7 @@ $path = dirname(__FILE__);
 require_once($path . '/../class/product.php');
 require_once $path . '/../class/brand.php';
 require_once $path . '/../class/categoryChild.php';
+require_once $path . '/../class/configurable_product.php';
 ?>
 
 <!doctype html>
@@ -29,9 +30,10 @@ require_once $path . '/../class/categoryChild.php';
     $productModel = new Product();
     $brandModel = new Brand();
     $categoryChildModel = new CategoryChild();
+    $configurableProductModel = new ConfigurableProduct();
 
     ?>
-
+    </style>
     <!--start wrapper-->
     <div class="wrapper">
 
@@ -104,7 +106,7 @@ require_once $path . '/../class/categoryChild.php';
                             </div>
                         </div>
                         <div class="table-responsive mt-2">
-                            <table class="table align-middle mb-0">
+                            <table class="table align-middle mb-0 table-hover">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Mã sản phẩm</th>
@@ -152,7 +154,6 @@ require_once $path . '/../class/categoryChild.php';
                                                 <?php
                                                 }
                                                 ?>
-
                                                 <td><?php echo $row['quantity'] ?></td>
                                                 <td><?php echo $row['price'] ?></td>
                                                 <td>
@@ -160,7 +161,7 @@ require_once $path . '/../class/categoryChild.php';
                                                 </td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views">
+                                                        <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_product'] ?>')">
                                                             <ion-icon name="eye-sharp"></ion-icon>
                                                         </a>
                                                         <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
@@ -262,13 +263,14 @@ require_once $path . '/../class/categoryChild.php';
 
             </div>
             <!--end wrapper-->
-
+            <div id="switchModal"></div>
 
             <!-- Scripts-->
             <?php
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
+            <script src="assets/js/product_table.js"></script>
             <!-- END Scripts -->
 
 
