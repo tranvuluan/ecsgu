@@ -1,6 +1,7 @@
 <?php
 $path = dirname(__FILE__);
-require_once $path . '/../class/voucher.php';
+require_once $path . '/../class/permission.php';
+
 ?>
 
 <!doctype html>
@@ -17,15 +18,11 @@ require_once $path . '/../class/voucher.php';
     require_once $path . '/includes/headhtml.php';
     ?>
     <!-- end header html -->
-
+    >
     <title>Blackdash - Bootstrap5 Admin Template</title>
 </head>
 
 <body>
-    <?php
-    $voucherModel = new Voucher();
-    ?>
-
     <!--start wrapper-->
     <div class="wrapper">
 
@@ -77,85 +74,19 @@ require_once $path . '/../class/voucher.php';
                 </div>
                 <!--end breadcrumb-->
 
-
-                <div class="row">
-                    <div class="col-xl-12 mx-auto">
-                        <h4 class="mb-0 text-uppercase">Quản lý khuyến mãi</h4>
-                        <!-- start thêm khuyến mãi  -->
-                        <hr />
-                        <button onclick="viewToAdd()" type="button" class="btn btn-primary btn-lg">
-                            Thêm khuyến mãi
-                        </button>
-                        <hr />
-                        <!-- End Form Info -->
-
-                        <div class="card radius-10 w-100">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <h6 class="mb-0">Recent Orders</h6>
-                                    <div class="fs-5 ms-auto dropdown">
-                                        <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>#ID</th>
-                                                <th>Code</th>
-                                                <th>Discount percent</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        $voucherList = $voucherModel->getVouchers();
-                                        if ($voucherList) {
-                                            while ($row = $voucherList->fetch_assoc()) {
-                                        ?>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><?php echo $row['id_voucher'] ?></td>
-                                                        <td><?php echo $row['code'] ?></td>
-                                                        <td><?php echo $row['discountpercent'] ?></td>
-                                                        <td><?php echo $row['startdate'] ?></td>
-                                                        <td><?php echo $row['enddate'] ?></td>
-                                                        <td>
-                                                            <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print($row['id_voucher']) ?>')">
-                                                                    <ion-icon name="eye-sharp"></ion-icon>
-                                                                </a>
-                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_voucher']) ?>')">
-                                                                    <ion-icon name="pencil-sharp"></ion-icon>
-                                                                </a>
-                                                                <a onclick=" confirm('Xoa khong?') ? deleteVoucher('<?php print($row['id_voucher']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
-                                                                    <ion-icon name="trash-sharp"></ion-icon>
-                                                                </a>
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                <h6 class="mb-0 text-uppercase">Thống kê doanh thu</h6>
+                <hr />
+                <div class="card">
+                    <div class="card-body">
+                        <div id="chart1"></div>
                     </div>
-                    <!-- end page content-->
+                </div>
+                <h6 class="mb-0 text-uppercase">Thống kê sản phẩm</h6>
+                <hr />
+                <div class="card">
+                    <div class="card-body">
+                        <div id="chart5"></div>
+                    </div>
                 </div>
                 <!--end page content wrapper-->
 
@@ -166,6 +97,9 @@ require_once $path . '/../class/voucher.php';
                 require_once $path . '/includes/footer.php';
                 ?>
                 <!--end footer-->
+
+
+
 
                 <!--start switcher-->
                 <div class="switcher-body">
@@ -222,25 +156,25 @@ require_once $path . '/../class/voucher.php';
                 </div>
                 <!--end switcher-->
 
+
                 <!--start overlay-->
                 <div class="overlay nav-toggle-icon"></div>
                 <!--end overlay-->
 
             </div>
             <!--end wrapper-->
+
+
             <!-- Scripts-->
-
-            <div id="switchModal"></div>
-
-
             <?php
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
-
-            <script src="assets/js/voucher.js"></script>
             <!-- END Scripts -->
 
+            <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+            <script src="assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
+            <script src="assets/plugins/apexcharts-bundle/js/apex-custom.js"></script>
 </body>
 
 </html>

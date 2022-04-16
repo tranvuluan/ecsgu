@@ -54,6 +54,14 @@
           </a>
         </li>
         <li>
+          <a href="brand.php">
+            <div class="parent-icon">
+              <i class="bi bi-check2-square"></i>
+            </div>
+            <div class="menu-title">Brand</div>
+          </a>
+        </li>
+        <li>
           <a href="nhaphang.php">
             <div class="parent-icon">
               <i class="bi bi-check2-square"></i>
@@ -102,7 +110,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="statistical.php">
             <div class="parent-icon">
               <i class="bi bi-check2-square"></i>
             </div>

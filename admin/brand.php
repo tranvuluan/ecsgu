@@ -1,7 +1,6 @@
 <?php
 $path = dirname(__FILE__);
-require_once $path . '/../class/category.php';
-require_once $path . '/../class/categoryChild.php';
+require_once $path . '/../class/brand.php'
 ?>
 
 <!doctype html>
@@ -24,8 +23,7 @@ require_once $path . '/../class/categoryChild.php';
 
 <body>
     <?php
-    $categoryModal = new Category();
-    $categoryChildModal = new CategoryChild();
+    $BrandModal = new Brand();
     ?>
     <!--start wrapper-->
     <div class="wrapper">
@@ -78,21 +76,23 @@ require_once $path . '/../class/categoryChild.php';
                 </div>
                 <!--end breadcrumb-->
 
-
+                <!-- start quản lý ncc -->
                 <div class="row">
-                    <!-- begin danh mục mẹ-->
-                    <div class="col-md-5">
-                        <h6 class="mb-0 text-uppercase">Danh mục mẹ</h6>
+                    <div class="col-xl-12 mx-auto">
+                        <!-- begin theem nhà cc-->
+                        <h4 class="mb-0 text-uppercase">Quản lý thương hiệu</h4>
                         <hr />
-                        <button onclick="viewToAdd()" type="button" class="btn btn-primary btn-lg">
-                            Thêm danh mục mẹ
+                        <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg">
+                            Thêm thương hiệu
                         </button>
                         <hr />
+                        <!-- end them nhà cc -->
 
+                        <!-- begin table nhà cc -->
                         <div class="card radius-10 w-100">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <h6 class="mb-0">Danh sách danh mục mẹ</h6>
+                                    <h6 class="mb-0">Danh sách thương hiệu</h6>
                                     <div class="fs-5 ms-auto dropdown">
                                         <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
                                         <ul class="dropdown-menu">
@@ -109,94 +109,49 @@ require_once $path . '/../class/categoryChild.php';
                                     <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>Mã danh mục</th>
-                                                <th>Tên danh mục</th>
+                                                <th>Mã thương hiệu</th>
+                                                <th>Tên thương hiệu</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <?php
-                                            $categoryList = $categoryModal->getCategories();
-                                            if ($categoryList) {
-                                                while ($row = $categoryList->fetch_assoc()) {
-                                            ?>
-                                                    <tr onclick="getCategoryChild('<?php print($row['id_category']) ?>')" >
-                                                        <td><?php echo $row['id_category'] ?></td>
+                                        <?php
+                                        $brandList = $BrandModal->getBrands();
+                                        if ($brandList) {
+                                            while ($row = $brandList->fetch_assoc()) {
+                                        ?>
+                                                <tbody >
+                                                    <tr>
+                                                        <td><?php echo $row['id_brand'] ?></td>
                                                         <td><?php echo $row['name'] ?></td>
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_category']) ?>')">
+                                                                <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print($row['id_brand']) ?>')">
+                                                                    <ion-icon name="eye-sharp"></ion-icon>
+                                                                </a>
+                                                                <a href="javascript:;" class="text-dark" onclick="viewToUpdate('<?php print($row['id_brand']) ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
-                                                                <a onclick=" confirm('Xoa khong?') ? deleteCategory('<?php print($row['id_category']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
+                                                                <a onclick=" confirm('Xoa khong?') ? deleteBrand('<?php print($row['id_brand']) ?>') : event.preventDefault() " href="javascript:;" class="text-dark">
                                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                                 </a>
                                                             </div>
+
                                                         </td>
                                                     </tr>
-                                        </tbody>
-                                <?php
-                                                }
+                                                </tbody>
+                                        <?php
                                             }
-                                ?>
+                                        }
+                                        ?>
                                     </table>
                                 </div>
                             </div>
                         </div>
+                        <!-- end table nhà cc -->
                     </div>
-                    <!-- End danh mục mẹ -->
-
-                    <!-- begin danh mục con -->
-                    <div class="col-md-7 ">
-                        <h6 class="mb-0 text-uppercase">Danh mục con</h6>
-                        <hr />
-                        <button onclick="viewToAddChild()" type="button" class="btn btn-primary btn-lg" >
-                            Thêm danh mục con
-                        </button>
-                        <hr />
-
-                        <div class="card radius-10 w-100">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <h6 class="mb-0">Danh sách danh mục con</h6>
-                                    <div class="fs-5 ms-auto dropdown">
-                                        <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0 table-hover">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>Mã danh mục con</th>
-                                                <th>Mã danh mục</th>
-                                                <th>Tên danh mục con</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbody_categorychild">
-                                            
-                                
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- begin danh mục con -->
                     <!-- end page content-->
 
-
                     <!--end page content wrapper-->
-
 
                     <!--start footer-->
                     <?php
@@ -204,9 +159,6 @@ require_once $path . '/../class/categoryChild.php';
                     require_once $path . '/includes/footer.php';
                     ?>
                     <!--end footer-->
-
-
-
 
                     <!--start switcher-->
                     <div class="switcher-body">
@@ -270,74 +222,15 @@ require_once $path . '/../class/categoryChild.php';
 
                 </div>
                 <!--end wrapper-->
-
-
-                <!-- start modal thêm danh mục con -->
-                <!-- <div class="modal fade" id="addSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content ">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="mb-0">Thông tin danh mục con</h6>
-                                    <div class="p-4 border rounded">
-                                        <form class="row g-3 needs-validation" novalidate>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="btn btn-primary" type="submit">Thêm</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- end modal thêm danh mục con -->
-
-                <!-- start modal sửa danh mục con -->
-                <!-- <div class="modal fade" id="updateSubModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content ">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="mb-0">Thông tin danh mục con</h6>
-                                    <div class="p-4 border rounded">
-                                        <form class="row g-3 needs-validation" novalidate>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Mã danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom01" value="" placeholder="MPN001" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="btn btn-primary" type="submit">Sửa</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- end modal sửa danh mục con -->
                 <!-- Scripts-->
-                <div id="switchModal"></div>
+                <div class="switchModal"></div>
 
                 <?php
                 $path = dirname(__FILE__);
                 require_once $path . '/includes/scripts.php';
                 ?>
 
-                <script src="./assets/js/category.js"></script>
+                <script src="assets/js/brand.js"></script>
                 <!-- END Scripts -->
 
 

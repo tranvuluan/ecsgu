@@ -53,10 +53,11 @@ class CategoryChild{
         return $result;
     }
 
-    public function update($id_categorychild, $name){
+    public function update($id_categorychild,$id_category, $name){
         $id_categorychild = $this->conn->real_escape_string($id_categorychild);
+        $id_category = $this->conn->real_escape_string($id_category);
         $name = $this->conn->real_escape_string($name);
-        $sql = "UPDATE tbl_categorychild SET `name` = '$name' WHERE `id_categorychild` = '$id_categorychild'";
+        $sql = "UPDATE tbl_categorychild SET `name` = '$name', `id_category` = '$id_category'  WHERE `id_categorychild` = '$id_categorychild'";
         $result = $this->conn->query($sql);
         return $result;
     }
