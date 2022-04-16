@@ -23,6 +23,10 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
 </head>
 
 <body>
+  <?php
+  $warehouseReceiptModel = new WarehouseReceipt();
+  $warehouseReceiptDetailModel = new WarehouseReceiptDetail();
+  ?>
   <!--start wrapper-->
   <div class="wrapper">
 
@@ -86,7 +90,7 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
             </button>
             <hr />
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <div class="card radius-10 w-100">
                   <div class="card-body">
                     <div class="d-flex align-items-center ">
@@ -104,7 +108,7 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
                       </div>
                     </div>
                     <div class="table-responsive mt-2">
-                      <table class="table align-middle mb-0">
+                      <table class="table align-middle mb-0 table-hover">
                         <thead class="table-light">
                           <tr>
                             <th>Mã PN</th>
@@ -115,34 +119,43 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
                             <th>Actions</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <td>#89742</td>
-                            <td>2</td>
-                            <td>$214</td>
-                            <td>Apr 8, 2021</td>
-                            <td>$214</td>
-                            <td>
-                              <div class="d-flex align-items-center gap-3 fs-6">
-                                <a href="javascript:;" class="text-dark" onclick="view()">
-                                  <ion-icon name="eye-sharp"></ion-icon>
-                                </a>
-                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                  <ion-icon name="pencil-sharp"></ion-icon>
-                                </a>
-                                <a href="javascript:;" class="text-dark">
-                                  <ion-icon name="trash-sharp"></ion-icon>
-                                </a>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
+                        <?php
+                        $listWarehouseReceipt = $warehouseReceiptModel->getWarehouseReceipts();
+                        if ($listWarehouseReceipt) {
+                          while ($row = $listWarehouseReceipt->fetch_assoc()) {
+                        ?>
+                            <tbody>
+                              <tr onclick="getWarehouseReceiptDetail('<?php print $row['id_warehousereceipt'] ?>')">
+                                <td><?php echo $row['id_warehousereceipt'] ?></td>
+                                <td><?php echo $row['id_supplier'] ?></td>
+                                <td><?php echo $row['id_employee'] ?></td>
+                                <td><?php echo $row['date'] ?></td>
+                                <td><?php echo $row['totalprice'] ?></td>
+                                <td>
+                                  <div class="d-flex align-items-center gap-3 fs-6">
+                                    <a href="javascript:;" class="text-dark" onclick="view('<?php print $row['id_warehousereceipt'] ?>')">
+                                      <ion-icon name="eye-sharp"></ion-icon>
+                                    </a>
+                                    <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                      <ion-icon name="pencil-sharp"></ion-icon>
+                                    </a>
+                                    <a href="javascript:;" class="text-dark">
+                                      <ion-icon name="trash-sharp"></ion-icon>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                        <?php
+                          }
+                        }
+                        ?>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <div class="card radius-10 w-100">
                   <div class="card-body">
                     <div class="d-flex align-items-center ">
@@ -170,26 +183,8 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
                             <th>Actions</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <td>#89742</td>
-                            <td>#89742</td>
-                            <td>50</td>
-                            <td>$214</td>
-                            <td>
-                              <div class="d-flex align-items-center gap-3 fs-6">
-                                <a href="javascript:;" class="text-dark" onclick="viewDetail()">
-                                  <ion-icon name="eye-sharp"></ion-icon>
-                                </a>
-                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                  <ion-icon name="pencil-sharp"></ion-icon>
-                                </a>
-                                <a href="javascript:;" class="text-dark">
-                                  <ion-icon name="trash-sharp"></ion-icon>
-                                </a>
-                              </div>
-                            </td>
-                          </tr>
+                        <tbody id="tbody_warehousereceiptDetail">
+
                         </tbody>
                       </table>
                     </div>

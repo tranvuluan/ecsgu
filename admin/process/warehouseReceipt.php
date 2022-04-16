@@ -1,255 +1,328 @@
 <?php
 $path = dirname(__FILE__);
-require_once $path . '/../../class/product.php';
+require_once $path . '/../../class/warehouseReceipt.php';
+require_once $path . '/../class/warehouseReceiptDetail.php';
+require_once $path . '/../class/supplier.php';
+require_once $path . '/../class/product.php';
 require_once $path . '/../class/categoryChild.php';
 require_once $path . '/../class/brand.php';
-require_once $path . '/../class/configurable_product.php';
+?>
+<?php
+if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceipt'])) {
+    $id_warehousereceipt = $_GET['id_warehousereceipt'];
+    $warehouseReceiptDetailModel = new WarehouseReceiptDetail();
+    $result = $warehouseReceiptDetailModel->getWarehouseReceiptDetailById($id_warehousereceipt);
+    if ($result) {
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+?>
+            <tr>
+                <td><?php echo $row['id_warehousereceipt'] ?></td>
+                <td><?php echo $row['id_product'] ?></td>
+                <td><?php echo $row['amount'] ?></td>
+                <td><?php echo $row['price'] ?></td>
+                <td>
+                    <div class="d-flex align-items-center gap-3 fs-6">
+                        <a href="javascript:;" class="text-dark" onclick="viewDetail('<?php print $row['id_product'] ?>')">
+                            <ion-icon name="eye-sharp"></ion-icon>
+                        </a>
+                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                            <ion-icon name="pencil-sharp"></ion-icon>
+                        </a>
+                        <a href="javascript:;" class="text-dark">
+                            <ion-icon name="trash-sharp"></ion-icon>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+
+<?php
+        }
+    }
+}
 ?>
 
 <?php
 if (isset($_POST['viewToAdd'])) {
-    // $id = 'PR1640619150209';
-    $productModel = new Product();
-    $categoryChildModel = new CategoryChild();
-    $brandModel = new Brand();
-    $configurableProductModel = new ConfigurableProduct();
-    $viewProduct = $productModel->getProducts()->fetch_assoc();
-    if ($viewProduct) {
+    $supplierModel = new Supplier();
 ?>
-        <!-- Modal xem thông tin phiếu nhập -->
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-0">Thêm phiếu nhập</h6>
-                        <div class="p-4 border rounded">
-                            <form class="row g-3 needs-validation" novalidate>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
-                                                <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" required>
+    <!-- Modal xem thông tin phiếu nhập -->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="mb-0">Thêm phiếu nhập</h6>
+                    <div class="p-4 border rounded">
+                        <form class="row g-3 needs-validation" method="POST" onsubmit="add()">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="PR<?php echo (int) (microtime(true) * 1000) ?>" readonly>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Danh mục</label>
+                                            <input type="text" class="form-control" id="validationCustom01" name="CategoryChildName" value="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Thương hiệu</label>
+                                            <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Giá nhập ( đồng )</label>
+                                            <input type="text" class="form-control" id="validationCustom02" name="price" value="" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom04" class="form-label">Description</label>
+                                            <input type="text" class="form-control" id="validationCustom03" name="description" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                                <input type="file" class="form-control" id="inputGroupFile01">
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
-                                                <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Danh mục</label>
-                                                <?php
-                                                $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($viewProduct['id_categorychild'])->fetch_assoc();
-                                                if ($getNameCategoryChild) {
-                                                ?>
-                                                    <input type="text" class="form-control" id="validationCustom01" name="CategoryChild" value="<?php echo $getNameCategoryChild['name'] ?>" name="voucherId" required>
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="validationCustom01" class="form-label">Thương hiệu</label>
-                                                <?php
-                                                $getNameBrand = $brandModel->getBrandById($viewProduct['id_brand'])->fetch_assoc();
-                                                if ($getNameBrand) {
-                                                ?>
-                                                    <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="<?php echo $getNameBrand['name'] ?>" name="voucherId" required>
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="validationCustom02" class="form-label">Giá nhập ( đồng )</label>
-                                                <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="validationCustom04" class="form-label">Description</label>
-                                                <input type="text" class="form-control" id="validationCustom03" required>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <br>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                                    <input type="file" class="form-control" id="inputGroupFile01">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="card radius-10 w-100">
-                                                    <div class="card-body">
-                                                        <div class="d-flex align-items-center ">
-                                                            <h6 class="mb-0 text-uppercase">Chi tiết sản phẩm</h6>
-                                                            <div class="fs-5 ms-auto dropdown">
-                                                                <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                                    <li>
-                                                                        <hr class="dropdown-divider">
-                                                                    </li>
-                                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="table-responsive mt-2">
-                                                            <table class="table align-middle mb-0 table-hover">
-                                                                <thead class="table-light">
-                                                                    <tr>
-                                                                        <th>Chọn</th>
-                                                                        <th>SKU</th>
-                                                                        <th>Kích cỡ</th>
-                                                                        <th>Số lượng</th>
-                                                                        <th>Trạng thái</th>
-                                                                        <th>Hình ảnh</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <style>
-                                                                        input {
-                                                                            width: 100%;
-                                                                        }
-                                                                    </style>
-                                                                    <tr>
-                                                                        <td><input type="checkbox"></td>
-                                                                        <td><input class="form-control" type="text" value="PR9999_S"></td>
-                                                                        <td><input class="form-control" type="text" value="S"></td>
-                                                                        <td><input class="form-control" type="text"></td>
-                                                                        <td>
-                                                                            <div class="badge bg-primary">Còn hàng</div>
-                                                                        </td>
-                                                                        <td>abc</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><input type="checkbox"></td>
-                                                                        <td><input class="form-control" type="text" value="PR9999_M"></td>
-                                                                        <td><input class="form-control" type="text" value="M"></td>
-                                                                        <td><input class="form-control" type="text"></td>
-                                                                        <td>
-                                                                            <div class="badge bg-primary">Còn hàng</div>
-                                                                        </td>
-                                                                        <td>abc</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><input type="checkbox"></td>
-                                                                        <td><input class="form-control" type="text" value="PR9999_X"></td>
-                                                                        <td><input class="form-control" type="text" value="X"></td>
-                                                                        <td><input class="form-control" type="text"></td>
-                                                                        <td>
-                                                                            <div class="badge bg-primary">Còn hàng</div>
-                                                                        </td>
-                                                                        <td>abc</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><input type="checkbox"></td>
-                                                                        <td><input class="form-control" type="text" value="PR9999_XL"></td>
-                                                                        <td><input class="form-control" type="text" value="XL"></td>
-                                                                        <td><input class="form-control" type="text"></td>
-                                                                        <td>
-                                                                            <div class="badge bg-primary">Còn hàng</div>
-                                                                        </td>
-                                                                        <td>abc</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="card radius-10 w-100">
+                                                <div class="card-body">
+                                                    <div class="d-flex align-items-center ">
+                                                        <h6 class="mb-0 text-uppercase">Chi tiết sản phẩm</h6>
+                                                        <div class="fs-5 ms-auto dropdown">
+                                                            <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                                <li>
+                                                                    <hr class="dropdown-divider">
+                                                                </li>
+                                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label for="validationCustom01" class="form-label">Mã phiếu nhập</label>
-                                                        <input type="text" class="form-control" id="validationCustom01" value="#99999" placeholder="" required>
+                                                    <div class="table-responsive mt-2">
+                                                        <table class="table align-middle mb-0 table-hover">
+                                                            <thead class="table-light">
+                                                                <tr>
+                                                                    <th>Chọn</th>
+                                                                    <th>SKU</th>
+                                                                    <th>Kích cỡ</th>
+                                                                    <th>Số lượng</th>
+                                                                    <th>Trạng thái</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><input class="productCheckbox_S" value="1" type="checkbox"></td>
+                                                                    <td><input class="form-control" type="text" name="sku_S" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_S"></td>
+                                                                    <td style="width:10%"><input class="form-control" type="text" name="option_S" value="S"></td>
+                                                                    <td style="width:10%"><input class="form-control" type="text" name="stock_S" value=""></td>
+                                                                    <td>
+                                                                        <select class="form-select" name="" id="">
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Còn hàng</div>
+                                                                            </option>
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Hết hàng</div>
+                                                                            </option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input class="productCheckbox_M" value="2" type="checkbox"></td>
+                                                                    <td><input class="form-control" type="text" name="sku_M" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_M"></td>
+                                                                    <td><input class="form-control" type="text" name="option_M" value="M"></td>
+                                                                    <td><input class="form-control" type="text" name="stock_M" value=""></td>
+                                                                    <td>
+                                                                        <select class="form-select" name="" id="">
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Còn hàng</div>
+                                                                            </option>
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Hết hàng</div>
+                                                                            </option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input class="productCheckbox_X" value="3" type="checkbox"></td>
+                                                                    <td><input class="form-control" type="text" name="sku_X" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_X"></td>
+                                                                    <td><input class="form-control" type="text" name="option_X" value="X"></td>
+                                                                    <td><input class="form-control" type="text" name="stock_X" value=""></td>
+                                                                    <td>
+                                                                        <select class="form-select" name="" id="">
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Còn hàng</div>
+                                                                            </option>
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Hết hàng</div>
+                                                                            </option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input class="productCheckbox_XL" value="4" type="checkbox"></td>
+                                                                    <td><input class="form-control" type="text" name="sku_XL" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_XL"></td>
+                                                                    <td><input class="form-control" type="text" name="option_XL" value="XL"></td>
+                                                                    <td><input class="form-control" type="text" name="stock_XL" value=""></td>
+                                                                    <td>
+                                                                        <select class="form-select" name="" id="">
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Còn hàng</div>
+                                                                            </option>
+                                                                            <option value="">
+                                                                                <div class="badge bg-primary">Hết hàng</div>
+                                                                            </option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <label for="validationCustom01" class="form-label">Tổng tiền</label>
-                                                        <input type="text" class="form-control" id="validationCustom01" value="$216" placeholder="" required>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label for="validationCustom03" class="form-label">Nhà cung cấp</label>
-                                                        <select class="form-select" aria-label="Default select example">
-                                                            <option value="1">Nhà máy á châu</option>
-                                                            <option value="2">Nhà máy thượng hải</option>
-
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label for="validationCustom02" class="form-label">Mã nhân viên</label>
-                                                        <input type="text" class="form-control" id="validationCustom02" value="#88888" required>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label for="validationCustom04" class="form-label">Ngày nhập</label>
-                                                        <input type="text" class="form-control" id="validationCustom03" value="<?php echo date('Y-m-d') ?>" required>
-                                                    </div>
-                                                    <br><br><br>
-                                                    <div class="card radius-10 w-100">
-                                                        <div class="card-body">
-                                                            <div class="d-flex align-items-center ">
-                                                                <h6 class="mb-0 text-uppercase">Chi tiết phiếu nhập</h6>
-                                                                <div class="fs-5 ms-auto dropdown">
-                                                                    <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                                        <li>
-                                                                            <hr class="dropdown-divider">
-                                                                        </li>
-                                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="table-responsive mt-2">
-                                                                <table class="table align-middle mb-0">
-                                                                    <thead class="table-light">
-                                                                        <tr>
-                                                                            <th>Mã SP</th>
-                                                                            <th>Tên SP</th>
-                                                                            <th>Số lượng</th>
-                                                                            <th>Giá nhập</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>#89742</td>
-                                                                            <td>#89742</td>
-                                                                            <td>50</td>
-                                                                            <td>$214</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Thêm</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="validationCustom01" class="form-label">Mã phiếu nhập</label>
+                                            <input type="text" class="form-control" id="validationCustom01" name="warehouseReceiptId" value="" placeholder="" required>
                                         </div>
-                            </form>
-                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom01" class="form-label">Tổng tiền</label>
+                                            <input type="text" class="form-control" id="validationCustom01" name="totalprice" value="" placeholder="" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom03" class="form-label">Nhà cung cấp</label>
+                                            <select class="form-select" name="supplierName" aria-label="Default select example">
+                                                <?php
+                                                $getSupplier = $supplierModel->getSuppliers();
+                                                if ($getSupplier) {
+                                                    while ($row = $getSupplier->fetch_assoc()) {
+                                                ?>
+                                                        <option value="<?php echo $row['id_supplier'] ?>"><?php echo $row['name'] ?></option>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Mã nhân viên</label>
+                                            <input type="text" class="form-control" id="validationCustom02" name="EmployeeId" value="EM01" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom04" class="form-label">Ngày nhập</label>
+                                            <input type="text" class="form-control" id="validationCustom03" name="date" value="<?php echo date('Y-m-d') ?>" required>
+                                        </div>
+                                        <br><br><br>
+                                        <div class="card radius-10 w-100">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center ">
+                                                    <h6 class="mb-0 text-uppercase">Chi tiết phiếu nhập</h6>
+                                                    <div class="fs-5 ms-auto dropdown">
+                                                        <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                            <li>
+                                                                <hr class="dropdown-divider">
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive mt-2">
+                                                    <table class="table align-middle mb-0">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <th>Mã SP</th>
+                                                                <th>Tên SP</th>
+                                                                <th>Số lượng</th>
+                                                                <th>Giá nhập</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>#89742</td>
+                                                                <td>#89742</td>
+                                                                <td>50</td>
+                                                                <td>$214</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Thêm</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END Modal xem thông tin phiếu nhập -->
+    </div>
+    <!-- END Modal xem thông tin phiếu nhập -->
 <?php
+}
+?>
+
+<?php
+if(isset($_POST['add'])){
+    $ProductId = $_POST['ProductId'];
+    $ProductName = $_POST['ProductName'];
+    $BrandName = $_POST['BrandName'];
+    $CategoryChildName = $_POST['CategoryChildName'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+    $warehouseReceiptId = $_POST['warehouseReceiptId'];
+    $totalprice = $_POST['totalprice'];
+    $supplierName = $_POST['supplierName'];
+    $EmployeeId = $_POST['EmployeeId'];
+    $date = $_POST['date'];
+    $sku_S = $_POST['sku_S'];
+    $sku_M = $_POST['sku_M'];
+    $sku_X = $_POST['sku_X'];
+    $sku_XL = $_POST['sku_XL'];
+    $option_S = $_POST['option_S'];
+    $option_M = $_POST['option_M'];
+    $option_X = $_POST['option_X'];
+    $option_XL = $_POST['option_XL'];
+    $stock_S = $_POST['stock_S'];
+    $stock_M = $_POST['stock_M'];
+    $stock_X = $_POST['stock_X'];
+    $stock_XL = $_POST['stock_XL'];
+    $checkedValue_S = $_POST['checkedValue_S'];
+    $checkedValue_M = $_POST['checkedValue_M'];
+    $checkedValue_X = $_POST['checkedValue_X'];
+    $checkedValue_XL = $_POST['checkedValue_XL'];
+
+    if($checkedValue_S == 1){
+        
     }
 }
 ?>
+
 <?php
 if (isset($_POST['view'])) {
     $id = $_POST['id'];
-    $productModel = new Product();
-    $categoryChildModel = new CategoryChild();
-    $brandModel = new Brand();
-    $configurableProductModel = new ConfigurableProduct();
-    $viewProduct = $productModel->getProducts()->fetch_assoc();
-    if ($viewProduct) {
+    $warehouseReceiptModel = new WarehouseReceipt();
+    $supplierModel = new Supplier();
+    $getWarehouseReceipt = $warehouseReceiptModel->getWarehouseReceiptById($id)->fetch_assoc();
+    if ($getWarehouseReceipt) {
 ?>
         <!-- Modal xem thông tin phiếu nhập -->
         <div class="modal-dialog" role="document">
@@ -259,29 +332,32 @@ if (isset($_POST['view'])) {
                         <h6 class="mb-0">Thông tin phiếu nhập</h6>
                         <div class="p-4 border rounded">
                             <form class="row g-3 needs-validation" novalidate>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <label for="validationCustom01" class="form-label">Mã phiếu nhập</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="#99999" placeholder="" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="warehousereceiptId" value="<?php echo $getWarehouseReceipt['id_warehousereceipt'] ?>" placeholder="" required>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <label for="validationCustom01" class="form-label">Tổng tiền</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="$216" placeholder="" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="totalprice" value="<?php echo $getWarehouseReceipt['totalprice'] ?>" placeholder="" required>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <label for="validationCustom03" class="form-label">Nhà cung cấp</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option value="1">Nhà máy á châu</option>
-                                        <option value="2">Nhà máy thượng hải</option>
-
-                                    </select>
+                                    <?php
+                                    $getnameSupplier = $supplierModel->getSupplierById($getWarehouseReceipt['id_supplier'])->fetch_assoc();
+                                    if ($getnameSupplier) {
+                                    ?>
+                                        <input type="text" class="form-control" id="validationCustom01" name="supplierName" value="<?php echo $getnameSupplier['name'] ?>" placeholder="" required>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <label for="validationCustom02" class="form-label">Mã nhân viên</label>
-                                    <input type="text" class="form-control" id="validationCustom02" value="#88888" required>
+                                    <input type="text" class="form-control" id="validationCustom02" value="<?php echo $getWarehouseReceipt['id_employee'] ?>" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="validationCustom04" class="form-label">Ngày nhập</label>
-                                    <input type="text" class="form-control" id="validationCustom03" value="<?php echo date('Y-m-d') ?>" required>
+                                    <input type="text" class="form-control" id="validationCustom03" value="<?php echo $getWarehouseReceipt['date'] ?>" required>
                                 </div>
                             </form>
                         </div>
@@ -296,14 +372,14 @@ if (isset($_POST['view'])) {
 ?>
 
 <?php
-if (isset($_POST['viewDetail'])) {
-    $id = 'PR1640619150209';
+if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
+    $id = $_POST['id'];
+    $warehouseReceiptDetailModel = new WarehouseReceiptDetail();
     $productModel = new Product();
     $categoryChildModel = new CategoryChild();
     $brandModel = new Brand();
-    $configurableProductModel = new ConfigurableProduct();
-    $viewProduct = $productModel->getProducts()->fetch_assoc();
-    if ($viewProduct) {
+    $getProduct = $productModel->getProductById($id)->fetch_assoc();
+    if ($getProduct) {
 ?>
         <!-- Modal xem thông tin phiếu nhập -->
         <div class="modal-dialog" role="document">
@@ -315,25 +391,40 @@ if (isset($_POST['viewDetail'])) {
                             <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()">
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="<?php echo $getProduct['id_product'] ?>" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $getProduct['name'] ?>" required>
                                 </div>
                                 <div class="col-md-4">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Danh mục</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="" value="Ao' Thun" required>
+                                    <?php
+                                    $getCategoryChild = $categoryChildModel->getCategoryChildByIds($getProduct['id_categorychild'])->fetch_assoc();
+                                    if ($getCategoryChild) {
+                                    ?>
+                                        <input type="text" class="form-control" id="validationCustom01" name="CategoryChildName" value="<?php echo $getCategoryChild['name'] ?>" required>
+                                    <?php
+                                    }
+                                    ?>
+
+
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Giá nhập</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="" value="$200" name="voucherId" required>
+                                    <?php
+                                    $getPrice = $warehouseReceiptDetailModel->getWarehouseReceiptDetailsByProductId($getProduct['id_product'])->fetch_assoc();
+                                    ?>
+                                    <input type="text" class="form-control" id="validationCustom01" name="price" value="<?php echo $getPrice['price'] ?>" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Thương hiệu</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="Cool" required>
+                                    <?php
+                                    $getBrand = $brandModel->getBrandById($getProduct['id_brand'])->fetch_assoc();
+                                    ?>
+                                    <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="<?php echo $getBrand['name'] ?>" required>
                                 </div>
 
                                 <div class="col-md-12">
@@ -344,13 +435,112 @@ if (isset($_POST['viewDetail'])) {
                                 <div class="col-md-12">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="product-box border" style="width:10%">
-                                            <img src="<?php echo $viewProduct['image'] ?>" alt="">
+                                            <img src="<?php echo $getProduct['image'] ?>" alt="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12"></div>
                                 <div class="col-md-12"></div>
                                 <div class="col-md-12"></div>
+                                <div class="col-md-12">
+                                    <div class="card radius-10 w-100">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center ">
+                                                <h6 class="mb-0 text-uppercase">Chi tiết sản phẩm</h6>
+                                                <div class="fs-5 ms-auto dropdown">
+                                                    <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                        <li>
+                                                            <hr class="dropdown-divider">
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive mt-2">
+                                                <table class="table align-middle mb-0 table-hover">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Chọn</th>
+                                                            <th>SKU</th>
+                                                            <th>Kích cỡ</th>
+                                                            <th>Số lượng</th>
+                                                            <th>Trạng thái</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><input type="checkbox"></td>
+                                                            <td><input class="form-control" type="text" value="PR9999_S"></td>
+                                                            <td style="width:10%"><input class="form-control" type="text" value="S"></td>
+                                                            <td style="width:10%"><input class="form-control" type="text"></td>
+                                                            <td>
+                                                                <select class="form-select" name="" id="">
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Còn hàng</div>
+                                                                    </option>
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Hết hàng</div>
+                                                                    </option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox"></td>
+                                                            <td><input class="form-control" type="text" value="PR9999_M"></td>
+                                                            <td><input class="form-control" type="text" value="M"></td>
+                                                            <td><input class="form-control" type="text"></td>
+                                                            <td>
+                                                                <select class="form-select" name="" id="">
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Còn hàng</div>
+                                                                    </option>
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Hết hàng</div>
+                                                                    </option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox"></td>
+                                                            <td><input class="form-control" type="text" value="PR9999_X"></td>
+                                                            <td><input class="form-control" type="text" value="X"></td>
+                                                            <td><input class="form-control" type="text"></td>
+                                                            <td>
+                                                                <select class="form-select" name="" id="">
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Còn hàng</div>
+                                                                    </option>
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Hết hàng</div>
+                                                                    </option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox"></td>
+                                                            <td><input class="form-control" type="text" value="PR9999_XL"></td>
+                                                            <td><input class="form-control" type="text" value="XL"></td>
+                                                            <td><input class="form-control" type="text"></td>
+                                                            <td>
+                                                                <select class="form-select" name="" id="">
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Còn hàng</div>
+                                                                    </option>
+                                                                    <option value="">
+                                                                        <div class="badge bg-primary">Hết hàng</div>
+                                                                    </option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -361,4 +551,5 @@ if (isset($_POST['viewDetail'])) {
 <?php
     }
 }
+
 ?>
