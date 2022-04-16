@@ -22,14 +22,6 @@
         </li>
         <li class="menu-label">Pages</li>
         <li>
-          <a href="#">
-            <div class="parent-icon">
-              <i class="bi bi-person"></i>
-            </div>
-            <div class="menu-title">Bán hàng</div>
-          </a>
-        </li>
-        <li>
           <a href="product-table.php">
             <div class="parent-icon">
               <i class="bi bi-pencil-square"></i>

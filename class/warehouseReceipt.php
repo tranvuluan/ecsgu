@@ -1,7 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
 
-require_once($path.'/config/connection.php');
+require_once($path.'/../config/connection.php');
 
 class WarehouseReceipt{
     public $conn;
@@ -10,7 +10,7 @@ class WarehouseReceipt{
     }
     
     public function getWarehouseReceipts() {
-        $sql = "SELECT * FROM tbl_warehouse_receipt";
+        $sql = "SELECT * FROM tbl_warehousereceipt";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
@@ -49,14 +49,14 @@ class WarehouseReceipt{
         $id_employee = $this->conn->real_escape_string($id_employee);
         $date = $this->conn->real_escape_string($date);
         $totalprice = $this->conn->real_escape_string($totalprice);
-        $sql = "UPDATE tbl_warehouse_receipt SET `id_supplier` = '$id_supplier', `id_employee` = '$id_employee', `date` = '$date', `totalprice` = '$totalprice' WHERE `id_warehousereceipt` = '$id_warehousereceipt'";
+        $sql = "UPDATE tbl_warehousereceipt SET `id_supplier` = '$id_supplier', `id_employee` = '$id_employee', `date` = '$date', `totalprice` = '$totalprice' WHERE `id_warehousereceipt` = '$id_warehousereceipt'";
         $result = $this->conn->query($sql);
         return $result;
     }
 
     public function delete($id_warehousereceipt){
         $id_warehousereceipt = $this->conn->real_escape_string($id_warehousereceipt);
-        $sql = "DELETE FROM tbl_warehouse_receipt WHERE `id_warehousereceipt` = '$id_warehousereceipt'";
+        $sql = "DELETE FROM tbl_warehousereceipt WHERE `id_warehousereceipt` = '$id_warehousereceipt'";
         $result = $this->conn->query($sql);
         return $result;
     }

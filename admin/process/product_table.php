@@ -23,15 +23,17 @@ if (isset($_POST['view']) && $_POST['id']) {
                         <h6 class="mb-0">Thông tin sản phẩm</h6>
                         <div class="p-4 border rounded">
                             <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()">
-                                <div class="col-md-5">
+                            <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" required>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" required>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Danh mục</label>
                                     <?php
                                     $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($viewProduct['id_categorychild'])->fetch_assoc();
@@ -42,9 +44,20 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     }
                                     ?>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Giá</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['price'] ?>" name="voucherId" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Thương hiệu</label>
+                                    <?php
+                                    $getNameBrand = $brandModel->getBrandById($viewProduct['id_brand'])->fetch_assoc();
+                                    if ($getNameBrand) {
+                                    ?>
+                                        <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="<?php echo $getNameBrand['name'] ?>" name="voucherId" required>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                                 <div class="col-md-12">
                                 </div>
