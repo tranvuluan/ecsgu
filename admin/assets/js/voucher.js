@@ -6,9 +6,9 @@ function viewToAdd() {
         data: {
             viewToAdd: true
         },
-        
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
@@ -21,29 +21,62 @@ function add() {
     let startdate = $('input[name="startdate"]').val();
     let enddate = $('input[name="enddate"]').val();
 
+    let txtCode = document.getElementById("validationCode").value;
+    let txtDiscount = document.getElementById("validationDiscount").value;
+    let txtStartdate = document.getElementById("validationStartdate").value;
+    let txtEnddate = document.getElementById("validationEnddate").value;
+    if (txtCode == "" || txtDiscount == "" || txtStartdate == "" || txtEnddate == "") {
+        if (txtCode == "") {
+            document.getElementById("txtCode").style.display = "block";
+        }else{
+            document.getElementById("txtCode").style.display = "none";
+        } 
+        if (txtDiscount == "") {
+            document.getElementById("txtDiscount").style.display = "block";
+        }
+        else {
+            document.getElementById("txtDiscount").style.display = "none";
+        }
+        if (txtStartdate == "") 
+        {
+            document.getElementById("txtStartdate").style.display = "block";
+        }
+        else {
+            document.getElementById("txtStartdate").style.display = "none";
+        }
+        if (txtEnddate == "") {
+            document.getElementById("txtEnddate").style.display = "block";
+        }
+        else {
+            document.getElementById("txtEnddate").style.display = "none";
+        }
+    }
+    else {
+        $.ajax({
+            url: './process/khuyenmai.php',
+            type: 'POST',
+            data: {
+                id: id,
+                code: code,
+                discount: discount,
+                startdate: startdate,
+                enddate: enddate,
+                add: true
+            },
+            success: function (response) {
+                console.log(response);
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+                    window.location.href = "./khuyenmai.php";
+                }
+            }
+        });
+    }
+
     // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
 
-    $.ajax({
-        url: './process/khuyenmai.php',
-        type: 'POST',
-        data: {
-            id: id,
-            code: code,
-            discount: discount,
-            startdate: startdate,
-            enddate: enddate,
-            add : true
-        },
-        success: function(response) {
-            console.log(response);
-            if(response == 0){
-                console.log(response);
-            }
-            else{
-                window.location.href = "./khuyenmai.php";
-            }
-        }
-    });
 }
 
 function getDetail(id) {
@@ -56,9 +89,9 @@ function getDetail(id) {
             id: id,
             view: true
         },
-        
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
@@ -74,8 +107,8 @@ function viewToUpdate(id) {
             id: id,
             viewToUpdate: true
         },
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
@@ -88,33 +121,33 @@ function update() {
     let startdate = $('input[name="startdate"]').val();
     let enddate = $('input[name="enddate"]').val();
 
-    var data = 
-    // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+    var data =
+        // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
 
-    $.ajax({
-        url: './process/khuyenmai.php',
-        type: 'POST',
-        data: {
-            id: id,
-            code: code,
-            discount: discount,
-            startdate: startdate,
-            enddate: enddate,
-            update : true
-        },
-        success: function(response) {
-            console.log(response);
-            if(response == 0){
+        $.ajax({
+            url: './process/khuyenmai.php',
+            type: 'POST',
+            data: {
+                id: id,
+                code: code,
+                discount: discount,
+                startdate: startdate,
+                enddate: enddate,
+                update: true
+            },
+            success: function (response) {
                 console.log(response);
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+                    window.location.href = "./khuyenmai.php";
+                }
             }
-            else{
-                window.location.href = "./khuyenmai.php";
-            }
-        }
-    });
+        });
 }
 
-function deleteVoucher(id){
+function deleteVoucher(id) {
 
     console.log(id);
     $.ajax({
@@ -124,16 +157,18 @@ function deleteVoucher(id){
             id: id,
             delete: true
         },
-        success: function(response) {
+        success: function (response) {
             console.log(response);
-            if(response == 0){
+            if (response == 0) {
                 console.log(response);
                 alert('Lỗi');
             }
-            else{
+            else {
                 alert('Xóa thành công');
                 location.reload();
             }
         }
     });
 }
+
+

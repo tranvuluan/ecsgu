@@ -15,28 +15,32 @@ if (isset($_POST['viewToAdd'])) {
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()">
                             <div class="col-md-4">
-                                <label for="validationCustom01" class="form-label">ID</label>
-                                <input type="text" class="form-control" id="validationCustom01" name="voucherId" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" required>
-                                <div class="valid-feedback">Enter ID!</div>
+                                <label for="validationVoucherId" class="form-label">ID</label>
+                                <input type="text" class="form-control" id="validationVoucherId" name="voucherId" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" readonly>
+                                <div id="txtId" class="valid-feedback">Enter ID!</div>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom02" class="form-label">Code</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="code" required>
-                                <div class="valid-feedback">Enter code</div>
+                                <label for="validationCode" class="form-label">Code</label>
+                                <input type="text" class="form-control" id="validationCode" value="" name="code">
+                                <div id="txtCode" class="valid-feedback">Enter code</div>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustomUsername" class="form-label">Discount percent</label>
-                                <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="discount" required>
+                                <div class="input-group has-validation"> 
+                                    <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                    <input type="text" class="form-control" id="validationDiscount"  name="discount">
                                 </div>
+                                <div id="txtDiscount" class="valid-feedback">Enter Discount</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Start Date</label>
-                                <input type="text" class="form-control datepicker" name="startdate" />
+                                <input type="text" class="form-control datepicker" name="startdate" id="validationStartdate"/>
+                                <div id="txtStartdate" class="valid-feedback">Enter Start date</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">End Date</label>
-                                <input type="text" class="form-control datepicker" name="enddate" />
+                                <input type="text" class="form-control datepicker" name="enddate" id="validationEnddate"/>
+                                <div id="txtEnddate" class="valid-feedback">Enter End date</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
