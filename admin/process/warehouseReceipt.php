@@ -120,7 +120,7 @@ if (isset($_POST['viewToAdd'])) {
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_S" value="1" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_S"  type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_S" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_S"></td>
                                                                     <td style="width:10%"><input class="form-control" type="text" name="option_S" value="S"></td>
                                                                     <td style="width:10%"><input class="form-control" type="text" name="stock_S" value=""></td>
@@ -136,7 +136,7 @@ if (isset($_POST['viewToAdd'])) {
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_M" value="2" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_M" type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_M" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_M"></td>
                                                                     <td><input class="form-control" type="text" name="option_M" value="M"></td>
                                                                     <td><input class="form-control" type="text" name="stock_M" value=""></td>
@@ -152,7 +152,7 @@ if (isset($_POST['viewToAdd'])) {
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_X" value="3" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_X"  type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_X" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_X"></td>
                                                                     <td><input class="form-control" type="text" name="option_X" value="X"></td>
                                                                     <td><input class="form-control" type="text" name="stock_X" value=""></td>
@@ -168,7 +168,7 @@ if (isset($_POST['viewToAdd'])) {
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_XL" value="4" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_XL"  type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_XL" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_XL"></td>
                                                                     <td><input class="form-control" type="text" name="option_XL" value="XL"></td>
                                                                     <td><input class="form-control" type="text" name="stock_XL" value=""></td>
@@ -293,26 +293,8 @@ if(isset($_POST['add'])){
     $supplierName = $_POST['supplierName'];
     $EmployeeId = $_POST['EmployeeId'];
     $date = $_POST['date'];
-    $sku_S = $_POST['sku_S'];
-    $sku_M = $_POST['sku_M'];
-    $sku_X = $_POST['sku_X'];
-    $sku_XL = $_POST['sku_XL'];
-    $option_S = $_POST['option_S'];
-    $option_M = $_POST['option_M'];
-    $option_X = $_POST['option_X'];
-    $option_XL = $_POST['option_XL'];
-    $stock_S = $_POST['stock_S'];
-    $stock_M = $_POST['stock_M'];
-    $stock_X = $_POST['stock_X'];
-    $stock_XL = $_POST['stock_XL'];
-    $checkedValue_S = $_POST['checkedValue_S'];
-    $checkedValue_M = $_POST['checkedValue_M'];
-    $checkedValue_X = $_POST['checkedValue_X'];
-    $checkedValue_XL = $_POST['checkedValue_XL'];
-
-    if($checkedValue_S == 1){
-        
-    }
+    
+    var_dump($_POST);
 }
 ?>
 

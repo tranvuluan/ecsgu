@@ -67,6 +67,8 @@ function add() {
     let EmployeeId = $('input[name="EmployeeId"]').val();
     let date = $('input[name="date"]').val();
 
+
+    // Xu ly thong tin chi tiet
     let sku_S = $('input[name="sku_S"]').val();
     let sku_M = $('input[name="sku_M"]').val();
     let sku_X = $('input[name="sku_X"]').val();
@@ -82,10 +84,53 @@ function add() {
     let stock_X = $('input[name="stock_X"]').val();
     let stock_XL = $('input[name="stock_XL"]').val();
 
-    let checkedValue_S = $('.productCheckbox_S:checked').val();
-    let checkedValue_M = $('.productCheckbox_M:checked').val();
-    let checkedValue_X = $('.productCheckbox_X:checked').val();
-    let checkedValue_XL = $('.productCheckbox_XL:checked').val();
+    let checkedValue_S = $('input[name="productCheckbox_S"]')
+    let checkedValue_M = $('input[name="productCheckbox_M"]')
+    let checkedValue_X = $('input[name="productCheckbox_X"]')
+    let checkedValue_XL = $('input[name="productCheckbox_XL"]')
+    
+    let productDetail = [];
+
+    if (checkedValue_S.is(':checked')) {
+        let configurable_product = {
+             sku_S : $('input[name="sku_S"]').val(),
+                option_S : $('input[name="option_S"]').val(),
+                stock_S : $('input[name="stock_S"]').val(),
+                checkedValue_S : $('input[name="productCheckbox_S"]').val(),
+        }
+        productDetail.push(configurable_product);
+    }
+    if (checkedValue_M.is(':checked')) {
+        let configurable_product = {
+            sku_M : $('input[name="sku_M"]').val(),
+            option_M : $('input[name="option_M"]').val(),
+            stock_M : $('input[name="stock_M"]').val(),
+            checkedValue_M : $('input[name="productCheckbox_M"]').val(),
+       }
+       productDetail.push(configurable_product);
+    }
+
+
+    if (checkedValue_X.is(':checked')) {
+        let configurable_product = {
+            sku_X : $('input[name="sku_X"]').val(),
+            option_X : $('input[name="option_X"]').val(),
+            stock_X : $('input[name="stock_X"]').val(),
+            checkedValue_X : $('input[name="productCheckbox_X"]').val(),
+       }
+       productDetail.push(configurable_product);
+    }
+
+    if (checkedValue_XL.is(':checked')) {
+        let configurable_product = {
+            sku_XL : $('input[name="sku_XL"]').val(),
+            option_XL : $('input[name="option_XL"]').val(),
+            stock_XL : $('input[name="stock_XL"]').val(),
+            checkedValue_XL : $('input[name="productCheckbox_XL"]').val(),
+       }
+       productDetail.push(configurable_product);
+    }
+
 
     $.ajax({
         url: './process/warehouseReceipt.php',
@@ -102,22 +147,7 @@ function add() {
             supplierName: supplierName,
             EmployeeId: EmployeeId,
             date: date,
-            sku_S: sku_S,
-            sku_M: sku_M,
-            sku_X: sku_X,
-            sku_XL: sku_XL,
-            option_S: option_S,
-            option_M: option_M,
-            option_X: option_X,
-            option_XL: option_XL,
-            stock_S: stock_S,
-            stock_M: stock_M,
-            stock_X: stock_X,
-            stock_XL: stock_XL,
-            checkedValue_S: checkedValue_S,
-            checkedValue_M: checkedValue_M,
-            checkedValue_X: checkedValue_X,
-            checkedValue_XL: checkedValue_XL,
+            productDetail: productDetail,
             add: true,
         },
         success: function (response) {
