@@ -125,11 +125,11 @@ if (isset($_POST['viewToAdd'])) {
                                                                     <td style="width:10%"><input class="form-control" type="text" name="option_S" value="S"></td>
                                                                     <td style="width:10%"><input class="form-control" type="text" name="stock_S" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_S" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
@@ -141,11 +141,11 @@ if (isset($_POST['viewToAdd'])) {
                                                                     <td><input class="form-control" type="text" name="option_M" value="M"></td>
                                                                     <td><input class="form-control" type="text" name="stock_M" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_M" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
@@ -157,11 +157,11 @@ if (isset($_POST['viewToAdd'])) {
                                                                     <td><input class="form-control" type="text" name="option_X" value="X"></td>
                                                                     <td><input class="form-control" type="text" name="stock_X" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_X" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
@@ -173,11 +173,11 @@ if (isset($_POST['viewToAdd'])) {
                                                                     <td><input class="form-control" type="text" name="option_XL" value="XL"></td>
                                                                     <td><input class="form-control" type="text" name="stock_XL" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_XL" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
@@ -242,22 +242,16 @@ if (isset($_POST['viewToAdd'])) {
                                                     </div>
                                                 </div>
                                                 <div class="table-responsive mt-2">
-                                                    <table class="table align-middle mb-0">
+                                                    <table class="table align-middle mb-0 table-hover">
                                                         <thead class="table-light">
                                                             <tr>
                                                                 <th>Mã SP</th>
                                                                 <th>Tên SP</th>
-                                                                <th>Số lượng</th>
-                                                                <th>Giá nhập</th>
+                                                                <th>Xóa</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>#89742</td>
-                                                                <td>#89742</td>
-                                                                <td>50</td>
-                                                                <td>$214</td>
-                                                            </tr>
+                                                        <tbody id="tbody_warehouseDetailTable">
+                                                            
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -267,7 +261,7 @@ if (isset($_POST['viewToAdd'])) {
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                <button class="btn btn-primary" type="submit" >Thêm vào phiếu nhập</button>
                             </div>
                         </form>
                     </div>
@@ -282,6 +276,7 @@ if (isset($_POST['viewToAdd'])) {
 
 <?php
 if(isset($_POST['add'])){
+    
     $ProductId = $_POST['ProductId'];
     $ProductName = $_POST['ProductName'];
     $BrandName = $_POST['BrandName'];
@@ -295,6 +290,9 @@ if(isset($_POST['add'])){
     $date = $_POST['date'];
     
     var_dump($_POST);
+    foreach( $_POST['productDetail'] as $key => $value ){
+         
+    }
 }
 ?>
 
