@@ -28,27 +28,35 @@ function add() {
     if (txtCode == "" || txtDiscount == "" || txtStartdate == "" || txtEnddate == "") {
         if (txtCode == "") {
             document.getElementById("txtCode").style.display = "block";
+            document.getElementById("validationCode").style.borderColor = "red";
         }else{
             document.getElementById("txtCode").style.display = "none";
+            document.getElementById("validationCode").style.borderColor = "green";
         } 
         if (txtDiscount == "") {
             document.getElementById("txtDiscount").style.display = "block";
+            document.getElementById("validationDiscount").style.borderColor = "red";
         }
         else {
             document.getElementById("txtDiscount").style.display = "none";
+            document.getElementById("validationDiscount").style.borderColor = "green";
         }
         if (txtStartdate == "") 
         {
             document.getElementById("txtStartdate").style.display = "block";
+            document.getElementById("validationStartdate").style.borderColor = "red";
         }
         else {
             document.getElementById("txtStartdate").style.display = "none";
+            document.getElementById("validationStartdate").style.borderColor = "green";
         }
         if (txtEnddate == "") {
             document.getElementById("txtEnddate").style.display = "block";
+            document.getElementById("validationEnddate").style.borderColor = "red";
         }
         else {
             document.getElementById("txtEnddate").style.display = "none";
+            document.getElementById("validationEnddate").style.borderColor = "green";
         }
     }
     else {

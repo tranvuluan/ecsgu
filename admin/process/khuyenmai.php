@@ -17,12 +17,12 @@ if (isset($_POST['viewToAdd'])) {
                             <div class="col-md-4">
                                 <label for="validationVoucherId" class="form-label">ID</label>
                                 <input type="text" class="form-control" id="validationVoucherId" name="voucherId" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" readonly>
-                                <div id="txtId" class="valid-feedback">Enter ID!</div>
+                                <div id="txtId" class="invalid-feedback">Enter ID!</div>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCode" class="form-label">Code</label>
                                 <input type="text" class="form-control" id="validationCode" value="" name="code">
-                                <div id="txtCode" class="valid-feedback">Enter code</div>
+                                <div id="txtCode" class="invalid-feedback">Enter code</div>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustomUsername" class="form-label">Discount percent</label>
@@ -30,17 +30,17 @@ if (isset($_POST['viewToAdd'])) {
                                     <span class="input-group-text" id="inputGroupPrepend">%</span>
                                     <input type="text" class="form-control" id="validationDiscount"  name="discount">
                                 </div>
-                                <div id="txtDiscount" class="valid-feedback">Enter Discount</div>
+                                <div id="txtDiscount" class="invalid-feedback">Enter Discount</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Start Date</label>
                                 <input type="text" class="form-control datepicker" name="startdate" id="validationStartdate"/>
-                                <div id="txtStartdate" class="valid-feedback">Enter Start date</div>
+                                <div id="txtStartdate" class="invalid-feedback">Enter Start Date</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">End Date</label>
                                 <input type="text" class="form-control datepicker" name="enddate" id="validationEnddate"/>
-                                <div id="txtEnddate" class="valid-feedback">Enter End date</div>
+                                <div id="txtEnddate" class="invalid-feedback">Enter End Date</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
