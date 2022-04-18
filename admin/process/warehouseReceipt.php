@@ -55,7 +55,7 @@ if (isset($_POST['viewToAdd'])) {
                 <div class="card-body">
                     <h6 class="mb-0">Thêm phiếu nhập</h6>
                     <div class="p-4 border rounded">
-                        <form class="row g-3 needs-validation" method="POST" onsubmit="add()">
+                        <form class="row g-3 needs-validation" method="POST" onsubmit="add()" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="row">
@@ -89,8 +89,9 @@ if (isset($_POST['viewToAdd'])) {
                                         <div class="col-md-12">
                                             <div class="input-group mb-3">
                                                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                                <input type="file" class="form-control" id="inputGroupFile01">
+                                                <input type="file" class="form-control" id="fileImageProductInAddWarehouse">
                                             </div>
+                                            <img id="imageProductInAddWarehouse" src="https://via.placeholder.com/300/09f/fff.png" alt="" style="width:200px">
                                         </div>
                                         <div class="col-md-12">
                                             <div class="card radius-10 w-100">
@@ -285,24 +286,32 @@ if(isset($_POST['add'])){
     $ConfigurableProductModel = new ConfigurableProduct();
 
     // insert WarehouseReceiptent into db
-    $insertWarehouseReceipt = $WarehouseReceiptModel->insert(($_POST['id_warehousereceipt'], $_POST['id_suplier'], $_POST['id_employee'], $_POST['date'], $_POST['totalprice']);
-    if (!$insertWarehouse) {
-        return 0;
+    $insertWarehouseReceipt = $WarehouseReceiptModel->insert($_POST['id_warehousereceipt'], $_POST['id_suplier'], $_POST['id_employee'], $_POST['date'], $_POST['totalprice']);
+    if (!$insertWarehouseReceipt) {
+        echo 0;
+        return;
     }
 
-    // insert WarehouseReceipient details  into db
-    $insertWarehouseReceiptDetail = $WarehouseReceiptDetailModel->insert(($_POST['id_warehousereceipt'], $_POST['id_product'], $_POST['price']);
-
-
-
-    // insert product into db
-    foreach ($_POST['warehouseDetailTable'] as $key => $value) {
-        # code...
-        $insertProduct = $ProductModel->insert(($value['id_product'], $value['brand'], $value['id_categorychild'], $value['name'], $value['images'], '0');
+    foreach ($_POST['warehouseDetail'] as $key => $value) {
+        // insert WarehouseReceipient details  into db
+        $insertWarehouseReceiptDetail = $WarehouseReceiptDetailModel->insert($_POST['id_warehousereceipt'], $value['id_product'], $value['price']);
+        // insert product into db
+        if (!$insertWarehouseReceiptDetail)  {
+            echo 0;
+            return;
+        }
+            # code...
+        $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0');
+        foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
+                // insert configurable_product  into db
+                $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);
+                if (!$insertConfigurableProduct) {
+                    echo 0;
+                    return;
+                }
+        }
     }
-
-    // insert configurable_product  into db
-
+    echo 1;
 
 }
 ?>
@@ -544,3 +553,4 @@ if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
 }
 
 ?>
+

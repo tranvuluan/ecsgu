@@ -84,7 +84,8 @@ function add() {
             sku: $('input[name="sku_S"]').val(),
             option: $('input[name="option"]').val(),
             stock: $('input[name="stock_S"]').val(),
-            inventory_status: $('select[name="inventory_status_M"]').change().val()
+            inventory_status: $('select[name="inventory_status_M"]').change().val(),
+            option: 'S'
         }
         configurable_products.push(configurable_product);
     }
@@ -93,7 +94,8 @@ function add() {
             sku: $('input[name="sku_M"]').val(),
             option: $('input[name="option_M"]').val(),
             stock: $('input[name="stock_M"]').val(),
-            inventory_status: $('select[name="inventory_status_M"]').change().val()
+            inventory_status: $('select[name="inventory_status_M"]').change().val(),
+            option: 'M'
         }
         configurable_products.push(configurable_product);
     }
@@ -104,7 +106,8 @@ function add() {
             sku: $('input[name="sku_X"]').val(),
             option: $('input[name="option_X"]').val(),
             stock: $('input[name="stock_X"]').val(),
-            inventory_status: $('select[name="inventory_status_M"]').change().val()
+            inventory_status: $('select[name="inventory_status_M"]').change().val(),
+            option: 'X'
         }
         configurable_products.push(configurable_product);
     }
@@ -114,10 +117,15 @@ function add() {
             sku: $('input[name="sku_XL"]').val(),
             option: $('input[name="option_XL"]').val(),
             stock: $('input[name="stock_XL"]').val(),
-            inventory_status: $('select[name="inventory_status_M"]').change().val()
+            inventory_status: $('select[name="inventory_status_M"]').change().val(),
+            option: 'XL'
         }
         configurable_products.push(configurable_product);
     }
+
+    // upoload image into imgur.com
+    let images = uploadImage();
+
 
     let checkExist = false;
     warehouseDetailTable.forEach(warehouseDetail => {
@@ -137,6 +145,7 @@ function add() {
         price: price,
         description: description,
         id_warehousereceipt: id_warehousereceipt,
+        images: images,
         totalprice: totalprice,
         suplier: suplier,
         id_employee: id_employee,
@@ -173,10 +182,10 @@ function add() {
     $('input[name="CategoryChildName"]').val('')
     $('input[name="price"]').val('')
     $('input[name="description"]').val('')
-    $('input[name="sku_S"]').val('SKU' + Math.round(d.getTime()+10));
-    $('input[name="sku_M"]').val('SKU' + Math.round(d.getTime()+20));
-    $('input[name="sku_X"]').val('SKU' + Math.round(d.getTime()+30));
-    $('input[name="sku_XL"]').val('SKU' + Math.round(d.getTime()+ 40));
+    $('input[name="sku_S"]').val('SKU' + Math.round(d.getTime() + 10));
+    $('input[name="sku_M"]').val('SKU' + Math.round(d.getTime() + 20));
+    $('input[name="sku_X"]').val('SKU' + Math.round(d.getTime() + 30));
+    $('input[name="sku_XL"]').val('SKU' + Math.round(d.getTime() + 40));
     $('input[name="productCheckbox_S"]').prop('checked', false);
     $('input[name="productCheckbox_M"]').prop('checked', false);
     $('input[name="productCheckbox_X"]').prop('checked', false);
@@ -205,13 +214,6 @@ function deleteWarehouseDetailRow(productId) {
 
 
 function addWarehouseReceipt() {
-    let id_product = $('input[name="ProductId"]').val().trim();
-    let name_product = $('input[name="ProductName"]').val().trim();
-    let id_brand = $('input[name="BrandName"]').val().trim();
-    let id_categorychild = $('input[name="CategoryChildName"]').val();
-    let price = $('input[name="price"]').val();
-    let description = $('input[name="description"]').val();
-
     let id_warehousereceipt = $('input[name="warehouseReceiptId"]').val();
     let totalprice = $('input[name="totalprice"]').val();
     let id_suplier = $('select[name="suplier"] option:selected').val();
@@ -247,8 +249,34 @@ function totalPriceOfWarehouse() {
         warehouse.configurable_products.forEach(item => {
             totalStock += item.stock;
         });
-        totalPrice += warehouse.price* totalStock;
+        totalPrice += warehouse.price * totalStock;
     });
     return totalPrice;
 }
 
+
+function uploadImage() {
+    let path = "";
+    var formData = new FormData();
+    let file = $('#fileImageProductInAddWarehouse')[0].files[0];
+    console.log(file);
+    console.log('/////');
+    formData.append('image', file);
+    console.log(formData)
+
+    fetch('https://api.imgur.com/3/image', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Client-ID 68c1931e545c22a',
+        },
+        body: formData,
+    }).then(function (response) {
+        return response.json();
+    }).then(function (json) {
+        console.log("link " + json.data.link);
+        console.log(json);
+        path =  json.data.link;
+    });
+
+    return path;
+}
