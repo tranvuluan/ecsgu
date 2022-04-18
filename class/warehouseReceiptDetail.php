@@ -56,12 +56,11 @@ class WarehouseReceiptDetail{
         }
     }
 
-    public function insert($id_warehousereceipt, $idproduct, $amount, $price){
+    public function insert($id_warehousereceipt, $idproduct, $price){
         $id_warehousereceipt = $this->conn->real_escape_string($id_warehousereceipt);
         $idproduct = $this->conn->real_escape_string($idproduct);
-        $amount = $this->conn->real_escape_string($amount);
         $price = $this->conn->real_escape_string($price);
-        $sql = "INSERT INTO tbl_warehousereceipt_detail(`id_warehousereceipt`, `id_product`, `amount`, `price`) VALUES ('$id_warehousereceipt', '$idproduct', '$amount', '$price')";
+        $sql = "INSERT INTO tbl_warehousereceipt_detail(`id_warehousereceipt`, `id_product`, `price`) VALUES ('$id_warehousereceipt', '$idproduct', '$price')";
         $result = $this->conn->query($sql);
         return $result;
     }

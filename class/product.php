@@ -44,16 +44,14 @@ class Product{
         }
     }
     
-    public function insert($id_product, $id_brand, $id_categorychild, $name, $quantity, $price, $image, $status){
+    public function insert($id_product, $id_brand, $id_categorychild, $name, $image, $status){
         $id_product = $this->conn->real_escape_string($id_product);
         $id_brand = $this->conn->real_escape_string($id_brand);
         $id_categorychild = $this->conn->real_escape_string($id_categorychild);
         $name = $this->conn->real_escape_string($name);
-        $quantity = $this->conn->real_escape_string($quantity);
-        $price = $this->conn->real_escape_string($price);
         $image = $this->conn->real_escape_string($image);
         $status = $this->conn->real_escape_string($status);
-        $sql = "INSERT INTO tbl_product(`id_product`, `id_brand`, `id_categorychild`, `name`, `quantity`, `price`, `image`, `status`) VALUES ('$id_product', '$id_brand', '$id_categorychild', '$name', '$quantity', '$price', '$image', '$status')";
+        $sql = "INSERT INTO tbl_product(`id_product`, `id_brand`, `id_categorychild`, `name`, `image`, `status`) VALUES ('$id_product', '$id_brand', '$id_categorychild', '$name', '$image', '$status')";
         $result = $this->conn->query($sql);
         return $result;
     }

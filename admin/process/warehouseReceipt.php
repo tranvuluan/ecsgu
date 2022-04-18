@@ -6,6 +6,7 @@ require_once $path . '/../class/supplier.php';
 require_once $path . '/../class/product.php';
 require_once $path . '/../class/categoryChild.php';
 require_once $path . '/../class/brand.php';
+require_once $path . '/../class/configurable_product.php';
 ?>
 <?php
 if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceipt'])) {
@@ -41,6 +42,7 @@ if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceip
     }
 }
 ?>
+
 
 <?php
 if (isset($_POST['viewToAdd'])) {
@@ -195,15 +197,15 @@ if (isset($_POST['viewToAdd'])) {
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label for="validationCustom01" class="form-label">Mã phiếu nhập</label>
-                                            <input type="text" class="form-control" id="validationCustom01" name="warehouseReceiptId" value="" placeholder="" required>
+                                            <input type="text" class="form-control" id="validationCustom01" name="warehouseReceiptId"  value="WA<?php echo (int) (microtime(true) * 1000) ?>"  readonly placeholder="" required>
                                         </div>
                                         <div class="col-md-12">
                                             <label for="validationCustom01" class="form-label">Tổng tiền</label>
-                                            <input type="text" class="form-control" id="validationCustom01" name="totalprice" value="" placeholder="" required>
+                                            <input type="text" class="form-control" id="totalPrice" name="totalprice" value="" placeholder="" readonly required>
                                         </div>
                                         <div class="col-md-12">
                                             <label for="validationCustom03" class="form-label">Nhà cung cấp</label>
-                                            <select class="form-select" name="supplierName" aria-label="Default select example">
+                                            <select class="form-select" name="suplier" aria-label="Default select example">
                                                 <?php
                                                 $getSupplier = $supplierModel->getSuppliers();
                                                 if ($getSupplier) {
@@ -261,10 +263,11 @@ if (isset($_POST['viewToAdd'])) {
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="submit" >Thêm vào phiếu nhập</button>
+                                <button class="btn btn-primary" type="submit" >Thêm vào chi tiết phiếu nhập</button>
                             </div>
                         </form>
                     </div>
+                    <button class="btn btn-primary" onclick="addWarehouseReceipt()" >Lưu phiếu nhập</button>
                 </div>
             </div>
         </div>
@@ -276,23 +279,31 @@ if (isset($_POST['viewToAdd'])) {
 
 <?php
 if(isset($_POST['add'])){
-    
-    $ProductId = $_POST['ProductId'];
-    $ProductName = $_POST['ProductName'];
-    $BrandName = $_POST['BrandName'];
-    $CategoryChildName = $_POST['CategoryChildName'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $warehouseReceiptId = $_POST['warehouseReceiptId'];
-    $totalprice = $_POST['totalprice'];
-    $supplierName = $_POST['supplierName'];
-    $EmployeeId = $_POST['EmployeeId'];
-    $date = $_POST['date'];
-    
-    var_dump($_POST);
-    foreach( $_POST['productDetail'] as $key => $value ){
-         
+    $WarehouseReceiptModel = new WarehouseReceipt();
+    $WarehouseReceiptDetailModel = new WarehouseReceiptDetail();
+    $ProductModel = new Product();
+    $ConfigurableProductModel = new ConfigurableProduct();
+
+    // insert WarehouseReceiptent into db
+    $insertWarehouseReceipt = $WarehouseReceiptModel->insert(($_POST['id_warehousereceipt'], $_POST['id_suplier'], $_POST['id_employee'], $_POST['date'], $_POST['totalprice']);
+    if (!$insertWarehouse) {
+        return 0;
     }
+
+    // insert WarehouseReceipient details  into db
+    $insertWarehouseReceiptDetail = $WarehouseReceiptDetailModel->insert(($_POST['id_warehousereceipt'], $_POST['id_product'], $_POST['price']);
+
+
+
+    // insert product into db
+    foreach ($_POST['warehouseDetailTable'] as $key => $value) {
+        # code...
+        $insertProduct = $ProductModel->insert(($value['id_product'], $value['brand'], $value['id_categorychild'], $value['name'], $value['images'], '0');
+    }
+
+    // insert configurable_product  into db
+
+
 }
 ?>
 

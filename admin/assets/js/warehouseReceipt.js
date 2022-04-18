@@ -1,5 +1,6 @@
 var warehouseDetailTable = [];
 
+
 function getWarehouseReceiptDetail(id_warehousereceipt) {
     $.ajax({
         url: './process/warehouseReceipt.php',
@@ -57,17 +58,17 @@ function viewDetail(id) {
 
 function add() {
     event.preventDefault();
-    let ProductId = $('input[name="ProductId"]').val().trim();
-    let ProductName = $('input[name="ProductName"]').val().trim();
-    let BrandName = $('input[name="BrandName"]').val().trim();
-    let CategoryChildName = $('input[name="CategoryChildName"]').val();
+    let id_product = $('input[name="ProductId"]').val().trim();
+    let name_product = $('input[name="ProductName"]').val().trim();
+    let id_brand = $('input[name="BrandName"]').val().trim();
+    let id_categorychild = $('input[name="CategoryChildName"]').val();
     let price = $('input[name="price"]').val();
     let description = $('input[name="description"]').val();
 
-    let warehouseReceiptId = $('input[name="warehouseReceiptId"]').val();
+    let id_warehousereceipt = $('input[name="warehouseReceiptId"]').val();
     let totalprice = $('input[name="totalprice"]').val();
-    let supplierName = $('select[name="supplierName"] option:selected').val();
-    let EmployeeId = $('input[name="EmployeeId"]').val();
+    let suplier = $('select[name="suplier"] option:selected').val();
+    let id_employee = $('input[name="EmployeeId"]').val();
     let date = $('input[name="date"]').val();
 
 
@@ -76,55 +77,51 @@ function add() {
     let checkedValue_X = $('input[name="productCheckbox_X"]')
     let checkedValue_XL = $('input[name="productCheckbox_XL"]')
 
-    let productDetail = [];
+    let configurable_products = [];
 
     if (checkedValue_S.is(':checked')) {
         let configurable_product = {
-            sku_S: $('input[name="sku_S"]').val(),
-            option_S: $('input[name="option_S"]').val(),
-            stock_S: $('input[name="stock_S"]').val(),
-            checkedValue_S: $('input[name="productCheckbox_S"]').val(),
+            sku: $('input[name="sku_S"]').val(),
+            option: $('input[name="option"]').val(),
+            stock: $('input[name="stock_S"]').val(),
             inventory_status: $('select[name="inventory_status_M"]').change().val()
         }
-        productDetail.push(configurable_product);
+        configurable_products.push(configurable_product);
     }
     if (checkedValue_M.is(':checked')) {
         let configurable_product = {
-            sku_M: $('input[name="sku_M"]').val(),
-            option_M: $('input[name="option_M"]').val(),
-            stock_M: $('input[name="stock_M"]').val(),
-            checkedValue_M: $('input[name="productCheckbox_M"]').val(),
+            sku: $('input[name="sku_M"]').val(),
+            option: $('input[name="option_M"]').val(),
+            stock: $('input[name="stock_M"]').val(),
             inventory_status: $('select[name="inventory_status_M"]').change().val()
         }
-        productDetail.push(configurable_product);
+        configurable_products.push(configurable_product);
     }
 
 
     if (checkedValue_X.is(':checked')) {
         let configurable_product = {
-            sku_X: $('input[name="sku_X"]').val(),
-            option_X: $('input[name="option_X"]').val(),
-            stock_X: $('input[name="stock_X"]').val(),
-            checkedValue_X: $('input[name="productCheckbox_X"]').val(),
+            sku: $('input[name="sku_X"]').val(),
+            option: $('input[name="option_X"]').val(),
+            stock: $('input[name="stock_X"]').val(),
             inventory_status: $('select[name="inventory_status_M"]').change().val()
         }
-        productDetail.push(configurable_product);
+        configurable_products.push(configurable_product);
     }
 
     if (checkedValue_XL.is(':checked')) {
         let configurable_product = {
-            sku_XL: $('input[name="sku_XL"]').val(),
-            option_XL: $('input[name="option_XL"]').val(),
-            stock_XL: $('input[name="stock_XL"]').val(),
-            checkedValue_XL: $('input[name="productCheckbox_XL"]').val(),
+            sku: $('input[name="sku_XL"]').val(),
+            option: $('input[name="option_XL"]').val(),
+            stock: $('input[name="stock_XL"]').val(),
             inventory_status: $('select[name="inventory_status_M"]').change().val()
         }
-        productDetail.push(configurable_product);
+        configurable_products.push(configurable_product);
     }
 
     let checkExist = false;
     warehouseDetailTable.forEach(warehouseDetail => {
-        if (warehouseDetail.ProductId == ProductId) {
+        if (warehouseDetail.id_product == id_product) {
             alert("Sản phẩm đã được thêm, hãy thêm sản phẩm khác!");
             checkExist = true;
         }
@@ -133,95 +130,125 @@ function add() {
     if (checkExist)
         return;
     warehouseDetailTable.push({
-        ProductId: ProductId,
-        ProductName: ProductName,
-        BrandName: BrandName,
-        CategoryChildName: CategoryChildName,
+        id_product: id_product,
+        name_product: name_product,
+        id_brand: id_brand,
+        id_categorychild: id_categorychild,
         price: price,
         description: description,
-        warehouseReceiptId: warehouseReceiptId,
+        id_warehousereceipt: id_warehousereceipt,
         totalprice: totalprice,
-        supplierName: supplierName,
-        EmployeeId: EmployeeId,
+        suplier: suplier,
+        id_employee: id_employee,
         date: date,
-        productDetail: productDetail
+        configurable_products: configurable_products
     });
 
 
     let tbodyHtml = '';
     warehouseDetailTable.forEach(warehouseDetail => {
-        let productId = "'" + warehouseDetail.ProductId + "'";
+        let productId = "'" + warehouseDetail.id_product + "'";
         let strHtml = '<tr>' +
-            '<td>' + warehouseDetail.ProductId + '</td>' +
-            '<td>' + warehouseDetail.ProductName + '</td>' +
-            '<td><span onclick="deleteWarehouseDetailRow('+ productId +')" class="fa fa-times"></span></td>' +
+            '<td>' + warehouseDetail.id_product + '</td>' +
+            '<td>' + warehouseDetail.name_product + '</td>' +
+            '<td><span onclick="deleteWarehouseDetailRow(' + productId + ')" class="fa fa-times"></span></td>' +
             '</tr>';
-            tbodyHtml += strHtml;
+        tbodyHtml += strHtml;
     });
+
+    // add elementHTML list to table
     $('#tbody_warehouseDetailTable').html(tbodyHtml);
+
+    // add elementHTML total price
+    let totalPrice = totalPriceOfWarehouse();
+    console.log(totalPrice);
+    $('#totalPrice').val(totalPrice);
 
 
     // reset form
-     $('input[name="ProductId"]').val('PR' + Math.round(d.getTime()));
+    let d = new Date();
+    $('input[name="ProductId"]').val('PR' + Math.round(d.getTime()));
     $('input[name="ProductName"]').val('')
     $('input[name="BrandName"]').val('')
     $('input[name="CategoryChildName"]').val('')
     $('input[name="price"]').val('')
     $('input[name="description"]').val('')
-    $('input[name="warehouseReceiptId"]').val('')
-    $('input[name="totalprice"]').val('')
-    $('select[name="supplierName"] option:selected').val('')
-    $('input[name="EmployeeId"]').val('')
-    $('input[name="date"]').val('')
-    $('input[name="sku_S"]').val('')
-    $('input[name="sku_M"]').val('')
-    $('input[name="sku_X"]').val('')
-    $('input[name="sku_XL"]').val('')
+    $('input[name="sku_S"]').val('SKU' + Math.round(d.getTime()+10));
+    $('input[name="sku_M"]').val('SKU' + Math.round(d.getTime()+20));
+    $('input[name="sku_X"]').val('SKU' + Math.round(d.getTime()+30));
+    $('input[name="sku_XL"]').val('SKU' + Math.round(d.getTime()+ 40));
     $('input[name="productCheckbox_S"]').prop('checked', false);
     $('input[name="productCheckbox_M"]').prop('checked', false);
     $('input[name="productCheckbox_X"]').prop('checked', false);
     $('input[name="productCheckbox_XL"]').prop('checked', false);
-
-
-
-
 }
 
 
 function deleteWarehouseDetailRow(productId) {
-    warehouseDetailTable =  warehouseDetailTable.filter(warehouseDetail => { return warehouseDetail.ProductId != productId });
+    warehouseDetailTable = warehouseDetailTable.filter(warehouseDetail => { return warehouseDetail.id_product != productId });
     let tbodyHtml = '';
     warehouseDetailTable.forEach(warehouseDetail => {
-        let productId = "'" + warehouseDetail.ProductId + "'";
+        let productId = "'" + warehouseDetail.id_product + "'";
         let strHtml = '<tr>' +
             '<td>' + productId + '</td>' +
-            '<td>' + warehouseDetail.ProductName + '</td>' +
-            '<td><div onclick="deleteWarehouseDetailRow('+productId+')" class="fa fa-times"></div></td>' +
+            '<td>' + warehouseDetail.name_product + '</td>' +
+            '<td><div onclick="deleteWarehouseDetailRow(' + productId + ')" class="fa fa-times"></div></td>' +
             '</tr>';
-            tbodyHtml += strHtml;
+        tbodyHtml += strHtml;
     });
     $('#tbody_warehouseDetailTable').html(tbodyHtml);
+
+    // add elementHTML total price
+    let totalPrice = totalPriceOfWarehouse();
+    $('#totalPrice').val(totalPrice);
 }
 
-// $.ajax({
-//     url: './process/warehouseReceipt.php',
-//     type: 'POST',
-//     data: {
-//         ProductId: ProductId,
-//         ProductName: ProductName,
-//         BrandName: BrandName,
-//         CategoryChildName: CategoryChildName,
-//         price: price,
-//         description: description,
-//         warehouseReceiptId: warehouseReceiptId,
-//         totalprice: totalprice,
-//         supplierName: supplierName,
-//         EmployeeId: EmployeeId,
-//         date: date,
-//         productDetail: productDetail,
-//         add: true,
-//     },
-//     success: function (response) {
-//         console.log(response);
-//     }
-// })
+
+function addWarehouseReceipt() {
+    let id_product = $('input[name="ProductId"]').val().trim();
+    let name_product = $('input[name="ProductName"]').val().trim();
+    let id_brand = $('input[name="BrandName"]').val().trim();
+    let id_categorychild = $('input[name="CategoryChildName"]').val();
+    let price = $('input[name="price"]').val();
+    let description = $('input[name="description"]').val();
+
+    let id_warehousereceipt = $('input[name="warehouseReceiptId"]').val();
+    let totalprice = $('input[name="totalprice"]').val();
+    let id_suplier = $('select[name="suplier"] option:selected').val();
+    let id_employee = $('input[name="EmployeeId"]').val();
+    let date = $('input[name="date"]').val();
+
+    //($id_warehousereceipt, $id_supplier, $id_employee, $date, $totalprice){
+
+    $.ajax({
+        url: './process/warehouseReceipt.php',
+        type: 'POST',
+        data: {
+            id_warehousereceipt: id_warehousereceipt,
+            totalprice: totalprice,
+            id_suplier: id_suplier,
+            id_employee: id_employee,
+            date: date,
+            warehouseDetail: warehouseDetailTable,
+            add: true,
+        },
+        success: function (response) {
+            console.log(response);
+        }
+    })
+
+}
+
+
+function totalPriceOfWarehouse() {
+    let totalPrice = 0;
+    warehouseDetailTable.forEach(warehouse => {
+        let totalStock = 0;
+        warehouse.configurable_products.forEach(item => {
+            totalStock += item.stock;
+        });
+        totalPrice += warehouse.price* totalStock;
+    });
+    return totalPrice;
+}
+
