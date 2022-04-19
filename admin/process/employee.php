@@ -124,3 +124,6 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
     <!-- END Modal xem thông tin nhân viên -->
 <?php
 }
+?>
+
+
