@@ -15,24 +15,24 @@ function viewToAdd() {
 
 function add() {
     event.preventDefault();
-    let id = $('input[name="voucherId"]').val();
-    let code = $('input[name="code"]').val();
-    let discount = $('input[name="discount"]').val();
-    let startdate = $('input[name="startdate"]').val();
-    let enddate = $('input[name="enddate"]').val();
+    let id = $('input[name="voucherId"]').val().trim();
+    let code = $('input[name="code"]').val().trim();
+    let discount = $('input[name="discount"]').val().trim();
+    let startdate = $('input[name="startdate"]').val().trim();
+    let enddate = $('input[name="enddate"]').val().trim();
 
-    let txtCode = document.getElementById("validationCode").value;
-    let txtDiscount = document.getElementById("validationDiscount").value;
-    let txtStartdate = document.getElementById("validationStartdate").value;
-    let txtEnddate = document.getElementById("validationEnddate").value;
+    let txtCode = document.getElementById("validationCode").value.trim();
+    let txtDiscount = document.getElementById("validationDiscount").value.trim();
+    let txtStartdate = document.getElementById("validationStartdate").value.trim();
+    let txtEnddate = document.getElementById("validationEnddate").value.trim();
     if (txtCode == "" || txtDiscount == "" || txtStartdate == "" || txtEnddate == "") {
         if (txtCode == "") {
             document.getElementById("txtCode").style.display = "block";
             document.getElementById("validationCode").style.borderColor = "red";
-        }else{
+        } else {
             document.getElementById("txtCode").style.display = "none";
             document.getElementById("validationCode").style.borderColor = "green";
-        } 
+        }
         if (txtDiscount == "") {
             document.getElementById("txtDiscount").style.display = "block";
             document.getElementById("validationDiscount").style.borderColor = "red";
@@ -41,8 +41,7 @@ function add() {
             document.getElementById("txtDiscount").style.display = "none";
             document.getElementById("validationDiscount").style.borderColor = "green";
         }
-        if (txtStartdate == "") 
-        {
+        if (txtStartdate == "") {
             document.getElementById("txtStartdate").style.display = "block";
             document.getElementById("validationStartdate").style.borderColor = "red";
         }
@@ -123,13 +122,50 @@ function viewToUpdate(id) {
 
 function update() {
     event.preventDefault();
-    let id = $('input[name="voucherId"]').val();
-    let code = $('input[name="code"]').val();
-    let discount = $('input[name="discount"]').val();
-    let startdate = $('input[name="startdate"]').val();
-    let enddate = $('input[name="enddate"]').val();
+    let id = $('input[name="voucherId"]').val().trim();
+    let code = $('input[name="code"]').val().trim();
+    let discount = $('input[name="discount"]').val().trim();
+    let startdate = $('input[name="startdate"]').val().trim();
+    let enddate = $('input[name="enddate"]').val().trim();
 
-    var data =
+    let txtCode = document.getElementById("validationCode").value.trim();
+    let txtDiscount = document.getElementById("validationDiscount").value.trim();
+    let txtStartdate = document.getElementById("validationStartdate").value.trim();
+    let txtEnddate = document.getElementById("validationEnddate").value.trim();
+    if (txtCode == "" || txtDiscount == "" || txtStartdate == "" || txtEnddate == "") {
+        if (txtCode == "") {
+            document.getElementById("txtCode").style.display = "block";
+            document.getElementById("validationCode").style.borderColor = "red";
+        } else {
+            document.getElementById("txtCode").style.display = "none";
+            document.getElementById("validationCode").style.borderColor = "green";
+        }
+        if (txtDiscount == "") {
+            document.getElementById("txtDiscount").style.display = "block";
+            document.getElementById("validationDiscount").style.borderColor = "red";
+        }
+        else {
+            document.getElementById("txtDiscount").style.display = "none";
+            document.getElementById("validationDiscount").style.borderColor = "green";
+        }
+        if (txtStartdate == "") {
+            document.getElementById("txtStartdate").style.display = "block";
+            document.getElementById("validationStartdate").style.borderColor = "red";
+        }
+        else {
+            document.getElementById("txtStartdate").style.display = "none";
+            document.getElementById("validationStartdate").style.borderColor = "green";
+        }
+        if (txtEnddate == "") {
+            document.getElementById("txtEnddate").style.display = "block";
+            document.getElementById("validationEnddate").style.borderColor = "red";
+        }
+        else {
+            document.getElementById("txtEnddate").style.display = "none";
+            document.getElementById("validationEnddate").style.borderColor = "green";
+        }
+    }
+    else {
         // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
 
         $.ajax({
@@ -153,6 +189,7 @@ function update() {
                 }
             }
         });
+    }
 }
 
 function deleteVoucher(id) {
