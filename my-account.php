@@ -175,20 +175,21 @@
                                                         name="id_gender"> Mrs.</span>
                                             </div> <br>
                                             <div class="default-form-box mb-20">
-                                                <label>First Name</label>
-                                                <input type="text" name="first-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Last Name</label>
-                                                <input type="text" name="last-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name">
+                                                <label>UserName</label>
+                                                <input type="text" name="user-name" readonly>
                                             </div>
                                             <div class="default-form-box mb-20">
                                                 <label>Password</label>
                                                 <input type="password" name="user-password">
+                                            </div>
+                                            <div class="default-form-box mb-20">
+                                                <label>Full Name</label>
+                                                <input type="text" name="full-name">
+                                            </div>
+                                            
+                                            <div class="default-form-box mb-20">
+                                                <label>Email</label>
+                                                <input type="text" name="email-name">
                                             </div>
                                             <div class="default-form-box mb-20">
                                                 <label>Birthdate</label>
