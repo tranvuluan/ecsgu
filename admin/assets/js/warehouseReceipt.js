@@ -1,5 +1,6 @@
 var warehouseDetailTable = [];
-
+let imageUrl = '';
+console.log('run this');
 
 function getWarehouseReceiptDetail(id_warehousereceipt) {
     $.ajax({
@@ -190,6 +191,7 @@ function add() {
     $('input[name="productCheckbox_M"]').prop('checked', false);
     $('input[name="productCheckbox_X"]').prop('checked', false);
     $('input[name="productCheckbox_XL"]').prop('checked', false);
+    $('#imageProductInAddWarehouse').attr('src', '');
 }
 
 
@@ -220,7 +222,6 @@ function addWarehouseReceipt() {
     let id_employee = $('input[name="EmployeeId"]').val();
     let date = $('input[name="date"]').val();
 
-    //($id_warehousereceipt, $id_supplier, $id_employee, $date, $totalprice){
 
     $.ajax({
         url: './process/warehouseReceipt.php',
@@ -254,29 +255,82 @@ function totalPriceOfWarehouse() {
     return totalPrice;
 }
 
+async function changeAddWarehouseImage() {
+    console.log('change file')
+    const signResponse = await fetch('http://14.225.192.186:5555/api/upload/getSignature');
+    const signData = await signResponse.json();
 
-function uploadImage() {
-    let path = "";
-    var formData = new FormData();
-    let file = $('#fileImageProductInAddWarehouse')[0].files[0];
-    console.log(file);
-    console.log('/////');
-    formData.append('image', file);
-    console.log(formData)
+    const url = "https://api.cloudinary.com/v1_1/" + signData.cloudname + "/auto/upload";
+    const form = document.querySelector("form");
 
-    fetch('https://api.imgur.com/3/image', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Client-ID 68c1931e545c22a',
-        },
-        body: formData,
-    }).then(function (response) {
-        return response.json();
-    }).then(function (json) {
-        console.log("link " + json.data.link);
-        console.log(json);
-        path =  json.data.link;
-    });
 
-    return path;
+
+    const files = document.querySelector("[type=file]").files;
+    const formData = new FormData();
+
+    // Append parameters to the form data. The parameters that are signed using 
+    // the signing function (signuploadform) need to match these.
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        formData.append("file", file);
+        formData.append("api_key", signData.apikey);
+        formData.append("timestamp", signData.timestamp);
+        formData.append("signature", signData.signature);
+        formData.append("eager", "c_pad,h_300,w_400|c_crop,h_200,w_260");
+        formData.append("folder", "products");
+
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+            .then((response) => {
+                return response.text();
+            })
+            .then((data) => {
+                const objectData = JSON.parse(data);
+                console.log(objectData);
+                // $('#image').attr('src', objectData.url);
+            });
+    }
 }
+
+
+// $('input[type=file]').on('change', async function (e) {
+//     console.log('change file')
+//     const signResponse = await fetch('http://14.225.192.186:5555/api/upload/getSignature');
+//     const signData = await signResponse.json();
+
+//     const url = "https://api.cloudinary.com/v1_1/" + signData.cloudname + "/auto/upload";
+//     const form = document.querySelector("form");
+
+
+
+//     const files = document.querySelector("[type=file]").files;
+//     const formData = new FormData();
+
+//     // Append parameters to the form data. The parameters that are signed using
+//     // the signing function (signuploadform) need to match these.
+//     for (let i = 0; i < files.length; i++) {
+//         let file = files[i];
+//         formData.append("file", file);
+//         formData.append("api_key", signData.apikey);
+//         formData.append("timestamp", signData.timestamp);
+//         formData.append("signature", signData.signature);
+//         formData.append("eager", "c_pad,h_300,w_400|c_crop,h_200,w_260");
+//         formData.append("folder", "signed_upload_demo_form");
+
+//         fetch(url, {
+//             method: "POST",
+//             body: formData
+//         })
+//             .then((response) => {
+//                 return response.text();
+//             })
+//             .then((data) => {
+//                 const objectData = JSON.parse(data);
+//                 console.log(objectData);
+//                 // $('#image').attr('src', objectData.url);
+//             });
+//     }
+
+// });

@@ -89,9 +89,11 @@ if (isset($_POST['viewToAdd'])) {
                                         <div class="col-md-12">
                                             <div class="input-group mb-3">
                                                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                                <input type="file" class="form-control" id="fileImageProductInAddWarehouse">
+                                                <input type="file" class="form-control" id="fileImageProductInAddWarehouse" onchange="changeAddWarehouseImage()">
                                             </div>
-                                            <img id="imageProductInAddWarehouse" src="https://via.placeholder.com/300/09f/fff.png" alt="" style="width:200px">
+                                            <div class="loading_image">
+                                            <img id="imageProductInAddWarehouse" src="" alt="" style="width:200px">
+                                            </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="card radius-10 w-100">
