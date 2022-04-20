@@ -10,7 +10,9 @@ require_once $path . '/class/order.php';
     <?php
     $path = dirname(__FILE__);
     require_once $path . '/includes/headerhtml.php';
+    
     ?>
+    
 </head>
 
 <body>
@@ -48,6 +50,8 @@ require_once $path . '/class/order.php';
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                             <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                             </li>
+                            <!-- <li><button type="button" onclick="viewAccount()" class="nav-link">Account details</button></li> -->
+
                             <li><a href="login.html" class="nav-link">logout</a></li>
                         </ul>
                     </div>
@@ -147,52 +151,45 @@ require_once $path . '/class/order.php';
                             </address>
                         </div>
                         <div class="tab-pane fade" id="account-details">
-                            <h3>Account details </h3>
-                            <div class="login">
-                                <div class="login_form_container">
-                                    <div class="account_login_form">
-                                        <form action="#">
-                                            <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginActive">Log in instead!</a></p>
-                                            <div class="input-radio">
-                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mr.</span>
-                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mrs.</span>
-                                            </div> <br>
-                                            <div class="default-form-box mb-20">
-                                                <label>UserName</label>
-                                                <input type="text" name="user-name" readonly>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3>Account details </h3>
+                                    <div class="p-4 border rounded">
+                                        <form class="row g-3" action="#" method="POST" onsubmit="update()">
+                                            <div class="col-md-3">
+                                                <label class="form-label">ID Customer</label>
+                                                <input class="form-control" type="text" name="id_cus" value="<?php echo $order['id_customer'] ?>" readonly>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Password</label>
-                                                <input type="password" name="user-password">
+                                            <div class="col-md-3">
+                                                <label class="form-label">ID Account</label>
+                                                <input class="form-control" type="text" name="id_acc" value="<?php echo $order['id_account'] ?>" readonly>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Full Name</label>
-                                                <input type="text" name="full-name">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Created date</label>
+                                                <input class="form-control" type="text" name="create-date" value="<?php echo $order['createdate'] ?>" readonly>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">Point</label>
+                                                <input class="form-control" type="text" name="point" value="<?php echo $order['point'] ?>" readonly>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Full Name</label>
+                                                <input class="form-control" type="text" name="full-name" value="<?php echo $order['fullname'] ?>" require>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Address</label>
+                                                <input class="form-control" type="text" name="address" value="<?php echo $order['address'] ?>" require>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Email</label>
+                                                <input class="form-control" type="text" name="email" value="<?php echo $order['email'] ?>" require>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Phone</label>
+                                                <input class="form-control" type="text" name="phone" value="<?php echo $order['phone'] ?>" require>
                                             </div>
 
-                                            <div class="default-form-box mb-20">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Birthdate</label>
-                                                <input type="date" name="birthday">
-                                            </div>
-                                            <span class="example">
-                                                (E.g.: 05/31/1970)
-                                            </span>
-                                            <br>
-                                            <label class="checkbox-default" for="offer">
-                                                <input type="checkbox" id="offer">
-                                                <span>Receive offers from our partners</span>
-                                            </label>
-                                            <br>
-                                            <label class="checkbox-default checkbox-default-more-text" for="newsletter">
-                                                <input type="checkbox" id="newsletter">
-                                                <span>Sign up for our newsletter<br><em>You may unsubscribe at any
-                                                        moment. For that purpose, please find our contact info in the
-                                                        legal notice.</em></span>
-                                            </label>
+
                                             <div class="save_button mt-3">
                                                 <button class="btn" type="submit">Save</button>
                                             </div>
@@ -207,7 +204,7 @@ require_once $path . '/class/order.php';
         </div>
     </div>
     <!-- account area start -->
-
+    <div class="switchModal"></div>
     <!-- Footer Area Start -->
     <?php require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
@@ -219,6 +216,11 @@ require_once $path . '/class/order.php';
     <!-- JavaScripts -->
     <?php require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
+
+    <?php
+    $path = dirname(__FILE__);
+    require_once $path . '/admin/includes/scripts.php';
+    ?>
 </body>
 
 </html>
