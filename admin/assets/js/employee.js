@@ -39,7 +39,10 @@ function add() {
     let txtPassword = document.getElementById("validationPassword").value.trim();
     let txtConfirmPassword = document.getElementById("validationConfirmPassword").value.trim();
 
-    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || txtPassword == '' || txtConfirmPassword == '') {
+    let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    let num = /^[0-9]+$/;
+
+    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || txtPassword == '' || txtConfirmPassword == '' || !txtCMND.match(num) || !txtPhone.match(phoneno)) {
         if (txtName == '') {
             document.getElementById("txtName").style.display = "block";
             document.getElementById("validationName").style.borderColor = "red";
@@ -56,7 +59,7 @@ function add() {
             document.getElementById("txtBirthday").style.display = "none";
             document.getElementById("validationBirthday").style.borderColor = "green";
         }
-        if (txtCMND == '') {
+        if (txtCMND == ''  || !txtCMND.match(num)) {
             document.getElementById("txtCMND").style.display = "block";
             document.getElementById("validationCMND").style.borderColor = "red";
         }
@@ -80,7 +83,7 @@ function add() {
             document.getElementById("txtAddress").style.display = "none";
             document.getElementById("validationAddress").style.borderColor = "green";
         }
-        if (txtPhone == '') {
+        if (txtPhone == '' || !txtPhone.match(phoneno)) {
             document.getElementById("txtPhone").style.display = "block";
             document.getElementById("validationPhone").style.borderColor = "red";
         }
