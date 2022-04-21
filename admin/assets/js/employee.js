@@ -41,8 +41,10 @@ function add() {
 
     let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     let num = /^[0-9]+$/;
+    let RegexDate = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
+    let RegexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || txtPassword == '' || txtConfirmPassword == '' || !txtCMND.match(num) || !txtPhone.match(phoneno)) {
+    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || txtPassword == '' || txtConfirmPassword == '' || !txtCMND.match(num) || !txtPhone.match(phoneno) || !txtEmail.match(RegexEmail) || !txtBirthday.match(RegexDate)) {
         if (txtName == '') {
             document.getElementById("txtName").style.display = "block";
             document.getElementById("validationName").style.borderColor = "red";
@@ -51,7 +53,7 @@ function add() {
             document.getElementById("txtName").style.display = "none";
             document.getElementById("validationName").style.borderColor = "green";
         }
-        if (txtBirthday == '') {
+        if (txtBirthday == '' || !txtBirthday.match(RegexDate)) {
             document.getElementById("txtBirthday").style.display = "block";
             document.getElementById("validationBirthday").style.borderColor = "red";
         }
@@ -67,7 +69,7 @@ function add() {
             document.getElementById("txtCMND").style.display = "none";
             document.getElementById("validationCMND").style.borderColor = "green";
         }
-        if (txtEmail == '') {
+        if (txtEmail == '' || !txtEmail.match(RegexEmail)) {
             document.getElementById("txtEmail").style.display = "block";
             document.getElementById("validationEmail").style.borderColor = "red";
         }

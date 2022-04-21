@@ -6,39 +6,44 @@ function viewToAdd() {
         data: {
             viewToAdd: true
         },
-        
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
 
 function add() {
     event.preventDefault();
-    let id = $('input[name="add_Id"]').val();
-    let name = $('input[name="add_name"]').val();
+    let id = $('input[name="add_Id"]').val().trim();
+    let name = $('input[name="add_name"]').val().trim();
 
-
-
-    $.ajax({
-        url: './process/brand-process.php',
-        type: 'POST',
-        data: {
-            id: id,
-            name: name,
-            add : true
-        },
-        success: function(response) {
-            console.log(response);
-            
-            if(response == 0){
+    let txtName = document.getElementById("validationName").value.trim();
+    if (txtName == "") {
+        document.getElementById("validationName").style.borderColor = "red";
+        document.getElementById("txtName").style.display = "block";
+    }
+    else {
+        $.ajax({
+            url: './process/brand-process.php',
+            type: 'POST',
+            data: {
+                id: id,
+                name: name,
+                add: true
+            },
+            success: function (response) {
                 console.log(response);
+
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+                    window.location.href = "./brand.php";
+                }
             }
-            else{
-                window.location.href = "./brand.php";
-            }
-        }
-    });
+        });
+    }
 }
 
 function getDetail(id) {
@@ -51,9 +56,9 @@ function getDetail(id) {
             id: id,
             view: true
         },
-        
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
@@ -69,8 +74,8 @@ function viewToUpdate(id) {
             id: id,
             viewToUpdate: true
         },
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
@@ -80,29 +85,35 @@ function update() {
     let id = $('input[name="update_Id"]').val();
     let name = $('input[name="update_name"]').val();
 
-    var data = 
+    let txtName = document.getElementById("validationName").value.trim();
+    if (txtName == "") {
+        document.getElementById("validationName").style.borderColor = "red";
+        document.getElementById("txtName").style.display = "block";
+    }
+    else {
 
-    $.ajax({
-        url: './process/brand-process.php',
-        type: 'POST',
-        data: {
-            id: id,
-            name: name,
-            update : true
-        },
-        success: function(response) {
-            console.log(response);
-            if(response == 0){
+        $.ajax({
+            url: './process/brand-process.php',
+            type: 'POST',
+            data: {
+                id: id,
+                name: name,
+                update: true
+            },
+            success: function (response) {
                 console.log(response);
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+                    window.location.href = "./brand.php";
+                }
             }
-            else{
-                window.location.href = "./brand.php";
-            }
-        }
-    });
+        });
+    }
 }
 
-function deleteBrand(id){
+function deleteBrand(id) {
 
     console.log(id);
     $.ajax({
@@ -112,14 +123,14 @@ function deleteBrand(id){
             id: id,
             delete: true
         },
-        success: function(response) {
+        success: function (response) {
             console.log(id);
             console.log(response);
-            if(response == 0){
+            if (response == 0) {
                 console.log(response);
                 alert('Lỗi');
             }
-            else{
+            else {
                 alert('Xóa thành công');
                 location.reload();
             }

@@ -51,11 +51,12 @@ if (isset($_POST['viewToAdd'])) {
                         <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()">
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Mã danh mục</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="CA<?php echo (int) (microtime(true)) ?>" name="add_idCate" required>
+                                <input type="text" class="form-control" id="validationCustom01" value="CA<?php echo (int) (microtime(true)) ?>" name="add_idCate" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="add_nameCate" required>
+                                <label for="validationName" class="form-label">Tên danh mục</label>
+                                <input type="text" class="form-control" id="validationName" value="" name="add_nameCate" >
+                                <div id="txtName" class="invalid-feedback">Enter Name</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
@@ -101,11 +102,12 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id'])) {
                         <form class="row g-3 needs-validation" method="POST" onsubmit="update()" novalidate>
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Mã danh mục</label>
-                                <input type="text" class="form-control" id="validationCustom01" name="update_idCate" value="<?php echo $categoryById['id_category'] ?>" required>
+                                <input type="text" class="form-control" id="validationCustom01" name="update_idCate" value="<?php echo $categoryById['id_category'] ?>" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                <input type="text" class="form-control" id="validationCustom02" name="update_nameCate" value="<?php echo $categoryById['name'] ?>" required>
+                                <label for="validationName" class="form-label">Tên danh mục</label>
+                                <input type="text" class="form-control" id="validationName" name="update_nameCate" value="<?php echo $categoryById['name'] ?>" >
+                                <div id="txtName" class="invalid-feedback">Enter Name</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Sửa</button>
@@ -167,7 +169,7 @@ if (isset($_POST['viewToAddChild'])) {
                         <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="addChild()">
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Mã danh mục con</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="CC<?php echo (int) (microtime(true)) ?>" name="add_idCateChild" required>
+                                <input type="text" class="form-control" id="validationCustom01" value="CC<?php echo (int) (microtime(true)) ?>" name="add_idCateChild" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Danh mục</label>
@@ -188,8 +190,9 @@ if (isset($_POST['viewToAddChild'])) {
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="add_nameCateChild" required>
+                                <label for="validationName" class="form-label">Tên danh mục</label>
+                                <input type="text" class="form-control" id="validationName" value="" name="add_nameCateChild">
+                                <div id="txtName" class="invalid-feedback">Enter Name</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
@@ -235,7 +238,7 @@ if (isset($_POST['viewToUpdateChild']) && isset($_POST['sub_id'])) {
                         <form class="row g-3 needs-validation" method="POST" onsubmit="updateChild()" novalidate>
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Mã danh mục con</label>
-                                <input type="text" class="form-control" id="validationCustom01" name="update_idCateChild" value="<?php echo $categoryChildById['id_categorychild'] ?>" required>
+                                <input type="text" class="form-control" id="validationCustom01" name="update_idCateChild" value="<?php echo $categoryChildById['id_categorychild'] ?>" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Danh mục</label>
@@ -260,8 +263,9 @@ if (isset($_POST['viewToUpdateChild']) && isset($_POST['sub_id'])) {
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Tên danh mục</label>
-                                <input type="text" class="form-control" id="validationCustom02" name="update_nameCateChild" value="<?php echo $categoryChildById['name'] ?>" required>
+                                <label for="validationName" class="form-label">Tên danh mục</label>
+                                <input type="text" class="form-control" id="validationName" name="update_nameCateChild" value="<?php echo $categoryChildById['name'] ?>" >
+                                <div id="txtName" class="invalid-feedback">Enter Name</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Sửa</button>

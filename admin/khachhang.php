@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
                         <h4 class="mb-0 text-uppercase">Quản lý khách hàng</h4>
-                        <hr />
+                        <!-- <hr /> -->
                         <!-- <button type="button" onclick="viewToAdd()" class="btn btn-primary btn-lg">
                             Thêm khách hàng
                         </button> -->
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0">
+                                    <table class="table align-middle mb-0 table-hover" >
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã khách hàng</th>
@@ -233,7 +233,7 @@
 
             </div>
             <!--end wrapper-->
-            <div class="switch_modal"></div>
+            <div class="switchModal"></div>
 
             <!-- Scripts-->
             <?php

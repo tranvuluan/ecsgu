@@ -1,41 +1,50 @@
 // Danh muc me
-function viewToAdd(){
+function viewToAdd() {
     $.ajax({
         url: './process/category-process.php',
         type: 'POST',
         data: {
             viewToAdd: true
         },
-        
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
-function add(){
+function add() {
     event.preventDefault();
     let id = $('input[name="add_idCate"]').val();
     let name = $('input[name="add_nameCate"]').val();
 
-    $.ajax({
-        url: './process/category-process.php',
-        type: 'POST',
-        data: {
-            id: id,
-            name:name,
-            add : true
-        },
-        success: function(response) {
-            console.log(response);
-            if(response == 0){
+    let txtName = document.getElementById("validationName").value.trim();
+    if (txtName == "") {
+        document.getElementById("validationName").style.borderColor = "red";
+        document.getElementById("txtName").style.display = "block";
+    }
+    else {
+        $.ajax({
+            url: './process/category-process.php',
+            type: 'POST',
+            data: {
+                id: id,
+                name: name,
+                add: true
+            },
+            success: function (response) {
                 console.log(response);
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+                    window.location.href = "./danhmucsp.php";
+                }
             }
-            else{
-                window.location.href = "./danhmucsp.php";
-            }
-        }
-    });
+        });
+    }
 }
+
+
 
 function viewToUpdate(id) {
     console.log(id);
@@ -47,8 +56,8 @@ function viewToUpdate(id) {
             id: id,
             viewToUpdate: true
         },
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
@@ -57,32 +66,37 @@ function update() {
     event.preventDefault();
     let id = $('input[name="update_idCate"]').val();
     let name = $('input[name="update_nameCate"]').val();
-    
 
-    var data = 
-    // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+    let txtName = document.getElementById("validationName").value.trim();
+    if (txtName == "") {
+        document.getElementById("validationName").style.borderColor = "red";
+        document.getElementById("txtName").style.display = "block";
+    }
+    else {
+        // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
 
-    $.ajax({
-        url: './process/category-process.php',
-        type: 'POST',
-        data: {
-            id: id,
-            name: name,
-            update : true
-        },
-        success: function(response) {
-            console.log(response);
-            if(response == 0){
+        $.ajax({
+            url: './process/category-process.php',
+            type: 'POST',
+            data: {
+                id: id,
+                name: name,
+                update: true
+            },
+            success: function (response) {
                 console.log(response);
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+                    window.location.href = "./danhmucsp.php";
+                }
             }
-            else{
-                window.location.href = "./danhmucsp.php";
-            }
-        }
-    });
+        });
+    }
 }
 
-function deleteCategory(id){
+function deleteCategory(id) {
 
     console.log(id);
     $.ajax({
@@ -92,13 +106,13 @@ function deleteCategory(id){
             id: id,
             delete: true
         },
-        success: function(response) {
+        success: function (response) {
             console.log(response);
-            if(response == 0){
+            if (response == 0) {
                 console.log(response);
                 alert('Lỗi');
             }
-            else{
+            else {
                 alert('Xóa thành công');
                 location.reload();
             }
@@ -114,8 +128,8 @@ function getCategoryChild(id_category) {
             getCategoryChild: true,
             id_category: id_category
         },
-        success: function(response) {
-           $('#tbody_categorychild').html(response); //innerHtml    
+        success: function (response) {
+            $('#tbody_categorychild').html(response); //innerHtml    
         }
     });
 }
@@ -123,47 +137,54 @@ function getCategoryChild(id_category) {
 // end danh muc mẹ
 
 // start danh mục con
-function viewToAddChild(){
+function viewToAddChild() {
     $.ajax({
         url: './process/category-process.php',
         type: 'POST',
         data: {
             viewToAddChild: true
         },
-        
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
-function addChild(){
+function addChild() {
     event.preventDefault();
     let sub_id = $('input[name="add_idCateChild"]').val();
     let id = $('#add_idCateMom option:selected').val();
     let name = $('input[name="add_nameCateChild"]').val();
 
-    $.ajax({
-        url: './process/category-process.php',
-        type: 'POST',
-        data: {
-            sub_id: sub_id,
-            id: id,
-            name:name,
-            addChild : true
-        },
-        success: function(response) {
-            console.log(response);
-           
-            if(response == 0){
+    let txtName = document.getElementById("validationName").value.trim();
+    if (txtName == "") {
+        document.getElementById("validationName").style.borderColor = "red";
+        document.getElementById("txtName").style.display = "block";
+    }
+    else {
+        $.ajax({
+            url: './process/category-process.php',
+            type: 'POST',
+            data: {
+                sub_id: sub_id,
+                id: id,
+                name: name,
+                addChild: true
+            },
+            success: function (response) {
                 console.log(response);
+
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+
+                    // console.log(response);
+                    window.location.href = "./danhmucsp.php";
+                }
             }
-            else{
-                
-                // console.log(response);
-                window.location.href = "./danhmucsp.php";
-            }
-        }
-    });
+        });
+    }
 }
 
 function viewToUpdateChild(sub_id) {
@@ -176,8 +197,8 @@ function viewToUpdateChild(sub_id) {
             sub_id: sub_id,
             viewToUpdateChild: true
         },
-        success: function(data) {
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
@@ -187,36 +208,42 @@ function updateChild() {
     let sub_id = $('input[name="update_idCateChild"]').val();
     let id = $('#update_idCateMom option:selected').val();
     let name = $('input[name="update_nameCateChild"]').val();
-    
 
-    var data = 
-    // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+    let txtName = document.getElementById("validationName").value.trim();
+    if (txtName == "") {
+        document.getElementById("validationName").style.borderColor = "red";
+        document.getElementById("txtName").style.display = "block";
+    }
+    else {
 
-    $.ajax({
-        url: './process/category-process.php',
-        type: 'POST',
-        data: {
-            sub_id: sub_id,
-            id: id,
-            name: name,
-            updateChild : true
-        },
-        success: function(response) {
-            console.log(response);
-            console.log(sub_id);
-            console.log(id);
-            console.log(name);
-            if(response == 0){
+        // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+
+        $.ajax({
+            url: './process/category-process.php',
+            type: 'POST',
+            data: {
+                sub_id: sub_id,
+                id: id,
+                name: name,
+                updateChild: true
+            },
+            success: function (response) {
                 console.log(response);
+                console.log(sub_id);
+                console.log(id);
+                console.log(name);
+                if (response == 0) {
+                    console.log(response);
+                }
+                else {
+                    window.location.href = "./danhmucsp.php";
+                }
             }
-            else{
-                window.location.href = "./danhmucsp.php";
-            }
-        }
-    });
+        });
+    }
 }
 
-function deleteCategoryChild(sub_id){
+function deleteCategoryChild(sub_id) {
 
     $.ajax({
         url: './process/category-process.php',
@@ -225,14 +252,14 @@ function deleteCategoryChild(sub_id){
             sub_id: sub_id,
             deleteChild: true
         },
-        success: function(response) {
+        success: function (response) {
             console.log(response);
             // console.log(sub_id);
-            if(response == 0){
+            if (response == 0) {
                 console.log(response);
                 alert('Lỗi');
             }
-            else{
+            else {
                 alert('Xóa thành công');
                 location.reload();
             }
