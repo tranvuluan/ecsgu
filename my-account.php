@@ -48,9 +48,9 @@ require_once $path . '/class/order.php';
                             <li><a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
                             <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
-                            <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
-                            </li>
-                            <!-- <li><button type="button" onclick="viewAccountToUpdate()" class="nav-link">Account details</button></li> -->
+                            <!-- <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
+                            </li> -->
+                            <li><button type="button" onclick="viewAccountToUpdate()" class="nav-link">Account details</button></li>
 
                             <li><a href="login.html" class="nav-link">logout</a></li>
                         </ul>

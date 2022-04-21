@@ -1,13 +1,14 @@
 <?php
 $path = dirname(__FILE__);
-require_once $path . '/class/order.php';;
+require_once $path . '/class/customer.php';;
 ?>
 
 <?php
-if (isset($_POST['viewAccount']) && isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $orderModel = new Order();
-    $order = $orderModel->getOrderById($id)->fetch_assoc();
+if (isset($_POST['viewAccountToUpdate']) ) {
+    $rs = 
+    $id_cus = $_POST['id_cus'];
+    $customer = new Customer();
+    $showCustomer = $customer->getCustomerById($id_cus)->fetch_assoc();
 ?>
     <div class="tab-pane fade" id="account-details">
         <div class="card">
@@ -62,28 +63,22 @@ if (isset($_POST['viewAccount']) && isset($_POST['id'])) {
 }
 ?>
 <?php
-if (isset($_POST['btn-submit'])) {
-    $id_order = $_POST['id_order'];
-    $id_customer = $_POST['id_customer'];
-    $id_product = $_POST['id_product'];
-    $totalprice = $_POST['totalprice'];
-    $id_voucher = $_POST['id_voucher'];
-    $id_emloyee = $_POST['id_emloyee'];
-    $date = $_POST['date'];
-    $fullname = $_POST['fullname'];
-    $phone = $_POST['phone'];
+if (isset($_POST['update'])) {
+    $id_cus = $_POST['id_cus'];
+    $id_acc = $_POST['id_acc'];
+    $createDate = $_POST['createDate'];
+    $point = $_POST['point'];
+    $name = $_POST['name'];
     $address = $_POST['address'];
     $email = $_POST['email'];
-    $note = $_POST['note'];
-    $status = $_POST['status'];
-    $order = new Order();
-    $result = $order->insert($id_order, $id_customer, $id_product, $totalprice, $id_voucher, $id_emloyee, $date, $fullname, $phone, $address, $email, $note, $status);
-    if ($result) {
-        echo '<script>alert("Thêm thành công")</script>';
-        echo '<script>window.location.href = "index.php?page=order"</script>';
-    } else {
-        echo '<script>alert("Thêm thất bại")</script>';
-        echo '<script>window.location.href = "index.php?page=order"</script>';
+    $phone = $_POST['phone'];
+
+    $customer = new Customer();
+    $result = $customer->update($id_cus, $id_acc, $name, $email, $address, $phone, $createDate, $point);
+    if($result){
+        echo 1;
     }
+    else
+        echo 0;
 }
 ?>
