@@ -14,46 +14,41 @@ if (isset($_POST['viewAccount']) && isset($_POST['id'])) {
             <div class="card-body">
                 <h3>Account details </h3>
                 <div class="p-4 border rounded">
-                    <form action="#" method="POST" onsubmit="update()">
-                        <!-- <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginActive">Log in instead!</a></p>
-                        <div class="input-radio">
-                            <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mr.</span>
-                            <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mrs.</span>
-                        </div> <br> -->
-                        <div class="col-md-4">
-                            <label class="form-label">ID Customer</label>
-                            <input type="text" name="id_cus" value="<?php echo $order['id_customer'] ?>" readonly>
+                    <form class="row g-3" action="#" method="POST" onsubmit="update()">
+                        <div class="col-md-3 default-form-box mb-20">
+                            <label class="form-label ">ID Customer</label>
+                            <input class="form-control" type="text" name="id_cus" value="<?php echo $order['id_customer'] ?>" readonly>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">ID Account</label>
-                            <input type="text" name="id_acc" value="<?php echo $order['id_account'] ?>" readonly>
+                        <div class="col-md-3 default-form-box mb-20">
+                            <label class="form-label ">ID Account</label>
+                            <input class="form-control" type="text" name="id_acc" value="<?php echo $order['id_account'] ?>" readonly>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" name="full-name" value="<?php echo $order['fullname'] ?>" require>
+                        <div class="col-md-3 default-form-box mb-20">
+                            <label class="form-label ">Created date</label>
+                            <input class="form-control" type="text" name="create-date" value="<?php echo $order['createdate'] ?>" readonly>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Created date</label>
-                            <input type="text" name="create-date" value="<?php echo $order['createdate'] ?>" require>
+                        <div class="col-md-3 default-form-box mb-20">
+                            <label class="form-label ">Point</label>
+                            <input class="form-control" type="text" name="point" value="<?php echo $order['point'] ?>" readonly>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Email</label>
-                            <input type="date" name="email" value="<?php echo $order['email'] ?>" require>
+                        <div class="col-md-6 default-form-box mb-20">
+                            <label class="form-label ">Full Name</label>
+                            <input class="form-control" type="text" name="full-name" value="<?php echo $order['fullname'] ?>" require>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Point</label>
-                            <input type="text" name="point" value="<?php echo $order['point'] ?>" require>
+                        <div class="col-md-6 default-form-box mb-20">
+                            <label class="form-label ">Address</label>
+                            <input class="form-control" type="text" name="address" value="<?php echo $order['address'] ?>" require>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Address</label>
-                            <input type="text" name="address" value="<?php echo $order['address'] ?>" require>
+                        <div class="col-md-6 default-form-box mb-20">
+                            <label class="form-label ">Email</label>
+                            <input class="form-control" type="text" name="email" value="<?php echo $order['email'] ?>" require>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Phone</label>
-                            <input type="text" name="phone" value="<?php echo $order['phone'] ?>" require>
+                        <div class="col-md-6 default-form-box mb-20">
+                            <label class="form-label ">Phone</label>
+                            <input class="form-control" type="text" name="phone" value="<?php echo $order['phone'] ?>" require>
                         </div>
-                        
-                        
+
+
                         <div class="save_button mt-3">
                             <button class="btn" type="submit">Save</button>
                         </div>

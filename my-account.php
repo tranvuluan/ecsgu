@@ -50,7 +50,7 @@ require_once $path . '/class/order.php';
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                             <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                             </li>
-                            <!-- <li><button type="button" onclick="viewAccount()" class="nav-link">Account details</button></li> -->
+                            <!-- <li><button type="button" onclick="viewAccountToUpdate()" class="nav-link">Account details</button></li> -->
 
                             <li><a href="login.html" class="nav-link">logout</a></li>
                         </ul>
@@ -156,36 +156,36 @@ require_once $path . '/class/order.php';
                                     <h3>Account details </h3>
                                     <div class="p-4 border rounded">
                                         <form class="row g-3" action="#" method="POST" onsubmit="update()">
-                                            <div class="col-md-3">
-                                                <label class="form-label">ID Customer</label>
+                                            <div class="col-md-3 default-form-box mb-20">
+                                                <label class="form-label ">ID Customer</label>
                                                 <input class="form-control" type="text" name="id_cus" value="<?php echo $order['id_customer'] ?>" readonly>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label">ID Account</label>
+                                            <div class="col-md-3 default-form-box mb-20">
+                                                <label class="form-label ">ID Account</label>
                                                 <input class="form-control" type="text" name="id_acc" value="<?php echo $order['id_account'] ?>" readonly>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label">Created date</label>
+                                            <div class="col-md-3 default-form-box mb-20">
+                                                <label class="form-label ">Created date</label>
                                                 <input class="form-control" type="text" name="create-date" value="<?php echo $order['createdate'] ?>" readonly>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label">Point</label>
+                                            <div class="col-md-3 default-form-box mb-20">
+                                                <label class="form-label ">Point</label>
                                                 <input class="form-control" type="text" name="point" value="<?php echo $order['point'] ?>" readonly>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Full Name</label>
+                                            <div class="col-md-6 default-form-box mb-20">
+                                                <label class="form-label ">Full Name</label>
                                                 <input class="form-control" type="text" name="full-name" value="<?php echo $order['fullname'] ?>" require>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Address</label>
+                                            <div class="col-md-6 default-form-box mb-20">
+                                                <label class="form-label ">Address</label>
                                                 <input class="form-control" type="text" name="address" value="<?php echo $order['address'] ?>" require>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Email</label>
+                                            <div class="col-md-6 default-form-box mb-20">
+                                                <label class="form-label ">Email</label>
                                                 <input class="form-control" type="text" name="email" value="<?php echo $order['email'] ?>" require>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Phone</label>
+                                            <div class="col-md-6 default-form-box mb-20">
+                                                <label class="form-label ">Phone</label>
                                                 <input class="form-control" type="text" name="phone" value="<?php echo $order['phone'] ?>" require>
                                             </div>
 
@@ -217,10 +217,7 @@ require_once $path . '/class/order.php';
     <?php require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
 
-    <?php
-    $path = dirname(__FILE__);
-    require_once $path . '/admin/includes/scripts.php';
-    ?>
+    
 </body>
 
 </html>
