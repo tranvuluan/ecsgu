@@ -8,7 +8,7 @@ function viewAccountToUpdate($id_cus){
             viewToUpdate: true
         },
         success: function(data) {
-            // $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
         }
     });
 }

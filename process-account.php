@@ -10,7 +10,7 @@ if (isset($_POST['viewAccountToUpdate']) ) {
     $customer = new Customer();
     $showCustomer = $customer->getCustomerById($id_cus)->fetch_assoc();
 ?>
-    <div class="tab-pane fade" id="account-details">
+    <div class="modal fade" id="account-details">
         <div class="card">
             <div class="card-body">
                 <h3>Account details </h3>

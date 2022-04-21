@@ -20,5 +20,6 @@
         $_SESSION['id_customer'] = $rs['id_customer'];
         echo $rs['id_customer'];
         echo $rs['fullname'];
+        header("Refresh:0; url=../index.php");
     }
 ?>

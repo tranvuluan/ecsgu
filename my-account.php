@@ -50,7 +50,7 @@ require_once $path . '/class/order.php';
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                             <!-- <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                             </li> -->
-                            <li><button type="button" onclick="viewAccountToUpdate()" class="nav-link">Account details</button></li>
+                            <li><button type="button" onclick="viewAccountToUpdate()" class="nav-link" style="width: 100%;text-align: left;">Account details</button></li>
 
                             <li><a href="login.html" class="nav-link">logout</a></li>
                         </ul>
@@ -150,7 +150,7 @@ require_once $path . '/class/order.php';
                                 <span><strong>Country:</strong> USA</span>
                             </address>
                         </div>
-                        <div class="tab-pane fade" id="account-details">
+                        <!-- <div class="tab-pane fade" id="account-details">
                             <div class="card">
                                 <div class="card-body">
                                     <h3>Account details </h3>
@@ -197,7 +197,7 @@ require_once $path . '/class/order.php';
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -216,7 +216,8 @@ require_once $path . '/class/order.php';
     <!-- JavaScripts -->
     <?php require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
-
+    
+    <script src="assets/js/account.js"></script>
     
 </body>
 
