@@ -144,7 +144,7 @@ function register() {
             confirmpassword: confirmpassword
         }
         $.ajax({
-            url: 'http://localhost:5000/api/authSendMail',
+            url: 'http://14.225.192.186:5555/api/authSendMail',
             type: 'POST',
             data: {
                 username: userReister.username,
@@ -185,7 +185,7 @@ function logout() {
 
 function resendEmail() {
     $.ajax({
-        url: 'http://localhost:5000/api/authSendMail',
+        url: 'http://14.225.192.186:5555/api/authSendMail',
         type: 'POST',
         data: {
             username: userReister.username,
@@ -201,7 +201,7 @@ function resendEmail() {
 function verifyEmail() {
     let registerCode = $('input[name="registerCode"]').val().trim();
     $.ajax({
-        url: 'http://localhost:5000/api/verifyEmail',
+        url: 'http://14.225.192.186:5555/api/verifyEmail',
         type: 'POST',
         data: {
             username: userReister.username,
@@ -209,6 +209,7 @@ function verifyEmail() {
             registerCode: registerCode
         },
         success: function (response) {
+            
             alert(response.message);
             location.reload();
         }, 
