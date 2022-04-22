@@ -46,7 +46,6 @@ if (isset($_GET['get_modal_add_position'])) {
                                 $permissions = $PermissionModel->getPermissions();
                                 if ($permissions) {
                                     while ($row = $permissions->fetch_assoc()) {
-
                                 ?>
                                         <div class="form-check-danger form-check form-switch">
                                             <input class="form-check-input" name="checkboxAdd[]" type="checkbox" value="<?php echo $row['id_permission'] ?>">
