@@ -38,7 +38,7 @@ class Account{
         $username = $this->conn->real_escape_string($username);
         $password = $this->conn->real_escape_string($password);
         $sql = "INSERT INTO tbl_account(`id_account`, `username`, `password`) VALUES ('$id_account', '$username', '$password')";
-        $result = $this->conn->query($sql);
+        $result = $this->conn->query($sql) or die($this->conn->error);
         if($result){
             return $result;
         }

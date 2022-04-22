@@ -15,28 +15,32 @@ if (isset($_POST['viewToAdd'])) {
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()">
                             <div class="col-md-4">
-                                <label for="validationCustom01" class="form-label">ID</label>
-                                <input type="text" class="form-control" id="validationCustom01" name="voucherId" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" required>
-                                <div class="valid-feedback">Enter ID!</div>
+                                <label for="validationVoucherId" class="form-label">ID</label>
+                                <input type="text" class="form-control" id="validationVoucherId" name="voucherId" value="VC<?php echo (int) (microtime(true) * 1000) ?>" name="voucherId" readonly>
+                                <div id="txtId" class="invalid-feedback">Enter ID!</div>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom02" class="form-label">Code</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="code" required>
-                                <div class="valid-feedback">Enter code</div>
+                                <label for="validationCode" class="form-label">Code</label>
+                                <input type="text" class="form-control" id="validationCode" value="" name="code">
+                                <div id="txtCode" class="invalid-feedback">Enter code</div>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustomUsername" class="form-label">Discount percent</label>
-                                <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="discount" required>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                    <input type="text" class="form-control" id="validationDiscount" name="discount">
                                 </div>
+                                <div id="txtDiscount" class="invalid-feedback">Enter Discount</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Start Date</label>
-                                <input type="text" class="form-control datepicker" name="startdate" />
+                                <input type="text" class="form-control datepicker" name="startdate" id="validationStartdate" />
+                                <div id="txtStartdate" class="invalid-feedback">Enter Start Date</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">End Date</label>
-                                <input type="text" class="form-control datepicker" name="enddate" />
+                                <input type="text" class="form-control datepicker" name="enddate" id="validationEnddate" />
+                                <div id="txtEnddate" class="invalid-feedback">Enter End Date</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
@@ -92,27 +96,27 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                         <form class="row g-3 needs-validation" novalidate>
                             <div class="col-md-4">
                                 <label for="validationCustom01" class="form-label">ID</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="<?php echo $voucherById['id_voucher'] ?>" required>
+                                <input type="text" class="form-control" id="validationCustom01" value="<?php echo $voucherById['id_voucher'] ?>" readonly>
                                 <div class="valid-feedback">Enter ID!</div>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">Code</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="<?php echo $voucherById['code'] ?>" required>
+                                <input type="text" class="form-control" id="validationCustom02" value="<?php echo $voucherById['code'] ?>" readonly>
                                 <div class="valid-feedback">Enter code</div>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustomUsername" class="form-label">Discount percent</label>
                                 <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" value="<?php echo $voucherById['discountpercent'] ?>" required>
+                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" value="<?php echo $voucherById['discountpercent'] ?>" readonly>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Start Date</label>
-                                <input type="text" class="form-control datepicker" value="<?php echo $voucherById['startdate'] ?>" />
+                                <input type="text" class="form-control datepicker" value="<?php echo $voucherById['startdate'] ?>" readonly/>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">End Date</label>
-                                <input type="text" class="form-control datepicker" value="<?php echo $voucherById['enddate'] ?>" />
+                                <input type="text" class="form-control datepicker" value="<?php echo $voucherById['enddate'] ?>" readonly/>
                             </div>
                         </form>
                     </div>
@@ -142,28 +146,31 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id'])) {
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="update()">
                             <div class="col-md-4">
-                                <label for="validationCustom01" class="form-label">ID</label>
-                                <input type="text" class="form-control" name="voucherId" value="<?php echo $voucherById['id_voucher'] ?>" required>
-                                <div class="valid-feedback">Enter ID!</div>
+                                <label for="validationVoucherId" class="form-label">ID</label>
+                                <input type="text" class="form-control" id="validationVoucherId" name="voucherId" value="<?php echo $voucherById['id_voucher'] ?>" >
+                                <div id="txtId" class="invalid-feedback">Enter ID!</div>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom02" class="form-label">Code</label>
-                                <input type="text" class="form-control" name="code" value="<?php echo $voucherById['code'] ?>" required>
-                                <div class="valid-feedback">Enter code</div>
+                                <label for="validationCode" class="form-label">Code</label>
+                                <input type="text" class="form-control" id="validationCode" name="code" value="<?php echo $voucherById['code'] ?>" >
+                                <div id="txtCode" class="invalid-feedback">Enter code</div>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustomUsername" class="form-label">Discount percent</label>
+                                <label for="validationDiscount" class="form-label">Discount percent</label>
                                 <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                                    <input type="text" class="form-control" name="discount" aria-describedby="inputGroupPrepend" value="<?php echo $voucherById['discountpercent'] ?>" required>
+                                    <input type="text" class="form-control" name="discount" id="validationDiscount" value="<?php echo $voucherById['discountpercent'] ?>" >
                                 </div>
+                                <div id="txtDiscount" class="invalid-feedback">Enter Discount</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Start Date</label>
-                                <input type="text" class="form-control datepicker" name="startdate" value="<?php echo $voucherById['startdate'] ?>" />
+                                <input type="text" class="form-control datepicker" id="validationStartdate" name="startdate" value="<?php echo $voucherById['startdate'] ?>" />
+                                <div id="txtStartdate" class="invalid-feedback">Enter Start Date</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">End Date</label>
-                                <input type="text" class="form-control datepicker" name="enddate" value="<?php echo $voucherById['enddate'] ?>" />
+                                <input type="text" class="form-control datepicker" id="validationEnddate" name="enddate" value="<?php echo $voucherById['enddate'] ?>" />
+                                <div id="txtEnddate" class="invalid-feedback">Enter End Date</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Sửa</button>

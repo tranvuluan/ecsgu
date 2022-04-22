@@ -106,7 +106,7 @@ require_once $path . '/../class/voucher.php';
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0">
+                                    <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>#ID</th>
