@@ -32,6 +32,18 @@ class OrderItem{
         }
     }
 
+    public function getOrderItemByProductId($id_product){
+        $id_product = $this->conn->real_escape_string($id_product);
+        $sql = "SELECT * FROM tbl_order_item WHERE id_product = '$id_product'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function insert($id_order, $id_product, $quantity, $price){
         $id_order = $this->conn->real_escape_string($id_order);
         $id_product = $this->conn->real_escape_string($id_product);
