@@ -23,7 +23,7 @@ require_once $path . '/class/order.php';
     <?php require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
     <div class="offcanvas-overlay"></div>
-
+ 
     <!-- OffCanvas Wishlist Start -->
     <?php require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
@@ -50,7 +50,7 @@ require_once $path . '/class/order.php';
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                             <!-- <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                             </li> -->
-                            <li><button type="button" onclick="viewAccountToUpdate()" class="nav-link" style="width: 100%;text-align: left;">Account details</button></li>
+                            <li><button type="button" onclick="viewAccountToUpdate('<?php print($_SESSION['id_cus']) ?>')" class="nav-link" style="width: 100%;text-align: left;">Account details</button></li>
 
                             <li><a href="login.html" class="nav-link">logout</a></li>
                         </ul>
