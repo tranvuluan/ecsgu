@@ -178,7 +178,7 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
                           <tr>
                             <th>Mã PN</th>
                             <th>Mã SP</th>
-                            <th>Số lượng</th>
+                            <th>Hình ảnh</th>
                             <th>Giá nhập</th>
                             <th>Actions</th>
                           </tr>

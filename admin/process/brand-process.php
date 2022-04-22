@@ -47,7 +47,7 @@ if (isset($_POST['add'])) {
     $brandModal = new Brand();
 
     $addBrand = $brandModal->insert($brandId, $brandName);
-    if ($updateBrand) {
+    if ($addBrand) {
         echo 1;
     } else {
         echo 0;
