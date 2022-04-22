@@ -38,7 +38,7 @@ class WarehouseReceipt{
         $id_employee = $this->conn->real_escape_string($id_employee);
         $date = $this->conn->real_escape_string($date);
         $totalprice = $this->conn->real_escape_string($totalprice);
-        $sql = "INSERT INTO tbl_warehouse_receipt(`id_warehousereceipt`, `id_supplier`, `id_employee`, `date`, `totalprice`) VALUES ('$id_warehousereceipt', '$id_supplier', '$id_employee', '$date', '$totalprice')";
+        $sql = "INSERT INTO tbl_warehousereceipt(`id_warehousereceipt`, `id_supplier`, `id_employee`, `date`, `totalprice`) VALUES ('$id_warehousereceipt', '$id_supplier', '$id_employee', '$date', '$totalprice')";
         $result = $this->conn->query($sql);
         return $result;
     }

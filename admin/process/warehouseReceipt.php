@@ -6,20 +6,23 @@ require_once $path . '/../class/supplier.php';
 require_once $path . '/../class/product.php';
 require_once $path . '/../class/categoryChild.php';
 require_once $path . '/../class/brand.php';
+require_once $path . '/../class/configurable_product.php';
 ?>
 <?php
 if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceipt'])) {
     $id_warehousereceipt = $_GET['id_warehousereceipt'];
     $warehouseReceiptDetailModel = new WarehouseReceiptDetail();
+    $ProductModel = new Product();
     $result = $warehouseReceiptDetailModel->getWarehouseReceiptDetailById($id_warehousereceipt);
     if ($result) {
         $data = array();
         while ($row = $result->fetch_assoc()) {
+            $product = $ProductModel->getProductById($row['id_product'])->fetch_assoc();
 ?>
             <tr>
                 <td><?php echo $row['id_warehousereceipt'] ?></td>
                 <td><?php echo $row['id_product'] ?></td>
-                <td><?php echo $row['amount'] ?></td>
+                <td><img src="<?php echo $product['image'] ?>" style="width:150px;" alt=""></td>
                 <td><?php echo $row['price'] ?></td>
                 <td>
                     <div class="d-flex align-items-center gap-3 fs-6">
@@ -42,9 +45,12 @@ if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceip
 }
 ?>
 
+
 <?php
 if (isset($_POST['viewToAdd'])) {
     $supplierModel = new Supplier();
+    $CagoryChildModel = new CategoryChild();
+    $BrandModel = new Brand();
 ?>
     <!-- Modal xem thông tin phiếu nhập -->
     <div class="modal-dialog" role="document">
@@ -53,7 +59,7 @@ if (isset($_POST['viewToAdd'])) {
                 <div class="card-body">
                     <h6 class="mb-0">Thêm phiếu nhập</h6>
                     <div class="p-4 border rounded">
-                        <form class="row g-3 needs-validation" method="POST" onsubmit="add()">
+                        <form class="row g-3 needs-validation" method="POST" onsubmit="add()" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="row">
@@ -67,11 +73,38 @@ if (isset($_POST['viewToAdd'])) {
                                         </div>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Danh mục</label>
-                                            <input type="text" class="form-control" id="validationCustom01" name="CategoryChildName" value="" required>
+                                            <select class="form-select" name="categorychild" id="">
+                                                <?php
+                                                $categoryAll = $CagoryChildModel->getCategoryChilds();
+                                                if ($categoryAll) {
+                                                    while ($row = $categoryAll->fetch_assoc()) {
+                                                ?>
+                                                        <option value="<?php echo $row['id_categorychild'] ?>">
+                                                            <div class="badge bg-primary"><?php echo $row['name'] ?></div>
+                                                        </option>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Thương hiệu</label>
-                                            <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="" required>
+                                            <select class="form-select" name="brand" id="">
+                                                <?php
+                                                $brandAll = $BrandModel->getBrands();
+                                                if ($categoryAll) {
+                                                    while ($row = $brandAll->fetch_assoc()) {
+                                                ?>
+                                                        <option value="<?php echo $row['id_brand'] ?>">
+                                                            <div class="badge bg-primary"><?php echo $row['name'] ?></div>
+                                                        </option>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                            <button class="badge bg-primary" onclick="addNewBrand()">Thêm thương hiệu mới ...</button>
                                         </div>
                                         <div class="col-md-12">
                                             <label for="validationCustom02" class="form-label">Giá nhập ( đồng )</label>
@@ -87,7 +120,13 @@ if (isset($_POST['viewToAdd'])) {
                                         <div class="col-md-12">
                                             <div class="input-group mb-3">
                                                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                                <input type="file" class="form-control" id="inputGroupFile01">
+                                                <input type="file" class="form-control" id="fileImageProductInAddWarehouse" onchange="changeAddWarehouseImage()">
+                                            </div>
+                                            <div class="loading_image">
+                                                <img id="imageProductInAddWarehouse" src="" alt="" style="width:200px">
+                                                <div class="spinner-border d-none" role="status" id="loadingImage">
+                                                    <span class="sr-only ">Loading...</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -120,64 +159,64 @@ if (isset($_POST['viewToAdd'])) {
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_S" value="1" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_S" type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_S" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_S"></td>
                                                                     <td style="width:10%"><input class="form-control" type="text" name="option_S" value="S"></td>
                                                                     <td style="width:10%"><input class="form-control" type="text" name="stock_S" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_S" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_M" value="2" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_M" type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_M" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_M"></td>
                                                                     <td><input class="form-control" type="text" name="option_M" value="M"></td>
                                                                     <td><input class="form-control" type="text" name="stock_M" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_M" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_X" value="3" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_X" type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_X" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_X"></td>
                                                                     <td><input class="form-control" type="text" name="option_X" value="X"></td>
                                                                     <td><input class="form-control" type="text" name="stock_X" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_X" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input class="productCheckbox_XL" value="4" type="checkbox"></td>
+                                                                    <td><input name="productCheckbox_XL" type="checkbox"></td>
                                                                     <td><input class="form-control" type="text" name="sku_XL" value="SKU_PR<?php echo (int) (microtime(true) * 1000) ?>_XL"></td>
                                                                     <td><input class="form-control" type="text" name="option_XL" value="XL"></td>
                                                                     <td><input class="form-control" type="text" name="stock_XL" value=""></td>
                                                                     <td>
-                                                                        <select class="form-select" name="" id="">
-                                                                            <option value="">
+                                                                        <select class="form-select" name="inventory_status_XL" id="">
+                                                                            <option value="available">
                                                                                 <div class="badge bg-primary">Còn hàng</div>
                                                                             </option>
-                                                                            <option value="">
+                                                                            <option value="unavailable">
                                                                                 <div class="badge bg-primary">Hết hàng</div>
                                                                             </option>
                                                                         </select>
@@ -195,15 +234,15 @@ if (isset($_POST['viewToAdd'])) {
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label for="validationCustom01" class="form-label">Mã phiếu nhập</label>
-                                            <input type="text" class="form-control" id="validationCustom01" name="warehouseReceiptId" value="" placeholder="" required>
+                                            <input type="text" class="form-control" id="validationCustom01" name="warehouseReceiptId" value="WA<?php echo (int) (microtime(true) * 1000) ?>" readonly placeholder="" required>
                                         </div>
                                         <div class="col-md-12">
                                             <label for="validationCustom01" class="form-label">Tổng tiền</label>
-                                            <input type="text" class="form-control" id="validationCustom01" name="totalprice" value="" placeholder="" required>
+                                            <input type="text" class="form-control" id="totalPrice" name="totalprice" value="" placeholder="" readonly required>
                                         </div>
                                         <div class="col-md-12">
                                             <label for="validationCustom03" class="form-label">Nhà cung cấp</label>
-                                            <select class="form-select" name="supplierName" aria-label="Default select example">
+                                            <select class="form-select" name="suplier" aria-label="Default select example">
                                                 <?php
                                                 $getSupplier = $supplierModel->getSuppliers();
                                                 if ($getSupplier) {
@@ -242,22 +281,16 @@ if (isset($_POST['viewToAdd'])) {
                                                     </div>
                                                 </div>
                                                 <div class="table-responsive mt-2">
-                                                    <table class="table align-middle mb-0">
+                                                    <table class="table align-middle mb-0 table-hover">
                                                         <thead class="table-light">
                                                             <tr>
                                                                 <th>Mã SP</th>
                                                                 <th>Tên SP</th>
-                                                                <th>Số lượng</th>
-                                                                <th>Giá nhập</th>
+                                                                <th>Xóa</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>#89742</td>
-                                                                <td>#89742</td>
-                                                                <td>50</td>
-                                                                <td>$214</td>
-                                                            </tr>
+                                                        <tbody id="tbody_warehouseDetailTable">
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -267,10 +300,11 @@ if (isset($_POST['viewToAdd'])) {
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Thêm</button>
+                                <button class="btn btn-primary" type="submit">Thêm vào chi tiết phiếu nhập</button>
                             </div>
                         </form>
                     </div>
+                    <button class="btn btn-primary" onclick="addWarehouseReceipt()">Lưu phiếu nhập</button>
                 </div>
             </div>
         </div>
@@ -281,38 +315,39 @@ if (isset($_POST['viewToAdd'])) {
 ?>
 
 <?php
-if(isset($_POST['add'])){
-    $ProductId = $_POST['ProductId'];
-    $ProductName = $_POST['ProductName'];
-    $BrandName = $_POST['BrandName'];
-    $CategoryChildName = $_POST['CategoryChildName'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $warehouseReceiptId = $_POST['warehouseReceiptId'];
-    $totalprice = $_POST['totalprice'];
-    $supplierName = $_POST['supplierName'];
-    $EmployeeId = $_POST['EmployeeId'];
-    $date = $_POST['date'];
-    $sku_S = $_POST['sku_S'];
-    $sku_M = $_POST['sku_M'];
-    $sku_X = $_POST['sku_X'];
-    $sku_XL = $_POST['sku_XL'];
-    $option_S = $_POST['option_S'];
-    $option_M = $_POST['option_M'];
-    $option_X = $_POST['option_X'];
-    $option_XL = $_POST['option_XL'];
-    $stock_S = $_POST['stock_S'];
-    $stock_M = $_POST['stock_M'];
-    $stock_X = $_POST['stock_X'];
-    $stock_XL = $_POST['stock_XL'];
-    $checkedValue_S = $_POST['checkedValue_S'];
-    $checkedValue_M = $_POST['checkedValue_M'];
-    $checkedValue_X = $_POST['checkedValue_X'];
-    $checkedValue_XL = $_POST['checkedValue_XL'];
+if (isset($_POST['add'])) {
+    $WarehouseReceiptModel = new WarehouseReceipt();
+    $WarehouseReceiptDetailModel = new WarehouseReceiptDetail();
+    $ProductModel = new Product();
+    $ConfigurableProductModel = new ConfigurableProduct();
 
-    if($checkedValue_S == 1){
-        
+    // insert WarehouseReceiptent into db
+    $insertWarehouseReceipt = $WarehouseReceiptModel->insert($_POST['id_warehousereceipt'], $_POST['id_suplier'], $_POST['id_employee'], $_POST['date'], $_POST['totalprice']);
+    if (!$insertWarehouseReceipt) {
+        echo 0;
+        return;
     }
+
+    foreach ($_POST['warehouseDetail'] as $key => $value) {
+        // insert WarehouseReceipient details  into db
+        $insertWarehouseReceiptDetail = $WarehouseReceiptDetailModel->insert($_POST['id_warehousereceipt'], $value['id_product'], $value['price']);
+        // insert product into db
+        if (!$insertWarehouseReceiptDetail) {
+            echo 0;
+            return;
+        }
+        # code...
+        $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0');
+        foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
+            // insert configurable_product  into db
+            $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);
+            if (!$insertConfigurableProduct) {
+                echo 0;
+                return;
+            }
+        }
+    }
+    echo 1;
 }
 ?>
 
