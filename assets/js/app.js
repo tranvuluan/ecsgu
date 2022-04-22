@@ -132,34 +132,36 @@ function register() {
             document.getElementById("confirm-password").style.marginBottom = "0px";
             document.getElementById("txtConfirmPassword").style.display = "block";
         }
+
     } else {
-        $.ajax({
-            url: './process/auth.php',
-            type: 'POST',
-            data: {
-                register: true,
-                username: username,
-                email: email,
-                password: password,
-                fullname: fullname,
-                address: address,
-                phone: phone,
-                confirmpassword: confirmpassword
-
-            },
-            success: function (response) {
-
-                console.log(response)
-                if (response == 0) {
-                    console.log(response);
-                }
-                else {
-                    window.location.href = "./login.php";
-                }
-            }
-
-        });
+        window.location.href = "#lg3";
     }
+    // $.ajax({
+    //     url: './process/auth.php',
+    //     type: 'POST',
+    //     data: {
+    //         register: true,
+    //         username: username,
+    //         email: email,
+    //         password: password,
+    //         fullname: fullname,
+    //         address: address,
+    //         phone: phone,
+    //         confirmpassword: confirmpassword
+
+    //     },
+    //     success: function (response) {
+
+    //         console.log(response)
+    //         if (response == 0) {
+    //             console.log(response);
+    //         }
+    //         else {
+    //             window.location.href = "./login.php";
+    //         }
+    //     }
+
+    // });
 }
 
 function logout() {

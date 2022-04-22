@@ -96,7 +96,9 @@ $path = realpath(dirname(__FILE__));
                             <a class="active" data-bs-toggle="tab" href="#lg1">
                                 <h4>login</h4>
                             </a>
-                            <a data-bs-toggle="tab" href="#lg2">
+                            <!-- Khi mà bấm Login hay Register thì chuyển form -->
+                            <!-- Form lg3 là form verification -->
+                            <a data-bs-toggle="tab" href="#lg3"> 
                                 <h4>register</h4>
                             </a>
                         </div>
@@ -134,7 +136,7 @@ $path = realpath(dirname(__FILE__));
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">Fullname:</label>
-                                                    <input type="text" name="user-fullname" id="fullname"/>
+                                                    <input type="text" name="user-fullname" id="fullname" />
                                                     <div id="txtFullname" class="invalid-feedback">Enter Fullname</div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -185,6 +187,33 @@ $path = realpath(dirname(__FILE__));
                                             </div>
                                             <div class="text-center">
                                                 <p class="mb-0">Already have an account? <a href="authentication-sign-in-simple.html">Sign in</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lg3" class="tab-pane">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form action="#" method="post">
+                                            <label for="" class="form-label">Type your verification code:</label>
+                                            <input type="password" name="user-password" id="confirm-password" />
+                                            <div class="button-box">
+                                                <div class="row">
+                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-6">
+                                                        <div class="d-grid">
+                                                            <button type="button" class="btn btn-dark">Confirm</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                                    <br><br><br>
+                                                    <div class="col-md-12">
+                                                        <div class="text-center">
+                                                            <p class="mb-0">Have not received verification code yet? <a href="#">Resend</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>

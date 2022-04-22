@@ -13,7 +13,7 @@ if (isset($_POST['view']) && $_POST['id']) {
     $categoryChildModel = new CategoryChild();
     $brandModel = new Brand();
     $configurableProductModel = new ConfigurableProduct();
-    $viewProduct = $productModel->getProducts()->fetch_assoc();
+    $viewProduct = $productModel->getProductById($id)->fetch_assoc();
     if ($viewProduct) {
 ?>
         <div class="modal-dialog" role="document">
@@ -23,7 +23,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                         <h6 class="mb-0">Thông tin sản phẩm</h6>
                         <div class="p-4 border rounded">
                             <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()">
-                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" required>
                                 </div>
@@ -74,33 +74,37 @@ if (isset($_POST['view']) && $_POST['id']) {
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <br><br><br>
-                            <div class="table-responsive mt-2">
-                                <table class="table align-middle mb-0 table-hover">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Chọn</th>
-                                            <th>SKU</th>
-                                            <th>Chọn kích cỡ</th>
-                                            <th>Trạng thái</th>
-                                            <th>Số lượng</th>
-                                            <th>Đã bán</th>
-                                            <th>Hình ảnh</th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                    $getConfigurableProduct = $configurableProductModel->getConfigurableProductById($id)->fetch_assoc();
-                                    if ($getConfigurableProduct) {
-                                    ?>
-                                        <tbody>
+
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="table-responsive mt-2">
+                                    <table class="table align-middle mb-0 table-hover">
+                                        <thead class="table-light">
                                             <tr>
-                                                <td><input type="checkbox"></td>
-                                                <td><?php echo $getConfigurableProduct['sku'] ?></td>
-                                                <td><?php echo $getConfigurableProduct['option'] ?></td>
-                                                <td >
+                                                <th>Chọn</th>
+                                                <th>SKU</th>
+                                                <th>Chọn kích cỡ</th>
+                                                <th>Trạng thái</th>
+                                                <th>Số lượng</th>
+                                                <th>Đã bán</th>
+                                                <th>Hình ảnh</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        $getConfigurableProduct = $configurableProductModel->getConfigurableProductById($id);
+                                        if ($getConfigurableProduct) {
+                                            while ($rowCheck = $getConfigurableProduct->fetch_assoc()) {
+                                        ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="checkbox"></td>
+                                                        <td><?php echo $rowCheck['sku'] ?></td>
+                                                        <td><?php echo $rowCheck['option'] ?></td>
+                                                        <td>
                                                             <?php
-                                                            $getStatus = $configurableProductModel->getConfigurableProductById($getConfigurableProduct['id_product']);
+                                                            $getStatus = $configurableProductModel->getConfigurableProductById($rowCheck['id_product']);
                                                             if ($getStatus) {
                                                                 $rowStatus = $getStatus->fetch_assoc();
                                                                 if ($rowStatus['inventory_status'] == 1) {
@@ -117,16 +121,27 @@ if (isset($_POST['view']) && $_POST['id']) {
                                                             ?>
 
                                                         </td>
-                                                <td><?php echo $getConfigurableProduct['stock'] ?></td>
-                                                <td><?php echo $getConfigurableProduct['quantity_sold'] ?></td>
-                                                <td>abc</td>
-                                            </tr>
-                                        </tbody>
-                                    <?php
-                                    }
-                                    ?>
-                                </table>
-                            </div>
+                                                        <td><?php echo $rowCheck['stock'] ?></td>
+                                                        <td><?php echo $rowCheck['quantity_sold'] ?></td>
+                                                        <td>abc</td>
+                                                    </tr>
+                                                </tbody>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="row">
+                                    <div class="col-md-10"></div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-primary">Đăng Bán</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

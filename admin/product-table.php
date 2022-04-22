@@ -154,15 +154,26 @@ require_once $path . '/../class/configurable_product.php';
                                                 <?php
                                                 }
                                                 ?>
-                                                <td><?php echo $row['quantity'] ?></td>
+                                                <?php
+                                                $getQuantity = $configurableProductModel->getConfigurableProductById($row['id_product']);
+                                                if ($getQuantity) {
+                                                    $quantity = 0;
+                                                    while ($rowQuantity = $getQuantity->fetch_assoc()) {
+                                                        $quantity += $rowQuantity['stock'];
+                                                    }
+                                                ?>
+                                                    <td><?php echo $quantity ?></td>
+                                                <?php
+                                                }
+                                                ?>
                                                 <td><?php echo $row['price'] ?></td>
                                                 <td>
                                                     <div class="badge alert-dark">Complete</div>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_product'] ?>')">
-                                                            <ion-icon name="eye-sharp"></ion-icon>
+                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Xem và Đăng Bán" onclick="getDetail('<?php print $row['id_product'] ?>')">
+                                                            <ion-icon name="cloud-upload-sharp"></ion-icon>
                                                         </a>
                                                         <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
                                                             <ion-icon name="pencil-sharp"></ion-icon>
