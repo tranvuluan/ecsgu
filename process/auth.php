@@ -1,7 +1,6 @@
 <?php
     if (!isset($_SESSION)) {
         session_start();
-        echo 'Khong co session';
     }
     $path = realpath(dirname(__FILE__));
     require_once($path . '/../class/customer.php');
@@ -23,7 +22,9 @@
         }
         else {
             $id_account = $login->fetch_assoc()['id_account'];
+            echo $id_account;
             $customer = $CustomerModel -> getCustomerById($id_account);
+            var_dump($customer);
             $_SESSION['fullname'] = $customer->fetch_assoc()['fullname'];
             $_SESSION['login'] = true;
         }
@@ -33,7 +34,7 @@
 <?php 
     // checklogin
     function checkLogin(){
-        if(isset($_SESSION['login'])){
+        if(!isset($_SESSION['login'])){
             header('Location: ./index.php');
         }
     }

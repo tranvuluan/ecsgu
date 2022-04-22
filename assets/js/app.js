@@ -26,7 +26,8 @@ function login() {
             else{
                 window.location.href = "./index.php";
             }
-        }
+         }
+        
     });
 }
 
@@ -40,12 +41,12 @@ function logout() {
         },
         success: function(response) {
             console.log(response)
-            // if(response == 0){
-            //     console.log(response);
-            // }
-            // else{
-            //     window.location.href = "./index.php";
-            // }
+            if(response == 0){
+                console.log(response);
+            }
+            else{
+                window.location.href = "./index.php";
+            }
         }
     });
 }

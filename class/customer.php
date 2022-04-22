@@ -22,7 +22,7 @@ class Customer{
 
     public function getCustomerById($id_customer) {
         $id_customer = $this->conn->real_escape_string($id_customer);
-        $sql = "SELECT * FROM tbl_customer WHERE id_customer = '$id_customer'";
+        $sql = "SELECT * FROM tbl_customer WHERE id_account = '$id_customer'";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
