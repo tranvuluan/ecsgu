@@ -1,5 +1,8 @@
 <?php
-    session_start();
+    // session_start();
+    if (!isset($_SESSION)) {
+        session_start();
+    }
 
 ?>
 
@@ -47,7 +50,9 @@
                     <!-- Header Action Start -->
                     <div class="col col-lg-auto align-self-center pl-0">
                         <div class="header-actions">
-                            <?php 
+                            <?php
+                            var_dump($_SESSION);
+                            session_destroy();
                                 if(isset($_SESSION['login'])){
                                     echo '<a href="my-account.php" class="header-action-btn login-btn">'.$_SESSION['fullname'].'</a>';
                                 }

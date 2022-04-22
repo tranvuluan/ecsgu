@@ -1,5 +1,8 @@
 <?php
-    $path = realpath(dirname(__FILE__));
+
+$path = realpath(dirname(__FILE__));
+require_once($path . '/process/auth.php');
+checkLogin();
 ?>
 
 <!DOCTYPE html>
@@ -42,19 +45,29 @@
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/includes/header.php') ?>
+    <?php 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/header.php')
+    ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-<?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__)); 
+    require_once($path . '/includes/offcanvasWishlist.php') 
+    ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-<?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-<?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
 
@@ -72,7 +85,7 @@
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                             <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                             </li>
-                            <li><a href="login.html" class="nav-link">logout</a></li>
+                            <li onclick="logout()"><a href="#" data-bs-toggle="tab" class="nav-link">logout</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -82,8 +95,7 @@
                         <div class="tab-pane fade show active" id="dashboard">
                             <h4>Dashboard </h4>
                             <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent
-                                    orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a
-                                    href="#">Edit your password and account details.</a></p>
+                                    orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">Edit your password and account details.</a></p>
                         </div>
                         <div class="tab-pane fade" id="orders">
                             <h4>Orders</h4>
@@ -169,10 +181,8 @@
                                         <form action="#">
                                             <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginActive">Log in instead!</a></p>
                                             <div class="input-radio">
-                                                <span class="custom-radio"><input type="radio" value="1"
-                                                        name="id_gender"> Mr.</span>
-                                                <span class="custom-radio"><input type="radio" value="1"
-                                                        name="id_gender"> Mrs.</span>
+                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mr.</span>
+                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mrs.</span>
                                             </div> <br>
                                             <div class="default-form-box mb-20">
                                                 <label>First Name</label>
@@ -210,8 +220,7 @@
                                                         legal notice.</em></span>
                                             </label>
                                             <div class="save_button mt-3">
-                                                <button class="btn"
-                                                    type="submit">Save</button>
+                                                <button class="btn" type="submit">Save</button>
                                             </div>
                                         </form>
                                     </div>
@@ -226,16 +235,25 @@
     <!-- account area start -->
 
     <!-- Footer Area Start -->
-    <?php require_once($path . '/includes/footer.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php')
+    ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php require_once($path . '/includes/modals.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
-<!-- JavaScripts -->
-<?php require_once($path . '/includes/scripts.php')?>
-<!-- END JavaScripts -->
+    <!-- JavaScripts -->
+    <?php
+    $path = dirname(__FILE__);
+    echo $path;
+    require_once($path . '/includes/scripts.php');
+    ?>
+    <!-- END JavaScripts -->
 </body>
 
 </html>

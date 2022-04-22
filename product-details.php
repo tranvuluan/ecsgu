@@ -1,6 +1,9 @@
 <?php
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/product.php');
+
+
+
 ?>
 
 <!DOCTYPE html>

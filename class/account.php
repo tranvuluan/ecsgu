@@ -60,6 +60,16 @@ class Account{
         $result = $this->conn->query($sql);
         return $result;
     }
-}
 
+
+    public function login($username, $password) {
+        $username = $this->conn->real_escape_string($username);
+        $password = $this->conn->real_escape_string($password);
+        $sql = "SELECT * FROM tbl_account WHERE `username` = '$username' AND `password` = '$password'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows >0) {
+            return $result;
+        }else return false;
+    }
+}
 ?>

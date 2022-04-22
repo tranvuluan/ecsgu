@@ -66,12 +66,6 @@ class Customer{
         return $result;
     }
 
-    public function checkLogin($username, $password) {
-        $sql = "SELECT * FROM tbl_customer, tbl_account WHERE tbl_customer.id_account = tbl_account.id_account AND `username` = '$username' AND `password` = '$password'";
-        $result = $this->conn->query($sql);
-        if ($result->num_rows >0) {
-            return $result;
-        }else return false;
-    }
+
 }
 ?>
