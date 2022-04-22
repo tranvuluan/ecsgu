@@ -1,7 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
 
-require_once($path.'/config/connection.php');
+require_once($path. '/../config/connection.php');
 
 class Order{
     public $conn;
@@ -31,6 +31,18 @@ class Order{
             return false;
         }
     }
+    public function getOrderByIdCus($id_customer) {
+        $id_customer = $this->conn->real_escape_string($id_customer);
+        $sql = "SELECT * FROM tbl_order WHERE id_customer = '$id_customer'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
 
     public function insert($id_order, $id_customer, $id_product, $totalprice, $id_voucher, $id_emloyee, $date, $fullname, $phone, $address, $email, $note, $status){
         $id_order = $this->conn->real_escape_string($id_order);
