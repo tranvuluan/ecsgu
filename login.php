@@ -86,7 +86,6 @@ $path = realpath(dirname(__FILE__));
     <!-- OffCanvas Menu Start -->
     <?php require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
-
     <!-- login area start -->
     <div class="login-register-area pt-100px pb-100px">
         <div class="container">
@@ -106,8 +105,12 @@ $path = realpath(dirname(__FILE__));
                                 <div class="login-form-container">
                                     <div class="login-register-form">
                                         <form action="#" method="post">
-                                            <input type="text" name="user-name" placeholder="Username" />
-                                            <input type="password" name="user-password" placeholder="Password" />
+                                            <label for="" class="form-label">Username:</label>
+                                            <input type="text" id="username" name="user-name" />
+                                            <div id="txtUsername" class="invalid-feedback">Enter Username</div>
+                                            <label for="" class="form-label">Password:</label>
+                                            <input type="password" id="password" name="user-password" />
+                                            <div id="txtPassword" class="invalid-feedback">Enter Password</div>
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox" />
@@ -116,7 +119,7 @@ $path = realpath(dirname(__FILE__));
                                                 </div>
                                                 <div class="col-12 col-lg-12">
                                                     <div class="d-grid">
-                                                        <button type="button" class="btn btn-dark">Sign In</button>
+                                                        <button type="button" onclick="login()" class="btn btn-dark">Sign In</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,9 +131,35 @@ $path = realpath(dirname(__FILE__));
                                 <div class="login-form-container">
                                     <div class="login-register-form">
                                         <form action="#" method="post">
-                                            <input type="text" name="user-name" placeholder="Username" />
-                                            <input name="user-email" placeholder="Email" type="email" />
-                                            <input type="password" name="user-password" placeholder="Password" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="" class="form-label">Fullname:</label>
+                                                    <input type="text" name="user-fullname" id="fullname"/>
+                                                    <div id="txtFullname" class="invalid-feedback">Enter Fullname</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="" class="form-label">Phone:</label>
+                                                    <input type="text" name="user-fullname" id="phone" />
+                                                    <div id="txtPhone" class="invalid-feedback">Enter Phone</div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="" class="form-label">Email:</label>
+                                                    <input name="user-email" type="email" id="email" />
+                                                    <div id="txtEmail" class="invalid-feedback">Enter Email</div>
+                                                    <label for="" class="form-label">Address:</label>
+                                                    <input type="text" name="user-fullname" id="address" />
+                                                    <div id="txtAddress" class="invalid-feedback">Enter Address</div>
+                                                    <label for="" class="form-label">Username:</label>
+                                                    <input type="text" name="user-name" id="res-username" />
+                                                    <div id="res-txtUsername" class="invalid-feedback">Enter Username</div>
+                                                    <label for="" class="form-label">Password:</label>
+                                                    <input type="password" name="user-password" id="res-password" />
+                                                    <div id="res-txtPassword" class="invalid-feedback">Enter Password</div>
+                                                    <label for="" class="form-label">Confirm Password:</label>
+                                                    <input type="password" name="user-password" id="confirm-password" />
+                                                    <div id="txtConfirmPassword" class="invalid-feedback">Enter Confirm Password</div>
+                                                </div>
+                                            </div>
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox" />
@@ -138,7 +167,7 @@ $path = realpath(dirname(__FILE__));
                                                 </div>
                                                 <div class="">
                                                     <div class="d-grid">
-                                                        <button type="button" class="btn btn-dark">Register</button>
+                                                        <button type="button" onclick="register()" class="btn btn-dark">Register</button>
                                                     </div>
                                                 </div>
                                             </div>
