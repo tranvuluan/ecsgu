@@ -22,10 +22,9 @@
         }
         else {
             $id_account = $login->fetch_assoc()['id_account'];
-            echo $id_account;
-            $customer = $CustomerModel -> getCustomerById($id_account);
-            var_dump($customer);
+            $customer = $CustomerModel -> getCustomerByIdAccount($id_account);
             $_SESSION['fullname'] = $customer->fetch_assoc()['fullname'];
+            $_SESSION['id_account'] = $id_account;
             $_SESSION['login'] = true;
         }
     }

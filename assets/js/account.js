@@ -1,10 +1,10 @@
-function viewAccountToUpdate($id_cus){
-    console.log($id_cus);
+function viewToUpdate($id_account){
+    console.log($id_account);
     $.ajax({
         url: './../process/account.php',
         type: 'POST',
         data: {
-            id_cus: $id_cus,
+            id_account: $id_account,
             viewToUpdate: true
         },
         success: function(data) {

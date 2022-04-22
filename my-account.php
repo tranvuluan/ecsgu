@@ -9,63 +9,38 @@ checkLogin();
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="robots" content="index, follow" />
-    <title>Jesco - Fashoin eCommerce HTML Template</title>
-    <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Add site Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/png">
-
-
-    <!-- vendor css (Icon Font) -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/vendor/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="assets/css/vendor/font.awesome.css" />
-
-    <!-- plugins css (All Plugins Files) -->
-    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
-    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
-    <link rel="stylesheet" href="assets/css/plugins/venobox.css" />
-
-    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <!-- <link rel="stylesheet" href="assets/css/vendor/vendor.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css" />
-    <link rel="stylesheet" href="assets/css/style.min.css"> -->
-
-    <!-- Main Style -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/headerhtml.php');
+    ?>
 </head>
 
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php 
+    <?php
     $path = realpath(dirname(__FILE__));
-    require_once($path . '/includes/header.php')
+    require_once($path . '/includes/header.php');
+
     ?>
+    
     <!--Top bar, Header Area End -->
     <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
     <?php
-    $path = realpath(dirname(__FILE__)); 
-    require_once($path . '/includes/offcanvasWishlist.php') 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasWishlist.php')
     ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php 
+    <?php
     $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php 
+    <?php
     $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
@@ -83,8 +58,7 @@ checkLogin();
                             <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
                             <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
-                            <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
-                            </li>
+                            <li onclick="viewToUpdate(<?php print($_SESSION['id_account']) ?>)"><a href="#" data-bs-toggle="tab" class="nav-link">Account details</a> </li>
                             <li onclick="logout()"><a href="#" data-bs-toggle="tab" class="nav-link">logout</a> </li>
                         </ul>
                     </div>
