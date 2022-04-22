@@ -31,9 +31,7 @@ checkLogin();
     $path = dirname(__FILE__);
     $orderModel = new Order();
     ?>
-    <?php 
-        var_dump($_SESSION);
-    ?>
+
     <!--Top bar, Header Area Start -->
     <?php
     $path = realpath(dirname(__FILE__));
@@ -104,27 +102,29 @@ checkLogin();
                                     <?php
                                     $orderList = $orderModel->getOrders();
                                     $idOrderItem = new OrderItem();
-
+                                    // var_dump($_SESSION);
                                     if ($orderList) {
                                         while ($row = $orderList->fetch_assoc()) {
+                                            if ($row['id_customer'] == $_SESSION['id_customer']) {
                                     ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td><?php echo $row['id_order'] ?></td>
-                                                    <td><?php echo $row['id_voucher'] ?></td>
-                                                    <td><?php echo $row['id_employee'] ?></td>
-                                                    <td><?php echo $row['totalprice'] ?></td>
-                                                    <td><?php echo $row['date'] ?></td>
-                                                    <td>
-                                                      <div class="view">
-                                                          <a href="javascripts:" class="text-dark" onclick="viewOrderDetail()">View</a>
-                                                      </div>  
-                                                    </td>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $row['id_order'] ?></td>
+                                                        <td><?php echo $row['id_voucher'] ?></td>
+                                                        <td><?php echo $row['id_employee'] ?></td>
+                                                        <td><?php echo $row['totalprice'] ?></td>
+                                                        <td><?php echo $row['date'] ?></td>
+                                                        <td>
+                                                            <div class="view">
+                                                                <a href="javascripts:" class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</a>
+                                                            </div>
+                                                        </td>
 
-                                                </tr>
-                                                
-                                            </tbody>
+                                                    </tr>
+
+                                                </tbody>
                                     <?php
+                                            }
                                         }
                                     }
                                     ?>
@@ -236,7 +236,7 @@ checkLogin();
         </div>
     </div>
     <!-- account area start -->
-
+    <div class="switchModal"></div>
     <!-- Footer Area Start -->
     <?php
     $path = dirname(__FILE__);
@@ -257,6 +257,7 @@ checkLogin();
     require_once($path . '/includes/scripts.php');
     ?>
     <!-- END JavaScripts -->
+    <script src="assets/js/account.js"></script>
 </body>
 
 </html>
