@@ -1,7 +1,7 @@
 function viewAccountToUpdate($id_cus){
     console.log($id_cus);
     $.ajax({
-        url: './../process-account.php',
+        url: './../process/account.php',
         type: 'POST',
         data: {
             id_cus: $id_cus,
@@ -23,7 +23,7 @@ function update(){
     let email = $('input[name="email"]').val();
     let phone = $('input[name="phone"]').val();
     $.ajax({
-        url: './../process-account.php',
+        url: './../process/account.php',
         type: 'POST',
         data: {
             id_cus: id_cus,
@@ -40,7 +40,7 @@ function update(){
             console.log(response);
             if(response == 0){
                 alert('Update success');
-                window.location.href = './my-account.php';
+                window.location.href = './../my-account.php';
             }else{
                 alert('Update fail');
             }
