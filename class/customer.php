@@ -45,7 +45,7 @@ class Customer{
 
     public function insert($id_customer, $id_account,$fullname, $email, $address, $phone, $createdate, $point){
         $id_customer = $this->conn->real_escape_string($id_customer);
-        $id_customer = $this->conn->real_escape_string($id_account);
+        $id_account = $this->conn->real_escape_string($id_account);
         $fullname = $this->conn->real_escape_string($fullname);
         $email = $this->conn->real_escape_string($email);
         $address = $this->conn->real_escape_string($address);

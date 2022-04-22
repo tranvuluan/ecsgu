@@ -1,7 +1,17 @@
 <?php
-
 $path = realpath(dirname(__FILE__));
 require_once($path . '/process/auth.php');
+checkLogin();
+?>
+
+<?php
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/order.php');
+checkLogin();
+?>
+<?php
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/orderItem.php');
 checkLogin();
 ?>
 
@@ -17,13 +27,19 @@ checkLogin();
 
 <body>
 
+    <?php
+    $path = dirname(__FILE__);
+    $orderModel = new Order();
+    ?>
+    <?php 
+        var_dump($_SESSION);
+    ?>
     <!--Top bar, Header Area Start -->
     <?php
     $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/header.php');
-
     ?>
-    
+
     <!--Top bar, Header Area End -->
     <div class="offcanvas-overlay"></div>
 
@@ -77,29 +93,42 @@ checkLogin();
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Order</th>
+                                            <th>ID Order</th>
+                                            <th>ID Voucher</th>
+                                            <th>ID Employee</th>
+                                            <th>Total price</th>
                                             <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Total</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="success">Completed</span></td>
-                                            <td>$25.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>May 10, 2018</td>
-                                            <td>Processing</td>
-                                            <td>$17.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
-                                    </tbody>
+                                    <?php
+                                    $orderList = $orderModel->getOrders();
+                                    $idOrderItem = new OrderItem();
+
+                                    if ($orderList) {
+                                        while ($row = $orderList->fetch_assoc()) {
+                                    ?>
+                                            <tbody>
+                                                <tr>
+                                                    <td><?php echo $row['id_order'] ?></td>
+                                                    <td><?php echo $row['id_voucher'] ?></td>
+                                                    <td><?php echo $row['id_employee'] ?></td>
+                                                    <td><?php echo $row['totalprice'] ?></td>
+                                                    <td><?php echo $row['date'] ?></td>
+                                                    <td>
+                                                      <div class="view">
+                                                          <a href="javascripts:" class="text-dark" onclick="viewOrderDetail()">View</a>
+                                                      </div>  
+                                                    </td>
+
+                                                </tr>
+                                                
+                                            </tbody>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+
                                 </table>
                             </div>
                         </div>
