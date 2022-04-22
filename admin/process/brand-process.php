@@ -15,12 +15,14 @@ if (isset($_POST['viewToAdd'])) {
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="add()" novalidate>
                             <div class="col-md-6">
-                                <label for="validationCustom01" class="form-label">Mã thương hiệu</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="BR<?php echo (int) (microtime(true)) ?>" name="add_Id"  required>
+                                <label for="validationId" class="form-label">Mã thương hiệu</label>
+                                <input type="text" class="form-control" id="validationId" value="BR<?php echo (int) (microtime(true)) ?>" name="add_Id" readonly >
+                                <div id="txtId" class="invalid-feedback">Enter ID!</div>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Tên thương hiệu</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="add_name" required>
+                                <label for="validationName" class="form-label">Tên thương hiệu</label>
+                                <input type="text" class="form-control" id="validationName" value="" name="add_name" >
+                                <div id="txtName" class="invalid-feedback">Enter Name</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
@@ -47,7 +49,7 @@ if (isset($_POST['add'])) {
     $brandModal = new Brand();
 
     $addBrand = $brandModal->insert($brandId, $brandName);
-    if ($updateBrand) {
+    if ($addBrand) {
         echo 1;
     } else {
         echo 0;
@@ -71,11 +73,13 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                         <form class="row g-3 needs-validation" novalidate>
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Mã thương hiệu</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="<?php echo $BrandById['id_brand'] ?>" required>
+                                <input type="text" class="form-control" id="validationCustom01" value="<?php echo $BrandById['id_brand'] ?>" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="validationCustom02" class="form-label">Tên thương hiệu</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="<?php echo $BrandById['name'] ?>" required>
+                                <input type="text" class="form-control" id="validationCustom02" value="<?php echo $BrandById['name'] ?>" readonly>
+                                <div id="txtName" class="invalid-feedback">Enter Name</div>
+
                             </div>
                         </form>
                     </div>
@@ -107,12 +111,14 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id'])) {
                         <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="update()">
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Mã thương hiệu</label>
-                                <input type="text" class="form-control" name="update_Id" value="<?php echo $BrandById['id_brand'] ?>" required>
+                                <input type="text" class="form-control" name="update_Id" value="<?php echo $BrandById['id_brand'] ?>" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustomUsername" class="form-label">Tên thương hiệu</label>
-                                <input type="text" class="form-control" name="update_name"  value="<?php echo $BrandById['name'] ?>" required>
+                                <label for="validationName" class="form-label">Tên thương hiệu</label>
+                                <input type="text" class="form-control" id="validationName" name="update_name"  value="<?php echo $BrandById['name'] ?>">
+                                <div id="txtName" class="invalid-feedback">Enter Name</div>
                             </div>
+                            
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Sửa</button>
                             </div>

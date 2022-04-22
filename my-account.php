@@ -1,38 +1,73 @@
 <?php
-$path = dirname(__FILE__);
-require_once $path . '/class/order.php';
+
+$path = realpath(dirname(__FILE__));
+require_once($path . '/process/auth.php');
+checkLogin();
 ?>
 
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-    <?php
-    $path = dirname(__FILE__);
-    require_once $path . '/includes/headerhtml.php';
-    
-    ?>
-    
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="robots" content="index, follow" />
+    <title>Jesco - Fashoin eCommerce HTML Template</title>
+    <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Add site Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/png">
+
+
+    <!-- vendor css (Icon Font) -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/vendor/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="assets/css/vendor/font.awesome.css" />
+
+    <!-- plugins css (All Plugins Files) -->
+    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
+    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/plugins/venobox.css" />
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/vendor.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css" />
+    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
 </head>
 
 <body>
-    <?php
-    $orderTable = new Order();
-    ?>
+
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/includes/header.php') ?>
+    <?php 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/header.php')
+    ?>
     <!--Top bar, Header Area End -->
     <div class="offcanvas-overlay"></div>
- 
+
     <!-- OffCanvas Wishlist Start -->
-    <?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__)); 
+    require_once($path . '/includes/offcanvasWishlist.php') 
+    ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
 
@@ -45,14 +80,12 @@ require_once $path . '/class/order.php';
                     <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="0">
                         <ul role="tablist" class="nav flex-column dashboard-list">
                             <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Dashboard</a></li>
-                            <li><a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
+                            <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
                             <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
-                            <!-- <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
-                            </li> -->
-                            <li><button type="button" onclick="viewAccountToUpdate('<?php print($_SESSION['id_cus']) ?>')" class="nav-link" style="width: 100%;text-align: left;">Account details</button></li>
-
-                            <li><a href="login.html" class="nav-link">logout</a></li>
+                            <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
+                            </li>
+                            <li onclick="logout()"><a href="#" data-bs-toggle="tab" class="nav-link">logout</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -70,39 +103,29 @@ require_once $path . '/class/order.php';
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>ID Order</th>
-                                            <th>ID Customer</th>
-                                            <th>ID Voucher</th>
-                                            <th>ID Employee</th>
-                                            <th>Total Price</th>
+                                            <th>Order</th>
                                             <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Total</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <?php
-                                    $orderList = $orderTable->getOrders();
-                                    if ($orderList) {
-                                        while ($row = $orderList->fetch_assoc()) {
-                                    ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td><?php echo $row['id_order'] ?></td>
-                                                    <td><?php echo $row['id_customer'] ?></td>
-                                                    <td><?php echo $row['id_voucher'] ?></td>
-                                                    <td><?php echo $row['id_employee'] ?></td>
-                                                    <td><?php echo $row['totalprice'] ?></td>
-                                                    <td><?php echo $row['date'] ?></td>
-                                                    <td>
-                                                        <div>
-                                                            <a href="javascript:" class="" onclick="getOrderDetail('<?php print($row['id_order']) ?>')">View</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>May 10, 2018</td>
+                                            <td><span class="success">Completed</span></td>
+                                            <td>$25.00 for 1 item </td>
+                                            <td><a href="cart.html" class="view">view</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>May 10, 2018</td>
+                                            <td>Processing</td>
+                                            <td>$17.00 for 1 item </td>
+                                            <td><a href="cart.html" class="view">view</a></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -150,46 +173,52 @@ require_once $path . '/class/order.php';
                                 <span><strong>Country:</strong> USA</span>
                             </address>
                         </div>
-                        <!-- <div class="tab-pane fade" id="account-details">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3>Account details </h3>
-                                    <div class="p-4 border rounded">
-                                        <form class="row g-3" action="#" method="POST" onsubmit="update()">
-                                            <div class="col-md-3 default-form-box mb-20">
-                                                <label class="form-label ">ID Customer</label>
-                                                <input class="form-control" type="text" name="id_cus" value="<?php echo $order['id_customer'] ?>" readonly>
+                        <div class="tab-pane fade" id="account-details">
+                            <h3>Account details </h3>
+                            <div class="login">
+                                <div class="login_form_container">
+                                    <div class="account_login_form">
+                                        <form action="#">
+                                            <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginActive">Log in instead!</a></p>
+                                            <div class="input-radio">
+                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mr.</span>
+                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mrs.</span>
+                                            </div> <br>
+                                            <div class="default-form-box mb-20">
+                                                <label>First Name</label>
+                                                <input type="text" name="first-name">
                                             </div>
-                                            <div class="col-md-3 default-form-box mb-20">
-                                                <label class="form-label ">ID Account</label>
-                                                <input class="form-control" type="text" name="id_acc" value="<?php echo $order['id_account'] ?>" readonly>
+                                            <div class="default-form-box mb-20">
+                                                <label>Last Name</label>
+                                                <input type="text" name="last-name">
                                             </div>
-                                            <div class="col-md-3 default-form-box mb-20">
-                                                <label class="form-label ">Created date</label>
-                                                <input class="form-control" type="text" name="create-date" value="<?php echo $order['createdate'] ?>" readonly>
+                                            <div class="default-form-box mb-20">
+                                                <label>Email</label>
+                                                <input type="text" name="email-name">
                                             </div>
-                                            <div class="col-md-3 default-form-box mb-20">
-                                                <label class="form-label ">Point</label>
-                                                <input class="form-control" type="text" name="point" value="<?php echo $order['point'] ?>" readonly>
+                                            <div class="default-form-box mb-20">
+                                                <label>Password</label>
+                                                <input type="password" name="user-password">
                                             </div>
-                                            <div class="col-md-6 default-form-box mb-20">
-                                                <label class="form-label ">Full Name</label>
-                                                <input class="form-control" type="text" name="full-name" value="<?php echo $order['fullname'] ?>" require>
+                                            <div class="default-form-box mb-20">
+                                                <label>Birthdate</label>
+                                                <input type="date" name="birthday">
                                             </div>
-                                            <div class="col-md-6 default-form-box mb-20">
-                                                <label class="form-label ">Address</label>
-                                                <input class="form-control" type="text" name="address" value="<?php echo $order['address'] ?>" require>
-                                            </div>
-                                            <div class="col-md-6 default-form-box mb-20">
-                                                <label class="form-label ">Email</label>
-                                                <input class="form-control" type="text" name="email" value="<?php echo $order['email'] ?>" require>
-                                            </div>
-                                            <div class="col-md-6 default-form-box mb-20">
-                                                <label class="form-label ">Phone</label>
-                                                <input class="form-control" type="text" name="phone" value="<?php echo $order['phone'] ?>" require>
-                                            </div>
-
-
+                                            <span class="example">
+                                                (E.g.: 05/31/1970)
+                                            </span>
+                                            <br>
+                                            <label class="checkbox-default" for="offer">
+                                                <input type="checkbox" id="offer">
+                                                <span>Receive offers from our partners</span>
+                                            </label>
+                                            <br>
+                                            <label class="checkbox-default checkbox-default-more-text" for="newsletter">
+                                                <input type="checkbox" id="newsletter">
+                                                <span>Sign up for our newsletter<br><em>You may unsubscribe at any
+                                                        moment. For that purpose, please find our contact info in the
+                                                        legal notice.</em></span>
+                                            </label>
                                             <div class="save_button mt-3">
                                                 <button class="btn" type="submit">Save</button>
                                             </div>
@@ -197,28 +226,34 @@ require_once $path . '/class/order.php';
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- account area start -->
-    <div class="switchModal"></div>
+
     <!-- Footer Area Start -->
-    <?php require_once($path . '/includes/footer.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php')
+    ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php require_once($path . '/includes/modals.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
     <!-- JavaScripts -->
-    <?php require_once($path . '/includes/scripts.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    echo $path;
+    require_once($path . '/includes/scripts.php');
+    ?>
     <!-- END JavaScripts -->
-    
-    <script src="assets/js/account.js"></script>
-    
 </body>
 
 </html>
