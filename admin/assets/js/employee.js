@@ -1,3 +1,5 @@
+let imageUrl = '';
+
 function viewToAdd() {
     $.ajax({
         url: './process/employee.php',
@@ -44,7 +46,7 @@ function add() {
     let RegexDate = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
     let RegexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || txtPassword == '' || txtConfirmPassword == '' || !txtCMND.match(num) || !txtPhone.match(phoneno) || !txtEmail.match(RegexEmail) || !txtBirthday.match(RegexDate)) {
+    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || txtPassword == '' || txtConfirmPassword == '' || !txtCMND.match(num) || !txtPhone.match(phoneno) || !txtEmail.match(RegexEmail) || !txtBirthday.match(RegexDate) || imageUrl == '') {
         if (txtName == '') {
             document.getElementById("txtName").style.display = "block";
             document.getElementById("validationName").style.borderColor = "red";
@@ -61,7 +63,7 @@ function add() {
             document.getElementById("txtBirthday").style.display = "none";
             document.getElementById("validationBirthday").style.borderColor = "green";
         }
-        if (txtCMND == ''  || !txtCMND.match(num)) {
+        if (txtCMND == '' || !txtCMND.match(num)) {
             document.getElementById("txtCMND").style.display = "block";
             document.getElementById("validationCMND").style.borderColor = "red";
         }
@@ -117,6 +119,10 @@ function add() {
             document.getElementById("txtConfirmPassword").style.display = "none";
             document.getElementById("validationConfirmPassword").style.borderColor = "green";
         }
+
+        if (imageUrl == '') {
+            alert('Vui lòng thêm hình ảnh');
+        }
     } else {
         $.ajax({
             url: './process/employee.php',
@@ -136,6 +142,7 @@ function add() {
                 confirm_password: confirm_password,
                 status: status,
                 add: true,
+                image: imageUrl
             },
 
             success: function (response) {
@@ -209,6 +216,7 @@ function update() {
     let txtAddress = document.getElementById("validationAddress").value.trim();
     let txtPhone = document.getElementById("validationPhone").value.trim();
     let txtUser = document.getElementById("validationUser").value.trim();
+    imageUrl = $('#imageEmployee').attr('src');
     // let txtPassword = document.getElementById("validationPassword").value.trim();
     // let txtConfirmPassword = document.getElementById("validationConfirmPassword").value.trim();
 
@@ -216,10 +224,10 @@ function update() {
     let num = /^[0-9]+$/;
 
 
-    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || !txtPhone.match(phoneno) || !txtCMND.match(num)) {
+    if (txtName == '' || txtBirthday == '' || txtCMND == '' || txtEmail == '' || txtAddress == '' || txtPhone == '' || txtUser == '' || !txtPhone.match(phoneno) || !txtCMND.match(num) || imageUrl == '') {
         if (txtName == '') {
             document.getElementById("txtName").style.display = "block";
-            document.getElementById("validationName").style.borderColor = "red";
+            document.getElementById("validationName").style.borderColor = "red"; 
         }
         else {
             document.getElementById("txtName").style.display = "none";
@@ -273,6 +281,9 @@ function update() {
             document.getElementById("txtUser").style.display = "none";
             document.getElementById("validationUser").style.borderColor = "green";
         }
+        if (imageUrl == ''){
+            alert('Vui lòng thêm hình ảnh');
+        }
 
     } else {
 
@@ -292,6 +303,7 @@ function update() {
                 username: username,
                 status: status,
                 update: true,
+                image: imageUrl
             },
             success: function (response) {
                 if (response == 0) {
@@ -303,4 +315,48 @@ function update() {
             }
         });
     }
+}
+
+
+async function changeAddEmployeeImage() {
+    $('#loadingImage').removeClass('d-none');
+    const signResponse = await fetch('http://14.225.192.186:5555/api/upload/getSignature');
+    const signData = await signResponse.json();
+
+    const url = "https://api.cloudinary.com/v1_1/" + signData.cloudname + "/image/upload";
+
+
+
+    const files = document.querySelector("[type=file]").files;
+    const formData = new FormData();
+
+    console.log(files);
+    // Append parameters to the form data. The parameters that are signed using 
+    // the signing function (signuploadform) need to match these.
+
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        formData.append("file", file);
+        formData.append("api_key", signData.apikey);
+        formData.append("timestamp", signData.timestamp);
+        formData.append("signature", signData.signature);
+        formData.append("eager", "c_pad,h_300,w_400|c_crop,h_200,w_260");
+        formData.append("folder", "signed_upload_demo_form");
+
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+            .then((response) => {
+                return response.text();
+            })
+            .then((data) => {
+                const objectData = JSON.parse(data);
+                console.log(objectData);
+                $('#loadingImage').addClass('d-none');
+                $('#imageEmployee').attr('src', objectData.url);
+                imageUrl = objectData.url;
+            });
+    }
+
 }
