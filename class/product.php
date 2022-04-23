@@ -44,6 +44,18 @@ class Product{
         }
     }
     
+    public function getProductByStatus($status){
+        $status = $this->conn->real_escape_string($status);
+        $sql = "SELECT * FROM tbl_product WHERE status = '$status'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function insert($id_product, $id_brand, $id_categorychild, $name, $image, $status){
         $id_product = $this->conn->real_escape_string($id_product);
         $id_brand = $this->conn->real_escape_string($id_brand);
@@ -56,16 +68,23 @@ class Product{
         return $result;
     }
     
-    public function update($id_product, $id_brand, $id_categorychild, $name, $quantity, $price, $image, $status){
+    public function update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status){
         $id_product = $this->conn->real_escape_string($id_product);
         $id_brand = $this->conn->real_escape_string($id_brand);
         $id_categorychild = $this->conn->real_escape_string($id_categorychild);
         $name = $this->conn->real_escape_string($name);
-        $quantity = $this->conn->real_escape_string($quantity);
         $price = $this->conn->real_escape_string($price);
         $image = $this->conn->real_escape_string($image);
         $status = $this->conn->real_escape_string($status);
-        $sql = "UPDATE tbl_product SET `id_brand` = '$id_brand', `id_categorychild` = '$id_categorychild', `name` = '$name', `quantity` = '$quantity', `price` = '$price', `image` = '$image', `status` = '$status' WHERE `id_product` = '$id_product'";
+        $sql = "UPDATE tbl_product SET `id_brand` = '$id_brand', `id_categorychild` = '$id_categorychild', `name` = '$name', `price` = '$price', `image` = '$image', `status` = '$status' WHERE `id_product` = '$id_product'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    public function active($id_product, $price){
+        $id_product = $this->conn->real_escape_string($id_product);
+        $price = $this->conn->real_escape_string($price);
+        $sql = "UPDATE tbl_product SET status = 1, `price` = $price  WHERE id_product = '$id_product'";
         $result = $this->conn->query($sql);
         return $result;
     }
