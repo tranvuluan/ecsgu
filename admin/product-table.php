@@ -120,7 +120,7 @@ require_once $path . '/../class/configurable_product.php';
                                     </tr>
                                 </thead>
                                 <?php
-                                $getDetailProduct = $productModel->getProducts();
+                                $getDetailProduct = $productModel->getProductByStatus(0);
                                 if ($getDetailProduct) {
                                     while ($row = $getDetailProduct->fetch_assoc()) {
                                 ?>
@@ -168,14 +168,24 @@ require_once $path . '/../class/configurable_product.php';
                                                 ?>
                                                 <td><?php echo $row['price'] ?></td>
                                                 <td>
-                                                    <div class="badge alert-dark">Complete</div>
+                                                    <?php
+                                                    if ($row['status'] == 1) {
+                                                    ?>
+                                                        <div class="badge bg-primary">Đã bán</div>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <div class="badge bg-danger">Chưa bán</div>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3 fs-6">
                                                         <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Xem và Đăng Bán" onclick="getDetail('<?php print $row['id_product'] ?>')">
                                                             <ion-icon name="cloud-upload-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit">
+                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" onclick="viewToUpdate('<?php print $row['id_product'] ?>')" aria-label="Edit">
                                                             <ion-icon name="pencil-sharp"></ion-icon>
                                                         </a>
                                                         <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">

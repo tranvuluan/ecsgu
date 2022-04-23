@@ -210,7 +210,7 @@ if (isset($_POST['viewToAdd'])) {
                                     <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2" checked="">
+                                    <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" checked="">
                                     <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
                                 </div>
                             </div>
@@ -379,7 +379,7 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id'])) {
                                         <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2" checked="">
+                                        <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" checked="">
                                         <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
                                     </div>
                                 </div>
