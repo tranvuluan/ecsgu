@@ -25,8 +25,6 @@
             $customer = $CustomerModel -> getCustomerByIdAccount($id_account);
             $row = $customer -> fetch_assoc();
             $_SESSION['fullname'] = $row['fullname'];
-            // $_SESSION['id_account'] = $id_account;
-            // $_SESSION['id_customer'] = $customer->fetch_assoc()['id_customer'];
             $_SESSION['id_customer'] = $row['id_customer'];
             $_SESSION['login'] = true;
         }

@@ -1,38 +1,42 @@
 function viewOrderDetail(id_order){
     console.log(id_order);
     $.ajax({
-        url: './../process/account.php',
+        url: './process/account.php',
         type: 'POST',
         data: {
             id_order: id_order,
             viewOrderDetail: true
         },
         success: function(data){
-            console.log(data);
-            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
+            // console.log(data);
+            // alert(data);
+            
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal());
+            console.log('run this');
         }
     });
 }
 
 
-function viewToUpdate(id_account){
-    console.log(id_account);
+function viewToUpdate(id_customer){
+    console.log(id_customer);
     $.ajax({
-        url: './../process/account.php',
+        url: './process/account.php',
         type: 'POST',
         data: {
-            id_account: id_account,
+            id_customer: id_customer,
             viewToUpdate: true
         },
         success: function(data) {
+            console.log(data);
             $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
         }
     });
 }
 function update(){
     event.preventDefault();
-    let id_cus = $('input[name="id_cus"]').val();
-    let id_acc = $('input[name="id_acc"]').val();
+    let id_customer = $('input[name="id_customer"]').val();
+    let id_acccount = $('input[name="id_acccount"]').val();
     let createDate = $('input[name="create-date"]').val();
     let point = $('input[name="point"]').val();
     let name = $('input[name="full-name"]').val();
@@ -43,8 +47,8 @@ function update(){
         url: './../process/account.php',
         type: 'POST',
         data: {
-            id_cus: id_cus,
-            id_acc: id_acc,
+            id_customer: id_customer,
+            id_acccount: id_acccount,
             createDate: createDate,
             point: point,
             name: name,

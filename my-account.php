@@ -1,16 +1,16 @@
 <?php
-$path = realpath(dirname(__FILE__));
+$path = dirname(__FILE__);
 require_once($path . '/process/auth.php');
 checkLogin();
 ?>
 
 <?php
-$path = realpath(dirname(__FILE__));
+$path = dirname(__FILE__);
 require_once($path . '/class/order.php');
 checkLogin();
 ?>
 <?php
-$path = realpath(dirname(__FILE__));
+$path = dirname(__FILE__);
 require_once($path . '/class/orderItem.php');
 checkLogin();
 ?>
@@ -70,9 +70,9 @@ checkLogin();
                         <ul role="tablist" class="nav flex-column dashboard-list">
                             <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Dashboard</a></li>
                             <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
-                            <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
-                            <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
-                            <li onclick="viewToUpdate(<?php print($_SESSION['id_account']) ?>)"><a href="#" data-bs-toggle="tab" class="nav-link">Account details</a> </li>
+                            <!-- <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
+                            <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li> -->
+                            <li onclick="viewToUpdate('<?php print($_SESSION['id_customer']) ?>')"><a href="#" class="nav-link">Account details</a> </li>
                             <li onclick="logout()"><a href="#" data-bs-toggle="tab" class="nav-link">logout</a> </li>
                         </ul>
                     </div>
@@ -116,7 +116,7 @@ checkLogin();
                                                         <td><?php echo $row['date'] ?></td>
                                                         <td>
                                                             <div class="view">
-                                                                <sp  class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span>
+                                                                <span  class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span>
                                                             </div>
                                                         </td>
 
@@ -236,7 +236,7 @@ checkLogin();
         </div>
     </div>
     <!-- account area start -->
-    <div class="switchModal"></div>
+    
     <!-- Footer Area Start -->
     <?php
     $path = dirname(__FILE__);
@@ -249,7 +249,7 @@ checkLogin();
     $path = dirname(__FILE__);
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
-
+    <div id="switchModal"></div>
     <!-- JavaScripts -->
     <?php
     $path = dirname(__FILE__);
