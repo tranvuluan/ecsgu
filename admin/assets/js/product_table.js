@@ -32,15 +32,14 @@ function activeSellProduct(){
             activeSellProduct: true,
         },
         success: function(response){
-            console.log(response);
-            // if(response == 0){
-            //     console.log(response);
-            //     alert('Lỗi');
-            // }
-            // else{
-            //     alert('Đăng bán thành công');
-            //     window.location.reload();
-            // }
+            if(response == 0){
+                console.log(response);
+                alert('Lỗi');
+            }
+            else{
+                alert('Đăng bán thành công');
+                window.location.reload();
+            }
         }
     });
 }
