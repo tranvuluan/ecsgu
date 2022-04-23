@@ -470,7 +470,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" onclick="checkVoucher()" id="CheckVoucher">
+                                        <input class="form-check-input" type="checkbox" onclick="checkVoucher()" id="CheckVoucher" checked>
                                         <label class="form-check-label" for="CheckVoucher">Khuyến mãi</label>
                                     </div>
                                     <?php
