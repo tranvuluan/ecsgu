@@ -17,23 +17,35 @@ function upload(){
     let id_product = $('input[name="ProductId"]').val();
     let price = $('input[name="Price"]').val();
 
-    $.ajax({
-        url: './process/product_table.php',
-        type: 'POST',
-        data: {
-            id_product: id_product,
-            price: price,
-            upload: true,
-        },
-        success: function(response){
-            if(response == 0){
-                console.log(response);
+    let checkBox = document.getElementById("CheckVoucher");
+
+    if(checkBox.checked == true){
+        let salepercent = $('input[name="Discount"]').val();
+        let startdate = $('input[name="StartDate"]').val();
+        let enddate = $('input[name="EndDate"]').val();
+
+
+        $.ajax({
+            url: './process/product_table.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                price: price,
+                salepercent:salepercent,
+                startdate:startdate,
+                enddate:enddate,
+                upload: true,
+            },
+            success: function(response){
+                if(response == 0){
+                    console.log(response);
+                }
+                else{
+                    window.location.reload();
+                }
             }
-            else{
-                window.location.reload();
-            }
-        }
-    });
+        });
+    } 
 }
 
 function viewToUpdate(id){
@@ -50,7 +62,7 @@ function viewToUpdate(id){
     });
 }
 
-function update(id){
+function update(){
     event.preventDefault();
     let id_product = $('input[name="ProductId"]').val();
     let name = $('input[name="ProductName"]').val();
@@ -60,28 +72,72 @@ function update(id){
     let image = 'abc';
     let status = $('input[name="status"]:checked').val();
 
-    $.ajax({
-        url: './process/product_table.php',
-        type: 'POST',
-        data: {
-            id_product: id_product,
-            name: name,
-            id_categorychild: id_categorychild,
-            price: price,
-            id_brand: id_brand,
-            image: image,
-            status: status,
-            update: true,
-        },
-        success: function(response){
-            if(response == 0){
-                console.log(response);
+    let checkBox = document.getElementById("CheckVoucher");
+
+
+    if(checkBox.checked == true){
+        let salepercent = $('input[name="Discount"]').val();
+        let startdate = $('input[name="StartDate"]').val();
+        let enddate = $('input[name="EndDate"]').val();
+
+
+        $.ajax({
+            url: './process/product_table.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                name: name,
+                id_categorychild:id_categorychild,
+                price: price,
+                id_brand:id_brand,
+                image:image,
+                status:status,
+                salepercent:salepercent,
+                startdate:startdate,
+                enddate:enddate,
+                update: true,
+            },
+            success: function(response){
+                if(response == 0){
+                    console.log(response);
+                }
+                else{
+                    window.location.reload();
+                }
             }
-            else{
-                window.location.reload();
+        });
+    }
+    else{
+        let salepercent = "";
+        let startdate = "";
+        let enddate = "";
+
+        $.ajax({
+            url: './process/product_table.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                name: name,
+                id_categorychild:id_categorychild,
+                price: price,
+                id_brand:id_brand,
+                image:image,
+                status:status,
+                salepercent:salepercent,
+                startdate:startdate,
+                enddate:enddate,
+                update: true,
+            },
+            success: function(response){
+                if(response == 0){
+                    console.log(response);
+                }
+                else{
+                    window.location.reload();
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 function checkVoucher(){

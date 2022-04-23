@@ -49,7 +49,7 @@ class ProductSale{
         $sale_percent = $this->conn->real_escape_string($sale_percent);
         $start_date = $this->conn->real_escape_string($start_date);
         $end_date = $this->conn->real_escape_string($end_date);
-        $sql = "INSERT INTO tbl_product_sale(`id_product`, `sale_percent`, `start_date`, `end_date`) VALUES ('$id_product', '$sale_percent', '$start_date', '$end_date')";
+        $sql = "INSERT INTO tbl_product_sale(`id_product`, `salepercent`, `startdate`, `enddate`) VALUES ('$id_product', '$sale_percent', '$start_date', '$end_date')";
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -59,7 +59,14 @@ class ProductSale{
         $sale_percent = $this->conn->real_escape_string($sale_percent);
         $start_date = $this->conn->real_escape_string($start_date);
         $end_date = $this->conn->real_escape_string($end_date);
-        $sql = "UPDATE tbl_product_sale SET `sale_percent` = '$sale_percent', `start_date` = '$start_date', `end_date` = '$end_date' WHERE `id_product` = '$id_product'";
+        $sql = "UPDATE tbl_product_sale SET `salepercent` = '$sale_percent', `startdate` = '$start_date', `enddate` = '$end_date' WHERE `id_product` = '$id_product'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    public function delete($id_product){
+        $id_product = $this->conn->real_escape_string($id_product);
+        $sql = "DELETE FROM tbl_product_sale WHERE `id_product` = '$id_product'";
         $result = $this->conn->query($sql);
         return $result;
     }

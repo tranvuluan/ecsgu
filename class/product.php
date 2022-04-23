@@ -84,7 +84,7 @@ class Product{
     public function active($id_product, $price){
         $id_product = $this->conn->real_escape_string($id_product);
         $price = $this->conn->real_escape_string($price);
-        $sql = "UPDATE tbl_product SET status = 1, `price` = $price  WHERE id_product = '$id_product'";
+        $sql = "UPDATE tbl_product SET status = 2, `price` = $price  WHERE id_product = '$id_product'";
         $result = $this->conn->query($sql);
         return $result;
     }
