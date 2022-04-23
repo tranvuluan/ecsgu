@@ -206,13 +206,39 @@ function verifyEmail() {
         data: {
             username: userReister.username,
             email: userReister.email,
+            phone: userReister.phone,
+            address: userReister.address,
+            fullname: userReister.fullname,
+            respassword: userReister.respassword,
             registerCode: registerCode
         },
         success: function (response) {
-            
+            $.ajax({
+                url: './process/auth.php',
+                type: 'POST',
+                data: {
+                    username: userReister.username,
+                    email: userReister.email,
+                    phone: userReister.phone,
+                    address: userReister.address,
+                    fullname: userReister.fullname,
+                    respassword: userReister.respassword,
+                    register: true,
+                },
+                success: function (response) {
+                    if (response == 0) {
+                        console.log(response);
+                    }
+                    else {
+                        console.log(response);
+                        location.reload();
+                    }
+                }
+            });
+            console.log(response)
             alert(response.message);
             location.reload();
-        }, 
+        },
         error: function (response) {
             console.log(response);
             alert(response.responseJSON.message);

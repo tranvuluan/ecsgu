@@ -1,20 +1,25 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/product.php';
+require_once $path . '/../class/productSale.php';
 require_once $path . '/../class/categoryChild.php';
 require_once $path . '/../class/brand.php';
 require_once $path . '/../class/configurable_product.php';
+require_once $path . '/../class/voucher.php';
 ?>
 
 <?php
 if (isset($_POST['view']) && $_POST['id']) {
     $id = $_POST['id'];
     $productModel = new Product();
+    $productSaleModel = new ProductSale();
     $categoryChildModel = new CategoryChild();
     $brandModel = new Brand();
+    $voucherModel = new Voucher();
     $configurableProductModel = new ConfigurableProduct();
     $viewProduct = $productModel->getProductById($id)->fetch_assoc();
-    if ($viewProduct) {
+    $viewProductSale = $productSaleModel->getProductSales()->fetch_assoc();
+    if ($viewProduct['id_product'] === $viewProductSale['id_product']) {
 ?>
         <div class="modal-dialog" role="document">
             <div class="modal-content ">
@@ -32,6 +37,15 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" readonly>
                                 </div>
                                 <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Thương hiệu</label>
+                                    <?php
+                                    $getNameBrand = $brandModel->getBrandById($viewProduct['id_brand'])->fetch_assoc();
+                                    if ($getNameBrand) {
+                                    ?>
+                                        <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="<?php echo $getNameBrand['name'] ?>" name="voucherId" readonly>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Danh mục</label>
@@ -48,6 +62,165 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     <label for="validationCustom01" class="form-label">Giá</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="Price" value="<?php echo $viewProduct['price'] ?>" name="voucherId" required>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <label for="validationCustom04" class="form-label">Trạng thái</label>
+                                    <?php
+                                    if ($viewProduct['status'] == 1) {
+                                    ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1" checked="">
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2">
+                                            <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
+                                        </div>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2" checked="">
+                                            <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="status" id="CheckVoucher" checked>
+                                        <label class="form-check-label" for="CheckVoucher">Khuyến mãi</label>
+                                    </div>
+                                    <div id="voucher">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="validationCustomUsername" class="form-label">Discount percent</label>
+                                                <div class="input-group has-validation">
+                                                    <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                                    <input type="text" class="form-control" id="validationDiscount" name="discount" value="<?php echo $viewProductSale['salepercent'] ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="" class="form-label">Start date</label>
+                                                <input type="date" class="form-control" value="<?php echo $viewProductSale['startdate'] ?>">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="" class="form-label">End date</label>
+                                                <input type="date" class="form-control" value="<?php echo $viewProductSale['enddate'] ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="validationCustom01" class="form-label">Hình ảnh</label>
+                                </div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12">
+
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="product-box border" style="width:10%">
+                                            <img src="<?php echo $viewProduct['image'] ?>" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="table-responsive mt-2">
+                                    <table class="table align-middle mb-0 table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Chọn</th>
+                                                <th>SKU</th>
+                                                <th>Chọn kích cỡ</th>
+                                                <th>Trạng thái</th>
+                                                <th>Số lượng</th>
+                                                <th>Đã bán</th>
+                                                <th>Hình ảnh</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        $getConfigurableProduct = $configurableProductModel->getConfigurableProductById($id);
+                                        if ($getConfigurableProduct) {
+                                            while ($rowCheck = $getConfigurableProduct->fetch_assoc()) {
+                                        ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="checkbox"></td>
+                                                        <td><?php echo $rowCheck['sku'] ?></td>
+                                                        <td><?php echo $rowCheck['option'] ?></td>
+                                                        <td>
+                                                            <?php
+                                                            $getStatus = $configurableProductModel->getConfigurableProductById($rowCheck['id_product']);
+                                                            if ($getStatus) {
+                                                                $rowStatus = $getStatus->fetch_assoc();
+                                                                if ($rowStatus['inventory_status'] == 1) {
+                                                            ?>
+                                                                    <div class="badge bg-primary">Còn hàng</div>
+                                                                <?php
+
+                                                                } else {
+                                                                ?>
+                                                                    <div class="badge bg-danger">Hết</div>
+                                                            <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?php echo $rowCheck['stock'] ?></td>
+                                                        <td><?php echo $rowCheck['quantity_sold'] ?></td>
+                                                        <td>abc</td>
+                                                    </tr>
+                                                </tbody>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="row">
+                                    <div class="col-md-10"></div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-primary">Đăng Bán</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    } else {
+    ?>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="mb-0">Thông tin sản phẩm</h6>
+                        <div class="p-4 border rounded">
+                            <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="upload()">
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
+                                    <input type="text" class="form-control" id="id_product" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" readonly>
+                                </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Thương hiệu</label>
                                     <?php
@@ -59,6 +232,51 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     }
                                     ?>
                                 </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Danh mục</label>
+                                    <?php
+                                    $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($viewProduct['id_categorychild'])->fetch_assoc();
+                                    if ($getNameCategoryChild) {
+                                    ?>
+                                        <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $getNameCategoryChild['name'] ?>" name="voucherId" readonly>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Giá</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="Price" value="<?php echo $viewProduct['price'] ?>" name="voucherId" required>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="validationCustom04" class="form-label">Trạng thái</label>
+                                    <?php
+                                    if ($viewProduct['status'] == 1) {
+                                    ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1" checked="">
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2">
+                                            <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
+                                        </div>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2" checked="">
+                                            <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+
                                 <div class="col-md-12">
                                 </div>
                                 <div class="col-md-12">
@@ -247,7 +465,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                             <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2">
                                             <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
                                         </div>
                                     <?php
@@ -258,12 +476,34 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                             <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" checked="">
+                                            <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault2" checked="">
                                             <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
                                         </div>
                                     <?php
                                     }
                                     ?>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="status" onclick="checkVoucher()" id="CheckVoucher">
+                                        <label class="form-check-label" for="CheckVoucher">Khuyến mãi</label>
+                                    </div>
+                                    <div id="voucher" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="" class="form-label">Mã khuyến mãi</label>
+                                                <input type="text" class="form-control" id="validationCustom01" name="Price" value="" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="" class="form-label">Start date</label>
+                                                <input type="date" class="form-control">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="" class="form-label">End date</label>
+                                                <input type="date" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="input-group mb-3">

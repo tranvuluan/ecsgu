@@ -83,3 +83,15 @@ function update(id){
         }
     });
 }
+
+function checkVoucher(){
+    let checkBox = document.getElementById("CheckVoucher");
+    let formVoucher = document.getElementById("voucher");
+
+    if(checkBox.checked == true){
+        formVoucher.style.display = "block";
+    }
+    else{
+        formVoucher.style.display = "none";
+    }
+}

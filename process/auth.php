@@ -40,10 +40,9 @@ function checkLogin()
 ?>
 
 <?php
-if (isset($_POST['register']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['fullname'])) {
+if (isset($_POST['register']) && isset($_POST['username']) && isset($_POST['respassword']) && isset($_POST['fullname'])) {
     $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirmpassword = $_POST['confirmpassword'];
+    $password = $_POST['respassword'];
     $email = $_POST['email'];
     $fullname = $_POST['fullname'];
     $address = $_POST['address'];
@@ -52,15 +51,14 @@ if (isset($_POST['register']) && isset($_POST['username']) && isset($_POST['pass
     $point = 0;
     $createdate = date('Y-m-d');
 
-    if ($password == $confirmpassword) {
-        $addAccount = $AccountModel->insert($id_customer, $username, $password);
-        if ($addAccount) {
-            $addCustomer = $CustomerModel->insert($id_customer, $id_customer, $fullname, $email, $address, $phone, $createdate, $point);
-            if ($addCustomer) {
-                echo 1;
-            } else {
-                echo 0;
-            }
+    
+    $addAccount = $AccountModel->insert($id_customer, $username, $password);
+    if ($addAccount) {
+        $addCustomer = $CustomerModel->insert($id_customer, $id_customer, $fullname, $email, $address, $phone, $createdate, $point);
+        if ($addCustomer) {
+            echo 1;
+        } else {
+            echo 0;
         }
     }
 }
