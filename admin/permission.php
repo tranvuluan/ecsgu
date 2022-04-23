@@ -125,20 +125,17 @@ require_once $path . '/../class/permission.php';
                                             if ($positions) {
                                                 while ($row = $positions->fetch_assoc()) {
                                             ?>
-                                                    <tr onclick="getPermission('<?php echo $row['id_position'] ?>')">
+                                                    <tr onclick="getPermissionByPositionId('<?php echo $row['id_position'] ?>')">
                                                         <td><?php echo $row['id_position'] ?></td>
                                                         <td>
                                                             <?php echo $row['name'] ?>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex align-items-center gap-3 fs-6">
-                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
-                                                                    <ion-icon name="eye-sharp"></ion-icon>
-                                                                </a>
-                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                                <a href="javascript:;" class="text-dark" data-toggle="modal" onclick="getModalUpdatePosition('<?php echo $row['id_position'] ?>')">
                                                                     <ion-icon name="pencil-sharp"></ion-icon>
                                                                 </a>
-                                                                <a href="javascript:;" class="text-dark">
+                                                                <a href="javascript:;" class="text-dark" onclick="deletePosition('<?php echo $row['id_position'] ?>')" >
                                                                     <ion-icon name="trash-sharp"></ion-icon>
                                                                 </a>
                                                             </div>
@@ -164,7 +161,7 @@ require_once $path . '/../class/permission.php';
                                 <h6 class="mb-0">Danh sách quyền</h6>
                             </div>
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body" id="list-permission">
                                     <?php
                                     $path = dirname(__FILE__);
                                     require_once $path . '/../class/permission.php';

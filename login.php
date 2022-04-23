@@ -98,9 +98,13 @@ $path = realpath(dirname(__FILE__));
                             </a>
                             <!-- Khi mà bấm Login hay Register thì chuyển form -->
                             <!-- Form lg3 là form verification -->
-                            <a data-bs-toggle="tab" href="#lg3"> 
+                            <a data-bs-toggle="tab" href="#lg2"> 
                                 <h4>register</h4>
                             </a>
+                            <a data-bs-toggle="tab" id="verifymail" class="d-none" href="#lg3"> 
+                                <h4>Verify</h4>
+                            </a>
+                    
                         </div>
                         <div class="tab-content">
                             <div id="lg1" class="tab-pane active">
@@ -169,7 +173,7 @@ $path = realpath(dirname(__FILE__));
                                                 </div>
                                                 <div class="">
                                                     <div class="d-grid">
-                                                        <button type="button" onclick="register()" class="btn btn-dark">Register</button>
+                                                        <button type="button"  onclick="register()" class="btn btn-dark">Register</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,20 +201,20 @@ $path = realpath(dirname(__FILE__));
                                     <div class="login-register-form">
                                         <form action="#" method="post">
                                             <label for="" class="form-label">Type your verification code:</label>
-                                            <input type="password" name="user-password" id="confirm-password" />
+                                            <input type="text" name="registerCode"/>
                                             <div class="button-box">
                                                 <div class="row">
                                                     <div class="col-md-3"></div>
                                                     <div class="col-md-6">
                                                         <div class="d-grid">
-                                                            <button type="button" class="btn btn-dark">Confirm</button>
+                                                            <button type="button" class="btn btn-dark" onclick="verifyEmail()">Confirm</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3"></div>
                                                     <br><br><br>
                                                     <div class="col-md-12">
                                                         <div class="text-center">
-                                                            <p class="mb-0">Have not received verification code yet? <a href="#">Resend</a></p>
+                                                            <p class="mb-0">Have not received verification code yet? <a href="#" onclick="resendEmail()">Resend</a></p>
                                                         </div>
                                                     </div>
                                                 </div>

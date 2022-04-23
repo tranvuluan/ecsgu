@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 });
 console.log('load');
-
+let userReister;
 
 function login() {
     var username = $('#username').val().trim();
@@ -127,42 +127,40 @@ function register() {
             document.getElementById("confirm-password").style.borderColor = "green";
             document.getElementById("txtConfirmPassword").style.display = "none";
         }
-        if(respassword != confirmpassword){
+        if (respassword != confirmpassword) {
             document.getElementById("confirm-password").style.borderColor = "red";
             document.getElementById("confirm-password").style.marginBottom = "0px";
             document.getElementById("txtConfirmPassword").style.display = "block";
         }
 
     } else {
-        window.location.href = "#lg3";
+        userReister = {
+            fullname: fullname,
+            address: address,
+            phone: phone,
+            username: resusername,
+            email: email,
+            respassword: respassword,
+            confirmpassword: confirmpassword
+        }
+        $.ajax({
+            url: 'http://14.225.192.186:5555/api/authSendMail',
+            type: 'POST',
+            data: {
+                username: userReister.username,
+                email: userReister.email
+            },
+            success: function (response) {
+                console.log(response)
+                $('#verifymail')[0].click();
+            }
+
+        });
     }
-    // $.ajax({
-    //     url: './process/auth.php',
-    //     type: 'POST',
-    //     data: {
-    //         register: true,
-    //         username: username,
-    //         email: email,
-    //         password: password,
-    //         fullname: fullname,
-    //         address: address,
-    //         phone: phone,
-    //         confirmpassword: confirmpassword
-
-    //     },
-    //     success: function (response) {
-
-    //         console.log(response)
-    //         if (response == 0) {
-    //             console.log(response);
-    //         }
-    //         else {
-    //             window.location.href = "./login.php";
-    //         }
-    //     }
-
-    // });
 }
+
+
+
 
 function logout() {
     console.log('clic')
@@ -170,7 +168,8 @@ function logout() {
         url: './process/auth.php',
         type: 'POST',
         data: {
-            logout: true
+            username: userReister.username,
+            email: userReister.email
         },
         success: function (response) {
             console.log(response)
@@ -181,5 +180,43 @@ function logout() {
                 window.location.href = "./index.php";
             }
         }
+    });
+}
+
+function resendEmail() {
+    $.ajax({
+        url: 'http://14.225.192.186:5555/api/authSendMail',
+        type: 'POST',
+        data: {
+            username: userReister.username,
+            email: userReister.email
+        },
+        success: function (response) {
+            console.log(response)
+        }
+
+    });
+}
+
+function verifyEmail() {
+    let registerCode = $('input[name="registerCode"]').val().trim();
+    $.ajax({
+        url: 'http://14.225.192.186:5555/api/verifyEmail',
+        type: 'POST',
+        data: {
+            username: userReister.username,
+            email: userReister.email,
+            registerCode: registerCode
+        },
+        success: function (response) {
+            
+            alert(response.message);
+            location.reload();
+        }, 
+        error: function (response) {
+            console.log(response);
+            alert(response.responseJSON.message);
+        }
+
     });
 }

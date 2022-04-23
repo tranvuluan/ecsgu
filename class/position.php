@@ -47,7 +47,7 @@ class Position{
     public function insert($id_position, $name){
         $id_position = $this->conn->real_escape_string($id_position);
         $name = $this->conn->real_escape_string($name);
-        $sql = "INSERT INTO tbl_position(`id_position`, `name` VALUES('$id_position','$name')";
+        $sql = "INSERT INTO tbl_position(`id_position`, `name`) VALUES('$id_position','$name')";
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -55,7 +55,7 @@ class Position{
     public function update($id_position, $name){
         $id_position = $this->conn->real_escape_string($id_position);
         $name = $this->conn->real_escape_string($name);
-        $sql = "UPDATE tbl_position SET `name` = '$name' WHERE id_position = '$name'";
+        $sql = "UPDATE tbl_position SET `name` = '$name' WHERE id_position = '$id_position'";
         $result = $this->conn->query($sql);
         return $result;
     }

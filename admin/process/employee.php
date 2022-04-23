@@ -79,26 +79,33 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                             </div>
 
                             <div class="col-md-6">
-                                <label for="validationCustom04" class="form-label">Trạng thái</label>
-                                <?php
-                                $accountModel = new Account();
-                                $getAccount = $accountModel->getAccountById($getEmployee['id_employee'])->fetch_assoc();
-                                if ($getAccount['status'] == 1) {
-                                ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <input class="form-check-input" type="radio" name="status" value="1" checked="">
-                                        <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="validationCustom04" class="form-label">Trạng thái</label>
+                                        <?php
+                                        $accountModel = new Account();
+                                        $getAccount = $accountModel->getAccountById($getEmployee['id_employee'])->fetch_assoc();
+                                        if ($getAccount['status'] == 1) {
+                                        ?>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                <input class="form-check-input" type="radio" name="status" value="1" checked="">
+                                                <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" checked="">
+                                                <input class="form-check-input" type="radio" name="status" value="0">
+                                                <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
+                                            </div>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked="">
-                                        <input class="form-check-input" type="radio" name="status" value="0">
-                                        <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
+                                    <div class="col-6">
+                                        <img src="" alt="" id="image_employee">
                                     </div>
+                                </div>
                             </div>
 
                         <?php
-                                } else {
+                                        } else {
                         ?>
 
                             <div class="form-check">
@@ -112,8 +119,10 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
 
 
                         <?php
-                                }
+                                        }
                         ?>
+                        <img src="<?php echo $getEmployee['image'] ?>" alt="" style="width:200px;">
+
                     </div>
                     </form>
                 </div>
@@ -204,14 +213,31 @@ if (isset($_POST['viewToAdd'])) {
                                 <div id="txtUser" class="invalid-feedback">Enter User!</div>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom04" class="form-label">Trạng thái</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" checked="">
-                                    <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="validationCustom04" class="form-label">Trạng thái</label>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="status" value="1" checked="">
+                                            <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" checked="">
+                                            <input class="form-check-input" type="radio" name="status" value="0">
+                                            <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                            <input type="file" class="form-control" id="fileEmployeeImage" onchange="changeAddEmployeeImage()">
+                                        </div>
+                                        <img src="" alt="" style="width:200px" id="imageEmployee">
+                                        <div class="spinner-border d-none" role="status" id="loadingImage">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -252,7 +278,7 @@ if (isset($_POST['add'])) {
     $address = $_POST['address'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    $image = "abc";
+    $image = $_POST['image'];
     $cmnd = $_POST['cmnd'];
 
     $username = $_POST['username'];
@@ -373,14 +399,39 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id'])) {
                                     <div id="txtUser" class="invalid-feedback">Enter User!</div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="validationCustom04" class="form-label">Trạng thái</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">Hoạt động</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" checked="">
-                                        <label class="form-check-label" for="flexRadioDefault2">Khóa</label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="validationCustom04" class="form-label">Trạng thái</label>
+                                            <?php
+                                            echo ' <div class="form-check">';
+                                            if ($getAccount['status'] == '1')
+                                                echo     '<input class="form-check-input" type="radio" name="status"  value="1" checked>';
+                                            else
+                                                echo     '<input class="form-check-input" type="radio" name="status"  value="1" >';
+                                            echo     '<label class="form-check-label" for="flexRadioDefault2">Hoạt động</label>';
+                                            echo '</div>';
+                                            echo ' <div class="form-check">';
+                                            if ($getAccount['status'] == '0')
+                                                echo     '<input class="form-check-input" type="radio" name="status"  value="0" checked>';
+                                            else
+                                                echo     '<input class="form-check-input" type="radio" name="status"  value="0" >';
+                                            echo '<label class="form-check-label" for="flexRadioDefault2">Khóa</label>';
+                                            echo     '</div>';
+
+
+                                            ?>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                                <input type="file" class="form-control" id="fileEmployeeImage" onchange="changeAddEmployeeImage()">
+                                            </div>
+                                            <img src="<?php echo $getEmployee['image'] ?>" alt="" style="width:200px" id="imageEmployee">
+                                            <div class="spinner-border d-none" role="status" id="loadingImage">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="col-md-6">
@@ -430,7 +481,7 @@ if (isset($_POST['update'])) {
     $address = $_POST['address'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    $image = "abc";
+    $image = $_POST['image'];
     $cmnd = $_POST['cmnd'];
 
     // $username = $_POST['username'];
