@@ -116,7 +116,7 @@ checkLogin();
                                                         <td><?php echo $row['date'] ?></td>
                                                         <td>
                                                             <div class="view">
-                                                                <a href="javascripts:" class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</a>
+                                                                <sp  class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span>
                                                             </div>
                                                         </td>
 

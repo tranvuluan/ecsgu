@@ -1,9 +1,6 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/customer.php';
-?>
-<?php
-$path = dirname(__FILE__);
 require_once $path . '/../class/orderItem.php';
 ?>
 
@@ -12,41 +9,47 @@ require_once $path . '/../class/orderItem.php';
 if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
     $id_order = $_POST['id_order'];
 ?>
-    <div class="tab-pane fade" id="orders">
-        <h4>Orders</h4>
-        <div class="table_page table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID Order</th>
-                        <th>ID Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <?php
-                $OrderItem = new OrderItem();
-                $orderList = $OrderItem->getOrderItems();
-                if ($orderList) {
-                    while ($row = $orderList->fetch_assoc()) {
-                        if ($row['id_order'] == $id_order) {
-                ?>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo $row['id_order'] ?></td>
-                                    <td><?php echo $row['id_product'] ?></td>
-                                    <td><?php echo $row['quantiry'] ?></td>
-                                    <td><?php echo $row['price'] ?></td>
-                                </tr>
-                            </tbody>
-                <?php
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Orders</h4>
+                <div class="table_page table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Order</th>
+                                <th>ID Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        $OrderItem = new OrderItem();
+                        $orderList = $OrderItem->getOrderItems();
+                        if ($orderList) {
+                            while ($row = $orderList->fetch_assoc()) {
+                                if ($row['id_order'] == $id_order) {
+                        ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?php echo $row['id_order'] ?></td>
+                                            <td><?php echo $row['id_product'] ?></td>
+                                            <td><?php echo $row['quantity'] ?></td>
+                                            <td><?php echo $row['price'] ?></td>
+                                        </tr>
+                                    </tbody>
+                        <?php
+                                }
+                            }
                         }
-                    }
-                }
-                ?>
-            </table>
+                        ?>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+
 
 <?php
 }

@@ -1,19 +1,18 @@
 function viewOrderDetail(id_order){
     console.log(id_order);
     $.ajax({
-        url: './process/account.php',
+        url: './../process/account.php',
         type: 'POST',
         data: {
             id_order: id_order,
             viewOrderDetail: true
         },
         success: function(data){
-            $('#switchModal').html($('<div class="tab-pane fade">' +data+' <div>'));
+            console.log(data);
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }
-
-
 
 
 function viewToUpdate(id_account){
