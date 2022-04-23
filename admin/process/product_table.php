@@ -71,7 +71,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1" checked="">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2">
@@ -82,7 +82,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2" checked="">
@@ -257,7 +257,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1" checked="">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2">
@@ -268,7 +268,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2" checked="">
@@ -522,7 +522,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1" checked="">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2">
@@ -533,7 +533,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2" checked="">
@@ -727,7 +727,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1" checked="">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2">
@@ -738,7 +738,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đã đăng bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault2" checked="">

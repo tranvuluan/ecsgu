@@ -42,7 +42,7 @@
             <div class="parent-icon">
               <i class="bi bi-pencil-square"></i>
             </div>
-            <div class="menu-title">Sản phẩm đã bán</div>
+            <div class="menu-title">Sản phẩm đã đăng bán</div>
           </a>
         </li>
       </ul>

@@ -120,7 +120,8 @@ require_once $path . '/../class/configurable_product.php';
                                     </tr>
                                 </thead>
                                 <?php
-                                $getDetailProduct = $productModel->getProductByStatus(2);
+                                $status = 2;
+                                $getDetailProduct = $productModel->getProductByStatus($status);
                                 if ($getDetailProduct) {
                                     while ($row = $getDetailProduct->fetch_assoc()) {
                                 ?>
@@ -171,7 +172,7 @@ require_once $path . '/../class/configurable_product.php';
                                                     <?php
                                                     if ($row['status'] == 2) {
                                                     ?>
-                                                        <div class="badge bg-primary">Đã bán</div>
+                                                        <div class="badge bg-primary">Đã đăng bán</div>
                                                     <?php
                                                     } else {
                                                     ?>
