@@ -119,9 +119,11 @@ require_once $path . '/../class/configurable_product.php';
                                     </tr>
                                 </thead>
                                 <?php
-                                $getDetailProduct = $productModel->getProductByStatus(0);
+                                $getDetailProduct = $productModel->getProducts();
                                 if ($getDetailProduct) {
                                     while ($row = $getDetailProduct->fetch_assoc()) {
+                                        if ($row['status'] != '0')
+                                            continue;
                                 ?>
                                         <tbody>
                                             <tr>

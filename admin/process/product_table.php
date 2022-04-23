@@ -25,11 +25,11 @@ if (isset($_POST['view']) && $_POST['id']) {
                             <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="activeSellProduct()">
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
-                                    <input type="text" class="form-control" id="id_product" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" readonly>
+                                    <input type="text" class="form-control" id="id_product" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" >
                                 </div>
                                 <div class="col-md-4">
                                 </div>
@@ -39,14 +39,14 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($viewProduct['id_categorychild'])->fetch_assoc();
                                     if ($getNameCategoryChild) {
                                     ?>
-                                        <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $getNameCategoryChild['name'] ?>" name="voucherId" readonly>
+                                        <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $getNameCategoryChild['name'] ?>" >
                                     <?php
                                     }
                                     ?>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Giá bán (đ)</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="Price" value="<?php echo $viewProduct['price'] ?>" name="voucherId" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="Price" value="<?php echo $viewProduct['price'] ?>" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Thương hiệu</label>
@@ -54,7 +54,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     $getNameBrand = $brandModel->getBrandById($viewProduct['id_brand'])->fetch_assoc();
                                     if ($getNameBrand) {
                                     ?>
-                                        <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="<?php echo $getNameBrand['name'] ?>" name="voucherId" readonly>
+                                        <input type="text" class="form-control" id="validationCustom01" name="BrandName" value="<?php echo $getNameBrand['name'] ?>" readonly>
                                     <?php
                                     }
                                     ?>
@@ -132,7 +132,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                 <div class="row">
                                     <div class="col-md-10"></div>
                                     <div class="col-md-2">
-                                        <button class="btn btn-primary" >Đăng Bán</button>
+                                        <button class="btn btn-primary">Đăng Bán</button>
                                     </div>
                                 </div>
                             </form>
@@ -179,15 +179,15 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                             <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="update()">
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Thương hiệu</label>
-                                    <select name="id_brand" id="" class="form-select" disabled>
+                                    <select name="id_brand" id="" class="form-select">
                                         <?php
                                         $getNameBrand = $brandModel->getBrands();
                                         if ($getNameBrand) {
@@ -208,7 +208,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Danh mục</label>
-                                    <select name="id_categorychild" id="" class="form-select" disabled>
+                                    <select name="id_categorychild" id="" class="form-select">
                                         <?php
                                         $getNameCategoryChild = $categoryChildModel->getCategoryChilds();
                                         if ($getNameCategoryChild) {
@@ -229,7 +229,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Giá bán (đ)</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="price" value="<?php echo $viewProduct['price'] ?>" name="voucherId" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="price" value="<?php echo $viewProduct['price'] ?>" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom04" class="form-label">Trạng thái</label>
@@ -237,19 +237,19 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     if ($viewProduct['status'] == 1) {
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="1"  checked>
-                                            <label class="form-check-label" for="flexRadioDefault1">Đang bán</label>
+                                            <input class="form-check-input" type="radio" name="status" value="1" checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">Mở bán bán</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="2" >
+                                            <input class="form-check-input" type="radio" name="status" value="2">
                                             <label class="form-check-label" for="flexRadioDefault1">Khóa</label>
                                         </div>
                                     <?php
-                                    } else if ($viewProduct['status'] == 2){
+                                    } else if ($viewProduct['status'] == 2) {
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="1"  >
-                                            <label class="form-check-label" for="flexRadioDefault1">Đang bán</label>
+                                            <input class="form-check-input" type="radio" name="status" value="1">
+                                            <label class="form-check-label" for="flexRadioDefault1">Mở bán</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="2" checked>
@@ -262,21 +262,23 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                 <div class="col-md-12">
                                     <label for="validationCustom01" class="form-label">Hình ảnh</label>
                                 </div>
-                                <div class="col-md-12"></div>
-                                <div class="col-md-12"></div>
                                 <div class="col-md-12">
-
-                                    <div class="d-flex align-items-center gap-3">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                        <input type="file" class="form-control" id="fileImageProductInAddWarehouse" onchange="changeProductImage()">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-flex align-items-center gap-3" >
+                                        <div class="spinner-border d-none" id="loadingImage" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                         <div class="product-box border" style="width:10%">
-                                            <img src="<?php echo $viewProduct['image'] ?>" alt="">
+                                            <img id="imageProduct" src="<?php echo $viewProduct['image'] ?>"  alt="">
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-12"></div>
-                                <div class="col-md-12"></div>
-                                <div class="col-md-12"></div>
-                                <div class="col-md-12"></div>
+                                <br>
                                 <div class="table-responsive mt-2">
                                     <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
@@ -358,7 +360,7 @@ if (isset($_POST['activeSellProduct']) && $_POST['id_product']) {
 }
 ?>
 
-<?php 
+<?php
 if (isset($_POST['update'])) {
     $id_product = $_POST['id_product'];
     $id_brand = $_POST['id_brand'];
@@ -369,7 +371,7 @@ if (isset($_POST['update'])) {
     $status = $_POST['status'];
 
     $productModel = new Product();
-    $update = $upproductModeldat->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
+    $update = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
     if ($update) {
         echo 1;
     } else {
