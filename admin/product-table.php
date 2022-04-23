@@ -113,17 +113,17 @@ require_once $path . '/../class/configurable_product.php';
                                         <th>Tên sản phẩm</th>
                                         <th>Danh mục</th>
                                         <th>Thương hiệu</th>
-                                        <th>Số lượng</th>
                                         <th>Giá</th>
                                         <th>Trạng thái</th>
-                                        <th>Actions</th>
+                                        <th>Đăng bán</th>
                                     </tr>
                                 </thead>
                                 <?php
-                                $status = 1;
-                                $getDetailProduct = $productModel->getProductByStatus($status);
+                                $getDetailProduct = $productModel->getProducts();
                                 if ($getDetailProduct) {
                                     while ($row = $getDetailProduct->fetch_assoc()) {
+                                        if ($row['status'] != '0')
+                                            continue;
                                 ?>
                                         <tbody>
                                             <tr>
@@ -155,33 +155,16 @@ require_once $path . '/../class/configurable_product.php';
                                                 <?php
                                                 }
                                                 ?>
-                                                <?php
-                                                $getQuantity = $configurableProductModel->getConfigurableProductById($row['id_product']);
-                                                if ($getQuantity) {
-                                                    $quantity = 0;
-                                                    while ($rowQuantity = $getQuantity->fetch_assoc()) {
-                                                        $quantity += $rowQuantity['stock'];
-                                                    }
-                                                ?>
-                                                    <td><?php echo $quantity ?></td>
-                                                <?php
-                                                }
-                                                ?>
                                                 <td><?php echo $row['price'] ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($row['status'] == 2) {
-                                                    ?>
-                                                        <div class="badge bg-success">Đã đăng bán</div>
-                                                    <?php
-                                                    }
                                                     if ($row['status'] == 1) {
                                                     ?>
-                                                        <div class="badge bg-primary">Chưa đăng bán</div>
+                                                        <div class="badge bg-primary">Đang bán</div>
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <div class="badge bg-danger">Đang chờ</div>
+                                                        <div class="badge bg-danger">Chưa đăng bán</div>
                                                     <?php
                                                     }
                                                     ?>
@@ -190,98 +173,6 @@ require_once $path . '/../class/configurable_product.php';
                                                     <div class="d-flex align-items-center gap-3 fs-6">
                                                         <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Xem và Đăng Bán" onclick="getDetail('<?php print $row['id_product'] ?>')">
                                                             <ion-icon name="cloud-upload-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" onclick="viewToUpdate('<?php print $row['id_product'] ?>')" aria-label="Edit">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                <?php
-                                    }
-                                }
-                                ?>
-                                <?php
-                                $status = 0;
-                                $getDetailProduct = $productModel->getProductByStatus($status);
-                                if ($getDetailProduct) {
-                                    while ($row = $getDetailProduct->fetch_assoc()) {
-                                ?>
-                                        <tbody>
-                                            <tr>
-                                                <td><?php echo $row['id_product'] ?></td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="product-box border">
-                                                            <img src="<?php echo $row['image'] ?>" alt="">
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h6 class="product-name mb-1"><?php echo $row['name'] ?></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <?php
-                                                $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($row['id_categorychild'])->fetch_assoc();
-                                                if ($getNameCategoryChild) {
-                                                ?>
-                                                    <td><?php echo $getNameCategoryChild['name'] ?></td>
-                                                <?php
-                                                }
-                                                ?>
-
-                                                <?php
-                                                $getNameBrand = $brandModel->getBrandById($row['id_brand'])->fetch_assoc();
-                                                if ($getNameBrand) {
-                                                ?>
-                                                    <td><?php echo $getNameBrand['name'] ?></td>
-                                                <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                $getQuantity = $configurableProductModel->getConfigurableProductById($row['id_product']);
-                                                if ($getQuantity) {
-                                                    $quantity = 0;
-                                                    while ($rowQuantity = $getQuantity->fetch_assoc()) {
-                                                        $quantity += $rowQuantity['stock'];
-                                                    }
-                                                ?>
-                                                    <td><?php echo $quantity ?></td>
-                                                <?php
-                                                }
-                                                ?>
-                                                <td><?php echo $row['price'] ?></td>
-                                                <td>
-                                                    <?php
-                                                    if ($row['status'] == 2) {
-                                                    ?>
-                                                        <div class="badge bg-success">Đã đăng bán</div>
-                                                    <?php
-                                                    }
-                                                    if ($row['status'] == 1) {
-                                                    ?>
-                                                        <div class="badge bg-primary">Chưa đăng bán</div>
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <div class="badge bg-danger">Đang chờ</div>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3 fs-6">
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Xem và Đăng Bán" onclick="getDetail('<?php print $row['id_product'] ?>')">
-                                                            <ion-icon name="cloud-upload-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" onclick="viewToUpdate('<?php print $row['id_product'] ?>')" aria-label="Edit">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
                                                         </a>
                                                     </div>
                                                 </td>

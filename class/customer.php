@@ -20,9 +20,20 @@ class Customer{
         }
     }
 
-    public function getCustomerById($id_customer) {
+    public function getCustomerByIdAccount($id_account) {
+        $id_account = $this->conn->real_escape_string($id_account);
+        $sql = "SELECT * FROM tbl_customer WHERE id_account = '$id_account'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+    public function getCustomerByIdCustomer($id_customer) {
         $id_customer = $this->conn->real_escape_string($id_customer);
-        $sql = "SELECT * FROM tbl_customer WHERE id_account = '$id_customer'";
+        $sql = "SELECT * FROM tbl_customer WHERE id_customer = '$id_customer'";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
@@ -34,7 +45,7 @@ class Customer{
 
     public function insert($id_customer, $id_account,$fullname, $email, $address, $phone, $createdate, $point){
         $id_customer = $this->conn->real_escape_string($id_customer);
-        $id_customer = $this->conn->real_escape_string($id_account);
+        $id_account = $this->conn->real_escape_string($id_account);
         $fullname = $this->conn->real_escape_string($fullname);
         $email = $this->conn->real_escape_string($email);
         $address = $this->conn->real_escape_string($address);
