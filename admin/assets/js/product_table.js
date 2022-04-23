@@ -45,7 +45,32 @@ function upload(){
                 }
             }
         });
-    } 
+    }else{
+        let salepercent = "";
+        let startdate = "";
+        let enddate = "";
+
+        $.ajax({
+            url: './process/product_table.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                price: price,
+                salepercent:salepercent,
+                startdate:startdate,
+                enddate:enddate,
+                upload: true,
+            },
+            success: function(response){
+                if(response == 0){
+                    console.log(response);
+                }
+                else{
+                    window.location.reload();
+                }
+            }
+        });
+    }
 }
 
 function viewToUpdate(id){
@@ -80,7 +105,6 @@ function update(){
         let startdate = $('input[name="StartDate"]').val();
         let enddate = $('input[name="EndDate"]').val();
 
-
         $.ajax({
             url: './process/product_table.php',
             type: 'POST',
@@ -98,6 +122,7 @@ function update(){
                 update: true,
             },
             success: function(response){
+
                 if(response == 0){
                     console.log(response);
                 }

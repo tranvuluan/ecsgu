@@ -414,14 +414,24 @@ if (isset($_POST['upload'])) {
 
     $productModel = new Product();
     $productSaleModel = new ProductSale();
-    $addProductSale = $productSaleModel->insert($id_product, $salepercent, $startdate, $enddate);
-    if ($addProductSale) {
+    if ($salepercent == "" || $startdate == "" || $enddate == "") {
         $activeProduct = $productModel->active($id_product, $price);
         if ($activeProduct) {
 
             echo "<script>alert('Đã đăng bán sản phẩm')</script>";
         } else {
             echo 0;
+        }
+    } else {
+        $addProductSale = $productSaleModel->insert($id_product, $salepercent, $startdate, $enddate);
+        if ($addProductSale) {
+            $activeProduct = $productModel->active($id_product, $price);
+            if ($activeProduct) {
+
+                echo "<script>alert('Đã đăng bán sản phẩm')</script>";
+            } else {
+                echo 0;
+            }
         }
     }
 }
@@ -861,7 +871,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
 ?>
 
 <?php
-if (isset($_POST['update']) && $_POST['id_product']) {
+if (isset($_POST['update'])) {
     $id_product = $_POST['id_product'];
     $name = $_POST['name'];
     $id_brand = $_POST['id_brand'];
@@ -879,12 +889,25 @@ if (isset($_POST['update']) && $_POST['id_product']) {
     $productSaleModel = new ProductSale();
     $updateProduct = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
     if ($updateProduct) {
-        if ($status == 1 || $salepercent=="" || $startdate=="" || $enddate=="") {
+        if ($status == 1 || $salepercent == "" || $startdate == "" || $enddate == "") {
             $deleteProductSale = $productSaleModel->delete($id_product);
             echo "1";
-        }
-        else {
-            $updateProductSale = $productSaleModel->update($id_product, $salepercent, $startdate, $enddate);
+        } else {
+            $showProductSale = $productSaleModel->getProductSales();
+            if ($showProductSale) {
+                while ($rowProductSale = $showProductSale->fetch_assoc()) {
+                    if ($rowProductSale['id_product'] == $id_product) {
+                        $updateProductSale = $productSaleModel->update($id_product, $salepercent, $startdate, $enddate);
+                        echo "1";
+                    } else {
+                        $insertProductSale = $productSaleModel->insert($id_product, $salepercent, $startdate, $enddate);
+                        echo "1";
+                    }
+                }
+            } else {
+                $insertProductSale = $productSaleModel->insert($id_product, $salepercent, $startdate, $enddate);
+                echo "1";
+            }
             echo "1";
         }
         echo "1";
