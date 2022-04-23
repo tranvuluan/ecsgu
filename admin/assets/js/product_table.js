@@ -12,7 +12,7 @@ function getDetail(id){
     });
 }
 
-function upload(){
+function activeSellProduct(){
     event.preventDefault();
     let id_product = $('input[name="ProductId"]').val();
     let price = $('input[name="Price"]').val();
@@ -22,14 +22,16 @@ function upload(){
         type: 'POST',
         data: {
             id_product: id_product,
-            price: price,
-            upload: true,
+            sell_price: price,
+            activeSellProduct: true,
         },
         success: function(response){
             if(response == 0){
                 console.log(response);
+                alert('Lỗi');
             }
             else{
+                alert('Đăng bán thành công');
                 window.location.reload();
             }
         }
@@ -45,12 +47,12 @@ function viewToUpdate(id){
             viewToUpdate: true,
         },
         success: function(data){
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal());
         }
     });
 }
 
-function update(id){
+function update(){
     event.preventDefault();
     let id_product = $('input[name="ProductId"]').val();
     let name = $('input[name="ProductName"]').val();
@@ -74,12 +76,13 @@ function update(id){
             update: true,
         },
         success: function(response){
-            if(response == 0){
-                console.log(response);
-            }
-            else{
-                window.location.reload();
-            }
+            console.log(response);
+            // if(response == 0){
+            //     console.log(response);
+            // }
+            // else{
+            //     window.location.reload();
+            // }
         }
     });
 }

@@ -22,7 +22,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                     <div class="card-body">
                         <h6 class="mb-0">Thông tin sản phẩm</h6>
                         <div class="p-4 border rounded">
-                            <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="upload()">
+                            <form class="row g-3 needs-validation" id="updateForm" method="POST" onsubmit="activeSellProduct()">
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Mã sản phẩm</label>
                                     <input type="text" class="form-control" id="id_product" name="ProductId" value="<?php echo $viewProduct['id_product'] ?>" name="voucherId" readonly>
@@ -45,7 +45,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     ?>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="validationCustom01" class="form-label">Giá</label>
+                                    <label for="validationCustom01" class="form-label">Giá bán (đ)</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="Price" value="<?php echo $viewProduct['price'] ?>" name="voucherId" required>
                                 </div>
                                 <div class="col-md-4">
@@ -83,13 +83,10 @@ if (isset($_POST['view']) && $_POST['id']) {
                                     <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>Chọn</th>
                                                 <th>SKU</th>
                                                 <th>Chọn kích cỡ</th>
                                                 <th>Trạng thái</th>
                                                 <th>Số lượng</th>
-                                                <th>Đã bán</th>
-                                                <th>Hình ảnh</th>
                                             </tr>
                                         </thead>
                                         <?php
@@ -99,7 +96,6 @@ if (isset($_POST['view']) && $_POST['id']) {
                                         ?>
                                                 <tbody>
                                                     <tr>
-                                                        <td><input type="checkbox"></td>
                                                         <td><?php echo $rowCheck['sku'] ?></td>
                                                         <td><?php echo $rowCheck['option'] ?></td>
                                                         <td>
@@ -122,8 +118,6 @@ if (isset($_POST['view']) && $_POST['id']) {
 
                                                         </td>
                                                         <td><?php echo $rowCheck['stock'] ?></td>
-                                                        <td><?php echo $rowCheck['quantity_sold'] ?></td>
-                                                        <td>abc</td>
                                                     </tr>
                                                 </tbody>
                                         <?php
@@ -138,7 +132,7 @@ if (isset($_POST['view']) && $_POST['id']) {
                                 <div class="row">
                                     <div class="col-md-10"></div>
                                     <div class="col-md-2">
-                                        <button class="btn btn-primary">Đăng Bán</button>
+                                        <button class="btn btn-primary" >Đăng Bán</button>
                                     </div>
                                 </div>
                             </form>
@@ -189,11 +183,11 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Tên sản phẩm</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="ProductName" value="<?php echo $viewProduct['name'] ?>" name="voucherId" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Thương hiệu</label>
-                                    <select name="id_brand" id="" class="form-select">
+                                    <select name="id_brand" id="" class="form-select" disabled>
                                         <?php
                                         $getNameBrand = $brandModel->getBrands();
                                         if ($getNameBrand) {
@@ -214,7 +208,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Danh mục</label>
-                                    <select name="id_categorychild" id="" class="form-select">
+                                    <select name="id_categorychild" id="" class="form-select" disabled>
                                         <?php
                                         $getNameCategoryChild = $categoryChildModel->getCategoryChilds();
                                         if ($getNameCategoryChild) {
@@ -234,7 +228,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="validationCustom01" class="form-label">Giá</label>
+                                    <label for="validationCustom01" class="form-label">Giá bán (đ)</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="price" value="<?php echo $viewProduct['price'] ?>" name="voucherId" required>
                                 </div>
                                 <div class="col-md-4">
@@ -243,42 +237,27 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     if ($viewProduct['status'] == 1) {
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1" checked="">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <input class="form-check-input" type="radio" name="status" value="1"  checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">Đang bán</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2">
-                                            <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
+                                            <input class="form-check-input" type="radio" name="status" value="2" >
+                                            <label class="form-check-label" for="flexRadioDefault1">Khóa</label>
                                         </div>
                                     <?php
-                                    } else {
+                                    } else if ($viewProduct['status'] == 2){
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">Đã bán</label>
+                                            <input class="form-check-input" type="radio" name="status" value="1"  >
+                                            <label class="form-check-label" for="flexRadioDefault1">Đang bán</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" checked="">
-                                            <label class="form-check-label" for="flexRadioDefault2">Chưa bán</label>
+                                            <input class="form-check-input" type="radio" name="status" value="2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">Khóa</label>
                                         </div>
                                     <?php
                                     }
                                     ?>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="input-group mb-3">
-                                        <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                        <input type="file" class="form-control" id="fileImageProductInAddWarehouse" onchange="changeAddWarehouseImage()">
-                                    </div>
-                                    <div class="loading_image">
-                                        <img id="imageProductInAddWarehouse" src="" alt="" style="width:200px">
-                                        <div class="spinner-border d-none" role="status" id="loadingImage">
-                                            <span class="sr-only ">Loading...</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-
                                 </div>
                                 <div class="col-md-12">
                                     <label for="validationCustom01" class="form-label">Hình ảnh</label>
@@ -302,13 +281,11 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>Chọn</th>
                                                 <th>SKU</th>
                                                 <th>Chọn kích cỡ</th>
                                                 <th>Trạng thái</th>
                                                 <th>Số lượng</th>
                                                 <th>Đã bán</th>
-                                                <th>Hình ảnh</th>
                                             </tr>
                                         </thead>
                                         <?php
@@ -318,7 +295,6 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                         ?>
                                                 <tbody>
                                                     <tr>
-                                                        <td><input type="checkbox"></td>
                                                         <td><?php echo $rowCheck['sku'] ?></td>
                                                         <td><?php echo $rowCheck['option'] ?></td>
                                                         <td>
@@ -342,7 +318,6 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                                         </td>
                                                         <td><?php echo $rowCheck['stock'] ?></td>
                                                         <td><?php echo $rowCheck['quantity_sold'] ?></td>
-                                                        <td>abc</td>
                                                     </tr>
                                                 </tbody>
                                         <?php
@@ -370,20 +345,36 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
 ?>
 
 <?php
-if (isset($_POST['update']) && $_POST['id_product']) {
+if (isset($_POST['activeSellProduct']) && $_POST['id_product']) {
     $id_product = $_POST['id_product'];
-    $name = $_POST['name'];
-    $id_brand = $_POST['id_brand'];
-    $id_categorychild = $_POST['id_categorychild'];
-    $price = $_POST['price'];
-    $image = $_POST['image'];
-    $status = $_POST['status'];
+    $sellPrice = $_POST['sell_price'];
     $productModel = new Product();
-    $updateProduct = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
-    if ($updateProduct) {
+    $activeSellProduct = $productModel->activeSellProduct($id_product);
+    if ($activeSellProduct) {
         echo "1";
     } else {
         echo "0";
     }
 }
+?>
+
+<?php 
+if (isset($_POST['update'])) {
+    $id_product = $_POST['id_product'];
+    $id_brand = $_POST['id_brand'];
+    $id_categorychild = $_POST['id_categorychild'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $image = $_POST['image'];
+    $status = $_POST['status'];
+
+    $productModel = new Product();
+    $update = $upproductModeldat->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
+    if ($update) {
+        echo 1;
+    } else {
+        echo 0;
+    }
+}
+
 ?>

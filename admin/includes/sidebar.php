@@ -34,15 +34,15 @@
             <div class="parent-icon">
               <i class="bi bi-pencil-square"></i>
             </div>
-            <div class="menu-title">Sản phẩm chưa bán</div>
+            <div class="menu-title">Sản phẩm chưa đăng bán</div>
           </a>
         </li>
         <li>
-          <a href="product-table-sold.php">
+          <a href="product-table-sell.php">
             <div class="parent-icon">
               <i class="bi bi-pencil-square"></i>
             </div>
-            <div class="menu-title">Sản phẩm đã bán</div>
+            <div class="menu-title">Sản phẩm đang bán</div>
           </a>
         </li>
       </ul>

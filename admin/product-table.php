@@ -113,10 +113,9 @@ require_once $path . '/../class/configurable_product.php';
                                         <th>Tên sản phẩm</th>
                                         <th>Danh mục</th>
                                         <th>Thương hiệu</th>
-                                        <th>Số lượng</th>
                                         <th>Giá</th>
                                         <th>Trạng thái</th>
-                                        <th>Actions</th>
+                                        <th>Đăng bán</th>
                                     </tr>
                                 </thead>
                                 <?php
@@ -154,28 +153,16 @@ require_once $path . '/../class/configurable_product.php';
                                                 <?php
                                                 }
                                                 ?>
-                                                <?php
-                                                $getQuantity = $configurableProductModel->getConfigurableProductById($row['id_product']);
-                                                if ($getQuantity) {
-                                                    $quantity = 0;
-                                                    while ($rowQuantity = $getQuantity->fetch_assoc()) {
-                                                        $quantity += $rowQuantity['stock'];
-                                                    }
-                                                ?>
-                                                    <td><?php echo $quantity ?></td>
-                                                <?php
-                                                }
-                                                ?>
                                                 <td><?php echo $row['price'] ?></td>
                                                 <td>
                                                     <?php
                                                     if ($row['status'] == 1) {
                                                     ?>
-                                                        <div class="badge bg-primary">Đã bán</div>
+                                                        <div class="badge bg-primary">Đang bán</div>
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <div class="badge bg-danger">Chưa bán</div>
+                                                        <div class="badge bg-danger">Chưa đăng bán</div>
                                                     <?php
                                                     }
                                                     ?>
@@ -184,12 +171,6 @@ require_once $path . '/../class/configurable_product.php';
                                                     <div class="d-flex align-items-center gap-3 fs-6">
                                                         <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Xem và Đăng Bán" onclick="getDetail('<?php print $row['id_product'] ?>')">
                                                             <ion-icon name="cloud-upload-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" onclick="viewToUpdate('<?php print $row['id_product'] ?>')" aria-label="Edit">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
                                                         </a>
                                                     </div>
                                                 </td>

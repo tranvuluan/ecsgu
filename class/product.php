@@ -96,5 +96,12 @@ class Product{
         return $result;
     }
 
+    public function activeSellProduct($id_product) {
+        $id_product = $this->conn->real_escape_string($id_product);
+        $sql = "UPDATE tbl_product SET status = 1 WHERE id_product = '$id_product'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
 }
 ?>
