@@ -1,7 +1,17 @@
 <?php
-
-$path = realpath(dirname(__FILE__));
+$path = dirname(__FILE__);
 require_once($path . '/process/auth.php');
+checkLogin();
+?>
+
+<?php
+$path = dirname(__FILE__);
+require_once($path . '/class/order.php');
+checkLogin();
+?>
+<?php
+$path = dirname(__FILE__);
+require_once($path . '/class/orderItem.php');
 checkLogin();
 ?>
 
@@ -9,63 +19,42 @@ checkLogin();
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="robots" content="index, follow" />
-    <title>Jesco - Fashoin eCommerce HTML Template</title>
-    <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Add site Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/png">
-
-
-    <!-- vendor css (Icon Font) -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/vendor/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="assets/css/vendor/font.awesome.css" />
-
-    <!-- plugins css (All Plugins Files) -->
-    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
-    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
-    <link rel="stylesheet" href="assets/css/plugins/venobox.css" />
-
-    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <!-- <link rel="stylesheet" href="assets/css/vendor/vendor.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css" />
-    <link rel="stylesheet" href="assets/css/style.min.css"> -->
-
-    <!-- Main Style -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/headerhtml.php');
+    ?>
 </head>
 
 <body>
 
-    <!--Top bar, Header Area Start -->
-    <?php 
-    $path = realpath(dirname(__FILE__));
-    require_once($path . '/includes/header.php')
+    <?php
+    $path = dirname(__FILE__);
+    $orderModel = new Order();
     ?>
+
+    <!--Top bar, Header Area Start -->
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/header.php');
+    ?>
+
     <!--Top bar, Header Area End -->
     <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
     <?php
-    $path = realpath(dirname(__FILE__)); 
-    require_once($path . '/includes/offcanvasWishlist.php') 
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasWishlist.php')
     ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php 
+    <?php
     $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php 
+    <?php
     $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
@@ -81,10 +70,9 @@ checkLogin();
                         <ul role="tablist" class="nav flex-column dashboard-list">
                             <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Dashboard</a></li>
                             <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
-                            <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
-                            <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
-                            <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
-                            </li>
+                            <!-- <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
+                            <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li> -->
+                            <li onclick="viewToUpdate('<?php print($_SESSION['id_customer']) ?>')"><a href="#" class="nav-link">Account details</a> </li>
                             <li onclick="logout()"><a href="#" data-bs-toggle="tab" class="nav-link">logout</a> </li>
                         </ul>
                     </div>
@@ -103,29 +91,44 @@ checkLogin();
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Order</th>
+                                            <th>ID Order</th>
+                                            <th>ID Voucher</th>
+                                            <th>ID Employee</th>
+                                            <th>Total price</th>
                                             <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Total</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="success">Completed</span></td>
-                                            <td>$25.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>May 10, 2018</td>
-                                            <td>Processing</td>
-                                            <td>$17.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
-                                    </tbody>
+                                    <?php
+                                    $orderList = $orderModel->getOrders();
+                                    $idOrderItem = new OrderItem();
+                                    // var_dump($_SESSION);
+                                    if ($orderList) {
+                                        while ($row = $orderList->fetch_assoc()) {
+                                            if ($row['id_customer'] == $_SESSION['id_customer']) {
+                                    ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $row['id_order'] ?></td>
+                                                        <td><?php echo $row['id_voucher'] ?></td>
+                                                        <td><?php echo $row['id_employee'] ?></td>
+                                                        <td><?php echo $row['totalprice'] ?></td>
+                                                        <td><?php echo $row['date'] ?></td>
+                                                        <td>
+                                                            <div class="view">
+                                                                <span  class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span>
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                    <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
                                 </table>
                             </div>
                         </div>
@@ -233,7 +236,7 @@ checkLogin();
         </div>
     </div>
     <!-- account area start -->
-
+    
     <!-- Footer Area Start -->
     <?php
     $path = dirname(__FILE__);
@@ -246,14 +249,14 @@ checkLogin();
     $path = dirname(__FILE__);
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
-
+    <div id="switchModal"></div>
     <!-- JavaScripts -->
     <?php
     $path = dirname(__FILE__);
-    echo $path;
     require_once($path . '/includes/scripts.php');
     ?>
     <!-- END JavaScripts -->
+    <script src="assets/js/account.js"></script>
 </body>
 
 </html>
