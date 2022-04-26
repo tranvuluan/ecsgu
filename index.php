@@ -57,15 +57,20 @@ require_once($path . '/class/product.php')
 
     <!-- OffCanvas Wishlist Start -->
     <?php
+    $path = dirname(__FILE__);
     require_once($path . '/includes/offcanvasWishlist.php')
     ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
     <!-- Hero/Intro Slider Start -->
@@ -669,7 +674,9 @@ require_once($path . '/class/product.php')
     <!-- Brand area end -->
 
     <!-- Footer Area Start -->
-    <?php require_once($path . '/includes/footer.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
@@ -682,7 +689,9 @@ require_once($path . '/class/product.php')
     <!-- Global Vendor, plugins JS -->
 
     <!-- JavaScripts -->
-    <?php require_once($path . '/includes/scripts.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
 
 

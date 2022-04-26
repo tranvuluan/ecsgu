@@ -220,3 +220,19 @@ function verifyEmail() {
 
     });
 }
+
+
+function addToCart() {
+    
+
+    $.ajax({
+        url: './process/cart_items.php', 
+        method: 'GET', 
+        data: {
+
+        }, 
+        success: function (response) {
+            console.log(response);
+        }
+    });
+}
