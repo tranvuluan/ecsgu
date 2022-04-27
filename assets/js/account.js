@@ -29,7 +29,7 @@ function viewToUpdate(id_customer){
         },
         success: function(data) {
             console.log(data);
-            $('#switchModal').html($('<div class="modal fade">' +data+' <div>').modal());
+            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
         }
     });
 }

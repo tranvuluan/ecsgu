@@ -285,7 +285,7 @@ require_once($path . '/class/product.php')
                                                         <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
                                                         <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                                                     </div>
-                                                    <a href="#" title="Add To Cart" class=" add-to-cart">Add
+                                                    <a href="#" onclick="addToCart('<?php print $row['id_product'] ?>')" title="Add To Cart" class=" add-to-cart">Add
                                                         To Cart</a>
                                                 </div>
                                                 <div class="content">
@@ -685,7 +685,7 @@ require_once($path . '/class/product.php')
     <?php require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
 
-
+    <script src="./assets/js/cart.js"></script>                            
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 

@@ -168,8 +168,7 @@ function logout() {
         url: './process/auth.php',
         type: 'POST',
         data: {
-            username: userReister.username,
-            email: userReister.email
+            logout: true
         },
         success: function (response) {
             console.log(response)

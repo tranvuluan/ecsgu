@@ -21,6 +21,7 @@
             echo 0;
         }
         else {
+            echo 1;
             $id_account = $login->fetch_assoc()['id_account'];
             $customer = $CustomerModel -> getCustomerByIdAccount($id_account);
             $row = $customer -> fetch_assoc();
