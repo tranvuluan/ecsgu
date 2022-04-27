@@ -81,14 +81,6 @@ class Product{
         return $result;
     }
 
-    public function active($id_product, $price){
-        $id_product = $this->conn->real_escape_string($id_product);
-        $price = $this->conn->real_escape_string($price);
-        $sql = "UPDATE tbl_product SET status = 1, `price` = $price  WHERE id_product = '$id_product'";
-        $result = $this->conn->query($sql);
-        return $result;
-    }
-
     public function delete($id_product){
         $id_product = $this->conn->real_escape_string($id_product);
         $sql = "DELETE FROM tbl_product WHERE `id_product` = '$id_product'";
@@ -96,9 +88,12 @@ class Product{
         return $result;
     }
 
-    public function activeSellProduct($id_product) {
+    public function activeSellProduct($id_product, $price, $id_categorychild, $id_brand) {
         $id_product = $this->conn->real_escape_string($id_product);
-        $sql = "UPDATE tbl_product SET status = 1 WHERE id_product = '$id_product'";
+        $price = $this->conn->real_escape_string($price);
+        $id_categorychild = $this->conn->real_escape_string($id_categorychild);
+        $id_brand = $this->conn->real_escape_string($id_brand);
+        $sql = "UPDATE tbl_product SET status = 1, `price` = $price, `id_categorychild` = '$id_categorychild', `id_brand` = '$id_brand' WHERE `id_product` = '$id_product'";
         $result = $this->conn->query($sql);
         return $result;
     }

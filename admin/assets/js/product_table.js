@@ -13,11 +13,13 @@ function getDetail(id){
         }
     });
 }
-
+// Xu ly dang ban 
 function activeSellProduct(){
     event.preventDefault();
     let id_product = $('input[name="ProductId"]').val();
     let price = $('input[name="Price"]').val();
+    let id_categorychild = $('select[name="id_categorychild"] option:selected').val();
+    let id_brand = $('select[name="id_brand"] option:selected').val();
 
     $.ajax({
         url: './process/product_table.php',
@@ -25,6 +27,8 @@ function activeSellProduct(){
         data: {
             id_product: id_product,
             sell_price: price,
+            id_categorychild: id_categorychild,
+            id_brand: id_brand,
             activeSellProduct: true,
         },
         success: function(response){
@@ -64,30 +68,73 @@ function update(){
     imageUrl = $('#imageProduct').attr('src');
     let status = $('input[name="status"]:checked').val();
 
-    $.ajax({
-        url: './process/product_table.php',
-        type: 'POST',
-        data: {
-            id_product: id_product,
-            name: name,
-            id_categorychild: id_categorychild,
-            price: price,
-            id_brand: id_brand,
-            image: imageUrl,
-            status: status,
-            update: true,
-        },
-        success: function(response){
-            if(response == 0){
-                alert('Lỗi');
-                console.log(response);
+    let checkBox = document.getElementById("CheckVoucher");
+
+    if(checkBox.checked == true){
+        let salepercent = $('input[name="Discount"]').val();
+        let startdate = $('input[name="StartDate"]').val();
+        let enddate = $('input[name="EndDate"]').val();
+
+        $.ajax({
+            url: './process/product_table.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                name: name,
+                id_categorychild: id_categorychild,
+                price: price,
+                id_brand: id_brand,
+                image: imageUrl,
+                status: status,
+                salepercent: salepercent,
+                startdate: startdate,
+                enddate: enddate,
+                update: true,
+            },
+            success: function(response){
+                if(response == 0){
+                    alert('Lỗi');
+                    console.log(response);
+                }
+                else{
+                    alert('Cập nhật thành công');
+                    window.location.reload();
+                }
             }
-            else{
-                alert('Cập nhật thành công');
-                window.location.reload();
+        });
+    }else{
+        let salepercent = "";
+        let startdate = "";
+        let enddate = "";
+
+        $.ajax({
+            url: './process/product_table.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                name: name,
+                id_categorychild: id_categorychild,
+                price: price,
+                id_brand: id_brand,
+                image: imageUrl,
+                status: status,
+                salepercent: salepercent,
+                startdate: startdate,
+                enddate: enddate,
+                update: true,
+            },
+            success: function(response){
+                if(response == 0){
+                    alert('Lỗi');
+                    console.log(response);
+                }
+                else{
+                    alert('Cập nhật thành công');
+                    window.location.reload();
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 async function changeProductImage() {
@@ -129,5 +176,17 @@ async function changeProductImage() {
                 $('#imageProduct').attr('src', objectData.url);
                 imageUrl = objectData.url;
             });
+    }
+}
+
+function checkVoucher(){
+    let checkBox = document.getElementById("CheckVoucher");
+    let formVoucher = document.getElementById("voucher");
+
+    if(checkBox.checked == true){
+        formVoucher.style.display = "block";
+    }
+    else{
+        formVoucher.style.display = "none";
     }
 }

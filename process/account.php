@@ -1,9 +1,6 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/customer.php';
-?>
-<?php
-$path = dirname(__FILE__);
 require_once $path . '/../class/orderItem.php';
 ?>
 
@@ -12,41 +9,47 @@ require_once $path . '/../class/orderItem.php';
 if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
     $id_order = $_POST['id_order'];
 ?>
-    <div class="tab-pane fade" id="orders">
-        <h4>Orders</h4>
-        <div class="table_page table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID Order</th>
-                        <th>ID Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <?php
-                $OrderItem = new OrderItem();
-                $orderList = $OrderItem->getOrderItems();
-                if ($orderList) {
-                    while ($row = $orderList->fetch_assoc()) {
-                        if ($row['id_order'] == $id_order) {
-                ?>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo $row['id_order'] ?></td>
-                                    <td><?php echo $row['id_product'] ?></td>
-                                    <td><?php echo $row['quantiry'] ?></td>
-                                    <td><?php echo $row['price'] ?></td>
-                                </tr>
-                            </tbody>
-                <?php
+
+    <div class="modal-dialog" role="document" id="modalOrder">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Orders</h4>
+                <div class="table_page table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Order</th>
+                                <th>ID Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        $OrderItem = new OrderItem();
+                        $orderList = $OrderItem->getOrderItems();
+                        if ($orderList) {
+                            while ($row = $orderList->fetch_assoc()) {
+                                if ($row['id_order'] == $id_order) {
+                        ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?php echo $row['id_order'] ?></td>
+                                            <td><?php echo $row['id_product'] ?></td>
+                                            <td><?php echo $row['quantity'] ?></td>
+                                            <td><?php echo $row['price'] ?></td>
+                                        </tr>
+                                    </tbody>
+                        <?php
+                                }
+                            }
                         }
-                    }
-                }
-                ?>
-            </table>
+                        ?>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+
 
 <?php
 }
@@ -54,11 +57,12 @@ if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
 ?>
 
 <?php
-if (isset($_POST['viewToUpdate'])) {
+if (isset($_POST['viewToUpdate']) && isset($_POST['id_customer'])) {
     $customer = new Customer();
-    $showCustomer = $customer->getCustomerByIdCustomer($id_account)->fetch_assoc();
+    $id_customer = $_POST['id_customer'];
+    $showCustomer = $customer->getCustomerByIdCustomer($id_customer)->fetch_assoc();
 ?>
-    <div class="modal-dialog fade" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="card">
                 <div class="card-body">
@@ -67,11 +71,11 @@ if (isset($_POST['viewToUpdate'])) {
                         <form class="row g-3" action="#" method="POST" onsubmit="update()">
                             <div class="col-md-3 default-form-box mb-20">
                                 <label class="form-label ">ID Customer</label>
-                                <input class="form-control" type="text" name="id_cus" value="<?php echo $showCustomer['id_customer'] ?>" readonly>
+                                <input class="form-control" type="text" name="id_customer" value="<?php echo $showCustomer['id_customer'] ?>" readonly>
                             </div>
                             <div class="col-md-3 default-form-box mb-20">
                                 <label class="form-label ">ID Account</label>
-                                <input class="form-control" type="text" name="id_acc" value="<?php echo $showCustomer['id_account'] ?>" readonly>
+                                <input class="form-control" type="text" name="id_account" value="<?php echo $showCustomer['id_account'] ?>" readonly>
                             </div>
                             <div class="col-md-3 default-form-box mb-20">
                                 <label class="form-label ">Created date</label>
@@ -115,9 +119,9 @@ if (isset($_POST['viewToUpdate'])) {
 
 
 <?php
-if (isset($_POST['update']) && isset($_POST['id_account'])) {
-    $id_cus = $_POST['id_cus'];
-    $id_acc = $_POST['id_acc'];
+if (isset($_POST['update']) && isset($_POST['id_customer'])) {
+    $id_customer = $_POST['id_customer'];
+    $id_acccount = $_POST['id_account'];
     $createDate = $_POST['createDate'];
     $point = $_POST['point'];
     $name = $_POST['name'];
@@ -126,7 +130,7 @@ if (isset($_POST['update']) && isset($_POST['id_account'])) {
     $phone = $_POST['phone'];
 
     $customer = new Customer();
-    $result = $customer->update($id_cus, $id_acc, $name, $email, $address, $phone, $createDate, $point);
+    $result = $customer->update($id_customer, $id_acccount, $name, $email, $address, $phone, $createDate, $point);
     if ($result) {
         echo 1;
     } else
