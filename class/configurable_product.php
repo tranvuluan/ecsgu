@@ -32,6 +32,18 @@ class ConfigurableProduct{
         }
     }
 
+    public function getConfigurableProductBySKU($SKU) {
+        $SKU = $this->conn->real_escape_string($SKU);
+        $sql = "SELECT * FROM tbl_configurable_products WHERE `sku` = '$SKU'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
     
     public function insert($sku,  $id_product, $stock, $inventory_status, $option){
         $sku = $this->conn->real_escape_string($sku);

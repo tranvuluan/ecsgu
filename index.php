@@ -279,7 +279,7 @@ require_once($path . '/class/product.php')
                                             <!-- Single Prodect -->
                                             <div class="product">
                                                 <div class="thumb">
-                                                    <a href="<?php echo 'product-details.php?id_product=' . $row['id_product'] ?>" class="image">
+                                                    <a href="<?php echo 'product-details.php?id_product=' . $row['id_product'] ?>"  class="image">
                                                         <img src="<?php echo $row['image'] ?>" alt="Product" />
                                                         <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                                                     </a>
@@ -288,10 +288,10 @@ require_once($path . '/class/product.php')
                                                     </span>
                                                     <div class="actions">
                                                         <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                        <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                                                        <a href="#" onclick="viewDetailModal()" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                                                     </div>
-                                                    <a href="#" onclick="addToCart('<?php print $row['id_product'] ?>')" title="Add To Cart" class=" add-to-cart">Add
-                                                        To Cart</a>
+                                                    <!-- <a href="#" onclick="addToCart('<?php print $row['id_product'] ?>')" title="Add To Cart" class=" add-to-cart">Add
+                                                        To Cart</a> -->
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">
@@ -685,7 +685,7 @@ require_once($path . '/class/product.php')
     require_once($path . '/includes/modals.php')
     ?>
     <!-- END Modals -->
-
+    <div id="switchModal"></div>
     <!-- Global Vendor, plugins JS -->
 
     <!-- JavaScripts -->
@@ -693,9 +693,8 @@ require_once($path . '/class/product.php')
     $path = dirname(__FILE__);
     require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
-
-    <script src="./assets/js/cart.js"></script>                            
-
+                       
+    <script src="./assets/js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 </body>
