@@ -253,7 +253,6 @@ checkLogin();
     <!-- JavaScripts -->
     <?php
     $path = dirname(__FILE__);
-    require_once($path . '/includes/scripts.php');
     ?>
     <!-- END JavaScripts -->
     <script src="assets/js/account.js"></script>
