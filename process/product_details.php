@@ -107,18 +107,20 @@ if (isset($_GET['id_product'])) {
                         <p class="m-0">Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incidi ut labore
                             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi
                             ut aliquip ex ea commodo </p>
-                        <div class="pro-details-quality">
-                            <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                        <form method="POST" onsubmit="addToCart('<?php print $result['id_product'] ?>')">
+                            <div class="pro-details-quality">
+                                <div class="cart-plus-minus">
+                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                                </div>
+                                <div class="pro-details-cart">
+                                    <button class="add-cart" href="#"> Add To
+                                        Cart</button>
+                                </div>
+                                <div class="pro-details-compare-wishlist pro-details-wishlist ">
+                                    <a href="wishlist.php"><i class="pe-7s-like"></i></a>
+                                </div>
                             </div>
-                            <div class="pro-details-cart">
-                                <button onclick="addToCart('<?php print $result['id_product'] ?>')" class="add-cart" href="#"> Add To
-                                    Cart</button>
-                            </div>
-                            <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                <a href="wishlist.php"><i class="pe-7s-like"></i></a>
-                            </div>
-                        </div>
+                        </form>
                         <div id="viewSKU">
                         </div>
                         <div class="pro-details-social-info pro-details-same-style d-flex">

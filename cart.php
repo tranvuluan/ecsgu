@@ -95,7 +95,7 @@ $path = realpath(dirname(__FILE__));
                                             <td class="product-thumbnail">
                                                 <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>"><img class="img-responsive ml-15px" src="<?php echo $value['images'] ?>" alt="" /></a>
                                             </td>
-                                            <td class="product-name"><a href="#"><?php echo $value['name'] ?></a></td>
+                                            <td class="product-name"><a href="#"><?php echo $value['name'] ?></a><p>Size: <?php echo $value['option'] ?></p></td>
                                             <td class="product-price-cart"><span class="amount"><?php echo $value['price'] ?></span></td>
                                             <td class="product-quantity">
                                                 <div class="cart-plus-minus">
