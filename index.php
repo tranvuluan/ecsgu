@@ -317,19 +317,19 @@ require_once($path . '/class/product.php')
                         </div>
 
                         <!-- 2st tab start -->
-                        <div class="tab-pane fade show active" id="tab-product-new">
+                        <div class="tab-pane fade show" id="tab-product-new">
                             <div class="row">
-                                <?php $showproduct = $productModel->getProducts();
-                                if ($showproduct) {
-                                    while ($row = $showproduct->fetch_assoc()) {
+                                <?php $showproduct2 = $productModel->getProducts();
+                                if ($showproduct2) {
+                                    while ($row2 = $showproduct2->fetch_assoc()) {
                                 ?>
                                         <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="200">
                                             <!-- Single Prodect -->
                                             <div class="product">
                                                 <div class="thumb">
                                                     <a href="product-details.php" class="image">
-                                                        <img src="<?php echo $row['image'] ?>" alt="Product" />
-                                                        <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
+                                                        <img src="<?php echo $row2['image'] ?>" alt="Product" />
+                                                        <img class="hover-image" src="<?php echo $row2['image'] ?>" alt="Product" />
                                                     </a>
                                                     <span class="badges">
                                                         <span class="new">New</span>
@@ -349,11 +349,11 @@ require_once($path . '/class/product.php')
                                                         </span>
                                                         <span class="rating-num">( 5 Review )</span>
                                                     </span>
-                                                    <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?>
+                                                    <h5 class="title"><a href="product-details.php"><?php echo $row2['name'] ?>
                                                         </a>
                                                     </h5>
                                                     <span class="price">
-                                                        <span class="new"><?php echo $row['price'] ?></span>
+                                                        <span class="new"><?php echo $row2['price'] ?></span>
                                                     </span>
                                                 </div>
                                             </div>
