@@ -224,14 +224,18 @@ function verifyEmail() {
                     respassword: userReister.respassword,
                     register: true,
                 },
-                success: function (response) {
-                    if (response == 0) {
-                        console.log(response);
+                success: function (response1) {
+                    console.log(response1);
+                    if (response1 == 1) {
+                        location.href = './login.php'
                     }
                     else {
-                        console.log(response);
-                        location.reload();
+                        console.log('fail');
+                        console.log(response1);
                     }
+                },
+                error: function (error) {
+                    console.log(error);
                 }
             });
             console.log(response)
