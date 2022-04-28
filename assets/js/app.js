@@ -259,7 +259,7 @@ function viewDetailModal(){
             viewDetailModal: true,
         },
         success: function (data) {
-            $('#switchModal').html($('<div class="modal modal-2 fade" id="exampleModal" tabindex="-1" role="dialog">' + data + ' <div>').modal());
+            $('#switchModal').html($('<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">' + data + ' </div>').modal());
             console.log(data);
         }
     });
