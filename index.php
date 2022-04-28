@@ -685,7 +685,6 @@ require_once($path . '/class/product.php')
     require_once($path . '/includes/modals.php')
     ?>
     <!-- END Modals -->
-    <div id="switchModal"></div>
     <!-- Global Vendor, plugins JS -->
 
     <!-- JavaScripts -->
