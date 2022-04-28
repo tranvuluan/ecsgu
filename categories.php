@@ -49,20 +49,28 @@ require_once($path . '/category.php');
     ?>
 
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/../includes/header.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
     <!-- Header Area End -->
     <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-    <?php require_once($path . '/../includes/offcanvasWishlist.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/../includes/offcanvasCart.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/../includes/offcanvasMenu.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
 
@@ -329,15 +337,21 @@ require_once($path . '/category.php');
     <!-- Shop Page End  -->
 
     <!-- Footer Area Start -->
-    <?php require_once($path . '/../includes/footer.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php require_once($path . '/../includes/modals.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
     <!-- JavaScripts -->
-    <?php require_once($path . '/../includes/scripts.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
 </body>
 

@@ -1,56 +1,65 @@
 <?php
+$path = dirname(__FILE__);
+require_once $path . '/../class/product.php';
+require_once $path . '/../class/configurable_product.php';
+?>
+<?php
 if (!isset($_SESSION)) {
     session_start();
 }
 
-$_SESSION['cart'] ? $_SESSION['cart'] : $_SESSION['cart'] = [];
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+$productModel = new Product();
+$configurableProductModel = new ConfigurableProduct();
 
-if (isset($_GET['addToCar'])) {
-    $id_product = $_GET['id_product'];
-    if (isset($_SESSION['cart'][$id_product]))
-        $_SESSION['cart'][$id_product]['quantity']++;
-    else {
+if (isset($_POST['addToCart']) && isset($_POST['id_product']) && isset($_POST['sku'])) {
+    $id_product = $_POST['id_product'];
+    $sku = $_POST['sku'];
+    $product = $productModel->getProductById($id_product)->fetch_assoc();
+    $configurablekProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc();
 
-        $item = [
-            'id' => $id,
-            'name' => $_GET['name'],
-            'price' => $_GET['price'],
-            'quantity' => 1
-        ];
-        $_SESSION['cart'][$id] = $product;
+    $stock = $configurablekProduct['stock'];
+
+    if (isset($_SESSION['cart'][$id_product])) {
+        if ($stock > $_SESSION['cart'][$id_product]['quantity']) {
+            $_SESSION['cart'][$id_product]['quantity'] += 1;
+        } else {
+            echo '<script>alert("Stock is not enough!");</script>';
+        }
+    } else {
+        if ($stock > 0) {
+            $items = [
+                'id_product' => $id_product,
+                'quantity' => 1,
+                'price' => $product['price'],
+                'name' => $product['name'],
+                'option' => $configurablekProduct['option'],
+                
+                'images' => $product['image'],
+                'stock' => $stock
+            ];
+            $_SESSION['cart'][$id_product] = $items;
+        } else {
+            echo '<script>alert("Stock is not enough!");</script>';
+        }
     }
 }
 
 if (count($_SESSION['cart']) > 0) {
-    foreach ($$_SESSION['cart'] as $key => $value) {
-        # code...
+    foreach ($_SESSION['cart'] as $key => $value) {
 ?>
-
         <ul class="minicart-product-list">
             <li>
-                <a href="product-details.php" class="image"><img src="assets/images/product-image/1.jpg" alt="Cart product Image"></a>
+                <a href="product-details.php" class="image"><img src="<?php echo $value['images'] ?>" alt="Cart product Image"></a>
                 <div class="content">
-                    <a href="product-details.php" class="title">Women's Elizabeth Coat</a>
-                    <span class="quantity-price">1 x <span class="amount">$18.86</span></span>
+                    <a href="product-details.php" class="title"><?php echo $value['name'] ?></a>
+                    <span class="quantity-price"><?php echo $value['quantity'] ?> x <span class="amount"><?php echo $value['price'] ?></span></span>
                     <a href="#" class="remove">×</a>
                 </div>
             </li>
-            <li>
-                <a href="product-details.php" class="image"><img src="assets/images/product-image/2.jpg" alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="product-details.php" class="title">Long sleeve knee length</a>
-                    <span class="quantity-price">1 x <span class="amount">$43.28</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="product-details.php" class="image"><img src="assets/images/product-image/3.jpg" alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="product-details.php" class="title">Cool Man Wearing Leather</a>
-                    <span class="quantity-price">1 x <span class="amount">$37.34</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
+            <p></p>
         </ul>
 <?php
     }

@@ -1,5 +1,5 @@
 <?php
-    $path = realpath(dirname(__FILE__));
+    $path = dirname(__FILE__);
 ?>
 
 <!DOCTYPE html>
@@ -409,16 +409,22 @@
     <!-- Brand area end -->
 
     <!-- Footer Area Start -->
-    <?php require_once($path . '/includes/footer.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
 
     <!-- Modals -->
-    <?php require_once($path . '/includes/modals.php') ?>
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
 <!-- JavaScripts -->
-<?php require_once($path . '/includes/scripts.php')?>
+<?php 
+$path = dirname(__FILE__);
+require_once($path . '/includes/scripts.php')?>
 <!-- END JavaScripts -->
 </body>
 

@@ -246,18 +246,18 @@ function verifyEmail() {
     });
 }
 
-
-function addToCart() {
-    
-
+function viewDetailModal(){
+    event.preventDefault();
     $.ajax({
-        url: './process/cart_items.php', 
-        method: 'GET', 
+        url: './process/product_detail_modal.php',
+        type: 'POST',
         data: {
-
-        }, 
-        success: function (response) {
-            console.log(response);
+            viewDetailModal: true,
+        },
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal modal-2 fade" id="exampleModal" tabindex="-1" role="dialog">' + data + ' <div>').modal());
+            console.log(data);
         }
     });
 }
+

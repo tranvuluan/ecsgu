@@ -1,5 +1,5 @@
 <?php
-    $path = realpath(dirname(__FILE__));
+    $path = dirname(__FILE__);
 
 ?>
 
@@ -88,7 +88,9 @@
 <!--coming soon area end-->
 
 <!-- JavaScripts -->
-<?php require_once($path . '/includes/scripts.php')?>
+<?php 
+$path = dirname(__FILE__);
+require_once($path . '/includes/scripts.php')?>
 <!-- END JavaScripts -->
 </body>
 

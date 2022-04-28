@@ -6,6 +6,7 @@
             </div>
             <div class="body customScroll" id="cart_items">
                 <?php 
+                print_r($_SESSION['cart']);
                     $path = dirname(__FILE__);
                     require_once $path.'/../process/cart_items.php';
                 ?>

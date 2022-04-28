@@ -1,5 +1,5 @@
 <?php
-    $path = realpath(dirname(__FILE__));
+$path = realpath(dirname(__FILE__));
 ?>
 
 <!DOCTYPE html>
@@ -42,22 +42,32 @@
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/includes/header.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-    <?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
-
+    <?php
+    print_r($_SESSION['cart']);
+    ?>
     <!-- Cart Area Start -->
     <div class="cart-main-area pt-100px pb-100px">
         <div class="container">
@@ -77,65 +87,32 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img class="img-responsive ml-15px"
-                                                    src="assets/images/product-image/1.jpg" alt="" /></a>
-                                        </td>
-                                        <td class="product-name"><a href="#">Product Name</a></td>
-                                        <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                    value="1" />
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">$70.00</td>
-                                        <td class="product-remove">
-                                            <a href="#"><i class="fa fa-pencil"></i></a>
-                                            <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img class="img-responsive ml-15px"
-                                                    src="assets/images/product-image/2.jpg" alt="" /></a>
-                                        </td>
-                                        <td class="product-name"><a href="#">Product Name</a></td>
-                                        <td class="product-price-cart"><span class="amount">$50.00</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                    value="1" />
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">$80.00</td>
-                                        <td class="product-remove">
-                                            <a href="#"><i class="fa fa-pencil"></i></a>
-                                            <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img class="img-responsive ml-15px"
-                                                    src="assets/images/product-image/3.jpg" alt="" /></a>
-                                        </td>
-                                        <td class="product-name"><a href="#">Product Name</a></td>
-                                        <td class="product-price-cart"><span class="amount">$70.00</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                    value="1" />
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">$90.00</td>
-                                        <td class="product-remove">
-                                            <a href="#"><i class="fa fa-pencil"></i></a>
-                                            <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                <?php
+                                foreach ($_SESSION['cart'] as $key => $value) {
+                                ?>
+                                    <tbody>
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>"><img class="img-responsive ml-15px" src="<?php echo $value['images'] ?>" alt="" /></a>
+                                            </td>
+                                            <td class="product-name"><a href="#"><?php echo $value['name'] ?></a></td>
+                                            <td class="product-price-cart"><span class="amount"><?php echo $value['price'] ?></span></td>
+                                            <td class="product-quantity">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="<?php echo $value['quantity'] ?>" />
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal"><?php echo $value['quantity']* $value['price'] ?></td>
+                                            <td class="product-remove">
+                                                <a href="#"><i class="fa fa-pencil"></i></a>
+                                                <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                <?php
+                                }
+                                ?>
+
                             </table>
                         </div>
                         <div class="row">
@@ -235,16 +212,22 @@
     <!-- Cart Area End -->
 
     <!-- Footer Area Start -->
-    <?php require_once($path . '/includes/footer.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php require_once($path . '/includes/modals.php') ?>
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
-<!-- JavaScripts -->
-<?php require_once($path . '/includes/scripts.php')?>
-<!-- END JavaScripts -->
+    <!-- JavaScripts -->
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/scripts.php') ?>
+    <!-- END JavaScripts -->
 </body>
 
 </html>
