@@ -1,5 +1,5 @@
 let currentOption;
-let items = [];
+let cart_items = [];
 function addToCart(id_product) {
     let qty = $('input[name="qtybutton"]').val().trim();
 
@@ -89,9 +89,18 @@ function changeQuantity(stock) {
         }
         $(`tr:nth-child(${i}) td.product-subtotal`)[0].innerText = subtotal;
         total += subtotal;
+        $('#total-product').text(`${total} đ`);
+        $('#total-ship').text(`30000 đ`);
+        $('#grand-total').text(`${total+30000} đ`);
+
         let item = {
-            sku: $(`tr:nth-child(${i})`)[0].attr('data-sku'),
-            
+            sku: $(`tbody tr:nth-child(${i})`).attr('data-sku'),
+            name: $(`tbody tr:nth-child(${i}) .product-name`)[0].innerText,
+            quantity: quantity,
+            price: price,
+            image: $(`tbody tr:nth-child(${i}) .product-thumbnail img`).attr('src')
         }
+        cart_items.push(item);
     }
+    console.log(cart_items);
 }
