@@ -1,5 +1,5 @@
 let currentOption;
-let currentQuantity;
+let items = [];
 function addToCart(id_product) {
     let qty = $('input[name="qtybutton"]').val().trim();
 
@@ -88,6 +88,10 @@ function changeQuantity(stock) {
 
         }
         $(`tr:nth-child(${i}) td.product-subtotal`)[0].innerText = subtotal;
-        total += subtotal;  
+        total += subtotal;
+        let item = {
+            sku: $(`tr:nth-child(${i})`)[0].attr('data-sku'),
+            
+        }
     }
 }
