@@ -30,7 +30,7 @@ if (count($_SESSION['cart']) > 0) {
                             foreach ($_SESSION['cart'] as $key => $value) {
                             ?>
 
-                                <tr>
+                                <tr data-sku="<?php print $key ?>">
                                     <td class="product-thumbnail">
                                         <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>"><img class="img-responsive ml-15px" src="<?php echo $value['images'] ?>" alt="" /></a>
                                     </td>
