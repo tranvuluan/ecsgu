@@ -107,16 +107,20 @@ function changeQuantity(stock) {
         $('#total-ship').text(`30000 đ`);
         $('#grand-total').text(`${total + 30000} đ`);
 
-        let item = {
-            sku: $(`tbody tr:nth-child(${i})`).attr('data-sku'),
-            name: $(`tbody tr:nth-child(${i}) .product-name`)[0].innerText,
-            quantity: quantity,
-            price: price,
-            image: $(`tbody tr:nth-child(${i}) .product-thumbnail img`).attr('src')
-        }
-        cart_items.push(item);
+
+        $.ajax({
+            url: './process/cart_items.php',
+            type: 'POST',
+            data: {
+                sku: $(`tbody tr:nth-child(${i})`).attr('data-sku'),
+                quantity: quantity,
+                changeCart: true
+            },
+            success: function (response) {
+                
+            }
+        });
     }
-    console.log(cart_items);
 }
 
 
@@ -149,13 +153,4 @@ function checkStock(sku, quantity) {
     })
     return result;
 }
- 
-async function goToCheckout() {
-    let checkoutHtml = '';
-    await $.get("./checkout.html", function(html_string)
-    {
-       checkoutHtml = html_string;
-    });
-    $('#cart_body').html(checkoutHtml);
 
-}

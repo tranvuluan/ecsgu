@@ -82,3 +82,10 @@ if (count($_SESSION['cart']) > 0) {
         unset($_SESSION['cart'][$sku]);
     }
 ?>
+
+<?php 
+    if (isset($_POST['changeCart'])) {
+        $_SESSION['cart'][$sku]['quantity'] = $_POST['quantity'];
+    }
+    
+?>
