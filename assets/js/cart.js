@@ -1,6 +1,6 @@
 let currentOption;
 let cart_items = [];
-function addToCart(id_product) {
+async function  addToCart(id_product) {
     let qty = $('input[name="qtybutton"]').val().trim();
 
     if (qty == '' || qty <= 0) {
@@ -11,20 +11,29 @@ function addToCart(id_product) {
         alert("Please select a size");
         return;
     }
-    $.ajax({
-        url: './process/cart_items.php',
-        type: 'POST',
-        data: {
-            id_product: id_product,
-            sku: currentOption,
-            qty: qty,
-            addToCart: true
-        },
-        success: function (response) {
-            $('#cart_items').html(response);
-            alert("Product has been added to cart");
-        }
-    });
+
+    let result = await checkStock(id_product, qty);
+    console.log(result);
+    console.log('chay qua nay luon r');
+    // if (checkStock(id_product, qty) === 0) {
+    //     console.log('chay ham nay');
+    //     return;
+    // }
+
+    // $.ajax({
+    //     url: './process/cart_items.php',
+    //     type: 'POST',
+    //     data: {
+    //         id_product: id_product,
+    //         sku: currentOption,
+    //         qty: qty,
+    //         addToCart: true
+    //     },
+    //     success: function (response) {
+    //         $('#cart_items').html(response);
+    //         alert("Product has been added to cart");
+    //     }
+    // });
 }
 
 
@@ -103,4 +112,26 @@ function changeQuantity(stock) {
         cart_items.push(item);
     }
     console.log(cart_items);
+}
+
+
+async function checkStock(id_product, quantity) {
+    $.ajax({
+        url: './process/product.php',
+        type: 'GET',
+        data: {
+            id_product: id_product,
+            quantity: quantity,
+            checkStock: true
+        },
+        success: function (response) {
+            console.log(response);
+            if (response == 1) {
+                return 1;
+            } else {
+                alert("Sản phẩm trong kho không đáp ứng được");
+                return 0;
+            }
+        }   
+    })
 }
