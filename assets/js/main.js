@@ -309,21 +309,62 @@
     var CartPlusMinus = $(".cart-plus-minus");
     CartPlusMinus.prepend('<div class="dec qtybutton" >-</div>');
     CartPlusMinus.append('<div class="inc qtybutton">+</div>');
+
     $(".qtybutton").on("click", function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
-        if ($button.text() === "+") {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
+        if (window.location.pathname === '/ecsgu/cart.php') {
+            var $button = $(this);
+            var oldValue = $button.parent().find("input").val();
+            if ($button.text() === "+") {
+                var newVal = parseFloat(oldValue) + 1;
             } else {
-                newVal = 1;
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            let sku = event.target.parentNode.parentNode.parentNode.getAttribute("data-sku");
+            if (checkStock(sku, newVal) == 1) {
+                $button.parent().find("input").val(newVal);
+                changeQuantity();
+            } else {
+                return;
             }
         }
-        $button.parent().find("input").val(newVal);
-        changeQuantity();
+    });
+
+    $(".qtybutton").on("click", function () {
+        if (window.location.pathname !== '/ecsgu/cart.php') {
+            if (!currentOption) {
+                alert('Vui lòng chọn size');
+                return;
+            }
+            console.log('change value in product detail ')
+    
+            var $button = $(this);
+            var oldValue = $button.parent().find("input").val();
+            if ($button.text() === "+") {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            let sku = $('#viewSKU > div.pro-details-sku-info.pro-details-same-style.d-flex > ul > li > a').text();
+            if (sku) {
+                let check = checkStock(sku, newVal);
+                if (check == 0)
+                    return;
+                else {
+                    $button.parent().find("input").val(newVal);
+                }
+            }
+        }
+
     });
 
 

@@ -21,5 +21,6 @@
     <script src="assets/js/plugins/plugins.min.js"></script> -->
 
     <!-- Main Js -->
+    <script src="assets/js/cart.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/app.js"></script>

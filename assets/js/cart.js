@@ -1,6 +1,6 @@
 let currentOption;
 let cart_items = [];
-async function  addToCart(id_product) {
+function addToCart(id_product) {
     let qty = $('input[name="qtybutton"]').val().trim();
 
     if (qty == '' || qty <= 0) {
@@ -11,29 +11,34 @@ async function  addToCart(id_product) {
         alert("Please select a size");
         return;
     }
+    let sku = $('#viewSKU > div.pro-details-sku-info.pro-details-same-style.d-flex > ul > li > a').text();
 
-    let result = await checkStock(id_product, qty);
-    console.log(result);
-    console.log('chay qua nay luon r');
-    // if (checkStock(id_product, qty) === 0) {
-    //     console.log('chay ham nay');
-    //     return;
-    // }
 
-    // $.ajax({
-    //     url: './process/cart_items.php',
-    //     type: 'POST',
-    //     data: {
-    //         id_product: id_product,
-    //         sku: currentOption,
-    //         qty: qty,
-    //         addToCart: true
-    //     },
-    //     success: function (response) {
-    //         $('#cart_items').html(response);
-    //         alert("Product has been added to cart");
-    //     }
-    // });
+    let result = checkStock(sku, qty);
+    if (result == 1) {
+        let item = {
+            sku: sku,
+            qty: qty,
+            size: currentOption
+        };
+        cart_items.push(item);
+        $.ajax({
+            url: './process/cart_items.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                sku: currentOption,
+                qty: qty,
+                addToCart: true
+            },
+            success: function (response) {
+                $('#cart_items').html(response);
+                alert("Product has been added to cart");
+            }
+        });
+    }
+
+
 }
 
 
@@ -85,14 +90,14 @@ function deleteCartItem(sku) {
 function changeQuantity(stock) {
     let rowTable = $('tr');
     let total = 0;
-    for (let i=1; i<rowTable.length; i++) {
+    for (let i = 1; i < rowTable.length; i++) {
         let quantity = $(`tr:nth-child(${i}) td.product-quantity .cart-plus-minus-box`)[0].value;
         let price = $(`tr:nth-child(${i}) td.product-price-cart`)[0].innerText;
-        let subtotal = parseInt(quantity)*parseInt(price);
-        if(quantity > stock) {
+        let subtotal = parseInt(quantity) * parseInt(price);
+        if (quantity > stock) {
             quantity = stock;
             $(`tr:nth-child(${i}) td.product-quantity .cart-plus-minus-box`)[0].value = quantity;
-            subtotal = parseInt(quantity)*parseInt(price);
+            subtotal = parseInt(quantity) * parseInt(price);
             alert("Quantity just can be " + stock);
 
         }
@@ -100,7 +105,7 @@ function changeQuantity(stock) {
         total += subtotal;
         $('#total-product').text(`${total} đ`);
         $('#total-ship').text(`30000 đ`);
-        $('#grand-total').text(`${total+30000} đ`);
+        $('#grand-total').text(`${total + 30000} đ`);
 
         let item = {
             sku: $(`tbody tr:nth-child(${i})`).attr('data-sku'),
@@ -115,23 +120,42 @@ function changeQuantity(stock) {
 }
 
 
-async function checkStock(id_product, quantity) {
+function checkStock(sku, quantity) {
+    console.log(`sku: ${sku} : quantity: ${quantity}`);
+    let result = 1;
     $.ajax({
         url: './process/product.php',
         type: 'GET',
+        async: false,
         data: {
-            id_product: id_product,
+            sku: sku,
             quantity: quantity,
             checkStock: true
         },
         success: function (response) {
             console.log(response);
             if (response == 1) {
-                return 1;
+                result = 1;
             } else {
                 alert("Sản phẩm trong kho không đáp ứng được");
-                return 0;
+                result = 0;
             }
-        }   
+        },
+        error: function (error) {
+            console.log('loi')
+            console.log(error);
+            result = 0;
+        }
     })
+    return result;
+}
+ 
+async function goToCheckout() {
+    let checkoutHtml = '';
+    await $.get("./checkout.html", function(html_string)
+    {
+       checkoutHtml = html_string;
+    });
+    $('#cart_body').html(checkoutHtml);
+
 }

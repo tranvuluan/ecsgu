@@ -5,8 +5,8 @@ require_once $path . '/../class/configurable_product.php';
 
 if (isset($_GET['checkStock']) && isset($_GET['quantity'])) {
     $ConfigurableProductModel = new ConfigurableProduct();
-    $id_product = $_GET['id_product'];
-    $getSKU = $ConfigurableProductModel->getConfigurableProductById($id_product);
+    $sku = $_GET['sku'];
+    $getSKU = $ConfigurableProductModel->getConfigurableProductBySKU($sku);
     if ($getSKU) {
         $sku = $getSKU->fetch_assoc();
         $stock = $sku['stock'];
