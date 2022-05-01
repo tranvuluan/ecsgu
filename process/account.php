@@ -1,6 +1,7 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/customer.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/orderItem.php';
 ?>
 

@@ -38,6 +38,14 @@ if (isset($_POST['placeOrder'])) {
     }
 
     if ($flag == 1) {
+        $items_send = [];
+        foreach ($_SESSION['cart'] as $key => $value) {
+            $item ['name']= $value['name'];
+            $item['quantity'] = $value['quantity'];
+            $item['price'] = $value['price'];
+            array_push($items_send, $item);
+        }
+
         $data_array =  array(
             "customer"        => array(
                 "fullname" => $_POST['fullname'],
@@ -48,6 +56,7 @@ if (isset($_POST['placeOrder'])) {
             "order"           => array(
                 "order_id" => $id_order,
                 "total"    => $total,
+                "items" => json_encode($items_send)
             ),
             
       );

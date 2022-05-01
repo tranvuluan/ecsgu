@@ -8,10 +8,10 @@ function viewOrderDetail(id_order){
             viewOrderDetail: true
         },
         success: function(data){
-            // console.log(data);
+            console.log(data);
             // alert(data);
             
-            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal());
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal('show'));
             console.log('run this');
         }
     });
