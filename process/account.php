@@ -6,8 +6,8 @@ require_once $path . '/../class/orderItem.php';
 ?>
 
 <?php
-
 if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
+    echo 'chay cho ni';
     $id_order = $_POST['id_order'];
 ?>
 

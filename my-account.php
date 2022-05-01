@@ -93,7 +93,6 @@ checkLogin();
                                         <tr>
                                             <th>ID Order</th>
                                             <th>ID Voucher</th>
-                                            <th>ID Employee</th>
                                             <th>Total price</th>
                                             <th>Date</th>
                                             <th>Actions</th>
@@ -111,7 +110,6 @@ checkLogin();
                                                     <tr>
                                                         <td><?php echo $row['id_order'] ?></td>
                                                         <td><?php echo $row['id_voucher'] ?></td>
-                                                        <td><?php echo $row['id_employee'] ?></td>
                                                         <td><?php echo $row['totalprice'] ?></td>
                                                         <td><?php echo $row['date'] ?></td>
                                                         <td>

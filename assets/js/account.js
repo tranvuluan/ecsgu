@@ -1,5 +1,5 @@
 function viewOrderDetail(id_order){
-    console.log(id_order);
+    // console.log(id_order);
     $.ajax({
         url: './process/account.php',
         type: 'POST',
@@ -7,12 +7,15 @@ function viewOrderDetail(id_order){
             id_order: id_order,
             viewOrderDetail: true
         },
-        success: function(data){
-            console.log(data);
+        success: function(response){
+            console.log(response);
             // alert(data);
             
-            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal('show'));
+            $('#switchModal').html($('<div class="modal fade">' +response+' </div>').modal('show'));
             console.log('run this');
+        },
+        error: function(err){
+            console.log(err);
         }
     });
 }
