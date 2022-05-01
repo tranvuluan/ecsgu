@@ -57,8 +57,6 @@ if (isset($_POST['viewToAdd'])) {
         <div class="modal-content">
             <div class="card">
                 <div class="card-body">
-                    <div id="modalExistProduct"></div>
-                    <button class="badge bg-primary" onclick="addExistProduct()">Nhập sản phẩm đã có</button>
                     <h6 class="mb-0">Thêm phiếu nhập</h6>
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation" method="POST" onsubmit="add()" enctype="multipart/form-data">
@@ -589,99 +587,4 @@ if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
     }
 }
 
-?>
-
-<?php
-
-if (isset($_GET['showExistProduct'])) {
-    $ProductModel = new Product();
-    $categoryChildModel = new CategoryChild();
-    $brandModel = new Brand();
-
-
-?>
-            <div class="card radius-10 w-100">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <h6 class="mb-0">Danh sách sản phẩm</h6>
-                        <div class="fs-5 ms-auto dropdown">
-                            <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="table-responsive mt-2">
-                        <table class="table align-middle mb-0 table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Danh mục</th>
-                                    <th>Thương hiệu</th>
-                                    <th>Giá</th>
-                                    <th>Trạng thái</th>
-                                    <th>Đăng bán</th>
-                                </tr>
-                            </thead>
-                                    <tbody>
-                                        <?php 
-                                            $getAll = $ProductModel->getProducts();
-                                            if ($getAll) {
-                                                while ($row = $getAll->fetch_assoc()) {
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $row['id_product'] ?></td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="product-box border">
-                                                        <img src="<?php echo $row['image'] ?>" alt="">
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h6 class="product-name mb-1"><?php echo $row['name'] ?></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <?php
-                                            $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($row['id_categorychild'])->fetch_assoc();
-                                            if ($getNameCategoryChild) {
-                                            ?>
-                                                <td><?php echo $getNameCategoryChild['name'] ?></td>
-                                            <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            $getNameBrand = $brandModel->getBrandById($row['id_brand'])->fetch_assoc();
-                                            if ($getNameBrand) {
-                                            ?>
-                                                <td><?php echo $getNameBrand['name'] ?></td>
-                                            <?php
-                                            }
-                                            ?>                                        
-                                            <td>
-                                                <div class="d-flex align-items-center gap-3 fs-6">
-                                                    <a href="javascript:;" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Xem và Đăng Bán" onclick="getDetail('<?php print $row['id_product'] ?>')">
-                                                        <ion-icon name="cloud-upload-sharp"></ion-icon>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-<?php
-}   
 ?>

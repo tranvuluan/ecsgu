@@ -44,20 +44,20 @@ class OrderItem{
         }
     }
 
-    public function insert($id_order, $id_product, $quantity, $price){
+    public function insert($id_order, $sku, $quantity, $price){
         $id_order = $this->conn->real_escape_string($id_order);
-        $id_product = $this->conn->real_escape_string($id_product);
+        $sku = $this->conn->real_escape_string($sku);
         $quantity = $this->conn->real_escape_string($quantity);
         $price = $this->conn->real_escape_string($price);
-        $sql = "INSERT INTO tbl_order_item(`id_order`, `id_product`, `quantity`, `price`) VALUES ('$id_order', '$id_product', '$quantity', '$price')";
-        $result = $this->conn->query($sql);
+        $sql = "INSERT INTO tbl_order_item(`id_order`, `sku`, `quantity`, `price`) VALUES ('$id_order', '$sku', '$quantity', '$price')";
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
 
     public function delete($id_order){
         $id_order = $this->conn->real_escape_string($id_order);
         $sql = "DELETE FROM tbl_order_item WHERE `id_order` = '$id_order'";
-        $result = $this->conn->query($sql);
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
 }
