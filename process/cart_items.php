@@ -86,6 +86,7 @@ if (count($_SESSION['cart']) > 0) {
 <?php 
     if (isset($_POST['changeCart'])) {
         $_SESSION['cart'][$sku]['quantity'] = $_POST['quantity'];
+        $_SESSION['total_cart'] = $_POST['total'];
     }
     
 ?>
