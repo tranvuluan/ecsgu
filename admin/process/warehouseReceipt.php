@@ -303,6 +303,8 @@ if (isset($_POST['viewToAdd'])) {
                                 <button class="btn btn-primary" type="submit">Thêm vào chi tiết phiếu nhập</button>
                             </div>
                         </form>
+                        <button class="btn btn-primary" onclick="addExistProduct()" >Thêm vào chi tiết sản phẩm đã có</button>
+
                     </div>
                     <button class="btn btn-primary" onclick="addWarehouseReceipt()">Lưu phiếu nhập</button>
                 </div>

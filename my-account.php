@@ -254,7 +254,7 @@ checkLogin();
     require_once($path . '/includes/scripts.php');
     ?>
     <!-- END JavaScripts -->
-    <script src="assets/js/manageaccount.js"></script>
+    <script src="assets/js/manageraccount.js"></script>
 </body>
 
 </html>
