@@ -100,7 +100,7 @@ if (count($_SESSION['cart']) > 0) {
                             <h5>Total shipping <span id="total-ship">30000 đ</span></h5>
                         </div>
                         <h4 class="grand-totall-title">Grand Total <span id="grand-total"><?php echo ($total + 30000).' đ' ?></span></h4>
-                        <a onclick="goToCheckout()">Proceed to Checkout</a>
+                        <a href="checkout.php">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>

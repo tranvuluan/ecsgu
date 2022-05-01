@@ -1,3 +1,72 @@
+<?php
+    $path = realpath(dirname(__FILE__));
+?>
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="robots" content="index, follow" />
+    <title>Jesco - Fashoin eCommerce HTML Template</title>
+    <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Add site Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/png">
+
+
+    <!-- vendor css (Icon Font) -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/vendor/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="assets/css/vendor/font.awesome.css" />
+
+    <!-- plugins css (All Plugins Files) -->
+    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
+    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/plugins/venobox.css" />
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/vendor.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css" />
+    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+</head>
+
+<body>
+
+    <!--Top bar, Header Area Start -->
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/header.php') ?>
+    <!--Top bar, Header Area End -->
+     <div class="offcanvas-overlay"></div>
+
+    <!-- OffCanvas Wishlist Start -->
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <!-- OffCanvas Wishlist End -->
+    <!-- OffCanvas Cart Start -->
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
+    <!-- OffCanvas Cart End -->
+
+    <!-- OffCanvas Menu Start -->
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
+    <!-- OffCanvas Menu End -->
+
+
+
     <!-- checkout area start -->
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
@@ -185,10 +254,14 @@
                                 </div>
                                 <div class="your-order-middle">
                                     <ul>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span
-                                                class="order-price">$100 </span></li>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span
-                                                class="order-price">$100 </span></li>
+                                        <?php 
+                                        foreach ($_SESSION['cart'] as $key => $value) {
+                                        ?>
+                                        <li><span class="order-middle-left"><?php echo $value['name'] ?> X <?php echo $value['quantity'] ?></span> <span
+                                                class="order-price"><?php echo $value['price'] ?> đ</span></li>
+                                        <?php 
+                                        }
+                                                ?>
                                     </ul>
                                 </div>
                                 <div class="your-order-bottom">
@@ -200,12 +273,12 @@
                                 <div class="your-order-total">
                                     <ul>
                                         <li class="order-total">Total</li>
-                                        <li>$100</li>
+                                        <li><</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="payment-method">
-                                <div class="payment-accordion element-mrg">
+                                <div class="payment-accordion element-mrcheck">
                                     <div id="faq" class="panel-group">
                                         <div class="panel panel-default single-my-account m-0">
                                             <div class="panel-heading my-account-title">
@@ -265,3 +338,25 @@
         </div>
     </div>
     <!-- checkout area end -->
+    <!-- Footer Area Start -->
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php') ?>
+    <!-- Footer Area End -->
+
+    <!-- Modals -->
+    <?php 
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/modals.php') ?>
+    <!-- END Modals -->
+
+    <!-- Global Vendor, plugins JS -->
+
+<!-- JavaScripts -->
+<?php 
+$path = dirname(__FILE__);
+require_once($path . '/includes/scripts.php')?>
+<!-- END JavaScripts -->
+</body>
+
+</html>
