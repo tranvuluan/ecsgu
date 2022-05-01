@@ -14,12 +14,16 @@ if (isset($_POST['placeOrder'])) {
     $OrderItemModel = new OrderItem();
     $id_order = 'OR' . date('YmdHis');
     $id_customer = $_SESSION['id_customer'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $email = $_POST['email'];
+    $country = $_POST['country'];
     $total = 0;
     foreach ($_SESSION['cart'] as $key => $value) {
         $total += $value['price'] * $value['quantity'];
     }
 
-    $insertOrder = $OrderModel->insert($id_order, $id_customer, $total, null, date('Y-m-d H:i:s'));
+    $insertOrder = $OrderModel->insert($id_order, $id_customer, $phone, $email, $address, $country, $total, null, date('Y-m-d H:i:s'));
     $flag = 1;
     if ($insertOrder) {
         foreach ($_SESSION['cart'] as $key => $value) {
@@ -35,19 +39,25 @@ if (isset($_POST['placeOrder'])) {
 
     if ($flag == 1) {
         $data_array =  array(
-            "customer"        => $user['User']['customer_id'],
-            "payment"         => array(
-                  "number"         => $this->request->data['account'],
-                  "routing"        => $this->request->data['routing'],
-                  "method"         => $this->request->data['method']
+            "customer"        => array(
+                "fullname" => $_POST['fullname'],
+                "email"    => $_POST['email'],
+                "phone"    => $_POST['phone'],
+                "address"  => $_POST['address'],
             ),
+            "order"           => array(
+                "order_id" => $id_order,
+                "total"    => $total,
+            ),
+            
       );
-      $make_call = callAPI('POST', 'https://api.example.com/post_url/', json_encode($data_array));
+      $make_call = callAPI('POST', 'http://localhost:5555/api/order/processing', json_encode($data_array));
       $response = json_decode($make_call, true);
-      $errors   = $response['response']['errors'];
-      $data     = $response['response']['data'][0];
+    //   $errors   = $response['response']['errors'];
+    //   $data     = $response['response'];
+      if ($response['message'] != 'Successfully')
+         $flag = 0;
     }
     echo $flag;
 }
 ?>
-<br>

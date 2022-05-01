@@ -46,17 +46,21 @@ class Order
     }
 
 
-    public function insert($id_order, $id_customer, $totalprice, $id_voucher, $date)
+    public function insert($id_order, $id_customer, $phone, $email, $address, $country,$totalprice, $id_voucher, $date)
     {
         $id_order = $this->conn->real_escape_string($id_order);
         $id_customer = $this->conn->real_escape_string($id_customer);
+        $phone = $this->conn->real_escape_string($phone);
+        $address = $this->conn->real_escape_string($address);
+        $email = $this->conn->real_escape_string($email);
         $totalprice = $this->conn->real_escape_string($totalprice);
         $id_voucher = $this->conn->real_escape_string($id_voucher);
+        $country = $this->conn->real_escape_string($country);
         $date = $this->conn->real_escape_string($date);
         if ($id_voucher != null)
-            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `id_voucher`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$id_voucher', '$totalprice', '$date')";
+            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `phone`, `email`, `address`, `country`, `id_voucher`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$phone', '$email', '$address', '$country', '$id_voucher', '$totalprice', '$date')";
         else
-            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$totalprice', '$date')";
+            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `phone`, `email`, `address`,`country`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$phone', '$email', '$address', '$country', '$totalprice', '$date')";
 
         $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;

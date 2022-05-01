@@ -107,7 +107,7 @@ $path = realpath(dirname(__FILE__));
                             <div class="col-lg-12">
                                 <div class="billing-info mb-4">
                                     <label>Street Address</label>
-                                    <input class="billing-address" placeholder="House number and street name" id="adress" value="" type="text" />
+                                    <input class="billing-address" placeholder="House number and street name" name="address" value="" type="text" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
