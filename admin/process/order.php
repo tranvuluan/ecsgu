@@ -9,6 +9,8 @@ require_once $path . '/../class/brand.php';
 require_once $path . '/../class/categoryChild.php';
 require_once $path . '/../class/productSale.php';
 require_once $path . '/../class/LibClass.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../lib/callAPI.php';
 ?>
 
 <?php
@@ -274,9 +276,11 @@ if (isset($_POST['process']) && $_POST['id_order']) {
     $orderModel = new Order();
     $status = 1;
     $items_send = [];
+    $flag = 1;
 
-    // $orderModel->changeStatus($_POST['id_order'], $status);
-    // echo 1;
+    $changeStatus = $orderModel->changeStatus($_POST['id_order'], $status);
+    if (!$changeStatus)
+        $flag = 0;
     $getAllInfoOrder = $LibClass->getFullInfoOrder($_POST['id_order']);
     $fullOrder = $getAllInfoOrder->fetch_assoc();
     $fullnameCustomer = $fullOrder['fullname'];
@@ -294,22 +298,27 @@ if (isset($_POST['process']) && $_POST['id_order']) {
         $item['price'] = $value['price'];
         array_push($items_send, $item);
     }
-        $data_array =  array(
-            "customer"        => array(
-                "fullname" => $fullnameCustomer,
-                "email"    => $emailCustomer,
-                "phone"    => $phoneCustomer,
-                "address"  => $addressCustomer,
-            ),
-            "order"           => array(
-                "order_id" => $_POST['id_order'],
-                "total"    => $totalprice,
-                "items" => json_encode($items_send)
-            ),
+    $data_array =  array(
+        "customer"        => array(
+            "fullname" => $fullnameCustomer,
+            "email"    => $emailCustomer,
+            "phone"    => $phoneCustomer,
+            "address"  => $addressCustomer,
+        ),
+        "order"           => array(
+            "order_id" => $_POST['id_order'],
+            "total"    => $totalprice,
+            "items" => json_encode($items_send)
+        ),
 
-        );
-        $data_string = json_encode($data_array);
-        echo $data_string;
+    );
+    $make_call = callAPI('POST', 'http://14.225.192.186:5555/api/order/delivering', json_encode($data_array));
+    $response = json_decode($make_call, true);
+    if ($response['message'] != 'Successfully') {
+        $flag = -1;
+        
+    }
+    echo $flag;
 }
 ?>
 
