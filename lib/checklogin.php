@@ -1,13 +1,18 @@
 <?php
 
 if (!isset($_SESSION)) session_start();
+
 function checkUserLogin()
 {
-    $path = dirname(__FILE__);
-    var_dump($_SESSION);
-    if (!isset($_SESSION['login'])) {
-        echo '<script>alert("Bạn chưa đăng nhập!");</script>';
-        header(`Location: $path.'/../login.php'`);
+    if (!isset($_SESSION['login']) && !isset($_SESSION['id_customer'])) {
+        header('Location: ./login.php');
+    }
+}
+
+
+function checkEmployeeLogin() {
+    if (!isset($_SESSION['login']) && !isset($_SESSION['id_employee'])) {
+        header('Location: ./login.php');
     }
 }
 ?>
