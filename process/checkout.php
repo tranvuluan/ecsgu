@@ -4,6 +4,8 @@ require $path . '/../class/order.php';
 $path = dirname(__FILE__);
 require $path . '/../class/orderItem.php';
 $path = dirname(__FILE__);
+require $path . '/../class/customer.php';
+$path = dirname(__FILE__);
 require $path.'/../lib/callAPI.php';
 
 if (!isset($_SESSION)) session_start();
@@ -12,6 +14,7 @@ if (!isset($_SESSION)) session_start();
 if (isset($_POST['placeOrder'])) {
     $OrderModel = new Order();
     $OrderItemModel = new OrderItem();
+    $CustomerModel = new Customer();
     $id_order = 'OR' . date('YmdHis');
     $id_customer = $_SESSION['id_customer'];
     $phone = $_POST['phone'];
@@ -24,6 +27,9 @@ if (isset($_POST['placeOrder'])) {
     }
 
     $insertOrder = $OrderModel->insert($id_order, $id_customer, $phone, $email, $address, $country, $total, null, date('Y-m-d H:i:s'));
+    $getCustomer = $CustomerModel->getCustomerByIdCustomer($id_customer);
+    $customer = $getCustomer->fetch_assoc();
+    $plusCustomerPoint = $CustomerModel->plusPoint($id_customer, $total + $customer['point']);
     $flag = 1;
     if ($insertOrder) {
         foreach ($_SESSION['cart'] as $key => $value) {

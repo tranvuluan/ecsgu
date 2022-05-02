@@ -1,5 +1,6 @@
-<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
+<!-- Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
         <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
         </div>

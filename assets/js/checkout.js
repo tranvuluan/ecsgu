@@ -1,5 +1,4 @@
 function checkout(){ 
-    $('#loadingModal').modal('show');
     $.ajax({
         url: 'process/checkout.php',
         type: 'POST',
@@ -14,14 +13,14 @@ function checkout(){
         success: function (response) {
             console.log(response);
             if (response == 1) {
-                $('#loadingModal').modal('hide');
                 alert('Đặt hàng thành công!');
             } else {
-                $('#loadingModal').modal('hide');
                 alert('Lỗi!');
+                failPlaceOrder();
             }
         },
         
     })
 }
+
 

@@ -10,7 +10,7 @@
 
     <div class="header-to-bar"> HELLO EVERYONE! 25% Off All Products </div>
 
-    <!-- Top Bar -->
+<!-- Top Bar -->
 
 <header>
         <div class="header-main sticky-nav ">
