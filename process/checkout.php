@@ -60,7 +60,7 @@ if (isset($_POST['placeOrder'])) {
             ),
             
       );
-      $make_call = callAPI('POST', 'http://localhost:5555/api/order/processing', json_encode($data_array));
+      $make_call = callAPI('POST', 'http://14.225.192.186:5555/api/order/processing', json_encode($data_array));
       $response = json_decode($make_call, true);
     //   $errors   = $response['response']['errors'];
     //   $data     = $response['response'];
