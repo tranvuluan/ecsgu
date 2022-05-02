@@ -233,7 +233,7 @@ function addWarehouseReceipt() {
         },
         success: function (response) {
             console.log(response);
-            if (reponse == 1) {
+            if (response == 1) {
                 alert("Thêm thành công!");
                 location.reload();
             }
