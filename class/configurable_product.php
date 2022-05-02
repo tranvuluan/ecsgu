@@ -64,7 +64,7 @@ class ConfigurableProduct{
         $images = $this->conn->real_escape_string($images);
         $inventory_status = $this->conn->real_escape_string($inventory_status);
         $option = $this->conn->real_escape_string($option);
-        $sql = "UPDATE tbl_configurable_products SET `sku` = '$sku', `stock` = '$stock', `quantity_sold` = '$quantity_sold', `images` = '$images', `inventory_status` = '$inventory_status', `option` = '$option' WHERE `id_product` = '$id_product'";
+        $sql = "UPDATE tbl_configurable_products SET `sku` = '$sku', `stock` = '$stock', `quantity_sold` = '$quantity_sold', `inventory_status` = '$inventory_status', `option` = '$option' WHERE `id_product` = '$id_product'";
         $result = $this->conn->query($sql);
         return $result;
     }
