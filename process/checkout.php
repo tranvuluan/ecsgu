@@ -1,4 +1,8 @@
 <?php
+    var_dump($_SESSION);
+$path = dirname(__FILE__);
+require_once $path . '/../lib/checklogin.php';
+checkUserLogin();
 $path = dirname(__FILE__);
 require $path . '/../class/order.php';
 $path = dirname(__FILE__);
