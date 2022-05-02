@@ -27,7 +27,9 @@ if (count($_SESSION['cart']) > 0) {
                         </thead>
                         <tbody>
                             <?php
+                            $total = 0;
                             foreach ($_SESSION['cart'] as $key => $value) {
+                                $total += $value['price'];
                             ?>
 
                                 <tr data-sku="<?php print $key ?>">
@@ -93,15 +95,11 @@ if (count($_SESSION['cart']) > 0) {
                         <div class="title-wrap">
                             <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                         </div>
-                        <h5>Total products <span>$260.00</span></h5>
+                        <h5>Total products <span id="total-product"><?php echo  $total.' đ' ?></span></h5>
                         <div class="total-shipping">
-                            <h5>Total shipping</h5>
-                            <ul>
-                                <li><input type="checkbox" /> Standard <span>$20.00</span></li>
-                                <li><input type="checkbox" /> Express <span>$30.00</span></li>
-                            </ul>
+                            <h5>Total shipping <span id="total-ship">30000 đ</span></h5>
                         </div>
-                        <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
+                        <h4 class="grand-totall-title">Grand Total <span id="grand-total"><?php echo ($total + 30000).' đ' ?></span></h4>
                         <a href="checkout.php">Proceed to Checkout</a>
                     </div>
                 </div>

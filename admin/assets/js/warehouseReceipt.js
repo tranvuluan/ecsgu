@@ -217,8 +217,8 @@ function addWarehouseReceipt() {
     let id_suplier = $('select[name="suplier"] option:selected').val();
     let id_employee = $('input[name="EmployeeId"]').val();
     let date = $('input[name="date"]').val();
-
-
+    console.log('warehouse detail table ')
+    console.log(warehouseDetailTable);
     $.ajax({
         url: './process/warehouseReceipt.php',
         type: 'POST',
@@ -233,6 +233,14 @@ function addWarehouseReceipt() {
         },
         success: function (response) {
             console.log(response);
+            if (reponse == 1) {
+                alert("Thêm thành công!");
+                location.reload();
+            }
+            else {
+                alert("Thêm thất bại!");
+                location.reload();
+            }
         }
     })
 
@@ -323,6 +331,76 @@ function addNewBrand() {
             else {
                 alert('Thêm thất bại');
             }
+        }
+    })
+}
+
+
+function addExistProduct() {
+    $.ajax({
+        url: './process/warehouseReceipt.php',
+        type: 'GET',
+        data: {
+            showExistProduct: true,
+        },
+        success: function (response) {
+            $('#modalExistProduct').html($('<div class="modal fade " id="modal_chooseExistProduct" style="z-index:99999;">' + response + ' </div>').modal('show'));
+        }
+    });
+}
+
+
+function chooseExistProduct(id_product) {
+    console.log(id_product);
+    $.ajax({
+        url: './process/warehouseReceipt.php',
+        type: 'GET',
+        data: {
+            chooseExistProduct: true,
+            id_product: id_product,
+        },
+        success: function (response) {
+            $('#modal_chooseExistProduct').modal('hide');
+            let objectJson = JSON.parse(response);
+            $('input[name="ProductId"').val(objectJson.product.id_product);
+            $('input[name="ProductName"').val(objectJson.product.name);
+            $('input[name="ProductName"').val(objectJson.product.name);
+            $('#categorychild').val(objectJson.categorychild.id_categorychild).change();
+            $('#brand').val(objectJson.brand.id_brand).change();
+            imageUrl = objectJson.product.image;
+            $('#imageProductInAddWarehouse').attr('src', imageUrl);
+            objectJson.sku.forEach(sku => {
+                if (sku.option == 'S') {
+                    $('input[name="productCheckbox_S"]').prop('checked', true);
+                    $('input[name="sku_S"]').val(sku.sku);
+                    $('input[name="stock_S"]').val(sku.stock);
+                    $("select[name=inventory_status_S").val(sku.inventory_status).change();
+                }
+                if (sku.option == 'M') {
+                    $('input[name="productCheckbox_M"]').prop('checked', true);
+                    $('input[name="sku_M"]').val(sku.sku);
+                    $('input[name="stock_M"]').val(sku.stock);
+                    $("select[name=inventory_status_M").val(sku.inventory_status).change();
+                }
+                if (sku.option == 'X') {
+                    $('input[name="productCheckbox_X"]').prop('checked', true);
+                    $('input[name="sku_X"]').val(sku.sku);
+                    $('input[name="stock_X"]').val(sku.stock);
+                    $("select[name=inventory_status_X").val(sku.inventory_status).change();
+                }
+                if (sku.option == 'XL') {
+                    $('input[name="productCheckbox_XL"]').prop('checked', true);
+                    $('input[name="sku_XL"]').val(sku.sku);
+                    $('input[name="stock_XL"]').val(sku.stock);
+                    $("select[name=inventory_status_XL").val(sku.inventory_status).change();
+                }
+            });
+
+            console.log(objectJson);
+            // $('')
+        },
+        error: function (err) {
+            console.log(err);
         }
     })
 }

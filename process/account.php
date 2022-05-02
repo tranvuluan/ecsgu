@@ -1,12 +1,13 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/customer.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/orderItem.php';
 ?>
 
 <?php
-
 if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
+    echo 'chay cho ni';
     $id_order = $_POST['id_order'];
 ?>
 

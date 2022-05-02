@@ -72,7 +72,7 @@ $path = realpath(dirname(__FILE__));
         }
     </style>
     <!--Top bar, Header Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
@@ -106,13 +106,13 @@ $path = realpath(dirname(__FILE__));
                             </a>
                             <!-- Khi mà bấm Login hay Register thì chuyển form -->
                             <!-- Form lg3 là form verification -->
-                            <a data-bs-toggle="tab" href="#lg2"> 
+                            <a data-bs-toggle="tab" href="#lg2">
                                 <h4>register</h4>
                             </a>
-                            <a data-bs-toggle="tab" id="verifymail" class="d-none" href="#lg3"> 
+                            <a data-bs-toggle="tab" id="verifymail" class="d-none" href="#lg3">
                                 <h4>Verify</h4>
                             </a>
-                    
+
                         </div>
                         <div class="tab-content">
                             <div id="lg1" class="tab-pane active">
@@ -181,7 +181,7 @@ $path = realpath(dirname(__FILE__));
                                                 </div>
                                                 <div class="">
                                                     <div class="d-grid">
-                                                        <button type="button"  onclick="register()" class="btn btn-dark">Register</button>
+                                                        <button type="button" onclick="register()" class="btn btn-dark">Register</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -209,7 +209,7 @@ $path = realpath(dirname(__FILE__));
                                     <div class="login-register-form">
                                         <form action="#" method="post">
                                             <label for="" class="form-label">Type your verification code:</label>
-                                            <input type="text" name="registerCode"/>
+                                            <input type="text" name="registerCode" />
                                             <div class="button-box">
                                                 <div class="row">
                                                     <div class="col-md-3"></div>
@@ -240,7 +240,7 @@ $path = realpath(dirname(__FILE__));
     <!-- login area end -->
 
     <!-- Footer Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
@@ -252,7 +252,7 @@ $path = realpath(dirname(__FILE__));
     <!-- END Modals -->
 
     <!-- JavaScripts -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->

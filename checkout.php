@@ -107,19 +107,19 @@ $path = realpath(dirname(__FILE__));
                             <div class="col-lg-12">
                                 <div class="billing-info mb-4">
                                     <label>Street Address</label>
-                                    <input class="billing-address" placeholder="House number and street name" id="adress" value="" type="text" />
+                                    <input class="billing-address" placeholder="House number and street name" name="address" value="" type="text" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Phone</label>
-                                    <input type="text" name="phone" value=""/>
+                                    <input type="text" name="phone" value="" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Email Address</label>
-                                    <input type="text" name="email" value=""/>
+                                    <input type="text" name="email" value="" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
@@ -132,7 +132,7 @@ $path = realpath(dirname(__FILE__));
                                     </select>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="checkout-account mb-30px">
                             <input class="checkout-toggle2 w-auto h-auto" type="checkbox" />
@@ -220,20 +220,27 @@ $path = realpath(dirname(__FILE__));
                                 </div>
                                 <div class="your-order-middle">
                                     <ul>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$100 </span></li>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$100 </span></li>
+                                        <?php
+                                        $total = 0;
+                                        foreach ($_SESSION['cart'] as $key => $value) {
+                                            $total += $value['price'] * $value['quantity'];
+                                        ?>
+                                            <li><span class="order-middle-left"><?php echo $value['name'] ?> X <?php echo $value['quantity'] ?></span> <span class="order-price"><?php echo $value['price'] ?> đ</span></li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                                 <div class="your-order-bottom">
                                     <ul>
                                         <li class="your-order-shipping">Shipping</li>
-                                        <li>Free shipping</li>
+                                        <li>30000 đ</li>
                                     </ul>
                                 </div>
                                 <div class="your-order-total">
                                     <ul>
                                         <li class="order-total">Total</li>
-                                        <li>$100</li>
+                                        <li><?php echo ($total + 30000).' đ' ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -282,7 +289,7 @@ $path = realpath(dirname(__FILE__));
                             </div>
                         </div>
                         <div class="Place-order mt-25">
-                            <a class="btn-hover" onclick="getDetailCheckout()" href="javascript:;">Place Order</a>
+                            <a class="btn-hover" onclick="checkout()" href="javascript:;">Place Order</a>
                         </div>
                     </div>
                 </div>
@@ -309,7 +316,7 @@ $path = realpath(dirname(__FILE__));
     $path = dirname(__FILE__);
     require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
-    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/checkout.js"></script>
 </body>
 
 </html>

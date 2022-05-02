@@ -52,7 +52,7 @@ class ConfigurableProduct{
         $inventory_status = $this->conn->real_escape_string($inventory_status);
         $option = $this->conn->real_escape_string($option);
         $sql = "INSERT INTO tbl_configurable_products(`sku`, `id_product`, `stock`, `quantity_sold`, `inventory_status`, `option`) VALUES ('$sku', '$id_product', '$stock', '0', '$inventory_status', '$option')";
-        $result = $this->conn->query($sql);
+        $result = $this->conn->query($sql)or die($this->conn->error);
         return $result;
     }
     
@@ -65,7 +65,7 @@ class ConfigurableProduct{
         $inventory_status = $this->conn->real_escape_string($inventory_status);
         $option = $this->conn->real_escape_string($option);
         $sql = "UPDATE tbl_configurable_products SET `sku` = '$sku', `stock` = '$stock', `quantity_sold` = '$quantity_sold', `inventory_status` = '$inventory_status', `option` = '$option' WHERE `id_product` = '$id_product'";
-        $result = $this->conn->query($sql);
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
 
