@@ -69,3 +69,18 @@ function update(){
     
     });
 }
+
+function viewDetailOrderProduct(sku){
+    $.ajax({
+        url: './process/account.php',
+        type: 'POST',
+        data: {
+            sku: sku,
+            viewDetailOrderProduct: true
+        },
+        success: function(data){
+            console.log(data);
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal('show'));
+        }
+    });
+}
