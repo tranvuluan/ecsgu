@@ -65,5 +65,22 @@ class Order
         $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
+
+    public function changeStatus($id_order, $status)
+    {
+        $id_order = $this->conn->real_escape_string($id_order);
+        $status = $this->conn->real_escape_string($status);
+        $sql = "UPDATE tbl_order SET status = '$status' WHERE id_order = '$id_order'";
+        $result = $this->conn->query($sql) or die($this->conn->error);
+        return $result;
+    }
+    public function delete($id_order)
+    {
+        $id_order = $this->conn->real_escape_string($id_order);
+        $sql = "DELETE FROM tbl_order WHERE id_order = '$id_order'";
+        $result = $this->conn->query($sql) or die($this->conn->error);
+        return $result;
+    }
+
 }
 ?>

@@ -112,6 +112,9 @@ require_once $path . '/../class/customer.php';
                                     $listOrder = $orderModel->getOrders();
                                     if ($listOrder) {
                                         while ($row = $listOrder->fetch_assoc()) {
+                                            if ($row['status'] == '0' || $row['status'] == '1')
+                                                continue;
+
                                     ?>
                                             <tr>
                                                 <td><?php echo $row['id_order'] ?></td>
@@ -134,7 +137,7 @@ require_once $path . '/../class/customer.php';
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <div class="badge bg-danger">Đang xử lý</div>
+                                                        <div class="badge bg-success">Đã hoàn tất</div>
                                                     <?php
                                                     }
                                                     ?>
@@ -156,7 +159,6 @@ require_once $path . '/../class/customer.php';
                                     <?php
                                         }
                                     }
-
                                     ?>
                                 </tbody>
                             </table>
@@ -331,14 +333,14 @@ require_once $path . '/../class/customer.php';
             </div>
             <!-- start modal sửa chi tiết hóa đơn -->
 
-<div id="switchModel"></div>
+            <div id="switchModel"></div>
             <!-- Scripts-->
             <?php
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
             <!-- END Scripts -->
-<script src="./assets/js/order.js"></script>
+            <script src="./assets/js/order.js"></script>
 
 </body>
 

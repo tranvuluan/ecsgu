@@ -71,4 +71,3 @@ class ProductSale{
         return $result;
     }
 }
-?>

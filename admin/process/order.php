@@ -146,7 +146,7 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
     <form class="row g-3 needs-validation" novalidate>
         <div class="col-md-6">
             <label for="validationCustom01" class="form-label">Mã hóa đơn</label>
-            <input type="text" class="form-control" id="validationCustom01" value="<?php echo $order['id_order'] ?>" readonly>
+            <input type="text" class="form-control" id="orderId" value="<?php echo $order['id_order'] ?>" readonly>
         </div>
         <div class="col-md-6">
             <label for="validationCustom02" class="form-label">Ngày lập</label>
@@ -202,16 +202,30 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
         $configurableProductModel = new ConfigurableProduct();
         $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc()['id_product'];
         $rowProduct = $productModel->getProductById($configurableProduct)->fetch_assoc();
-        $productSaleModel = new ProductSale();
-        $getProductSale = $productSaleModel->getProductSaleByProductId($rowProduct['id_product'])->fetch_assoc();
+        if ($rowProduct) {
+            $productSaleModel = new ProductSale();
+            $getProductSale = $productSaleModel->getProductSaleByProductId($rowProduct['id_product']);
+            if ($getProductSale) {
+                $rowProductSale = $getProductSale->fetch_assoc();
         ?>
-        <div class="col-md-6">
-            <label for="validationDiscount" class="form-label">Khyến mãi</label>
-            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
-                <input type="text" class="form-control" name="discount" id="validationDiscount" value="<?php echo $getProductSale['salepercent'] ?>" readonly>
-            </div>
-        </div>
+                <div class="col-md-6">
+                    <label for="validationDiscount" class="form-label">Khyến mãi</label>
+                    <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                        <input type="text" class="form-control" name="discount" id="validationDiscount" value="<?php echo $rowProductSale['salepercent'] ?>" readonly>
+                    </div>
+                </div>
+            <?php
+            } else {
+            ?>
+                <div class="col-md-6">
+                    <label for="validationDiscount" class="form-label">Khyến mãi</label>
+                    <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                        <input type="text" class="form-control" name="discount" id="validationDiscount" value="0" readonly>
+                    </div>
+                </div>
         <?php
+            }
+        }
         ?>
         <div class="col-md-6">
             <label for="validationCustom02" class="form-label">Tổng tiền (đ)</label>
@@ -219,12 +233,43 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
         </div>
         <div class="col-md-12"></div>
         <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-3">
-                <button class="btn btn-primary">Xử lý</button>
-            </div>
+            <div class="col-md-8"></div>
+            <?php
+            if ($order['status'] == 0) {
+            ?>
+                <div class="col-md-3">
+                    <button onclick="orderProcess()" class="btn btn-primary">Xử lý</button>
+                </div>
+            <?php
+            } else if ($order['status'] == 1) {
+            ?>
+                <div class="col-md-4">
+                    <button onclick="orderComplete()" class="btn btn-primary">Hoàn thành</button>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </form>
 <?php
 }
 ?>
+
+<?php
+if (isset($_POST['process'])) {
+    $orderModel = new Order();
+    $status = 1;
+    $orderModel->changeStatus($_POST['id'], $status);
+    echo 1;
+}
+?>
+
+<?php
+if (isset($_POST['complete'])) {
+    $orderModel = new Order();
+    $status = 2;
+    $orderModel->changeStatus($_POST['id'], $status);
+    echo 1;
+}
+?>
+
