@@ -73,7 +73,7 @@ if (isset($_POST['viewToAdd'])) {
                                         </div>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Danh mục</label>
-                                            <select class="form-select" name="categorychild" id="">
+                                            <select class="form-select" name="categorychild" id="categorychild">
                                                 <?php
                                                 $categoryAll = $CagoryChildModel->getCategoryChilds();
                                                 if ($categoryAll) {

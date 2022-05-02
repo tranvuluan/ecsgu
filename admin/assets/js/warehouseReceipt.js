@@ -357,6 +357,7 @@ function chooseExistProduct(id_product) {
             $('input[name="ProductId"')[0].val(objectJson.product.id_product);
             $('input[name="ProductName"')[0].val(objectJson.product.name);
             $('input[name="ProductName"')[0].val(objectJson.product.name);
+            $('')
             console.log(objectJson);
             // $('')
         },
