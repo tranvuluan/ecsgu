@@ -90,7 +90,7 @@ if (isset($_POST['viewToAdd'])) {
                                         </div>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Thương hiệu</label>
-                                            <select class="form-select" name="brand" id="">
+                                            <select class="form-select" name="brand" id="brand">
                                                 <?php
                                                 $brandAll = $BrandModel->getBrands();
                                                 if ($categoryAll) {
@@ -322,11 +322,13 @@ if (isset($_POST['add'])) {
     $WarehouseReceiptDetailModel = new WarehouseReceiptDetail();
     $ProductModel = new Product();
     $ConfigurableProductModel = new ConfigurableProduct();
+    $flag  = 1;
 
     // insert WarehouseReceiptent into db
     $insertWarehouseReceipt = $WarehouseReceiptModel->insert($_POST['id_warehousereceipt'], $_POST['id_suplier'], $_POST['id_employee'], $_POST['date'], $_POST['totalprice']);
     if (!$insertWarehouseReceipt) {
-        echo 0;
+        $flag = 0;
+        echo $flag;
         return;
     }
 
@@ -335,21 +337,51 @@ if (isset($_POST['add'])) {
         $insertWarehouseReceiptDetail = $WarehouseReceiptDetailModel->insert($_POST['id_warehousereceipt'], $value['id_product'], $value['price']);
         // insert product into db
         if (!$insertWarehouseReceiptDetail) {
-            echo 0;
+            $flag = 0;
+            echo $flag;
             return;
         }
         # code...
-        $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0');
-        foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
-            // insert configurable_product  into db
-            $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);
-            if (!$insertConfigurableProduct) {
-                echo 0;
+        $checkExistProduct = $ProductModel->getProductById($value['id_product']);
+        if (!$checkExistProduct) {
+            $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0');
+            if (!$insertProduct) {
+                $flag = 0;
+                echo $flag;
+                return;
+            }
+        } else {
+            $getProduct = $checkExistProduct->fetch_assoc();
+            $updateProduct = $ProductModel->update($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $getProduct['price'], $value['images'], $getProduct['status']);
+            if (!$updateProduct) {
+                $flag = 0;
+                echo $flag;
                 return;
             }
         }
+        foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
+            $checkExistSKU = $ConfigurableProductModel->getConfigurableProductBySKU($valueConfig['sku']);
+            if (!$checkExistSKU) {
+                // insert configurable_product  into db
+                $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);
+                if (!$insertConfigurableProduct) {
+                    $flag = 0;
+                    echo $flag;
+                    return;
+                }
+            } else {
+                $getSKU = $checkExistSKU->fetch_assoc();
+                // update configruable product into db
+                $updateConfigurableProduct = $ConfigurableProductModel->update($valueConfig['sku'], $value['id_product'], $valueConfig['stock'] + $getSKU['stock'], $getSKU['quantity_sold'], $valueConfig['inventory_status'], $valueConfig['option']);
+                if (!$updateConfigurableProduct) {
+                    $flag = 0;
+                    echo $flag;
+                    return;
+                }
+            }
+        }
     }
-    echo 1;
+    echo $flag;
 }
 ?>
 
