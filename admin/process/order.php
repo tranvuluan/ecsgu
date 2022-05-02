@@ -244,7 +244,7 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
             } else if ($order['status'] == 1) {
             ?>
                 <div class="col-md-4">
-                    <button onclick="orderComplete()" class="btn btn-primary">Hoàn thành</button>
+                    <button onclick="orderComplete()" class="btn btn-primary">Hoàn tất</button>
                 </div>
             <?php
             }
