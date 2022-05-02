@@ -27,9 +27,8 @@ function getDetailOrderItem(id) {
     });
 }
 
-function orderProcess() {
+function orderProcess(id) {
     event.preventDefault();
-    let id = $('#orderId').val();
     $.ajax({
         url: './process/order.php',
         type: 'POST',
@@ -47,9 +46,8 @@ function orderProcess() {
     });
 }
 
-function orderComplete() {
+function orderComplete(id) {
     event.preventDefault();
-    let id = $('#orderId').val();
     $.ajax({
         url: './process/order.php',
         type: 'POST',
@@ -60,6 +58,31 @@ function orderComplete() {
         success: function (response) {
             if (response == 1) {
                 alert('Order Completed');
+                $('#switchModel').modal('hide');
+                location.reload();
+            }
+        }
+    });
+}
+
+function removeOrder(id){
+    event.preventDefault();
+    document.getElementById("OrderRemove").style.display = "block";
+    let infoRemove = $('#infoRemove').val();
+    if(infoRemove == ''){
+        alert('Please enter your reason');
+        return false;
+    }
+    $.ajax({
+        url: './process/order.php',
+        type: 'POST',
+        data: {
+            id: id,
+            remove: true,
+        },
+        success: function (response) {
+            if (response == 1) {
+                alert('Order Removed');
                 $('#switchModel').modal('hide');
                 location.reload();
             }
