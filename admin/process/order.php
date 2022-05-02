@@ -69,6 +69,37 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <?php
+                            if ($order['status'] == 0) {
+                            ?>
+                                <div class="col-md-3">
+                                    <button onclick="orderProcess('<?php print $order['id_order'] ?>')" class="btn btn-primary">Xử lý</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-danger" onclick="removeOrder('<?php print $order['id_order'] ?>')">Hủy đơn hàng</button>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-11" id="OrderRemove" style="display: none;">
+                                        <br>
+                                        <input type="text" class="form-control" value="" id="infoRemove">
+                                    </div>
+                                </div>
+
+                            <?php
+                            } else if ($order['status'] == 1) {
+                            ?>
+                                <div class="col-md-4">
+                                    <button onclick="orderComplete('<?php print $order['id_order'] ?>')" class="btn btn-primary">Hoàn tất</button>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <br>
                     </div>
                     <!-- start view chi tiết hóa đơn -->
 
@@ -231,32 +262,13 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
             <label for="validationCustom02" class="form-label">Tổng tiền (đ)</label>
             <input type="text" class="form-control" id="validationCustom02" value="<?php echo $orderItem['price'] ?>" readonly>
         </div>
-        <div class="col-md-12"></div>
-        <div class="row">
-            <div class="col-md-8"></div>
-            <?php
-            if ($order['status'] == 0) {
-            ?>
-                <div class="col-md-3">
-                    <button onclick="orderProcess()" class="btn btn-primary">Xử lý</button>
-                </div>
-            <?php
-            } else if ($order['status'] == 1) {
-            ?>
-                <div class="col-md-4">
-                    <button onclick="orderComplete()" class="btn btn-primary">Hoàn tất</button>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
     </form>
 <?php
 }
 ?>
 
 <?php
-if (isset($_POST['process'])) {
+if (isset($_POST['process']) && $_POST['id']) {
     $orderModel = new Order();
     $status = 1;
     $orderModel->changeStatus($_POST['id'], $status);
@@ -273,3 +285,11 @@ if (isset($_POST['complete'])) {
 }
 ?>
 
+<?php
+if (isset($_POST['complete'])) {
+    $orderModel = new Order();
+    $status = -1;
+    $orderModel->changeStatus($_POST['id'], $status);
+    echo 1;
+}
+?>
