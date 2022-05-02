@@ -336,9 +336,27 @@ function addExistProduct() {
             showExistProduct: true,
         },
         success: function (response) {
-            console.log(response);
             $('#modalExistProduct').html($('<div class="modal fade" style="z-index:99999;">' + response + ' <div>').modal());
         }
     });
 }
 
+
+function chooseExistProduct(id_product) {
+    console.log(id_product);
+    $.ajax({
+        url: './process/warehouseReceipt.php',
+        type: 'GET',
+        data: {
+            chooseExistProduct: true,
+            id_product: id_product,
+        },
+        success: function (response) {
+            let objectJson = JSON.parse(response);
+            console.log(objectJson);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
+}
