@@ -15,6 +15,7 @@ if (isset($_POST['placeOrder'])) {
     $OrderModel = new Order();
     $OrderItemModel = new OrderItem();
     $CustomerModel = new Customer();
+    $ConfigurableModel = new ConfigurableProduct();
     $id_order = 'OR' . date('YmdHis');
     $id_customer = $_SESSION['id_customer'];
     $phone = $_POST['phone'];
@@ -34,6 +35,7 @@ if (isset($_POST['placeOrder'])) {
     if ($insertOrder) {
         foreach ($_SESSION['cart'] as $key => $value) {
             $insertOrderItem = $OrderItemModel->insert($id_order, $value['sku'], $value['quantity'], $value['price']);
+            // $
             if ($insertOrderItem == false) {
                 $flag = 0;
                 break;

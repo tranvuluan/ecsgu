@@ -8,6 +8,7 @@ require_once $path . '/../class/configurable_product.php';
 require_once $path . '/../class/brand.php';
 require_once $path . '/../class/categoryChild.php';
 require_once $path . '/../class/productSale.php';
+require_once $path . '/../class/LibClass.php';
 ?>
 
 <?php
@@ -268,20 +269,63 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
 ?>
 
 <?php
-if (isset($_POST['process']) && $_POST['id']) {
+if (isset($_POST['process']) && $_POST['id_order']) {
+    $LibClass = new LibClass();
     $orderModel = new Order();
     $status = 1;
-    $orderModel->changeStatus($_POST['id'], $status);
-    echo 1;
+    $items_send = [];
+
+    // $orderModel->changeStatus($_POST['id_order'], $status);
+    // echo 1;
+    $getAllInfoOrder = $LibClass->getFullInfoOrder($_POST['id_order']);
+    $fullOrder = $getAllInfoOrder->fetch_assoc();
+    $fullnameCustomer = $fullOrder['fullname'];
+    $emailCustomer = $fullOrder['email'];
+    $phoneCustomer = $fullOrder['phone'];
+    $addressCustomer = $fullOrder['address'];
+    $totalprice = $fullOrder['totalprice'];
+    $item['name'] = $fullOrder['name'];
+    $item['quantity'] = $fullOrder['quantity'];
+    $item['price'] = $fullOrder['price'];
+    array_push($items_send, $item);
+    while ($value = $getAllInfoOrder->fetch_assoc()) {
+        $item['name'] = $value['name'];
+        $item['quantity'] = $value['quantity'];
+        $item['price'] = $value['price'];
+        array_push($items_send, $item);
+    }
+        $data_array =  array(
+            "customer"        => array(
+                "fullname" => $fullnameCustomer,
+                "email"    => $emailCustomer,
+                "phone"    => $phoneCustomer,
+                "address"  => $addressCustomer,
+            ),
+            "order"           => array(
+                "order_id" => $_POST['id_order'],
+                "total"    => $totalprice,
+                "items" => json_encode($items_send)
+            ),
+
+        );
+        $data_string = json_encode($data_array);
+        echo $data_string;
 }
 ?>
 
 <?php
 if (isset($_POST['complete'])) {
+    $items_send = [];
     $orderModel = new Order();
-    $status = 2;
-    $orderModel->changeStatus($_POST['id'], $status);
-    echo 1;
+    $LibClass = new LibClass();
+    $ProductModel = new Product();
+    $CustomerModel = new Customer();
+    $getAllInfoOrder = $LibClass()->getAllInfoOrder($order['id_order']);
+    var_dump($getAllInfoOrder);
+    // $status = 2;
+    // $orderModel->changeStatus($_POST['id'], $status);
+
+    // echo 1;
 }
 ?>
 
@@ -289,7 +333,7 @@ if (isset($_POST['complete'])) {
 if (isset($_POST['complete'])) {
     $orderModel = new Order();
     $status = -1;
-    $orderModel->changeStatus($_POST['id'], $status);
+    $orderModel->changeStatus($_POST['id_order'], $status);
     echo 1;
 }
 ?>

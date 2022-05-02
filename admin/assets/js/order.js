@@ -33,15 +33,16 @@ function orderProcess(id) {
         url: './process/order.php',
         type: 'POST',
         data: {
-            id: id,
+            id_order: id,
             process: true,
         },
         success: function (response) {
-            if (response == 1) {
-                alert('Order Processed');
-                $('#switchModel').modal('hide');
-                location.reload();
-            }
+            console.log(response);
+            // if (response == 1) {
+            //     alert('Order Processed');
+            //     $('#switchModel').modal('hide');
+            //     location.reload();
+            // }
         }
     });
 }
