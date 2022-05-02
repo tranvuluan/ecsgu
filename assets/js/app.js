@@ -276,3 +276,17 @@ function getDetailCheckout(){
     let note = $('textarea[name="note"]').val().trim();
 
 }
+
+function showAllProduct(){
+    $.ajax({
+        url: './process/product_details.php',
+        type: 'POST',
+        data: {
+            showAllProduct: true,
+        },
+        success: function (data) {
+            $('#product-details').html(data);
+            console.log(data);
+        }
+    });
+}

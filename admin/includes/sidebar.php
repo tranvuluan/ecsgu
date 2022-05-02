@@ -88,12 +88,38 @@
       </a>
     </li>
     <li>
-      <a href="order.php">
+    <a class="has-arrow" href="javascript:;">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-pencil-square"></i>
         </div>
-        <div class="menu-title">Hóa đơn</div>
+        <div class="menu-title">Quản lý đơn hàng</div>
       </a>
+      <ul>
+        <li>
+          <a href="order.php">
+            <div class="parent-icon">
+              <i class="bi bi-pencil-square"></i>
+            </div>
+            <div class="menu-title">Đơn hàng đang xử lý</div>
+          </a>
+        </li>
+        <li>
+          <a href="order_processed.php">
+            <div class="parent-icon">
+              <i class="bi bi-pencil-square"></i>
+            </div>
+            <div class="menu-title">Đơn hàng đã xử lý</div>
+          </a>
+        </li>
+        <li>
+          <a href="order_completed.php">
+            <div class="parent-icon">
+              <i class="bi bi-pencil-square"></i>
+            </div>
+            <div class="menu-title">Đơn hàng đã hoàn tất</div>
+          </a>
+        </li>
+      </ul>
     </li>
     <li>
       <a href="nhanvien.php">
