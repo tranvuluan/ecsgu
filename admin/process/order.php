@@ -286,7 +286,7 @@ if (isset($_POST['complete'])) {
 ?>
 
 <?php
-if (isset($_POST['complete'])) {
+if (isset($_POST['remove'])) {
     $orderModel = new Order();
     $status = -1;
     $orderModel->changeStatus($_POST['id'], $status);

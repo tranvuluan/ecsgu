@@ -112,7 +112,7 @@ require_once $path . '/../class/customer.php';
                                     $listOrder = $orderModel->getOrders();
                                     if ($listOrder) {
                                         while ($row = $listOrder->fetch_assoc()) {
-                                            if ($row['status'] == '0' || $row['status'] == '2')
+                                            if ($row['status'] == '0' || $row['status'] == '2' || $row['status'] == '-1')
                                                 continue;
 
                                     ?>
@@ -134,10 +134,6 @@ require_once $path . '/../class/customer.php';
                                                     if ($row['status'] == 1) {
                                                     ?>
                                                         <div class="badge bg-primary">Đã xử lý</div>
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <div class="badge bg-danger">Đang xử lý</div>
                                                     <?php
                                                     }
                                                     ?>

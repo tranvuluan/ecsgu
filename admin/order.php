@@ -131,13 +131,13 @@ require_once $path . '/../class/customer.php';
                                                 <td><?php echo $row['date'] ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($row['status'] == 1) {
+                                                    if ($row['status'] == 0) {
                                                     ?>
-                                                        <div class="badge bg-primary">Đã xử lý</div>
+                                                        <div class="badge bg-warning">Đang xử lý</div>
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <div class="badge bg-danger">Đang xử lý</div>
+                                                        <div class="badge bg-danger">Đã xóa</div>
                                                     <?php
                                                     }
                                                     ?>
