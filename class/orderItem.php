@@ -20,9 +20,9 @@ class OrderItem{
         }
     }
 
-    public function getOrderItemById($id_order_item) {
-        $id_order_item = $this->conn->real_escape_string($id_order_item);
-        $sql = "SELECT * FROM tbl_order_item WHERE id_order_item = '$id_order_item'";
+    public function getOrderItemById($id_order) {
+        $id_order = $this->conn->real_escape_string($id_order);
+        $sql = "SELECT * FROM tbl_order_item WHERE id_order = '$id_order'";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
@@ -32,9 +32,9 @@ class OrderItem{
         }
     }
 
-    public function getOrderItemByProductId($id_product){
-        $id_product = $this->conn->real_escape_string($id_product);
-        $sql = "SELECT * FROM tbl_order_item WHERE id_product = '$id_product'";
+    public function getOrderItemBySKU($sku){
+        $sku = $this->conn->real_escape_string($sku);
+        $sql = "SELECT * FROM tbl_order_item WHERE sku = '$sku'";
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
