@@ -336,7 +336,7 @@ function addExistProduct() {
             showExistProduct: true,
         },
         success: function (response) {
-            $('#modalExistProduct').html($('<div class="modal fade" style="z-index:99999;">' + response + ' <div>').modal());
+            $('#modalExistProduct').html($('<div class="modal fade " id="modal_chooseExistProduct" style="z-index:99999;">' + response + ' </div>').modal());
         }
     });
 }
@@ -352,8 +352,13 @@ function chooseExistProduct(id_product) {
             id_product: id_product,
         },
         success: function (response) {
+            $('#modal_chooseExistProduct').modal('hide');
             let objectJson = JSON.parse(response);
+            $('input[name="ProductId"')[0].val(objectJson.product.id_product);
+            $('input[name="ProductName"')[0].val(objectJson.product.name);
+            $('input[name="ProductName"')[0].val(objectJson.product.name);
             console.log(objectJson);
+            // $('')
         },
         error: function (err) {
             console.log(err);
