@@ -126,7 +126,6 @@ checkLogin();
                                         }
                                     }
                                     ?>
-
                                 </table>
                             </div>
                         </div>
