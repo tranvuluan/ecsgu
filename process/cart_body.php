@@ -1,10 +1,12 @@
 <?php
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
-}
 if (!isset($_SESSION)) {
     session_start();
 }
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
 ?>
 <?php
 if (count($_SESSION['cart']) > 0) {

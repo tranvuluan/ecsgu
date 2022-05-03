@@ -274,9 +274,27 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
 if (isset($_POST['process']) && $_POST['id_order']) {
     $LibClass = new LibClass();
     $orderModel = new Order();
+    $configurableProductModel = new ConfigurableProduct();
+    $OrderItemModel = new OrderItem();
+    $getListOrderItem = $OrderItemModel->getOrderItemById($_POST['id_order']);
+    $flag = 1;
+    while ($row = $getListOrderItem->fetch_assoc()) {
+        $sku = $row['sku'];
+        $checkStock = $configurableProductModel->checkStock($sku, $row['quantity']);
+        if (!$checkStock) {
+            $flag = 0;
+            break;
+        }
+    }
+    if ($flag != 1){
+        echo $flag;
+        return;
+    }
     $status = 1;
     $items_send = [];
-    $flag = 1;
+
+    // check stock;
+
 
     $changeStatus = $orderModel->changeStatus($_POST['id_order'], $status);
     if (!$changeStatus)
@@ -323,26 +341,54 @@ if (isset($_POST['process']) && $_POST['id_order']) {
 ?>
 
 <?php
-if (isset($_POST['complete'])) {
+if (isset($_POST['complete']) && isset($_POST['id_order'])) {
     $items_send = [];
     $orderModel = new Order();
     $LibClass = new LibClass();
-    $ProductModel = new Product();
-    $CustomerModel = new Customer();
-    $getAllInfoOrder = $LibClass()->getAllInfoOrder($order['id_order']);
-    var_dump($getAllInfoOrder);
-    // $status = 2;
-    // $orderModel->changeStatus($_POST['id'], $status);
+    $flag = 1;
+    $changeStatus = $orderModel->changeStatus($_POST['id_order'], 2);
+    if (!$changeStatus) {
+        $flag = 0;
+        echo $flag;
+        return;
+    }
+    $getAllInfoOrder = $LibClass->getFullInfoOrder($_POST['id_order']);
+    $fullOrder = $getAllInfoOrder->fetch_assoc();
+    $fullnameCustomer = $fullOrder['fullname'];
+    $emailCustomer = $fullOrder['email'];
+    $phoneCustomer = $fullOrder['phone'];
+    $addressCustomer = $fullOrder['address'];
+    $totalprice = $fullOrder['totalprice'];
+    $item['name'] = $fullOrder['name'];
+    $item['quantity'] = $fullOrder['quantity'];
+    $item['price'] = $fullOrder['price'];
+    array_push($items_send, $item);
+    while ($value = $getAllInfoOrder->fetch_assoc()) {
+        $item['name'] = $value['name'];
+        $item['quantity'] = $value['quantity'];
+        $item['price'] = $value['price'];
+        array_push($items_send, $item);
+    }
+    $data_array =  array(
+        "customer"        => array(
+            "fullname" => $fullnameCustomer,
+            "email"    => $emailCustomer,
+            "phone"    => $phoneCustomer,
+            "address"  => $addressCustomer,
+        ),
+        "order"           => array(
+            "order_id" => $_POST['id_order'],
+            "total"    => $totalprice,
+            "items" => json_encode($items_send)
+        ),
 
-    // echo 1;
-}
-?>
-
-<?php
-if (isset($_POST['complete'])) {
-    $orderModel = new Order();
-    $status = -1;
-    $orderModel->changeStatus($_POST['id_order'], $status);
-    echo 1;
+    );
+    $make_call = callAPI('POST', 'http://14.225.192.186:5555/api/order/completed', json_encode($data_array));
+    $response = json_decode($make_call, true);
+    if ($response['message'] != 'Successfully') {
+        $flag = -1;
+        
+    }
+    echo $flag;
 }
 ?>

@@ -20,6 +20,7 @@ if (isset($_POST['placeOrder'])) {
     $ConfigurableModel = new ConfigurableProduct();
     $id_order = 'OR' . date('YmdHis');
     $id_customer = $_SESSION['id_customer'];
+    $fullname = $_POST['fullname'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $email = $_POST['email'];
@@ -44,7 +45,7 @@ if (isset($_POST['placeOrder'])) {
         $total += $value['price'] * $value['quantity'];
     }
 
-    $insertOrder = $OrderModel->insert($id_order, $id_customer, $phone, $email, $address, $country, $total, null, date('Y-m-d H:i:s'));
+    $insertOrder = $OrderModel->insert($id_order, $id_customer, $fullname, $phone, $email, $address, $country, $total, null, date('Y-m-d H:i:s'));
     $getCustomer = $CustomerModel->getCustomerByIdCustomer($id_customer);
     $customer = $getCustomer->fetch_assoc();
     $plusCustomerPoint = $CustomerModel->plusPoint($id_customer, $total + $customer['point']);

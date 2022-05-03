@@ -47,16 +47,17 @@ function orderProcess(id) {
     });
 }
 
-function orderComplete(id) {
+function orderComplete(id_order) {
     event.preventDefault();
     $.ajax({
         url: './process/order.php',
         type: 'POST',
         data: {
-            id: id,
+            id_order: id_order,
             complete: true,
         },
         success: function (response) {
+            console.log(response);
             if (response == 1) {
                 alert('Order Completed');
                 $('#switchModel').modal('hide');
