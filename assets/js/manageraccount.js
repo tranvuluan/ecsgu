@@ -16,6 +16,24 @@ function viewOrderDetail(id_order){
         }
     });
 }
+function rateOrderDetail(id_order){
+    // console.log(id_order);
+    $.ajax({
+        url: './process/account.php',
+        type: 'POST',
+        data: {
+            id_order: id_order,
+            rateOrderDetail: true
+        },
+        success: function(data){
+            console.log(data);
+            // alert(data);
+            
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal('show'));
+        }
+    });
+}
+
 
 
 function viewToUpdate(id_customer){
@@ -77,6 +95,21 @@ function viewDetailOrderProduct(sku){
         data: {
             sku: sku,
             viewDetailOrderProduct: true
+        },
+        success: function(data){
+            console.log(data);
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal('show'));
+        }
+    });
+}
+
+function rateDetailOrderProduct(sku){
+    $.ajax({
+        url: './process/account.php',
+        type: 'POST',
+        data: {
+            sku: sku,
+            rateDetailOrderProduct: true
         },
         success: function(data){
             console.log(data);

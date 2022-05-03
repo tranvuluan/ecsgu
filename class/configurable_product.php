@@ -102,5 +102,13 @@ class ConfigurableProduct{
         return $result;
     }
 
+    public function updateStock($stock, $sku){
+        $stock = $this->conn->real_escape_string($stock);
+        $sku = $this->conn->real_escape_string($sku);
+        $sql= "UPDATE tbl_configurable_products SET `stock` = '$stock' WHERE `sku` = '$sku'";
+        $result = $this->conn->query($sql) or die($this->conn->error);
+        return $result;
+    }
+
 }
 ?>
