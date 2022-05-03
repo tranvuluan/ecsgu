@@ -284,7 +284,19 @@ if (isset($_POST['process']) && $_POST['id_order']) {
         if (!$checkStock) {
             $flag = 0;
             break;
-        }
+        } 
+    }
+    if ($flag != 1){
+        echo $flag;
+        return;
+    }
+    while ($row = $getListOrderItem->fetch_assoc()) {
+        $sku = $row['sku'];
+        $decStock = $configurableProductModel->decStock($sku, $row['quantity']);
+        if (!$checkStock) {
+            $flag = 0;
+            break;
+        } 
     }
     if ($flag != 1){
         echo $flag;
