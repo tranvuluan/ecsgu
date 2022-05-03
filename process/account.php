@@ -1,12 +1,17 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/customer.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/orderItem.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/configurable_product.php';
 ?>
 
 <?php
-
 if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
+    echo 'chay cho ni';
     $id_order = $_POST['id_order'];
 ?>
 
@@ -19,9 +24,10 @@ if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
                         <thead>
                             <tr>
                                 <th>ID Order</th>
-                                <th>ID Product</th>
+                                <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Details</th>
                             </tr>
                         </thead>
                         <?php
@@ -34,9 +40,20 @@ if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
                                     <tbody>
                                         <tr>
                                             <td><?php echo $row['id_order'] ?></td>
-                                            <td><?php echo $row['id_product'] ?></td>
+                                            <?php
+                                            $configurableProductModel = new ConfigurableProduct();
+                                            $configurableproduct = $configurableProductModel->getConfigurableProductBySKU($row['sku'])->fetch_assoc()['id_product'];
+                                            $productModel = new Product();
+                                            $product = $productModel->getProductById($configurableproduct)->fetch_assoc();
+                                            ?>
+                                            <td><?php echo $product['name'] ?></td>
+                                            <?php
+                                            ?>
                                             <td><?php echo $row['quantity'] ?></td>
                                             <td><?php echo $row['price'] ?></td>
+                                            <td><a style="color: black" onclick="viewDetailOrderProduct('<?php print $row['sku'] ?>')" href="javascript:;">
+                                                    <ion-icon name="search-outline" size="large "></ion-icon>
+                                                </a></td>
                                         </tr>
                                     </tbody>
                         <?php
@@ -135,5 +152,47 @@ if (isset($_POST['update']) && isset($_POST['id_customer'])) {
         echo 1;
     } else
         echo 0;
+}
+?>
+
+<?php
+if (isset($_POST['viewDetailOrderProduct']) && isset($_POST['sku'])) {
+    $sku = $_POST['sku'];
+    $configurableProductModel = new ConfigurableProduct();
+    $configurableproduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc();
+    $OrderItemModel = new OrderItem();
+    $orderItem = $OrderItemModel->getOrderItemBySKU($sku)->fetch_assoc();
+    $productModel = new Product();
+    $product = $productModel->getProductById($configurableproduct['id_product'])->fetch_assoc();
+?>
+    <div class="modal-dialog" role="document" id="modalOrder" style="max-width:540px!important">
+        <div class="modal-content modal-dialog-centered">
+            <div class="modal-body">
+                <h3>Product Details </h3>
+                <hr style="height:5px; color:#fb5d5d">
+                <div class="row" style="text-align: center;">
+                    <div class="col-md-12">
+                        <h6 for="">Product Name: <?php echo $product['name'] ?></h6>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <img src="<?php echo $product['image'] ?>" width="70%" alt="">
+
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                        <h6 for="">Size: <?php echo $configurableproduct['option'] ?></h6>
+                    </div>
+                    <div class="col-md-12">
+                        <h6 for="">Quantity: <?php echo $orderItem['quantity'] ?></h6>
+                    </div>
+                    <div class="col-md-12">
+                        <h6 for="">Price: <?php echo $orderItem['price'] ?></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
 }
 ?>

@@ -10,10 +10,6 @@ require_once $path . '/../class/voucher.php';
     <!-- head html -->
     <?php
     $path = dirname(__FILE__);
-    require_once $path . '/includes/sidebar.php';
-    ?>
-    <?php
-    $path = dirname(__FILE__);
     require_once $path . '/includes/headhtml.php';
     ?>
     <!-- end header html -->

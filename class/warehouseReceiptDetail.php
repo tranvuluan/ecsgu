@@ -61,7 +61,7 @@ class WarehouseReceiptDetail{
         $idproduct = $this->conn->real_escape_string($idproduct);
         $price = $this->conn->real_escape_string($price);
         $sql = "INSERT INTO tbl_warehousereceipt_detail(`id_warehousereceipt`, `id_product`, `price`) VALUES ('$id_warehousereceipt', '$idproduct', '$price')";
-        $result = $this->conn->query($sql);
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
 

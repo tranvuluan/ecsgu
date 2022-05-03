@@ -64,7 +64,7 @@ class Product{
         $image = $this->conn->real_escape_string($image);
         $status = $this->conn->real_escape_string($status);
         $sql = "INSERT INTO tbl_product(`id_product`, `id_brand`, `id_categorychild`, `name`, `image`, `status`) VALUES ('$id_product', '$id_brand', '$id_categorychild', '$name', '$image', '$status')";
-        $result = $this->conn->query($sql);
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
     
@@ -77,7 +77,7 @@ class Product{
         $image = $this->conn->real_escape_string($image);
         $status = $this->conn->real_escape_string($status);
         $sql = "UPDATE tbl_product SET `id_brand` = '$id_brand', `id_categorychild` = '$id_categorychild', `name` = '$name', `price` = '$price', `image` = '$image', `status` = '$status' WHERE `id_product` = '$id_product'";
-        $result = $this->conn->query($sql);
+        $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
 

@@ -78,6 +78,13 @@ class Customer{
         return $result;
     }
 
+    public function plusPoint($id_customer, $point) {
+        $id_customer = $this->conn->real_escape_string($id_customer);
+        $point = $this->conn->real_escape_string($point);
+        $sql = "UPDATE tbl_customer SET `point` = '$point' WHERE `id_customer` = '$id_customer'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
 
 }
 ?>

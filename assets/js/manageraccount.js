@@ -1,5 +1,5 @@
 function viewOrderDetail(id_order){
-    console.log(id_order);
+    // console.log(id_order);
     $.ajax({
         url: './process/account.php',
         type: 'POST',
@@ -8,10 +8,10 @@ function viewOrderDetail(id_order){
             viewOrderDetail: true
         },
         success: function(data){
-            // console.log(data);
+            console.log(data);
             // alert(data);
             
-            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal());
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal('show'));
             console.log('run this');
         }
     });
@@ -67,5 +67,20 @@ function update(){
             }
         }
     
+    });
+}
+
+function viewDetailOrderProduct(sku){
+    $.ajax({
+        url: './process/account.php',
+        type: 'POST',
+        data: {
+            sku: sku,
+            viewDetailOrderProduct: true
+        },
+        success: function(data){
+            console.log(data);
+            $('#switchModal').html($('<div class="modal fade">' +data+' </div>').modal('show'));
+        }
     });
 }
