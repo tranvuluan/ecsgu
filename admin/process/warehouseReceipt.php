@@ -111,8 +111,8 @@ if (isset($_POST['viewToAdd'])) {
                                             <input type="text" class="form-control" id="validationCustom02" name="price" value="" required>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="validationCustom04" class="form-label">Description</label>
-                                            <input type="text" class="form-control" id="validationCustom03" name="description" required>
+                                            <label for="validationCustom04" class="form-label">Mô tả</label>
+                                            <textarea name="description" id="" cols="30" rows="10" class="form-control" ></textarea>
                                         </div>
                                         <div class="col-md-12">
                                             <br>
@@ -344,7 +344,7 @@ if (isset($_POST['add'])) {
         # code...
         $checkExistProduct = $ProductModel->getProductById($value['id_product']);
         if (!$checkExistProduct) {
-            $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0');
+            $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0', $value['description']);
             if (!$insertProduct) {
                 $flag = 0;
                 echo $flag;
@@ -352,7 +352,7 @@ if (isset($_POST['add'])) {
             }
         } else {
             $getProduct = $checkExistProduct->fetch_assoc();
-            $updateProduct = $ProductModel->update($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $getProduct['price'], $value['images'], $getProduct['status']);
+            $updateProduct = $ProductModel->update($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $getProduct['price'], $value['images'], $getProduct['status'], $value['description']);
             if (!$updateProduct) {
                 $flag = 0;
                 echo $flag;
