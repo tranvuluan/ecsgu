@@ -290,6 +290,7 @@ if (isset($_POST['process']) && $_POST['id_order']) {
         echo $flag;
         return;
     }
+    $getListOrderItem = $OrderItemModel->getOrderItemById($_POST['id_order']);
     while ($row = $getListOrderItem->fetch_assoc()) {
         $sku = $row['sku'];
         $decStock = $configurableProductModel->decStock($sku, $row['quantity']);
