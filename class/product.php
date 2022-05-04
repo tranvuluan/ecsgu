@@ -98,5 +98,14 @@ class Product{
         return $result;
     }
 
+    public function setRateProduct($id_product, $rating, $ratedescribe) {
+        $id_product = $this->conn->real_escape_string($id_product);
+        $rating = $this->conn->real_escape_string($rating);
+        $ratedescribe = $this->conn->real_escape_string($ratedescribe);
+        $sql = "UPDATE tbl_product SET `rating` = '$rating', `ratedescribe` = '$ratedescribe' WHERE `id_product` = '$id_product'";
+        $result = $this->conn->query($sql) or die($this->conn->error);
+        return $result;
+    }
+
 }
 ?>

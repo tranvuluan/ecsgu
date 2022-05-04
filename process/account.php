@@ -4,7 +4,15 @@ require_once $path . '/../class/customer.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/orderItem.php';
 $path = dirname(__FILE__);
+require_once $path . '/../class/order.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/categoryChild.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/productSale.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/configurable_product.php';
 ?>
@@ -13,64 +21,256 @@ require_once $path . '/../class/configurable_product.php';
 if (isset($_POST['viewOrderDetail']) && isset($_POST['id_order'])) {
     echo 'chay cho ni';
     $id_order = $_POST['id_order'];
+    $customerModel = new Customer();
+    $orderModel = new Order();
+    $orderItemModel = new OrderItem();
+    $order = $orderModel->getOrderById($id_order)->fetch_assoc();
+    if ($order) {
 ?>
 
-    <div class="modal-dialog" role="document" id="modalOrder">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h4>Orders</h4>
-                <div class="table_page table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID Order</th>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Details</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        $OrderItem = new OrderItem();
-                        $orderList = $OrderItem->getOrderItems();
-                        if ($orderList) {
-                            while ($row = $orderList->fetch_assoc()) {
-                                if ($row['id_order'] == $id_order) {
-                        ?>
-                                    <tbody>
-                                        <tr>
-                                            <td><?php echo $row['id_order'] ?></td>
-                                            <?php
-                                            $configurableProductModel = new ConfigurableProduct();
-                                            $configurableproduct = $configurableProductModel->getConfigurableProductBySKU($row['sku'])->fetch_assoc()['id_product'];
-                                            $productModel = new Product();
-                                            $product = $productModel->getProductById($configurableproduct)->fetch_assoc();
-                                            ?>
-                                            <td><?php echo $product['name'] ?></td>
-                                            <?php
-                                            ?>
-                                            <td><?php echo $row['quantity'] ?></td>
-                                            <td><?php echo $row['price'] ?></td>
-                                            <td><a style="color: black" onclick="viewDetailOrderProduct('<?php print $row['sku'] ?>')" href="javascript:;">
-                                                    <ion-icon name="search-outline" size="large "></ion-icon>
-                                                </a></td>
-                                        </tr>
-                                    </tbody>
-                        <?php
-                                }
-                            }
-                        }
-                        ?>
-                    </table>
+        <!-- start modal xem chi tiết hóa đơn -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+                <!-- start table ds sản phâm trong chi tiết hóa đơn -->
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="mb-0">Chi tiết hóa đơn</h6>
+                        <div class="p-4 border rounded" id="viewOrderItem">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="validationCustom01" class="form-label">Danh sách sản phẩm trong hóa đơn</label>
+                        <div class="p-4 border rounded">
+                            <table class="table align-middle mb-0 table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>Tên SP</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá tiền(đ)</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $listOrderItem = $orderItemModel->getOrderItemById($id_order);
+                                    $productModel = new Product();
+                                    $configurableProductModel = new ConfigurableProduct();
+                                    if ($listOrderItem) {
+                                        while ($rowOrderItem = $listOrderItem->fetch_assoc()) {
+                                    ?>
+                                            <tr onclick="getDetailOrderItem('<?php print $rowOrderItem['sku'] ?>')">
+                                                <td><?php echo $rowOrderItem['sku'] ?></td>
+                                                <?php
+                                                $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($rowOrderItem['sku'])->fetch_assoc()['id_product'];
+                                                $nameProduct = $productModel->getProductById($configurableProduct)->fetch_assoc();
+                                                ?>
+                                                <td><?php echo $nameProduct['name'] ?></td>
+                                                <?php
+                                                ?>
+                                                <td><?php echo $rowOrderItem['quantity'] ?></td>
+                                                <td><?php echo $rowOrderItem['price'] ?></td>
+                                                <td><?php echo 'Choose' ?></td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+        <!-- start modal xem chi tiết hóa đơn -->
 
 <?php
+    }
 }
+?>
 
+<?php
+if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
+    $sku = $_POST['id'];
+    $orderItemModel = new OrderItem();
+    $orderModel = new Order();
+    $orderItem = $orderItemModel->getOrderItemBySKU($sku)->fetch_assoc();
+    $order = $orderModel->getOrderById($orderItem['id_order'])->fetch_assoc();
+?>
+    <form class="row g-3 needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="col-md-12">
+                    <label for="validationCustom01" class="form-label">Mã hóa đơn</label>
+                    <input type="text" class="form-control" id="orderId" value="<?php echo $order['id_order'] ?>" readonly>
+                </div>
+                <?php
+                $productModel = new Product();
+                $configurableProductModel = new ConfigurableProduct();
+                $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc()['id_product'];
+                $rowProduct = $productModel->getProductById($configurableProduct)->fetch_assoc();
+                ?>
+                <div class="col-md-12">
+                    <label for="validationCustom02" class="form-label">Tên sản phẩm</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="<?php echo $rowProduct['name'] ?>" readonly>
+                </div>
+                <?php
+                ?>
+                <div class="col-md-12">
+                    <label for="validationCustom01" class="form-label">Thương hiệu</label>
+                    <?php
+                    $productModel = new Product();
+                    $configurableProductModel = new ConfigurableProduct();
+                    $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc()['id_product'];
+                    $rowProduct = $productModel->getProductById($configurableProduct)->fetch_assoc();
+                    $brandModel = new Brand();
+                    $getNameBrand = $brandModel->getBrandById($rowProduct['id_brand'])->fetch_assoc();
+                    ?>
+                    <input type="text" class="form-control" id="validationCustom01" value="<?php echo $getNameBrand['name'] ?>" readonly>
+                    <?php
+                    ?>
+
+                </div>
+                <div class="col-md-12">
+                    <label for="validationCustom01" class="form-label">Danh mục</label>
+                    <?php
+                    $productModel = new Product();
+                    $configurableProductModel = new ConfigurableProduct();
+                    $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc()['id_product'];
+                    $rowProduct = $productModel->getProductById($configurableProduct)->fetch_assoc();
+                    $categoryChildModel = new CategoryChild();
+                    $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($rowProduct['id_categorychild'])->fetch_assoc();
+                    ?>
+                    <input type="text" class="form-control" id="validationCustom01" value="<?php echo $getNameCategoryChild['name'] ?>" readonly>
+                    <?php
+                    ?>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Hình ảnh</label>
+                    <img src="<?php echo $rowProduct['image'] ?>" alt="" width="100%">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12">
+                    <label for="validationCustom02" class="form-label">Ngày lập</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="<?php echo $order['date'] ?>" readonly>
+                </div>
+                <?php
+                $productModel = new Product();
+                $configurableProductModel = new ConfigurableProduct();
+                $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc()['id_product'];
+                $rowProduct = $productModel->getProductById($configurableProduct)->fetch_assoc();
+                if ($rowProduct) {
+                    $productSaleModel = new ProductSale();
+                    $getProductSale = $productSaleModel->getProductSaleByProductId($rowProduct['id_product']);
+                    if ($getProductSale) {
+                        $rowProductSale = $getProductSale->fetch_assoc();
+                ?>
+                        <div class="col-md-12">
+                            <label for="validationDiscount" class="form-label">Khyến mãi</label>
+                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                <input type="text" class="form-control" name="discount" id="validationDiscount" value="<?php echo $rowProductSale['salepercent'] ?>" readonly>
+                            </div>
+                        </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="col-md-12">
+                            <label for="validationDiscount" class="form-label">Khyến mãi</label>
+                            <div class="input-group has-validation"> <span class="input-group-text" id="inputGroupPrepend">%</span>
+                                <input type="text" class="form-control" name="discount" id="validationDiscount" value="0" readonly>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+                <div class="col-md-12">
+                    <label for="validationCustom02" class="form-label">Số lượng</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="<?php echo $orderItem['quantity'] ?>" readonly>
+                </div>
+                <div class="col-md-12">
+                    <label for="validationCustom02" class="form-label">Tổng tiền (đ)</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="<?php echo $orderItem['price'] ?>" readonly>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <?php
+                if ($order['status'] == 2) {
+                ?>
+                    <div class="col-md-12">
+                        <div class="ratting-form-wrapper pl-50">
+                            <h5>Add a Review</h5>
+                            <div class="ratting-form">
+                                <form action="#">
+                                    <div class="star-box">
+                                        <span>Your rating:</span>
+                                        <div class="rate">
+                                            <input type="radio" id="star5" name="rate" value="5" />
+                                            <label for="star5" title="text">5 stars</label>
+                                            <input type="radio" id="star4" name="rate" value="4" />
+                                            <label for="star4" title="text">4 stars</label>
+                                            <input type="radio" id="star3" name="rate" value="3" />
+                                            <label for="star3" title="text">3 stars</label>
+                                            <input type="radio" id="star2" name="rate" value="2" />
+                                            <label for="star2" title="text">2 stars</label>
+                                            <input type="radio" id="star1" name="rate" value="1" />
+                                            <label for="star1" title="text">1 star</label>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="rating-form-style form-submit">
+                                        <textarea class="form-control" id="rateProduct" placeholder="Message"></textarea>
+                                        <br>
+                                        <div class="your-order-area">
+                                            <div class="Place-order mt-25" style="margin-top: 0!important;">
+                                                <a class="btn-hover" onclick="rateProduct('<?php print $rowProduct['id_product'] ?>')" href="javascript:;">Rate</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                } else if ($order['status'] == 1) {
+                ?>
+                    <div class="col-md-12">
+                        <label class="form-label">Tình trạng đơn hàng</label>
+                        <p style="font-size: 14px;"><b><i>(Đơn hàng của bạn đã được xử lý)</i></b></p>
+                    </div>
+                <?php
+                } else if ($order['status'] == 0) {
+                ?>
+                    <div class="col-md-12">
+                        <label class="form-label">Lý do hủy đơn hàng</label>
+                        <div class="rating-form-style form-submit">
+                            <select class="form-select" id="reasonCancel">
+                                <option value="" selected>Choose...</option>
+                                <option value="Muốn thay đổi địa chỉ giao hàng">Muốn thay đổi địa chỉ giao hàng</option>
+                                <option value="Người bán không trả lời thắc mắc / yêu cầu của tôi">Người bán không trả lời thắc mắc / yêu cầu của tôi</option>
+                                <option value="Đổi ý không muốn mua nữa / Khác">Đổi ý không muốn mua nữa / Khác</option>
+                            </select>
+                            <br>
+                            <div class="your-order-area">
+                                <div class="Place-order mt-25" style="margin-top: 0!important;">
+                                    <a class="btn-hover" onclick="cancelOrder('<?php print $order['id_order'] ?>')" href="javascript:;">Cancel Order</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                }
+                    ?>
+                    </div>
+            </div>
+
+    </form>
+<?php
+}
 ?>
 
 <?php
@@ -155,170 +355,33 @@ if (isset($_POST['update']) && isset($_POST['id_customer'])) {
 }
 ?>
 
-<?php
-if (isset($_POST['viewDetailOrderProduct']) && isset($_POST['sku'])) {
-    $sku = $_POST['sku'];
-    $configurableProductModel = new ConfigurableProduct();
-    $configurableproduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc();
-    $OrderItemModel = new OrderItem();
-    $orderItem = $OrderItemModel->getOrderItemBySKU($sku)->fetch_assoc();
-    $productModel = new Product();
-    $product = $productModel->getProductById($configurableproduct['id_product'])->fetch_assoc();
-?>
-    <div class="modal-dialog" role="document" id="modalOrder" style="max-width:540px!important">
-        <div class="modal-content modal-dialog-centered">
-            <div class="modal-body">
-                <h3>Product Details </h3>
-                <hr style="height:5px; color:#fb5d5d">
-                <div class="row" style="text-align: center;">
-                    <div class="col-md-12">
-                        <h6 for="">Product Name: <?php echo $product['name'] ?></h6>
-                        <br>
-                    </div>
-                    <div class="col-md-12">
-                        <img src="<?php echo $product['image'] ?>" width="70%" alt="">
 
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                        <h6 for="">Size: <?php echo $configurableproduct['option'] ?></h6>
-                    </div>
-                    <div class="col-md-12">
-                        <h6 for="">Quantity: <?php echo $orderItem['quantity'] ?></h6>
-                    </div>
-                    <div class="col-md-12">
-                        <h6 for="">Price: <?php echo $orderItem['price'] ?></h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php
-}
+<?php 
+    if(isset($_POST['cancelOrder']) && isset($_POST['id'])){
+        $id_order = $_POST['id'];
+        $reason = $_POST['reason'];
+        $status = -1;
+        $orderModel = new Order();
+        $result = $orderModel->setReasonCancel($id_order, $reason, $status);
+        if($result){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
 ?>
 
-<?php
-if (isset($_POST['rateOrderDetail']) && isset($_POST['id_order'])) {
-    echo 'chay cho ni';
-    $id_order = $_POST['id_order'];
-?>
-
-    <div class="modal-dialog" role="document" id="modalOrder">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h4>Orders</h4>
-                <div class="table_page table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID Order</th>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Rating</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        $OrderItem = new OrderItem();
-                        $orderList = $OrderItem->getOrderItems();
-                        if ($orderList) {
-                            while ($row = $orderList->fetch_assoc()) {
-                                if ($row['id_order'] == $id_order) {
-                        ?>
-                                    <tbody>
-                                        <tr>
-                                            <td><?php echo $row['id_order'] ?></td>
-                                            <?php
-                                            $configurableProductModel = new ConfigurableProduct();
-                                            $configurableproduct = $configurableProductModel->getConfigurableProductBySKU($row['sku'])->fetch_assoc()['id_product'];
-                                            $productModel = new Product();
-                                            $product = $productModel->getProductById($configurableproduct)->fetch_assoc();
-                                            ?>
-                                            <td><?php echo $product['name'] ?></td>
-                                            <?php
-                                            ?>
-                                            <td><?php echo $row['quantity'] ?></td>
-                                            <td><?php echo $row['price'] ?></td>
-                                            <td><a onclick="rateDetailOrderProduct('<?php print $row['sku'] ?>')" href="javascript:;">
-                                                    <span>Rate</span>
-                                                </a></td>
-                                        </tr>
-                                    </tbody>
-                        <?php
-                                }
-                            }
-                        }
-                        ?>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-<?php
-}
-
-?>
-
-<?php
-if (isset($_POST['rateDetailOrderProduct']) && isset($_POST['sku'])) {
-    $sku = $_POST['sku'];
-    $configurableProductModel = new ConfigurableProduct();
-    $configurableproduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc();
-    $OrderItemModel = new OrderItem();
-    $orderItem = $OrderItemModel->getOrderItemBySKU($sku)->fetch_assoc();
-    $productModel = new Product();
-    $product = $productModel->getProductById($configurableproduct['id_product'])->fetch_assoc();
-?>
-    <div class="modal-dialog" role="document" id="modalOrder" style="max-width:600px!important">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3>Product Details </h3>
-                <hr style="height:5px; color:#fb5d5d">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h6 for="">Product Name: <?php echo $product['name'] ?></h6>
-                        <br>
-                        <img src="<?php echo $product['image'] ?>" width="100%" alt="">
-                        <br><br>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="ratting-form-wrapper pl-50">
-                            <h5>Add a Review</h5>
-                            <div class="ratting-form">
-                                <form action="#">
-                                    <div class="star-box">
-                                        <span>Your rating:</span>
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="text">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="text">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="text">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="text">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="text">1 star</label>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="rating-form-style form-submit">
-                                        <textarea class="form-control" name="Your Review" placeholder="Message"></textarea>
-                                        <br>
-                                        <button class="btn btn-primary btn-hover-color-primary " type="submit" value="Submit">Submit</button>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-<?php
-}
+<?php 
+    if(isset($_POST['rate']) && isset($_POST['id_product'])){
+        $id_product = $_POST['id_product'];
+        $ratedescribe = $_POST['rateProduct'];
+        $rating = $_POST['star'];
+        $productModel = new Product();
+        $result = $productModel->setRateProduct($id_product, $rating, $ratedescribe);
+        if($result){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
 ?>
