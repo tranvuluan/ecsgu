@@ -29,6 +29,8 @@ function getDetailOrderItem(id) {
 
 function orderProcess(id) {
     event.preventDefault();
+    let spinnerHtml = spinner();
+    document.getElementById('elementButton').innerHTML = spinnerHtml;
     $.ajax({
         url: './process/order.php',
         type: 'POST',
@@ -38,17 +40,19 @@ function orderProcess(id) {
         },
         success: function (response) {
             console.log(response);
-            // if (response == 1) {
-            //     alert('Order Processed');
-            //     $('#switchModel').modal('hide');
-            //     location.reload();
-            // }
+            if (response == 1) {
+                alert('Order Processed');
+                $('#switchModel').modal('hide');
+                location.reload();
+            }
         }
     });
 }
 
 function orderComplete(id_order) {
     event.preventDefault();
+    let spinnerHtml = spinner();
+    document.getElementById('elementButton').innerHTML = spinnerHtml;
     $.ajax({
         url: './process/order.php',
         type: 'POST',
@@ -92,4 +96,11 @@ function removeOrder(id) {
         });
     }
 
+}
+
+function spinner() {
+    let html = '<div class="spinner-border" role="status">' +
+                '<span class="sr-only">Loading...</span>' +
+                '</div>';
+    return html;
 }

@@ -77,7 +77,7 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                             <?php
                             if ($order['status'] == 0) {
                             ?>
-                                <div class="col-md-3">
+                                <div class="col-md-3" id="elementButton">
                                     <button onclick="orderProcess('<?php print $order['id_order'] ?>')" class="btn btn-primary">Xử lý</button>
                                 </div>
                                 <div class="col-md-3">
