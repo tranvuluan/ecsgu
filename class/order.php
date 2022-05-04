@@ -83,5 +83,14 @@ class Order
         return $result;
     }
 
+    public function setReasonCancel($id_order, $reason, $status){
+        $id_order = $this->conn->real_escape_string($id_order);
+        $reason = $this->conn->real_escape_string($reason);
+        $status = $this->conn->real_escape_string($status);
+        $sql = "UPDATE tbl_order SET `reason` = '$reason', `status` = '$status' WHERE `id_order` = '$id_order'";
+        $result = $this->conn->query($sql) or die($this->conn->error);
+        return $result;
+    }
+
 }
 ?>

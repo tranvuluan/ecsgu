@@ -130,14 +130,8 @@ checkLogin();
                                                             <?php
                                                             if ($row['status'] == 0) {
                                                             ?>
-                                                                <div class="row">
-                                                                    <div class="col-md-4 view">
-                                                                        <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span></a>
-                                                                    </div>
-                                                                    <div class="col-md-1">|</div>
-                                                                    <div class="col-md-4 reject">
-                                                                        <a href="javascript:;"><span class="reject" onclick="RejectOrderDetail('<?php print($row['id_order']) ?>')">Cancel</span></a>
-                                                                    </div>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View or Cancel</span></a>
                                                                 </div>
                                                             <?php
                                                             } else if ($row['status'] == 1) {
@@ -148,14 +142,8 @@ checkLogin();
                                                             <?php
                                                             } else if ($row['status'] == 2) {
                                                             ?>
-                                                                <div class="row">
-                                                                    <div class="col-md-4 view">
-                                                                        <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span></a>
-                                                                    </div>
-                                                                    <div class="col-md-1">|</div>
-                                                                    <div class="col-md-4">
-                                                                        <a href="javascript:;"><span class="reject" onclick="rateOrderDetail('<?php print($row['id_order']) ?>')">Rate</span></a>
-                                                                    </div>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View and Rate</span></a>
                                                                 </div>
                                                             <?php
                                                             }
