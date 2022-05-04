@@ -253,11 +253,11 @@ require_once($path . '/class/product.php')
                 <!-- Tab Start -->
                 <div class="col-lg-auto col-md-auto col-12">
                     <ul class="product-tab-nav nav">
-                        <li class="nav-item"><a class="nav-link active" onclick="viewProductAll()" href="#tab-product-all">All</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="viewProductNew()" href="#tab-product-new">New</a>
+                        <li class="nav-item"><a class="nav-link active" onclick="filterProduct('all')" href="#tab-product-all">All</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="filterProduct('new')" href="#tab-product-new">New</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" onclick="viewProductBestSellers()" href="#tab-product-bestsellers">Bestsellers</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="viewProductSale()" href="#tab-product-itemssale">Items
+                        <li class="nav-item"><a class="nav-link" onclick="filterProduct('bestseller')" href="#tab-product-bestsellers">Bestsellers</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="filterProduct('sale')" href="#tab-product-itemssale">Items
                                 Sale</a></li>
                     </ul>
                 </div>

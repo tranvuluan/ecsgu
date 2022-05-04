@@ -4,12 +4,39 @@ function viewProductAll(){
     let price = $('#price').val();
     let 
 }
-function viewProductNew(){
-
+function filterProduct(option){
+    switch (option) {
+        case 'all':
+            
+            break;
+        case 'new':
+            
+            break;
+        case 'bestseller':
+            
+            break;
+        case 'bestseller':
+            
+            break;
+        case 'sale':
+            
+            break;
+    
+        default:
+            break;
+    }
 }
-function viewProductBestSellers(){
 
-}
-function viewProductSale(){
 
+function getFilterProduct(option) {
+    $.ajax({
+        url: './process/product-index.php',
+        method: 'GET',
+        data: {
+            option: option
+        },
+        success: function (response) {
+            console.log(response);
+        }
+    })
 }
