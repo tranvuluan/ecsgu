@@ -239,7 +239,8 @@ function addWarehouseReceipt() {
             }
             else {
                 alert("Thêm thất bại!");
-                location.reload();
+                // location.reload();
+                
             }
         }
     })
