@@ -275,10 +275,10 @@ require_once($path . '/category.php');
                             <h4 class="sidebar-title">Size</h4>
                             <div class="sidebar-widget-list size">
                                 <ul>
-                                    <li><a onclick="filterSize('S')" class="active-2 gray" href="#">S</a></li>
-                                    <li><a onclick="filterSize('M')" class="gray" href="#">M</a></li>
-                                    <li><a onclick="filterSize('L')" class="gray" href="#">L</a></li>
-                                    <li><a onclick="filterSize('XL')" class="gray" href="#">XL</a></li>
+                                    <li><a onclick="filterSize('S')" class="active-2 gray" >S</a></li>
+                                    <li><a onclick="filterSize('M')" class="gray" >M</a></li>
+                                    <li><a onclick="filterSize('L')" class="gray" >L</a></li>
+                                    <li><a onclick="filterSize('XL')" class="gray" >XL</a></li>
                                 </ul>
                             </div>
                         </div>
