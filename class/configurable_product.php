@@ -35,6 +35,7 @@ class ConfigurableProduct{
     public function getConfigurableProductBySKU($SKU) {
         $SKU = $this->conn->real_escape_string($SKU);
         $sql = "SELECT * FROM tbl_configurable_products WHERE `sku` = '$SKU'";
+        echo $sql;
         $result = $this->conn->query($sql);
         if($result -> num_rows > 0){
             return $result;
