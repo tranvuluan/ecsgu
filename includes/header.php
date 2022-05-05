@@ -10,7 +10,7 @@
 
     <div class="header-to-bar"> HELLO EVERYONE! 25% Off All Products </div>
 
-    <!-- Top Bar -->
+<!-- Top Bar -->
 
 <header>
         <div class="header-main sticky-nav ">
@@ -51,7 +51,7 @@
                     <div class="col col-lg-auto align-self-center pl-0">
                         <div class="header-actions">
                             <?php
-                                if(isset($_SESSION['login'])){
+                                if(isset($_SESSION['login']) && isset($_SESSION['id_customer'])){
                                     echo '<a href="my-account.php" class="header-action-btn login-btn">'.$_SESSION['fullname'].'</a>';
                                 }
                                 else {

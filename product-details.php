@@ -3,7 +3,7 @@ $path = realpath(dirname(__FILE__));
 require_once($path . '/class/product.php');
 require_once($path . '/../class/configurable_product.php');
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 ?>
@@ -88,10 +88,10 @@ if(!isset($_SESSION)){
     <div class="product-details-area pt-100px pb-100px">
         <div class="container">
             <div class="row">
-            <?php 
+                <?php
                 $path = dirname(__FILE__);
-                require_once $path .'/process/product_details.php';
-            ?>
+                require_once $path . '/process/product_details.php';
+                ?>
 
             </div>
         </div>
@@ -314,25 +314,27 @@ if(!isset($_SESSION)){
             </div>
         </div>
         <!-- Related product Area End -->
+    </div>
+    </div>
 
-        <!-- Footer Area Start -->
-        <?php
-        $path = realpath(dirname(__FILE__));
-        require_once($path . '/includes/footer.php') ?>
-        <!-- Footer Area End -->
+    <!-- Footer Area Start -->
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/footer.php') ?>
+    <!-- Footer Area End -->
 
-        <!-- Modals -->
-        <?php
-        $path = realpath(dirname(__FILE__));
-        require_once($path . '/includes/modals.php') ?>
-        <!-- END Modals -->
+    <!-- Modals -->
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/modals.php') ?>
+    <!-- END Modals -->
 
-        <!-- JavaScripts -->
-        <?php
-        $path = realpath(dirname(__FILE__));
-        require_once($path . '/includes/scripts.php') ?>
-        <!-- END JavaScripts -->
-        <script src="./assets/js/cart.js"></script>
+    <!-- JavaScripts -->
+    <?php
+    $path = realpath(dirname(__FILE__));
+    require_once($path . '/includes/scripts.php') ?>
+    <!-- END JavaScripts -->
+    <script src="./assets/js/cart.js"></script>
 </body>
 
 </html>

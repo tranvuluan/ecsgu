@@ -64,7 +64,7 @@ function add() {
     let id_brand = $('select[name="brand"] option:selected').val();
     let id_categorychild = $('select[name="categorychild"] option:selected').val();
     let price = $('input[name="price"]').val();
-    let description = $('input[name="description"]').val();
+    let description = $('textarea[name="description"]').val();
 
     let id_warehousereceipt = $('input[name="warehouseReceiptId"]').val();
     let totalprice = $('input[name="totalprice"]').val();
@@ -233,13 +233,14 @@ function addWarehouseReceipt() {
         },
         success: function (response) {
             console.log(response);
-            if (reponse == 1) {
+            if (response == 1) {
                 alert("Thêm thành công!");
                 location.reload();
             }
             else {
                 alert("Thêm thất bại!");
-                location.reload();
+                // location.reload();
+                
             }
         }
     })

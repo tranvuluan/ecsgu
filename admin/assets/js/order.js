@@ -29,14 +29,17 @@ function getDetailOrderItem(id) {
 
 function orderProcess(id) {
     event.preventDefault();
+    let spinnerHtml = spinner();
+    document.getElementById('elementButton').innerHTML = spinnerHtml;
     $.ajax({
         url: './process/order.php',
         type: 'POST',
         data: {
-            id: id,
+            id_order: id,
             process: true,
         },
         success: function (response) {
+            console.log(response);
             if (response == 1) {
                 alert('Order Processed');
                 $('#switchModel').modal('hide');
@@ -46,16 +49,19 @@ function orderProcess(id) {
     });
 }
 
-function orderComplete(id) {
+function orderComplete(id_order) {
     event.preventDefault();
+    let spinnerHtml = spinner();
+    document.getElementById('elementButton').innerHTML = spinnerHtml;
     $.ajax({
         url: './process/order.php',
         type: 'POST',
         data: {
-            id: id,
+            id_order: id_order,
             complete: true,
         },
         success: function (response) {
+            console.log(response);
             if (response == 1) {
                 alert('Order Completed');
                 $('#switchModel').modal('hide');
@@ -90,4 +96,11 @@ function removeOrder(id) {
         });
     }
 
+}
+
+function spinner() {
+    let html = '<div class="spinner-border" role="status">' +
+                '<span class="sr-only">Loading...</span>' +
+                '</div>';
+    return html;
 }

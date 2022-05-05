@@ -44,6 +44,32 @@ class ConfigurableProduct{
         }
     }
 
+    public function checkStock($sku, $quantity) {
+        $sku = $this->conn->real_escape_string($sku);
+        $quantity = $this->conn->real_escape_string($quantity);
+        $sql = "SELECT * FROM tbl_configurable_products WHERE `sku` = '$sku'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            $row = $result->fetch_assoc();
+            if ($row['stock'] >= $quantity) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function decStock($sku, $quantity) {
+        $sku = $this->conn->real_escape_string($sku);
+        $quantity = $this->conn->real_escape_string($quantity);
+        $sql = "UPDATE tbl_configurable_products SET `stock` = `stock` - '$quantity' WHERE `sku` = '$sku'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
     
     public function insert($sku,  $id_product, $stock, $inventory_status, $option){
         $sku = $this->conn->real_escape_string($sku);
