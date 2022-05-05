@@ -379,7 +379,7 @@ if (isset($_POST['rate']) && isset($_POST['sku'])) {
     $sku = $_POST['sku'];
     $evaluate = $_POST['rateProduct'];
     $rating = $_POST['star'];
-
+    $flag = 1;
     $configurableProductModel = new ConfigurableProduct();
     $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc();
     $orderItemModel = new OrderItem();
@@ -394,10 +394,12 @@ if (isset($_POST['rate']) && isset($_POST['sku'])) {
 
     $productEvaluateModel = new ProductEvaluate();
     $insertEvaluateProduct = $productEvaluateModel->insertEvaluate($id_product, $id_customer, $rating, $evaluate);
-    if ($insertEvaluateProduct) {
-        echo 1;
-    } else {
-        echo 0;
+   
+   
+    if (!$insertEvaluateProduct) {
+        $flag = 0;
     }
+
+    echo $flag;
 }
 ?>
