@@ -45,6 +45,11 @@ class LibClass
             return false;
         }
     }
+
+
+    public function filterProductByCategoryFilter($filter) {
+        
+    }
 }
 
 ?>

@@ -95,7 +95,7 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                             <?php
                             } else if ($order['status'] == 1) {
                             ?>
-                                <div class="col-md-4">
+                                <div class="col-md-4" id="elementButton">
                                     <button onclick="orderComplete('<?php print $order['id_order'] ?>')" class="btn btn-primary">Hoàn tất</button>
                                 </div>
                             <?php
@@ -358,13 +358,31 @@ if (isset($_POST['complete']) && isset($_POST['id_order'])) {
     $items_send = [];
     $orderModel = new Order();
     $LibClass = new LibClass();
+    $OrderItemModel = new OrderItem();
     $flag = 1;
+    $getListOrderItem = $OrderItemModel->getOrderItemById($_POST['id_order']);
     $changeStatus = $orderModel->changeStatus($_POST['id_order'], 2);
     if (!$changeStatus) {
         $flag = 0;
         echo $flag;
         return;
     }
+
+    // increase quantity sold
+    while ($row = $getListOrderItem->fetch_assoc()) {
+        $sku = $row['sku'];
+        $increaseQuantitySold = $configurableProductModel->incQuantitySold($sku, $row['quantity']);
+        if (!$increaseQuantitySold) {
+            $flag = 0;
+            break;
+        } 
+    }
+
+    if ($flag == 0) {
+        echo $flag;
+        return;
+    }
+
     $getAllInfoOrder = $LibClass->getFullInfoOrder($_POST['id_order']);
     $fullOrder = $getAllInfoOrder->fetch_assoc();
     $fullnameCustomer = $fullOrder['fullname'];

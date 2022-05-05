@@ -265,7 +265,7 @@ require_once($path . '/category.php');
                                     if ($showcategory) {
                                         while ($row = $showcategory->fetch_assoc()) {
                                     ?>
-                                            <li><a href="#?id_category=<?php echo $row['id_category']; ?>"><?php echo $row['name']; ?><span>(???)</span></a></li>
+                                            <li><a onclick="filterCategory(<?php echo $row['id_category'] ?>"><?php echo $row['name']; ?><span>(???)</span></a></li>
                                     <?php
                                         }
                                     }
@@ -352,6 +352,7 @@ require_once($path . '/category.php');
     <?php 
     $path = dirname(__FILE__);
     require_once($path . '/includes/scripts.php') ?>
+    <script src="./assets/js/category.js"></script>
     <!-- END JavaScripts -->
 </body>
 
