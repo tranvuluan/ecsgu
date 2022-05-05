@@ -53,7 +53,7 @@ class LibClass
 
     public function rateProduct($id_product, $rating) {
         $id_product = $this->conn->real_escape_string($id_product);
-        $sql1 = "SELECT SUM("
+        // $sql1 = "SELECT SUM("
     }
 }
 
