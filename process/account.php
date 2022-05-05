@@ -14,6 +14,8 @@ require_once $path . '/../class/categoryChild.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/productSale.php';
 $path = dirname(__FILE__);
+require_once $path . '/../class/productEvaluate.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/configurable_product.php';
 ?>
 
@@ -228,7 +230,7 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
                                         <br>
                                         <div class="your-order-area">
                                             <div class="Place-order mt-25" style="margin-top: 0!important;">
-                                                <a class="btn-hover" onclick="rateProduct('<?php print $rowProduct['id_product'] ?>')" href="javascript:;">Rate</a>
+                                                <a class="btn-hover" onclick="rateProduct('<?php print $sku ?>')" href="javascript:;">Evaluate</a>
                                             </div>
                                         </div>
                                     </div>
@@ -356,32 +358,46 @@ if (isset($_POST['update']) && isset($_POST['id_customer'])) {
 ?>
 
 
-<?php 
-    if(isset($_POST['cancelOrder']) && isset($_POST['id'])){
-        $id_order = $_POST['id'];
-        $reason = $_POST['reason'];
-        $status = -1;
-        $orderModel = new Order();
-        $result = $orderModel->setReasonCancel($id_order, $reason, $status);
-        if($result){
-            echo 1;
-        }else{
-            echo 0;
-        }
+<?php
+if (isset($_POST['cancelOrder']) && isset($_POST['id'])) {
+    $id_order = $_POST['id'];
+    $reason = $_POST['reason'];
+    $status = -1;
+    $orderModel = new Order();
+    $result = $orderModel->setReasonCancel($id_order, $reason, $status);
+    if ($result) {
+        echo 1;
+    } else {
+        echo 0;
     }
+}
 ?>
 
-<?php 
-    if(isset($_POST['rate']) && isset($_POST['id_product'])){
-        $id_product = $_POST['id_product'];
-        $ratedescribe = $_POST['rateProduct'];
-        $rating = $_POST['star'];
-        $productModel = new Product();
-        $result = $productModel->setRateProduct($id_product, $rating, $ratedescribe);
-        if($result){
-            echo 1;
-        }else{
-            echo 0;
-        }
+<?php
+if (isset($_POST['rate']) && isset($_POST['sku'])) {
+
+    $sku = $_POST['sku'];
+    $evaluate = $_POST['rateProduct'];
+    $rating = $_POST['star'];
+
+    $configurableProductModel = new ConfigurableProduct();
+    $configurableProduct = $configurableProductModel->getConfigurableProductBySKU($sku)->fetch_assoc();
+    $orderItemModel = new OrderItem();
+    $orderItem = $orderItemModel->getOrderItemBySKU($sku)->fetch_assoc();
+    $orderModel = new Order();
+    $order = $orderModel->getOrderById($orderItem['id_order'])->fetch_assoc();
+    $productModel = new Product();
+    $product = $productModel->getProductById($configurableProduct['id_product'])->fetch_assoc();
+
+    $id_product = $product['id_product'];
+    $id_customer = $order['id_customer'];
+
+    $productEvaluateModel = new ProductEvaluate();
+    $insertEvaluateProduct = $productEvaluateModel->insertEvaluate($id_product, $id_customer, $rating, $evaluate);
+    if ($insertEvaluateProduct) {
+        echo 1;
+    } else {
+        echo 0;
     }
+}
 ?>

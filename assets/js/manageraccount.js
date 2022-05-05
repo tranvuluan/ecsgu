@@ -110,7 +110,7 @@ function cancelOrder(id) {
     });
 }
 
-function rateProduct(id_product) {
+function rateProduct(sku) {
     let rateProduct = $('#rateProduct').val();
     star = $('input[name="rate"]:checked').val();
     
@@ -122,23 +122,23 @@ function rateProduct(id_product) {
         alert('Please enter your comment');
         return;
     }
-    console.log(star);
     $.ajax({
         url: './process/account.php',
         type: 'POST',
         data: {
-            id_product: id_product,
+            sku: sku,
             rateProduct: rateProduct,
             star: star,
             rate: true,
         },
         success: function (response) {
-            if (response == 1) {
-                alert('Rate success');
-                window.location.reload();
-            } else {
-                alert('Rate fail');
-            }
+            // if (response == 1) {
+            //     alert('Rate success');
+            //     window.location.reload();
+            // } else {
+            //     alert('Rate fail');
+            // }
+            console.log(response);
         }
     });
 }
