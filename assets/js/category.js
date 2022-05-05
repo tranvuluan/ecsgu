@@ -1,32 +1,34 @@
 let filter = {
-    price: null,
-    category: [],
-    size: []
+    category: null,
+    size: null
 }
 
 
-let priceBar = $('#slider-range > div');
-
-priceBar.on('dragend', function () {
-    console.log('change this');
-    filterPrice();
-});
-
-// function filter() {
-
-// }
-
-function filterPrice() {
-    let reg = /\d+/;
-    let price = $('#slider-range > span:nth-child(3)')[0];
-    let styleString = price.attr('style');
-    filter.price = style.match(reg);
-    console.log(filter);
+function filterSize(size) {
+    filter.size = size;
+    getFilter();
 }
+
 
 function filterCategory(id_category) {
-    filter.category.push(id_category);
-    // filter();
+    filter.category = id_category;
+    getFilter();
 }
 
+function getFilter() {
+    $.ajax({
+        url: './process/category.php',
+        method: 'GET',
+        data: {
+            category: filter.category,
+            size: filter.size,
+            filterProduct: true
+
+        },
+        success: function (response) {
+            console.log(response);
+            $('#grid_product').html(response);
+        }
+    })
+}
 

@@ -364,7 +364,6 @@ if (isset($_POST['add'])) {
             // var_dump($checkExistSKU);
             if (!$checkExistSKU) {
                 // insert configurable_product  into db
-                echo 'insert'.$valueConfig['sku'];
                 $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);
                 if (!$insertConfigurableProduct) {
                     $flag = 0;
