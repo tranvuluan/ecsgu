@@ -53,7 +53,7 @@ class LibClass
         } elseif ($size && !$category) {
             $sql = "SELECT * FROM `tbl_product`, (SELECT `id_product` FROM `tbl_configurable_products` WHERE `option` = '$size') temp WHERE tbl_product.id_product = temp.id_product ";
         } else {
-            $sql = "SELECT * FROM `tbl_product` (SELECT `id_product` FROM `tbl_configurable_products` WHERE `option` = '$size') tbl_size, (SELECT `id_product` FROM `tbl_categorychild` WHERE `id_category` = '$category') tbl_category WHERE tbl_product.id_product = tbl_size.id_product AND tbl_product.id_product = tbl_category.id_product";
+            $sql = "SELECT * FROM `tbl_product` ,(SELECT `id_product` FROM `tbl_configurable_products` WHERE `option` = '$size') tbl_size, (SELECT `id_product` FROM `tbl_categorychild` WHERE `id_category` = '$category') tbl_category WHERE tbl_product.id_product = tbl_size.id_product AND tbl_product.id_product = tbl_category.id_product";
         }
         $result = $this->conn->query($sql) or die($this->conn->error);
         if ($result->num_rows > 0) {
