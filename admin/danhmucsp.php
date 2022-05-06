@@ -1,6 +1,7 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/category.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/categoryChild.php';
 ?>
 

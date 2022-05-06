@@ -1,7 +1,9 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/employee.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/position.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/account.php';
 ?>
 

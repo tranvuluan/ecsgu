@@ -1,9 +1,11 @@
 <?php
 $path = dirname(__FILE__);
-
 require_once($path . '/../class/product.php');
+$path = dirname(__FILE__);
 require_once $path . '/../class/brand.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/categoryChild.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/configurable_product.php';
 ?>
 

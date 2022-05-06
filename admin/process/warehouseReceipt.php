@@ -1,12 +1,18 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/warehouseReceipt.php';
-require_once $path . '/../class/warehouseReceiptDetail.php';
-require_once $path . '/../class/supplier.php';
-require_once $path . '/../class/product.php';
-require_once $path . '/../class/categoryChild.php';
-require_once $path . '/../class/brand.php';
-require_once $path . '/../class/configurable_product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/warehouseReceiptDetail.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/supplier.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/categoryChild.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/configurable_product.php';
 ?>
 <?php
 if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceipt'])) {

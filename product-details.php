@@ -1,7 +1,12 @@
 <?php
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/product.php');
-require_once($path . '/../class/configurable_product.php');
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/configurable_product.php');
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/productEvaluate.php');
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/customer.php');
 
 if (!isset($_SESSION)) {
     session_start();
@@ -49,6 +54,7 @@ if (!isset($_SESSION)) {
     <?php
     $productModel = new Product();
     $configurableProductModel = new ConfigurableProduct();
+    $productEvaluateModel = new ProductEvaluate();
     ?>
 
     <?php
@@ -140,38 +146,58 @@ if (!isset($_SESSION)) {
                             <div class="row">
                                 <div class="col-lg-7">
                                     <div class="review-wrapper">
-                                        <div class="single-review">
-                                            <div class="review-img">
-                                                <img src="assets/images/review-image/1.png" alt="" />
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="review-top-wrap">
-                                                    <div class="review-left">
-                                                        <div class="review-name">
-                                                            <h4>White Lewis</h4>
+                                        <?php
+                                        if (isset($_GET['id_product'])) {
+                                            $id_product = $_GET['id_product'];
+                                            $viewEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($id_product);
+                                            if ($viewEvaluate) {
+                                                while ($rowEvaluate = $viewEvaluate->fetch_assoc()) {
+                                        ?>
+                                                    <div class="single-review">
+                                                        <div class="review-img">
+                                                            <?php
+                                                            $product = $productModel->getProductById($rowEvaluate['id_product']);
+                                                            ?>
+                                                            <img src="<?php echo $product['image'] ?>" alt="" />
+                                                            <?php
+                                                            ?>
+
                                                         </div>
-                                                        <div class="rating-product">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
+                                                        <div class="review-content">
+                                                            <div class="review-top-wrap">
+                                                                <div class="review-left">
+                                                                    <div class="review-name">
+                                                                        <?php
+                                                                        $customer = $customerModel->getCustomerById($rowEvaluate['id_customer']);
+                                                                        ?>
+                                                                        <h4><?php echo $customer['fullname'] ?></h4>
+                                                                    </div>
+                                                                    <div class="rating-product">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="review-left">
+                                                                    <a href="#">Reply</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="review-bottom">
+                                                                <p>
+                                                                   <?php echo $rowEvaluate['evaluate'] ?>
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                                <div class="review-bottom">
-                                                    <p>
-                                                        Vestibulum ante ipsum primis aucibus orci luctustrices posuere
-                                                        cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper
-                                                        euismod vehicula. Phasellus quam nisi, congue id nulla.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-review child-review">
+                                        <?php
+                                                }
+                                            }
+                                        }
+                                        ?>
+
+                                        <!-- <div class="single-review child-review">
                                             <div class="review-img">
                                                 <img src="assets/images/review-image/2.png" alt="" />
                                             </div>
@@ -199,7 +225,8 @@ if (!isset($_SESSION)) {
                                                         euismod vehicula.</p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
+
                                     </div>
                                 </div>
                                 <div class="col-lg-5">
