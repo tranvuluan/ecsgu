@@ -49,7 +49,7 @@ class LibClass
 
     public function filterProductByCategoryFilter($category, $size) {
         if ($category && !$size) {
-            $sql = "SELECT * FROM `tbl_product`, (SELECT `id_product` FROM `tbl_categorychild` WHERE `id_category` = '$category') temp WHERE tbl_product.id_produdct = temp.id_produdct";
+            $sql = "SELECT * FROM `tbl_product`, (SELECT `id_categorychild` FROM `tbl_categorychild` WHERE `id_category` = '$category') temp WHERE tbl_product.id_categorychild = temp.id_categorychild";
         } elseif ($size && !$category) {
             $sql = "SELECT * FROM `tbl_product`, (SELECT `id_product` FROM `tbl_configurable_products` WHERE `option` = '$size') temp WHERE tbl_product.id_product = temp.id_product ";
         } else {

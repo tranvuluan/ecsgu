@@ -359,6 +359,7 @@ if (isset($_POST['complete']) && isset($_POST['id_order'])) {
     $orderModel = new Order();
     $LibClass = new LibClass();
     $OrderItemModel = new OrderItem();
+    $configurableProductModel  = new ConfigurableProduct();
     $flag = 1;
     $getListOrderItem = $OrderItemModel->getOrderItemById($_POST['id_order']);
     $changeStatus = $orderModel->changeStatus($_POST['id_order'], 2);
