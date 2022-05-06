@@ -367,6 +367,7 @@ if (isset($_POST['add'])) {
         }
         foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
             $checkExistSKU = $ConfigurableProductModel->getConfigurableProductBySKU($valueConfig['sku']);
+            // var_dump($checkExistSKU);
             if (!$checkExistSKU) {
                 // insert configurable_product  into db
                 $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);

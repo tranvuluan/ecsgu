@@ -110,5 +110,13 @@ class ConfigurableProduct{
         return $result;
     }
 
+    public function incQuantitySold($sku, $quantity) {
+        $sku = $this->conn->real_escape_string($sku);
+        $quantity = $this->conn->real_escape_string($quantity);
+        $sql= "UPDATE tbl_configurable_products SET `quantity_sold` = '$quantity' WHERE `sku` = '$sku'";
+        $result = $this->conn->query($sql) or die($this->conn->error);
+        return $result;
+    }
+
 }
 ?>
