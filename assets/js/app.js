@@ -265,28 +265,3 @@ function viewDetailModal(){
     });
 }
 
-function getDetailCheckout(){
-    let firstname = $('input[name="firstname"]').val().trim();
-    let lastname = $('input[name="lastname"]').val().trim();
-    let country = $('select[name="country"] option:selected').val().trim();
-    let address = $('input[name="address"]').val().trim();
-    let phone = $('input[name="phone"]').val().trim();
-    let email = $('input[name="email"]').val().trim();
-    let payment = $('select[name="payment"] option:selected').val().trim();
-    let note = $('textarea[name="note"]').val().trim();
-
-}
-
-function showAllProduct(){
-    $.ajax({
-        url: './process/product_details.php',
-        type: 'POST',
-        data: {
-            showAllProduct: true,
-        },
-        success: function (data) {
-            $('#product-details').html(data);
-            console.log(data);
-        }
-    });
-}

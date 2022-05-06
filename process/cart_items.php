@@ -54,7 +54,6 @@ if (isset($_POST['addToCart']) && isset($_POST['id_product']) && isset($_POST['s
         }
     }
 }
-print_r($_SESSION['cart']);
 
 if (count($_SESSION['cart']) > 0) {
     foreach ($_SESSION['cart'] as $key => $value) {

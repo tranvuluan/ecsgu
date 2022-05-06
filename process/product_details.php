@@ -116,7 +116,7 @@ if (isset($_GET['id_product'])) {
                                         Cart</button>
                                 </div>
                                 <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                    <a href="wishlist.php"><i class="pe-7s-like"></i></a>
+                                    <a href="javascript:;" onclick="addToWishList('<?php print $result['id_product'] ?>')"><i class="pe-7s-like"></i></a>
                                 </div>
                             </div>
                         <div id="viewSKU">

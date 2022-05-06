@@ -335,6 +335,7 @@ if (!isset($_SESSION)) {
     require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
     <script src="./assets/js/cart.js"></script>
+    <script src="./assets/js/wishlist.js"></script>
 </body>
 
 </html>
