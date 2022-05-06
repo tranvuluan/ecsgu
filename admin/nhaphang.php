@@ -1,6 +1,7 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/warehouseReceipt.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/warehouseReceiptDetail.php';
 ?>
 

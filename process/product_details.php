@@ -1,7 +1,9 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/product.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/configurable_product.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/categoryChild.php';
 
 if (!isset($_SESSION)) {
@@ -27,31 +29,6 @@ if (isset($_GET['id_product'])) {
                         <div class="swiper-wrapper">
                             <div class="swiper-slide zoom-image-hover">
                                 <img class="img-responsive m-auto" src="<?php echo $result['image'] ?>" alt="" width="100%">
-                            </div>
-                            <div class="swiper-slide zoom-image-hover">
-                                <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/2.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide zoom-image-hover">
-                                <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/3.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide zoom-image-hover">
-                                <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/4.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-container zoom-thumbs mt-3 mb-3">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img class="img-responsive m-auto" src="assets/images/product-image/small-image/1.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="img-responsive m-auto" src="assets/images/product-image/small-image/2.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="img-responsive m-auto" src="assets/images/product-image/small-image/3.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="img-responsive m-auto" src="assets/images/product-image/small-image/4.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -116,7 +93,7 @@ if (isset($_GET['id_product'])) {
                                         Cart</button>
                                 </div>
                                 <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                    <a href="wishlist.php"><i class="pe-7s-like"></i></a>
+                                    <a href="javascript:;" onclick="addToWishList('<?php print $result['id_product'] ?>')"><i class="pe-7s-like"></i></a>
                                 </div>
                             </div>
                         <div id="viewSKU">

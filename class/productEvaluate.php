@@ -9,6 +9,18 @@ class ProductEvaluate{
         $this->conn = getConnection();
     }
     
+    public function getProductEvaluatesByProductId($id_product){
+        $id_product = $this->conn->real_escape_string($id_product);
+        $sql = "SELECT * FROM tbl_product_evaluate WHERE id_product = $id_product";
+        $result = $this->conn->query($sql);
+        if($result->num_rows > 0){
+            return $result;
+        }
+        else{
+            return false;
+        }
+    }
+
     public function insertEvaluate($id_product, $id_customer, $rating, $evaluate){
         $id_product = $this->conn->real_escape_string($id_product);
         $id_customer = $this->conn->real_escape_string($id_customer);

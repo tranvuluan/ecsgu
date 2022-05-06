@@ -1,14 +1,22 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/order.php';
-require_once $path . '/../class/orderItem.php';
-require_once $path . '/../class/customer.php';
-require_once $path . '/../class/product.php';
-require_once $path . '/../class/configurable_product.php';
-require_once $path . '/../class/brand.php';
-require_once $path . '/../class/categoryChild.php';
-require_once $path . '/../class/productSale.php';
-require_once $path . '/../class/LibClass.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/orderItem.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/customer.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/configurable_product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/categoryChild.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/productSale.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/LibClass.php';
 $path = dirname(__FILE__);
 require_once $path . '/../../lib/callAPI.php';
 ?>

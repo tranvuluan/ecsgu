@@ -45,7 +45,7 @@ if (isset($_GET['filterProduct'])) {
                                     <span class="new">New</span>
                                 </span>
                                 <div class="actions">
-                                    <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                    <a href="javascript:;" onclick="addToWishList('<?php print $row['id_product'] ?>')" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
                                     <a href="#" onclick="viewDetailModal()" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                                 </div>
                                 <!-- <a href="#" onclick="addToCart('<?php print $row['id_product'] ?>')" title="Add To Cart" class=" add-to-cart">Add

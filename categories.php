@@ -2,7 +2,8 @@
 $path = realpath(dirname(__FILE__));
 
 require_once($path . '/class/product.php');
-require_once($path . '/category.php');
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/category.php');
 ?>
 
 <!DOCTYPE html>
