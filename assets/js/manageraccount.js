@@ -85,26 +85,32 @@ function getDetailOrderItem(id) {
     });
 }
 
-function cancelOrder(id) {
+function cancelOrder(id_order) {
     let reason = $('#reasonCancel').val();
     if (reason == '') {
         alert('Please choose a reason');
         return;
     }
+
+    let spinnerHtml = spinner();
+    document.getElementById('elementButton').innerHTML = spinnerHtml;
+
     $.ajax({
         url: './process/account.php',
         type: 'POST',
         data: {
-            id: id,
+            id_order: id_order,
             reason: reason,
             cancelOrder: true,
         },
         success: function (response) {
+            console.log(response);
             if (response == 1) {
                 alert('Cancel success');
-                window.location.reload();
+                location.reload();
             } else {
                 alert('Cancel fail');
+                location.reload();
             }
         }
     });
@@ -141,4 +147,11 @@ function rateProduct(sku) {
             console.log(response);
         }
     });
+}
+
+function spinner() {
+    let html = '<div class="spinner-border" role="status">' +
+                '<span class="sr-only">Loading...</span>' +
+                '</div>';
+    return html;
 }

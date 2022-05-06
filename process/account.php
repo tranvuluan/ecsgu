@@ -17,6 +17,10 @@ $path = dirname(__FILE__);
 require_once $path . '/../class/productEvaluate.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/configurable_product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/LibClass.php';
+$path = dirname(__FILE__);
+require_once $path . '/../lib/callAPI.php';
 ?>
 
 <?php
@@ -259,7 +263,7 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
                             </select>
                             <br>
                             <div class="your-order-area">
-                                <div class="Place-order mt-25" style="margin-top: 0!important;">
+                                <div class="Place-order mt-25" id="elementButton" style="margin-top: 0!important;">
                                     <a class="btn-hover" onclick="cancelOrder('<?php print $order['id_order'] ?>')" href="javascript:;">Cancel Order</a>
                                 </div>
                             </div>
@@ -359,17 +363,70 @@ if (isset($_POST['update']) && isset($_POST['id_customer'])) {
 
 
 <?php
-if (isset($_POST['cancelOrder']) && isset($_POST['id'])) {
-    $id_order = $_POST['id'];
+if (isset($_POST['cancelOrder']) && isset($_POST['id_order'])) {
+    $id_order = $_POST['id_order'];
     $reason = $_POST['reason'];
     $status = -1;
     $orderModel = new Order();
     $result = $orderModel->setReasonCancel($id_order, $reason, $status);
-    if ($result) {
-        echo 1;
-    } else {
-        echo 0;
+    $flag = 1;
+    if (!$result){
+        $flag = 0;
     }
+
+    if ($flag == 0) {
+        echo 0;
+        return;
+    }
+    ////////////////////////////////
+    $items_send = [];
+    $LibClass = new LibClass();
+    $getAllInfoOrder = $LibClass->getFullInfoOrder($_POST['id_order']);
+    $fullOrder = $getAllInfoOrder->fetch_assoc();
+    $fullnameCustomer = $fullOrder['fullname'];
+    $emailCustomer = $fullOrder['email'];
+    $phoneCustomer = $fullOrder['phone'];
+    $addressCustomer = $fullOrder['address'];
+    $totalprice = $fullOrder['totalprice'];
+    $item['name'] = $fullOrder['name'];
+    $item['quantity'] = $fullOrder['quantity'];
+    $item['price'] = $fullOrder['price'];
+    array_push($items_send, $item);
+    while ($value = $getAllInfoOrder->fetch_assoc()) {
+        $item['name'] = $value['name'];
+        $item['quantity'] = $value['quantity'];
+        $item['price'] = $value['price'];
+        array_push($items_send, $item);
+    }
+    $data_array =  array(
+        "customer"        => array(
+            "fullname" => $fullnameCustomer,
+            "email"    => $emailCustomer,
+            "phone"    => $phoneCustomer,
+            "address"  => $addressCustomer,
+        ),
+        "order"           => array(
+            "order_id" => $_POST['id_order'],
+            "total"    => $totalprice,
+            "items" => json_encode($items_send)
+        ),
+        "reason" =>  $reason
+
+    );
+
+    $make_call = callAPI('POST', 'http://14.225.192.186:5555/api/order/cancel', json_encode($data_array));
+    $response = json_decode($make_call, true);
+    if ($response['message'] != 'Successfully') {
+        $flag = -1;
+        
+    }
+    if ($flag == -1) {
+        echo $flag;
+        return;
+    }
+    echo $flag;
+    
+
 }
 ?>
 

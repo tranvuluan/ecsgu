@@ -91,10 +91,10 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                                 <div class="col-md-3">
                                     <button class="btn btn-danger" onclick="removeOrder('<?php print $order['id_order'] ?>')">Hủy đơn hàng</button>
                                 </div>
-                                <div class="row">
+                                <div class="col">
                                     <div class="col-md-1">
                                     </div>
-                                    <div class="col-md-11" id="OrderRemove" style="display: none;">
+                                    <div class="col-md-11" id="OrderRemove">
                                         <br>
                                         <input type="text" class="form-control" value="" id="infoRemove">
                                     </div>
