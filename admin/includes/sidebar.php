@@ -30,7 +30,7 @@ checkEmployeeLogin();
     <li>
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon">
-          <i class="bi bi-pencil-square"></i>
+          <i class="bi bi-box-seam"></i>
         </div>
         <div class="menu-title">Sản phẩm</div>
       </a>
@@ -38,7 +38,6 @@ checkEmployeeLogin();
         <li>
           <a href="product-table.php">
             <div class="parent-icon">
-              <i class="bi bi-pencil-square"></i>
             </div>
             <div class="menu-title">Sản phẩm chưa đăng bán</div>
           </a>
@@ -46,7 +45,6 @@ checkEmployeeLogin();
         <li>
           <a href="product-table-sell.php">
             <div class="parent-icon">
-              <i class="bi bi-pencil-square"></i>
             </div>
             <div class="menu-title">Sản phẩm đang bán</div>
           </a>
@@ -56,7 +54,7 @@ checkEmployeeLogin();
     <li>
       <a href="danhmucsp.php">
         <div class="parent-icon">
-          <i class="bi bi-printer"></i>
+          <i class="bi bi-list-nested"></i>
         </div>
         <div class="menu-title">Danh mục sản phẩm</div>
       </a>
@@ -64,7 +62,7 @@ checkEmployeeLogin();
     <li>
       <a href="nhacungcap.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-box"></i>
         </div>
         <div class="menu-title">Nhà cung cấp</div>
       </a>
@@ -72,7 +70,7 @@ checkEmployeeLogin();
     <li>
       <a href="brand.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-shield-check"></i>
         </div>
         <div class="menu-title">Thương hiệu</div>
       </a>
@@ -80,7 +78,7 @@ checkEmployeeLogin();
     <li>
       <a href="nhaphang.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-archive"></i>
         </div>
         <div class="menu-title">Nhập hàng</div>
       </a>
@@ -88,7 +86,7 @@ checkEmployeeLogin();
     <li>
       <a href="khuyenmai.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-ticket-perforated"></i>
         </div>
         <div class="menu-title">Khuyến mãi</div>
       </a>
@@ -96,7 +94,7 @@ checkEmployeeLogin();
     <li>
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon">
-          <i class="bi bi-pencil-square"></i>
+          <i class="bi bi-file-earmark-text"></i>
         </div>
         <div class="menu-title">Quản lý đơn hàng</div>
       </a>
@@ -104,7 +102,6 @@ checkEmployeeLogin();
         <li>
           <a href="order_canceled.php">
             <div class="parent-icon">
-              <i class="bi bi-pencil-square"></i>
             </div>
             <div class="menu-title">Đơn hàng đã hủy</div>
           </a>
@@ -112,7 +109,6 @@ checkEmployeeLogin();
         <li>
           <a href="order.php">
             <div class="parent-icon">
-              <i class="bi bi-pencil-square"></i>
             </div>
             <div class="menu-title">Đơn hàng đang xử lý</div>
           </a>
@@ -120,7 +116,6 @@ checkEmployeeLogin();
         <li>
           <a href="order_processed.php">
             <div class="parent-icon">
-              <i class="bi bi-pencil-square"></i>
             </div>
             <div class="menu-title">Đơn hàng đã xử lý</div>
           </a>
@@ -128,7 +123,6 @@ checkEmployeeLogin();
         <li>
           <a href="order_completed.php">
             <div class="parent-icon">
-              <i class="bi bi-pencil-square"></i>
             </div>
             <div class="menu-title">Đơn hàng đã hoàn tất</div>
           </a>
@@ -138,7 +132,7 @@ checkEmployeeLogin();
     <li>
       <a href="nhanvien.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-person-circle"></i>
         </div>
         <div class="menu-title">Nhân viên</div>
       </a>
@@ -146,7 +140,7 @@ checkEmployeeLogin();
     <li>
       <a href="khachhang.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-person-bounding-box"></i>
         </div>
         <div class="menu-title">Khách hàng</div>
       </a>
@@ -154,7 +148,7 @@ checkEmployeeLogin();
     <li>
       <a href="permission.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-pencil-square"></i>
         </div>
         <div class="menu-title">Quyền</div>
       </a>
@@ -162,7 +156,7 @@ checkEmployeeLogin();
     <li>
       <a href="statistical.php">
         <div class="parent-icon">
-          <i class="bi bi-check2-square"></i>
+          <i class="bi bi-graph-up"></i>
         </div>
         <div class="menu-title">Thống kê</div>
       </a>
