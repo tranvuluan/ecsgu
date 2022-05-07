@@ -113,7 +113,7 @@ require_once $path . '/../class/customer.php';
                                     $listOrder = $orderModel->getOrders();
                                     if ($listOrder) {
                                         while ($row = $listOrder->fetch_assoc()) {
-                                            if ($row['status'] == '0' || $row['status'] == '2' || $row['status'] == '-1')
+                                            if ($row['status'] == '0' || $row['status'] == '1' || $row['status'] == '2')
                                                 continue;
 
                                     ?>
@@ -132,9 +132,9 @@ require_once $path . '/../class/customer.php';
                                                 <td><?php echo $row['date'] ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($row['status'] == 1) {
+                                                    if ($row['status'] == -1) {
                                                     ?>
-                                                        <div class="badge bg-primary">Đã xử lý</div>
+                                                        <div class="badge bg-danger">Đã hủy</div>
                                                     <?php
                                                     }
                                                     ?>

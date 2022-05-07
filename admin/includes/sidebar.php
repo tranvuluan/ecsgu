@@ -1,6 +1,6 @@
-<?php 
+<?php
 $path = dirname(__FILE__);
-require_once $path.'/../../lib/checkLogin.php';
+require_once $path . '/../../lib/checkLogin.php';
 checkEmployeeLogin();
 ?>
 
@@ -74,7 +74,7 @@ checkEmployeeLogin();
         <div class="parent-icon">
           <i class="bi bi-check2-square"></i>
         </div>
-        <div class="menu-title">Brand</div>
+        <div class="menu-title">Thương hiệu</div>
       </a>
     </li>
     <li>
@@ -94,13 +94,21 @@ checkEmployeeLogin();
       </a>
     </li>
     <li>
-    <a class="has-arrow" href="javascript:;">
+      <a class="has-arrow" href="javascript:;">
         <div class="parent-icon">
           <i class="bi bi-pencil-square"></i>
         </div>
         <div class="menu-title">Quản lý đơn hàng</div>
       </a>
       <ul>
+        <li>
+          <a href="order_canceled.php">
+            <div class="parent-icon">
+              <i class="bi bi-pencil-square"></i>
+            </div>
+            <div class="menu-title">Đơn hàng đã hủy</div>
+          </a>
+        </li>
         <li>
           <a href="order.php">
             <div class="parent-icon">

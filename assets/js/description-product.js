@@ -57,19 +57,14 @@ function rateProduct(id_product){
         url: './process/description_product_details.php',
         type: 'POST',
         data: {
-            sku: sku,
+            id_product: id_product,
             evaluate: rateProduct,
             rating: star,
             rate: true,
         },
         success: function (response) {
-            // if (response == 1) {
-            //     alert('Rate success');
-            //     window.location.reload();
-            // } else {
-            //     alert('Rate fail');
-            // }
-            console.log(response);
+            $('#AlertEvaluate').html(response);
+            location.reload();
         }
     });
 }

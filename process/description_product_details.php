@@ -5,6 +5,9 @@ $path = dirname(__FILE__);
 require_once $path . '/../class/productEvaluate.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/customer.php';
+if(!isset($_SESSION)){
+    session_start();
+}
 ?>
 
 <?php
@@ -169,20 +172,21 @@ if (isset($_POST['viewInformation']) && isset($_POST['id_product'])) {
 ?>
 
 <?php 
-    if(isset($_POST['rateProduct']) && isset($_POST['id_product'])){
+    if(isset($_POST['rate']) && isset($_POST['id_product'])){
         if(!isset($_SESSION['login'])){
-            echo '-1';
+            echo '<script>alert("You need to login first!")</script>';
         }
         else{
             $id_customer = $_SESSION['id_customer'];
+            $id_product = $_POST['id_product'];
             $rating = $_POST['rating'];
             $evaluate = $_POST['evaluate'];
             $productEvaluateModel = new ProductEvaluate();
             $insertEvaluateProduct = $productEvaluateModel->insertEvaluate($id_product, $id_customer, $rating, $evaluate);
             if ($insertEvaluateProduct) {
-                echo 1;
+                echo '<script>alert("Evaluate success!")</script>';
             } else {
-                echo 0;
+                echo '<script>alert("Evaluate fail!")</script>';
             }
         }
     }

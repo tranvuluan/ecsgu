@@ -206,7 +206,7 @@ if (!isset($_SESSION)) {
     $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
-
+<div id="AlertEvaluate"></div>
     <!-- JavaScripts -->
     <?php
     $path = realpath(dirname(__FILE__));

@@ -144,11 +144,6 @@ require_once $path . '/../class/customer.php';
                                                         <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_order'] ?>')" data-toggle="modal" data-target="#viewDetailModalId">
                                                             <ion-icon name="eye-sharp"></ion-icon>
                                                         </a>
-                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                            <ion-icon name="pencil-sharp"></ion-icon>
-                                                        </a>
-                                                        <a href="javascript:;" class="text-dark">
-                                                            <ion-icon name="trash-sharp"></ion-icon>
                                                         </a>
                                                     </div>
                                                 </td>
