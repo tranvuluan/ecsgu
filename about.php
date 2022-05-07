@@ -1,5 +1,5 @@
 <?php
-    $path = dirname(__FILE__);
+$path = dirname(__FILE__);
 ?>
 
 <!DOCTYPE html>
@@ -42,19 +42,27 @@
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/includes/header.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-    <?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
     <!-- About Intro Area start-->
@@ -100,8 +108,7 @@
                             Every Day</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius modjior tem incididunt
                             ut labore et dolore magna aliqua.</p>
-                        <a href="shop-left-sidebar.html" class="btn btn-primary service-btn"> Shop Now <i
-                                class="fa fa-shopping-basket ml-10px" aria-hidden="true"></i></a>
+                        <a href="shop-left-sidebar.html" class="btn btn-primary service-btn"> Shop Now <i class="fa fa-shopping-basket ml-10px" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -409,23 +416,23 @@
     <!-- Brand area end -->
 
     <!-- Footer Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
 
     <!-- Modals -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
-<!-- JavaScripts -->
-<?php 
-$path = dirname(__FILE__);
-require_once($path . '/includes/scripts.php')?>
-<!-- END JavaScripts -->
+    <!-- JavaScripts -->
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
+    <!-- END JavaScripts -->
 </body>
 
 </html>

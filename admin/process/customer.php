@@ -126,15 +126,15 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
 
 <?php
 if (isset($_POST['update']) && $_POST['customerId']) {
-    $customerId = $_POST['customerId'];
+    $id_customer = $_POST['customerId'];
     $phone = $_POST['phone'];
-    $customerName = $_POST['customerName'];
+    $fullname = $_POST['customerName'];
     $email = $_POST['email'];
     $address = $_POST['address'];
     $point = $_POST['point'];
     $createdate = $_POST['createDate'];
     $customerModel = new Customer();
-    $updateCustomer = $customerModel->update($id_customer, $id_account, $fullname, $email, $address, $phone, $createdate, $point);
+    $updateCustomer = $customerModel->update($id_customer, $id_customer, $fullname, $email, $address, $phone, $createdate, $point);
     if ($updateCustomer) {
         echo 0;
     } else {

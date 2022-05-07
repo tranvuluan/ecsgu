@@ -22,3 +22,4 @@
 <script src="assets/plugins/bootstrap-material-datetimepicker/js/moment.min.js"></script>
 <script src="assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
 <script src="assets/js/form-date-time-pickes.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>

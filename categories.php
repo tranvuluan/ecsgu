@@ -256,6 +256,7 @@ require_once($path . '/class/category.php');
                                         while ($row = $showcategory->fetch_assoc()) {
                                     ?>
                                             <li><a class="selected m-0" onclick="filterCategory('<?php echo $row['id_category'] ?>')"><?php echo $row['name']; ?><span>(???)</span></a></li>
+                                            <br>
                                     <?php
                                         }
                                     }

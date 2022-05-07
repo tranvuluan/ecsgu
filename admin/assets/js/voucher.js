@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_voucher').DataTable();
+} );
+
 function viewToAdd() {
 
     $.ajax({

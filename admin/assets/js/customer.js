@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_customer').DataTable();
+} );
+
 function viewToAdd() {
     $.ajax({
         url: './process/customer.php',

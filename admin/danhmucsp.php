@@ -107,7 +107,7 @@ require_once $path . '/../class/categoryChild.php';
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0 table-hover">
+                                    <table class="table align-middle mb-0 table-hover" id="id_category">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã danh mục</th>
@@ -173,7 +173,7 @@ require_once $path . '/../class/categoryChild.php';
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0 table-hover">
+                                    <table class="table align-middle mb-0 table-hover" id="id_categorychild">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã danh mục con</th>
@@ -184,7 +184,6 @@ require_once $path . '/../class/categoryChild.php';
                                         </thead>
                                         <tbody id="tbody_categorychild">
                                             
-                                
                                         </tbody>
                                     </table>
                                 </div>

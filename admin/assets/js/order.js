@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_order').DataTable();
+} );
+
 function getDetail(id) {
     $.ajax({
         url: './process/order.php',

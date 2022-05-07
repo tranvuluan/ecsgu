@@ -109,7 +109,7 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
                       </div>
                     </div>
                     <div class="table-responsive mt-2">
-                      <table class="table align-middle mb-0 table-hover">
+                      <table class="table align-middle mb-0 table-hover" id="id_warehousereceipt">
                         <thead class="table-light">
                           <tr>
                             <th>Mã PN</th>

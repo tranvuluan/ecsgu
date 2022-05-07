@@ -96,7 +96,7 @@ require_once $path . '/../class/customer.php';
                             </div>
                         </div>
                         <div class="table-responsive mt-2">
-                            <table class="table align-middle mb-0">
+                            <table class="table align-middle mb-0"  id="id_order">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Mã hóa đơn</th>
