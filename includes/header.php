@@ -38,7 +38,7 @@
                                 <li class="dropdown"><a href="about.php">About us <i
                                     class="pe-7s-angle-down"></i></a>
                                     <ul class="sub-menu">
-                                        <li><a href="my-account.php">Account</a></li>
+                                        <!-- <li><a href="my-account.php">Account</a></li> -->
                                         <li><a href="privacy-policy.php">Privacy Policy</a></li>
                                         <li><a href="faq.php">Faq</a></li>
                                     </ul>
