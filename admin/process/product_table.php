@@ -1,10 +1,14 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/product.php';
-require_once $path . '/../class/productSale.php';
-require_once $path . '/../class/categoryChild.php';
-require_once $path . '/../class/brand.php';
-require_once $path . '/../class/configurable_product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/productSale.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/categoryChild.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/configurable_product.php';
 ?>
 
 <?php
@@ -618,7 +622,7 @@ if (isset($_POST['update'])) {
     $enddate = $_POST['enddate'];
 
     $productModel = new Product();
-    $update = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
+    $update = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status, $description);
     if ($update) {
         echo 1;
     } else {
@@ -627,7 +631,7 @@ if (isset($_POST['update'])) {
 
     $productModel = new Product();
     $productSaleModel = new ProductSale();
-    $updateProduct = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
+    $updateProduct = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status, $description);
     if ($updateProduct) {
         if ($status == 1 || $salepercent == "" || $startdate == "" || $enddate == "") {
             $deleteProductSale = $productSaleModel->delete($id_product);

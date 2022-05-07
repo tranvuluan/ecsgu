@@ -46,8 +46,9 @@ class Order
     }
 
 
-    public function insert($id_order, $id_customer, $phone, $email, $address, $country,$totalprice, $id_voucher, $date)
+    public function insert($id_order, $id_customer, $fullname, $phone, $email, $address, $country,$totalprice, $id_voucher, $date)
     {
+        $fullname = $this->conn->real_escape_string($fullname);
         $id_order = $this->conn->real_escape_string($id_order);
         $id_customer = $this->conn->real_escape_string($id_customer);
         $phone = $this->conn->real_escape_string($phone);
@@ -58,9 +59,9 @@ class Order
         $country = $this->conn->real_escape_string($country);
         $date = $this->conn->real_escape_string($date);
         if ($id_voucher != null)
-            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `phone`, `email`, `address`, `country`, `id_voucher`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$phone', '$email', '$address', '$country', '$id_voucher', '$totalprice', '$date')";
+            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `fullname`, `phone`, `email`, `address`, `country`, `id_voucher`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$fullname','$phone', '$email', '$address', '$country', '$id_voucher', '$totalprice', '$date')";
         else
-            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `phone`, `email`, `address`,`country`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$phone', '$email', '$address', '$country', '$totalprice', '$date')";
+            $sql = "INSERT INTO tbl_order(`id_order`, `id_customer`, `fullname`,`phone`, `email`, `address`,`country`, `totalprice`, `date`) VALUES ('$id_order', '$id_customer', '$fullname','$phone', '$email', '$address', '$country', '$totalprice', '$date')";
 
         $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
@@ -78,6 +79,15 @@ class Order
     {
         $id_order = $this->conn->real_escape_string($id_order);
         $sql = "DELETE FROM tbl_order WHERE id_order = '$id_order'";
+        $result = $this->conn->query($sql) or die($this->conn->error);
+        return $result;
+    }
+
+    public function setReasonCancel($id_order, $reason, $status){
+        $id_order = $this->conn->real_escape_string($id_order);
+        $reason = $this->conn->real_escape_string($reason);
+        $status = $this->conn->real_escape_string($status);
+        $sql = "UPDATE tbl_order SET `reason` = '$reason', `status` = '$status' WHERE `id_order` = '$id_order'";
         $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }

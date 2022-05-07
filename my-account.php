@@ -95,6 +95,7 @@ require_once($path . '/class/orderItem.php');
                                             <th>ID Voucher</th>
                                             <th>Total price</th>
                                             <th>Date</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -113,9 +114,40 @@ require_once($path . '/class/orderItem.php');
                                                         <td><?php echo $row['totalprice'] ?></td>
                                                         <td><?php echo $row['date'] ?></td>
                                                         <td>
-                                                            <div class="view">
-                                                                <span  class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span>
-                                                            </div>
+                                                            <?php
+                                                            if ($row['status'] == 0) {
+                                                                echo "Processing";
+                                                            } else if ($row['status'] == 1) {
+                                                                echo "Processed";
+                                                            } else if ($row['status'] == 2) {
+                                                                echo "Completed";
+                                                            } else if ($row['status'] == -1) {
+                                                                echo "Cancelled";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($row['status'] == 0) {
+                                                            ?>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View or Cancel</span></a>
+                                                                </div>
+                                                            <?php
+                                                            } else if ($row['status'] == 1) {
+                                                            ?>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span></a>
+                                                                </div>
+                                                            <?php
+                                                            } else if ($row['status'] == 2) {
+                                                            ?>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View and Rate</span></a>
+                                                                </div>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                     </tr>
@@ -126,7 +158,6 @@ require_once($path . '/class/orderItem.php');
                                         }
                                     }
                                     ?>
-
                                 </table>
                             </div>
                         </div>
@@ -234,7 +265,7 @@ require_once($path . '/class/orderItem.php');
         </div>
     </div>
     <!-- account area start -->
-    
+
     <!-- Footer Area Start -->
     <?php
     $path = dirname(__FILE__);

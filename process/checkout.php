@@ -6,6 +6,8 @@ require $path . '/../class/orderItem.php';
 $path = dirname(__FILE__);
 require $path . '/../class/customer.php';
 $path = dirname(__FILE__);
+require $path . '/../class/configurable_product.php';
+$path = dirname(__FILE__);
 require $path.'/../lib/callAPI.php';
 
 if (!isset($_SESSION)) session_start();
@@ -18,20 +20,35 @@ if (isset($_POST['placeOrder'])) {
     $ConfigurableModel = new ConfigurableProduct();
     $id_order = 'OR' . date('YmdHis');
     $id_customer = $_SESSION['id_customer'];
+    $fullname = $_POST['fullname'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $email = $_POST['email'];
     $country = $_POST['country'];
     $total = 0;
+
+    // check stock 
+    $flag = 1;
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $checkStock = $ConfigurableModel->checkStock($value['sku'], $value['quantity']);
+        if ($checkStock == false) {
+            $flag = 0;
+            break;
+        }
+    }
+    if ($flag == 0) {
+        echo $flag;
+        return;
+    }
+
     foreach ($_SESSION['cart'] as $key => $value) {
         $total += $value['price'] * $value['quantity'];
     }
 
-    $insertOrder = $OrderModel->insert($id_order, $id_customer, $phone, $email, $address, $country, $total, null, date('Y-m-d H:i:s'));
+    $insertOrder = $OrderModel->insert($id_order, $id_customer, $fullname, $phone, $email, $address, $country, $total, null, date('Y-m-d H:i:s'));
     $getCustomer = $CustomerModel->getCustomerByIdCustomer($id_customer);
     $customer = $getCustomer->fetch_assoc();
     $plusCustomerPoint = $CustomerModel->plusPoint($id_customer, $total + $customer['point']);
-    $flag = 1;
     if ($insertOrder) {
         foreach ($_SESSION['cart'] as $key => $value) {
             $insertOrderItem = $OrderItemModel->insert($id_order, $value['sku'], $value['quantity'], $value['price']);

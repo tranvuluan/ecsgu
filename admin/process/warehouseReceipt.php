@@ -1,12 +1,18 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/warehouseReceipt.php';
-require_once $path . '/../class/warehouseReceiptDetail.php';
-require_once $path . '/../class/supplier.php';
-require_once $path . '/../class/product.php';
-require_once $path . '/../class/categoryChild.php';
-require_once $path . '/../class/brand.php';
-require_once $path . '/../class/configurable_product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/warehouseReceiptDetail.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/supplier.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/categoryChild.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/configurable_product.php';
 ?>
 <?php
 if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceipt'])) {
@@ -111,8 +117,8 @@ if (isset($_POST['viewToAdd'])) {
                                             <input type="text" class="form-control" id="validationCustom02" name="price" value="" required>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="validationCustom04" class="form-label">Description</label>
-                                            <input type="text" class="form-control" id="validationCustom03" name="description" required>
+                                            <label for="validationCustom04" class="form-label">Mô tả</label>
+                                            <textarea name="description" id="" cols="30" rows="10" class="form-control" ></textarea>
                                         </div>
                                         <div class="col-md-12">
                                             <br>
@@ -344,7 +350,7 @@ if (isset($_POST['add'])) {
         # code...
         $checkExistProduct = $ProductModel->getProductById($value['id_product']);
         if (!$checkExistProduct) {
-            $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0');
+            $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0', $value['description']);
             if (!$insertProduct) {
                 $flag = 0;
                 echo $flag;
@@ -352,7 +358,7 @@ if (isset($_POST['add'])) {
             }
         } else {
             $getProduct = $checkExistProduct->fetch_assoc();
-            $updateProduct = $ProductModel->update($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $getProduct['price'], $value['images'], $getProduct['status']);
+            $updateProduct = $ProductModel->update($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $getProduct['price'], $value['images'], $getProduct['status'], $value['description']);
             if (!$updateProduct) {
                 $flag = 0;
                 echo $flag;
@@ -361,6 +367,7 @@ if (isset($_POST['add'])) {
         }
         foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
             $checkExistSKU = $ConfigurableProductModel->getConfigurableProductBySKU($valueConfig['sku']);
+            // var_dump($checkExistSKU);
             if (!$checkExistSKU) {
                 // insert configurable_product  into db
                 $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);

@@ -1,14 +1,22 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/order.php';
-require_once $path . '/../class/orderItem.php';
-require_once $path . '/../class/customer.php';
-require_once $path . '/../class/product.php';
-require_once $path . '/../class/configurable_product.php';
-require_once $path . '/../class/brand.php';
-require_once $path . '/../class/categoryChild.php';
-require_once $path . '/../class/productSale.php';
-require_once $path . '/../class/LibClass.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/orderItem.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/customer.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/configurable_product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/categoryChild.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/productSale.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/LibClass.php';
 $path = dirname(__FILE__);
 require_once $path . '/../../lib/callAPI.php';
 ?>
@@ -77,16 +85,16 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                             <?php
                             if ($order['status'] == 0) {
                             ?>
-                                <div class="col-md-3">
+                                <div class="col-md-3" id="elementButton">
                                     <button onclick="orderProcess('<?php print $order['id_order'] ?>')" class="btn btn-primary">Xử lý</button>
                                 </div>
                                 <div class="col-md-3">
                                     <button class="btn btn-danger" onclick="removeOrder('<?php print $order['id_order'] ?>')">Hủy đơn hàng</button>
                                 </div>
-                                <div class="row">
+                                <div class="col">
                                     <div class="col-md-1">
                                     </div>
-                                    <div class="col-md-11" id="OrderRemove" style="display: none;">
+                                    <div class="col-md-11" id="OrderRemove">
                                         <br>
                                         <input type="text" class="form-control" value="" id="infoRemove">
                                     </div>
@@ -95,7 +103,7 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                             <?php
                             } else if ($order['status'] == 1) {
                             ?>
-                                <div class="col-md-4">
+                                <div class="col-md-4" id="elementButton">
                                     <button onclick="orderComplete('<?php print $order['id_order'] ?>')" class="btn btn-primary">Hoàn tất</button>
                                 </div>
                             <?php
@@ -274,9 +282,40 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
 if (isset($_POST['process']) && $_POST['id_order']) {
     $LibClass = new LibClass();
     $orderModel = new Order();
+    $configurableProductModel = new ConfigurableProduct();
+    $OrderItemModel = new OrderItem();
+    $getListOrderItem = $OrderItemModel->getOrderItemById($_POST['id_order']);
+    $flag = 1;
+    while ($row = $getListOrderItem->fetch_assoc()) {
+        $sku = $row['sku'];
+        $checkStock = $configurableProductModel->checkStock($sku, $row['quantity']);
+        if (!$checkStock) {
+            $flag = 0;
+            break;
+        } 
+    }
+    if ($flag != 1){
+        echo $flag;
+        return;
+    }
+    $getListOrderItem = $OrderItemModel->getOrderItemById($_POST['id_order']);
+    while ($row = $getListOrderItem->fetch_assoc()) {
+        $sku = $row['sku'];
+        $decStock = $configurableProductModel->decStock($sku, $row['quantity']);
+        if (!$checkStock) {
+            $flag = 0;
+            break;
+        } 
+    }
+    if ($flag != 1){
+        echo $flag;
+        return;
+    }
     $status = 1;
     $items_send = [];
-    $flag = 1;
+
+    // check stock;
+
 
     $changeStatus = $orderModel->changeStatus($_POST['id_order'], $status);
     if (!$changeStatus)
@@ -323,26 +362,73 @@ if (isset($_POST['process']) && $_POST['id_order']) {
 ?>
 
 <?php
-if (isset($_POST['complete'])) {
+if (isset($_POST['complete']) && isset($_POST['id_order'])) {
     $items_send = [];
     $orderModel = new Order();
     $LibClass = new LibClass();
-    $ProductModel = new Product();
-    $CustomerModel = new Customer();
-    $getAllInfoOrder = $LibClass()->getAllInfoOrder($order['id_order']);
-    var_dump($getAllInfoOrder);
-    // $status = 2;
-    // $orderModel->changeStatus($_POST['id'], $status);
+    $OrderItemModel = new OrderItem();
+    $configurableProductModel  = new ConfigurableProduct();
+    $flag = 1;
+    $getListOrderItem = $OrderItemModel->getOrderItemById($_POST['id_order']);
+    $changeStatus = $orderModel->changeStatus($_POST['id_order'], 2);
+    if (!$changeStatus) {
+        $flag = 0;
+        echo $flag;
+        return;
+    }
 
-    // echo 1;
-}
-?>
+    // increase quantity sold
+    while ($row = $getListOrderItem->fetch_assoc()) {
+        $sku = $row['sku'];
+        $increaseQuantitySold = $configurableProductModel->incQuantitySold($sku, $row['quantity']);
+        if (!$increaseQuantitySold) {
+            $flag = 0;
+            break;
+        } 
+    }
 
-<?php
-if (isset($_POST['complete'])) {
-    $orderModel = new Order();
-    $status = -1;
-    $orderModel->changeStatus($_POST['id_order'], $status);
-    echo 1;
+    if ($flag == 0) {
+        echo $flag;
+        return;
+    }
+
+    $getAllInfoOrder = $LibClass->getFullInfoOrder($_POST['id_order']);
+    $fullOrder = $getAllInfoOrder->fetch_assoc();
+    $fullnameCustomer = $fullOrder['fullname'];
+    $emailCustomer = $fullOrder['email'];
+    $phoneCustomer = $fullOrder['phone'];
+    $addressCustomer = $fullOrder['address'];
+    $totalprice = $fullOrder['totalprice'];
+    $item['name'] = $fullOrder['name'];
+    $item['quantity'] = $fullOrder['quantity'];
+    $item['price'] = $fullOrder['price'];
+    array_push($items_send, $item);
+    while ($value = $getAllInfoOrder->fetch_assoc()) {
+        $item['name'] = $value['name'];
+        $item['quantity'] = $value['quantity'];
+        $item['price'] = $value['price'];
+        array_push($items_send, $item);
+    }
+    $data_array =  array(
+        "customer"        => array(
+            "fullname" => $fullnameCustomer,
+            "email"    => $emailCustomer,
+            "phone"    => $phoneCustomer,
+            "address"  => $addressCustomer,
+        ),
+        "order"           => array(
+            "order_id" => $_POST['id_order'],
+            "total"    => $totalprice,
+            "items" => json_encode($items_send)
+        ),
+
+    );
+    $make_call = callAPI('POST', 'http://14.225.192.186:5555/api/order/completed', json_encode($data_array));
+    $response = json_decode($make_call, true);
+    if ($response['message'] != 'Successfully') {
+        $flag = -1;
+        
+    }
+    echo $flag;
 }
 ?>

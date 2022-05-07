@@ -29,6 +29,8 @@ function getDetailOrderItem(id) {
 
 function orderProcess(id) {
     event.preventDefault();
+    let spinnerHtml = spinner();
+    document.getElementById('elementButton').innerHTML = spinnerHtml;
     $.ajax({
         url: './process/order.php',
         type: 'POST',
@@ -38,25 +40,28 @@ function orderProcess(id) {
         },
         success: function (response) {
             console.log(response);
-            // if (response == 1) {
-            //     alert('Order Processed');
-            //     $('#switchModel').modal('hide');
-            //     location.reload();
-            // }
+            if (response == 1) {
+                alert('Order Processed');
+                $('#switchModel').modal('hide');
+                location.reload();
+            }
         }
     });
 }
 
-function orderComplete(id) {
+function orderComplete(id_order) {
     event.preventDefault();
+    let spinnerHtml = spinner();
+    document.getElementById('elementButton').innerHTML = spinnerHtml;
     $.ajax({
         url: './process/order.php',
         type: 'POST',
         data: {
-            id: id,
+            id_order: id_order,
             complete: true,
         },
         success: function (response) {
+            console.log(response);
             if (response == 1) {
                 alert('Order Completed');
                 $('#switchModel').modal('hide');
@@ -66,27 +71,36 @@ function orderComplete(id) {
     });
 }
 
-function removeOrder(id){
+function removeOrder(id) {
     event.preventDefault();
     document.getElementById("OrderRemove").style.display = "block";
     let infoRemove = $('#infoRemove').val();
-    if(infoRemove == ''){
+    if (infoRemove == '') {
         alert('Please enter your reason');
-        return false;
     }
-    $.ajax({
-        url: './process/order.php',
-        type: 'POST',
-        data: {
-            id: id,
-            remove: true,
-        },
-        success: function (response) {
-            if (response == 1) {
-                alert('Order Removed');
-                $('#switchModel').modal('hide');
-                location.reload();
+    else {
+        $.ajax({
+            url: './process/order.php',
+            type: 'POST',
+            data: {
+                id: id,
+                remove: true,
+            },
+            success: function (response) {
+                if (response == 1) {
+                    alert('Order Removed');
+                    $('#switchModel').modal('hide');
+                    location.reload();
+                }
             }
-        }
-    });
+        });
+    }
+
+}
+
+function spinner() {
+    let html = '<div class="spinner-border" role="status">' +
+                '<span class="sr-only">Loading...</span>' +
+                '</div>';
+    return html;
 }

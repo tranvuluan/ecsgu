@@ -1,8 +1,10 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/employee.php';
-require_once $path . '/../class/position.php';
-require_once $path . '/../class/account.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/position.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/account.php';
 
 ?>
 
