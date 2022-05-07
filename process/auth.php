@@ -4,6 +4,7 @@ if (!isset($_SESSION)) {
 }
 $path = realpath(dirname(__FILE__));
 require_once($path . '/../class/customer.php');
+$path = realpath(dirname(__FILE__));
 require_once($path . '/../class/account.php');
 $AccountModel = new Account();
 $CustomerModel = new Customer();

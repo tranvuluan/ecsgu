@@ -118,8 +118,6 @@ if (isset($_POST['viewToUpdate']) && isset($_POST['id_customer'])) {
                                 <label class="form-label ">Phone</label>
                                 <input class="form-control" type="text" name="phone" value="<?php echo $showCustomer['phone'] ?>" require>
                             </div>
-
-
                             <div class="save_button mt-3">
                                 <button class="btn btn-primary" type="submit">Save</button>
                             </div>

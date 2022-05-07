@@ -1,18 +1,18 @@
 <?php
 $path = dirname(__FILE__);
 require_once($path . '/process/auth.php');
-checkLogin();
+// checkLogin();
 ?>
 
 <?php
 $path = dirname(__FILE__);
 require_once($path . '/class/order.php');
-checkLogin();
+// checkLogin();
 ?>
 <?php
 $path = dirname(__FILE__);
 require_once($path . '/class/orderItem.php');
-checkLogin();
+// checkLogin();
 ?>
 
 <!DOCTYPE html>
