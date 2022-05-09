@@ -328,7 +328,7 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-content">
                                 <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+
                                 </p>
                             </div>
                             <div class="testi-author">

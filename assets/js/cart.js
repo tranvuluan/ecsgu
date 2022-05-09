@@ -34,6 +34,7 @@ function addToCart(id_product) {
             success: function (response) {
                 $('#cart_items').html(response);
                 alert("Product has been added to cart");
+                location.reload
             }
         });
     }

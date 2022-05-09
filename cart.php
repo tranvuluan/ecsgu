@@ -65,9 +65,6 @@ $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
-    <?php
-    print_r($_SESSION['cart']);
-    ?>
     <!-- Cart Area Start -->
     <div class="cart-main-area pt-100px pb-100px">
         <div class="container" id="cart_body">
