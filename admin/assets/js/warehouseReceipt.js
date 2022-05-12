@@ -29,7 +29,7 @@ function viewToAdd() {
             viewToAdd: true,
         },
         success: function (data) {
-            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
+            $('#switchModal').html($('<div class="modal fade">' + data + ' </div>').modal());
         }
     })
 }
@@ -43,7 +43,7 @@ function view(id) {
             view: true,
         },
         success: function (data) {
-            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
+            $('#switchModal').html($('<div class="modal fade">' + data + ' </div>').modal());
         }
     })
 }
