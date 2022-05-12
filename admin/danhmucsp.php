@@ -173,7 +173,7 @@ require_once $path . '/../class/categoryChild.php';
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0 table-hover" id="id_categorychild">
+                                    <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã danh mục con</th>

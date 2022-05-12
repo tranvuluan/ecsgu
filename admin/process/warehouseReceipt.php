@@ -28,7 +28,7 @@ if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceip
             <tr>
                 <td><?php echo $row['id_warehousereceipt'] ?></td>
                 <td><?php echo $row['id_product'] ?></td>
-                <td><img src="<?php echo $product['image'] ?>" style="width:150px;" alt=""></td>
+                <td><img src="<?php echo $product['image'] ?>" width="100%" alt=""></td>
                 <td><?php echo $row['price'] ?></td>
                 <td>
                     <div class="d-flex align-items-center gap-3 fs-6">
@@ -118,7 +118,7 @@ if (isset($_POST['viewToAdd'])) {
                                         </div>
                                         <div class="col-md-12">
                                             <label for="validationCustom04" class="form-label">Mô tả</label>
-                                            <textarea name="description" id="" cols="30" rows="10" class="form-control" ></textarea>
+                                            <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
                                         </div>
                                         <div class="col-md-12">
                                             <br>
@@ -539,78 +539,49 @@ if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
                                                 <table class="table align-middle mb-0 table-hover">
                                                     <thead class="table-light">
                                                         <tr>
-                                                            <th>Chọn</th>
                                                             <th>SKU</th>
                                                             <th>Kích cỡ</th>
-                                                            <th>Số lượng</th>
                                                             <th>Trạng thái</th>
+                                                            <th>Số lượng</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_S"></td>
-                                                            <td style="width:10%"><input class="form-control" type="text" value="S"></td>
-                                                            <td style="width:10%"><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_M"></td>
-                                                            <td><input class="form-control" type="text" value="M"></td>
-                                                            <td><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_X"></td>
-                                                            <td><input class="form-control" type="text" value="X"></td>
-                                                            <td><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_XL"></td>
-                                                            <td><input class="form-control" type="text" value="XL"></td>
-                                                            <td><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
+                                                        <?php
+                                                        $configurableProductModel = new ConfigurableProduct();
+                                                        $getConfigurableProduct = $configurableProductModel->getConfigurableProductById($id);
+                                                        if ($getConfigurableProduct) {
+                                                            while ($rowCheck = $getConfigurableProduct->fetch_assoc()) {
+                                                        ?>
+
+                                                                <tr>
+                                                                    <td><?php echo $rowCheck['sku'] ?></td>
+                                                                    <td><?php echo $rowCheck['option'] ?></td>
+                                                                    <td>
+                                                                        <?php
+                                                                        $getStatus = $configurableProductModel->getConfigurableProductById($rowCheck['id_product']);
+                                                                        if ($getStatus) {
+                                                                            $rowStatus = $getStatus->fetch_assoc();
+                                                                            if ($rowStatus['inventory_status'] == 1) {
+                                                                        ?>
+                                                                                <div class="badge bg-primary">Còn hàng</div>
+                                                                            <?php
+
+                                                                            } else {
+                                                                            ?>
+                                                                                <div class="badge bg-danger">Hết</div>
+                                                                        <?php
+                                                                            }
+                                                                        }
+                                                                        ?>
+
+                                                                    </td>
+                                                                    <td><?php echo $rowCheck['stock'] ?></td>
+                                                                </tr>
+
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                     </tbody>
                                                 </table>
                                             </div>

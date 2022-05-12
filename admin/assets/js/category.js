@@ -1,11 +1,8 @@
 // Danh muc me
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('#id_category').DataTable();
-} );
-$(document).ready(function() {
-    $('#id_categorychild').DataTable();
-} );
+});
 function viewToAdd() {
     $.ajax({
         url: './process/category-process.php',
@@ -136,7 +133,7 @@ function getCategoryChild(id_category) {
             id_category: id_category
         },
         success: function (response) {
-            $('#tbody_categorychild').html(response); //innerHtml    
+            $('#tbody_categorychild').html(response); //innerHtml   
         }
     });
 }

@@ -133,7 +133,7 @@ require_once $path . '/../class/configurable_product.php';
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3">
                                                         <div class="product-box border">
-                                                            <img src="<?php echo $row['image'] ?>" alt="">
+                                                            <img src="<?php echo $row['image'] ?>" height="100%" alt="">
                                                         </div>
                                                         <div class="product-info">
                                                             <h6 class="product-name mb-1"><?php echo $row['name'] ?></h6>
