@@ -37,14 +37,16 @@ function login() {
                 password: password
             },
             success: function (response) {
+                if(response == 1){
+                    location.href = './index.php';
+                }
+                else if(response == 0){
+                    alert('Username or password is incorrect');
+                }
+                else if(response == 12){
+                    alert('Your user can not login');
+                }
 
-                console.log(response)
-                if (response == 0) {
-                    console.log(response);
-                }
-                else {
-                    window.location.href = "./index.php";
-                }
             }
 
         });
@@ -266,4 +268,7 @@ function viewDetailModal(){
 }
 
 
-
+function searchFromNavbar() {
+    let search = $('#searchFromNavbar').val().trim();
+    location.href = './categories.php?search=' + search;
+}

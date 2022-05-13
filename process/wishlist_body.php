@@ -51,6 +51,28 @@ if (count($_SESSION['wishlist']) > 0) {
     </div>
 <?php
 }
+else {
+    ?>
+        <div class="empty-cart-area pb-100px pt-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cart-heading">
+                            <h2>Your wishlist item</h2>
+                        </div>
+                        <div class="empty-text-contant text-center">
+                            <i class="pe-7s-like"></i>
+                            <h3>There are no more items in your wishlist</h3>
+                            <a class="empty-cart-btn" href="index.php">
+                                <i class="fa fa-arrow-left"> </i> Continue shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
 ?>
 
 <?php

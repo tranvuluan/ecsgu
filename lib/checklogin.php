@@ -11,10 +11,13 @@ function checkUserLogin()
 
 
 function checkEmployeeLogin() {
+
     if (!isset($_SESSION['login']) && !isset($_SESSION['id_employee'])) {
         header('Location: ./login.php');
     }
 }
+
+
 ?>
 
 <br>

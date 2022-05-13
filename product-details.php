@@ -107,7 +107,14 @@ if (!isset($_SESSION)) {
                     <div class="description-review-topbar nav">
                         <a data-bs-toggle="tab" href="#des-details2" onclick="viewInformation('<?php print $_GET['id_product'] ?>')">Information</a>
                         <a class="active" data-bs-toggle="tab" href="#des-details1" onclick="viewDescription('<?php print $_GET['id_product'] ?>')">Description</a>
-                        <a data-bs-toggle="tab" href="#des-details3" onclick="viewReview('<?php print $_GET['id_product'] ?>')">Reviews</a>
+                        <a data-bs-toggle="tab" href="#des-details3" onclick="viewReview('<?php print $_GET['id_product'] ?>')">Reviews
+                        <span> ( 
+                            <?php 
+                            $productEvaluateModel = new ProductEvaluate();
+                            $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($_GET['id_product']);
+                            $productEvaluate ? print($productEvaluate->num_rows) : print(0);
+                         ?> )
+                         </span></a>
                     </div>
                     <div class="tab-content description-review-bottom">
                         <div id="des-details2" class="tab-pane">

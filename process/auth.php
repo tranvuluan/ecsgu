@@ -23,11 +23,15 @@ if (isset($_POST['login']) && isset($_POST['username']) && isset($_POST['passwor
     } else {
         echo 1;
         $id_account = $login->fetch_assoc()['id_account'];
-        $customer = $CustomerModel->getCustomerByIdAccount($id_account);
-        $row = $customer->fetch_assoc();
-        $_SESSION['fullname'] = $row['fullname'];
-        $_SESSION['id_customer'] = $row['id_customer'];
-        $_SESSION['login'] = true;
+        if (substr($id_account, 0, 3) == 'CUS') {
+            $customer = $CustomerModel->getCustomerByIdAccount($id_account);
+            $row = $customer->fetch_assoc();
+            $_SESSION['fullname'] = $row['fullname'];
+            $_SESSION['id_customer'] = $row['id_customer'];
+            $_SESSION['login'] = true;
+        } else {
+            echo 2;
+        }
     }
 }
 ?>

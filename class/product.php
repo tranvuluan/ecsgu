@@ -32,6 +32,18 @@ class Product{
         }
     }
 
+    public function getProductByCategoryChildId($id_categorychild) {
+        $id_categorychild = $this->conn->real_escape_string($id_categorychild);
+        $sql = "SELECT * FROM tbl_product WHERE id_categorychild = '$id_categorychild'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function getProductsByOrderItem($id_product){
         $id_product = $this->conn->real_escape_string($id_product);
         $sql = "SELECT tbl_order_item.id_product FROM tbl_order_item, tbl_product WHERE tbl_order_item.id_product = tbl_product.id_product AND tbl_order_item.id_product = '$id_product'";
@@ -106,6 +118,18 @@ class Product{
         $sql = "UPDATE tbl_product SET rating = $rating WHERE `id_product` = '$id_product'";
         $result = $this->conn->query($sql);
         return $result;
+    }
+
+    public function searchItem($keyword) {
+        $keyword = $this->conn->real_escape_string($keyword);
+        $sql = "SELECT * FROM tbl_product WHERE name LIKE '%$keyword%'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
     }
 
 }

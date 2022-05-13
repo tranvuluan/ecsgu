@@ -134,7 +134,7 @@ require_once $path . '/class/employee.php';
             <div class="row">
                 <?php
                 $positionModel = new Position();
-                $id_position =  '62760247ba54f';
+                $id_position =  '627c8065c8515';
                 $employeeModel = new Employee();
                 $employee = $employeeModel->getEmployeeByIdPosition($id_position);
                 if ($employee) {

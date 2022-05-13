@@ -64,12 +64,12 @@ if (count($_SESSION['cart']) > 0) {
                     <div class="col-lg-12">
                         <div class="cart-shiping-update-wrapper">
                             <div class="cart-shiping-update">
-                                <a href="#">Continue Shopping</a>
+                                <a href="index.php">Continue Shopping</a>
                             </div>
-                            <div class="cart-clear">
+                            <!-- <div class="cart-clear">
                                 <button>Update Shopping Cart</button>
                                 <a href="#">Clear Shopping Cart</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -97,12 +97,33 @@ if (count($_SESSION['cart']) > 0) {
                         <div class="title-wrap">
                             <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                         </div>
-                        <h5>Total products <span id="total-product"><?php echo  $total.' đ' ?></span></h5>
+                        <h5>Total products <span id="total-product"><?php echo  $total . ' đ' ?></span></h5>
                         <div class="total-shipping">
                             <h5>Total shipping <span id="total-ship">30000 đ</span></h5>
                         </div>
-                        <h4 class="grand-totall-title">Grand Total <span id="grand-total"><?php echo ($total + 30000).' đ' ?></span></h4>
+                        <h4 class="grand-totall-title">Grand Total <span id="grand-total"><?php echo ($total + 30000) . ' đ' ?></span></h4>
                         <a href="checkout.php">Proceed to Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+} else {
+?>
+    <div class="empty-cart-area pb-100px pt-100px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-heading">
+                        <h2>Your cart item</h2>
+                    </div>
+                    <div class="empty-text-contant text-center">
+                        <i class="pe-7s-shopbag"></i>
+                        <h3>There are no more items in your cart</h3>
+                        <a class="empty-cart-btn" href="index.php">
+                            <i class="fa fa-arrow-left"> </i> Continue shopping
+                        </a>
                     </div>
                 </div>
             </div>

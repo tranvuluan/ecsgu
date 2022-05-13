@@ -1,4 +1,4 @@
-<?php
+<?php 
 $path = dirname(__FILE__);
 require_once $path . '/../../lib/checkLogin.php';
 checkEmployeeLogin();
