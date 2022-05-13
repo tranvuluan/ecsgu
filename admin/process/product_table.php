@@ -558,7 +558,7 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                                             $getStatus = $configurableProductModel->getConfigurableProductById($rowCheck['id_product']);
                                                             if ($getStatus) {
                                                                 $rowStatus = $getStatus->fetch_assoc();
-                                                                if ($rowStatus['inventory_status'] == 1) {
+                                                                if ($rowStatus['inventory_status'] == 'available') {
                                                             ?>
                                                                     <div class="badge bg-primary">Còn hàng</div>
                                                                 <?php
