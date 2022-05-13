@@ -183,10 +183,10 @@ function add() {
     $('input[name="ProductName"]').val('')
     $('input[name="price"]').val('')
     $('input[name="description"]').val('')
-    $('input[name="sku_S"]').val('SKU' + Math.round(d.getTime() + 10));
-    $('input[name="sku_M"]').val('SKU' + Math.round(d.getTime() + 20));
-    $('input[name="sku_X"]').val('SKU' + Math.round(d.getTime() + 30));
-    $('input[name="sku_XL"]').val('SKU' + Math.round(d.getTime() + 40));
+    $('input[name="sku_S"]').val('SKU' + Math.round(d.getTime() + 10) + '_S');
+    $('input[name="sku_M"]').val('SKU' + Math.round(d.getTime() + 20) + '_M');
+    $('input[name="sku_X"]').val('SKU' + Math.round(d.getTime() + 30) + '_X');
+    $('input[name="sku_XL"]').val('SKU' + Math.round(d.getTime() + 40) + '_XL');
     $('input[name="productCheckbox_S"]').prop('checked', false);
     $('input[name="productCheckbox_M"]').prop('checked', false);
     $('input[name="productCheckbox_X"]').prop('checked', false);
