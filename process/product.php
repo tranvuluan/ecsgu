@@ -42,9 +42,9 @@ if (isset($_GET['filterProduct'])) {
                             <img src="<?php echo $row['image'] ?>" alt="Product" />
                             <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                         </a>
-                        <span class="badges">
+                        <!-- <span class="badges">
                             <span class="new">New</span>
-                        </span>
+                        </span> -->
                         <div class="actions">
                             <a href="javascript:;" onclick="addToWishList('<?php print $row['id_product'] ?>')" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
                             <a href="#" onclick="viewDetailModal()" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
