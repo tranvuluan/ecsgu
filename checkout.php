@@ -125,34 +125,8 @@ $path = realpath(dirname(__FILE__));
                                     <input type="text" name="email" value="" />
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-select mb-4">
-                                    <label>Payment Methods</label>
-                                    <select name="payment">
-                                        <option value="1">Paypal</option>
-                                        <option value="2">Credit Card</option>
-                                        <option value="3">Cash on Delivery</option>
-                                    </select>
-                                </div>
-                            </div>
-
                         </div>
-                        <div class="checkout-account mb-30px">
-                            <input class="checkout-toggle2 w-auto h-auto" type="checkbox" />
-                            <label>Create an account?</label>
-                        </div>
-                        <div class="checkout-account-toggle open-toggle2 mb-30">
-                            <input placeholder="Email address" type="email" />
-                            <input placeholder="Password" type="password" />
-                            <button class="btn-hover checkout-btn" type="submit">register</button>
-                        </div>
-                        <div class="additional-info-wrap">
-                            <h4>Additional information</h4>
-                            <div class="additional-info">
-                                <label>Order notes</label>
-                                <textarea placeholder="Notes about your order, e.g. special notes for delivery. " value="" name="note"></textarea>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-lg-5 mt-md-30px mt-lm-30px ">
