@@ -6,7 +6,6 @@
             </div>
             <div class="body customScroll" id="wishlist_items">
                 <?php 
-                print_r($_SESSION);
                     $path = dirname(__FILE__);
                     require_once $path . '/../process/wishlist.php';
                 ?>
