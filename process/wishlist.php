@@ -52,7 +52,7 @@ if (count($_SESSION['wishlist']) > 0) {
                 <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>" class="image"><img src="<?php echo $value['image'] ?>" alt="Cart product Image"></a>
                 <div class="content">
                     <a href="product-details.php" class="title"><?php echo $value['name'] ?></a>
-                    <span class="quantity-price"><span class="amount"><?php echo $value['price'] ?></span></span>
+                    <span class="quantity-price"><span class="amount"><?php echo number_format($value['price']) ?>đ</span></span>
                     <a href="#"  onclick=" confirm('Bạn có muốn xóa không?') ? removeItem('<?php print $key ?>') : event.preventDefault() " class="remove">×</a>
                 </div>
             </li>

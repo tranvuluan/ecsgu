@@ -192,7 +192,7 @@ require_once $path . '/../class/configurable_product.php';
                                                 <?php
                                                 }
                                                 ?>
-                                                <td><?php echo $row['price'] ?></td>
+                                                <td><?php echo number_format($row['price']) ?>đ</td>
                                                 <td>
                                                     <?php
                                                     if ($row['status'] == 1) {

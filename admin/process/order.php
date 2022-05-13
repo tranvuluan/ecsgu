@@ -169,7 +169,7 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                                                         <?php
                                                         ?>
                                                         <td><?php echo $rowOrderItem['quantity'] ?></td>
-                                                        <td><?php echo $rowOrderItem['price'] ?></td>
+                                                        <td><?php echo number_format($rowOrderItem['price']) ?>đ</td>
                                                     </tr>
                                             <?php
                                                 }
@@ -285,7 +285,7 @@ if (isset($_POST['viewOrderItem']) && isset($_POST['id'])) {
         ?>
         <div class="col-md-6">
             <label for="validationCustom02" class="form-label">Tổng tiền (đ)</label>
-            <input type="text" class="form-control" id="validationCustom02" value="<?php echo $orderItem['price'] ?>" readonly>
+            <input type="text" class="form-control" id="validationCustom02" value="<?php echo number_format($orderItem['price']) ?> đ" readonly>
         </div>
     </form>
 <?php

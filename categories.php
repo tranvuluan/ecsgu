@@ -157,7 +157,7 @@ require_once($path . '/class/categoryChild.php');
                                                                 </span>
                                                                 <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?></a></h5>
                                                                 <span class="price">
-                                                                    <span class="new"><?php echo $row['price'] ?></span>
+                                                                    <span class="new"><?php echo number_format($row['price']) ?>đ</span>
                                                                 </span>
                                                             </div>
                                                         </div>

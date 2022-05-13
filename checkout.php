@@ -147,7 +147,7 @@ $path = realpath(dirname(__FILE__));
                                         foreach ($_SESSION['cart'] as $key => $value) {
                                             $total += $value['price'] * $value['quantity'];
                                         ?>
-                                            <li><span class="order-middle-left"><?php echo $value['name'] ?> X <?php echo $value['quantity'] ?></span> <span class="order-price"><?php echo $value['price'] ?> đ</span></li>
+                                            <li><span class="order-middle-left"><?php echo $value['name'] ?> X <?php echo $value['quantity'] ?></span> <span class="order-price"><?php echo number_format($value['price']) ?>đ</span></li>
                                         <?php
                                         }
                                         ?>
