@@ -49,7 +49,7 @@ if (count($_SESSION['wishlist']) > 0) {
 ?>
         <ul class="minicart-product-list">
             <li>
-                <a href="product-details.php" class="image"><img src="<?php echo $value['image'] ?>" alt="Cart product Image"></a>
+                <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>" class="image"><img src="<?php echo $value['image'] ?>" alt="Cart product Image"></a>
                 <div class="content">
                     <a href="product-details.php" class="title"><?php echo $value['name'] ?></a>
                     <span class="quantity-price"><span class="amount"><?php echo $value['price'] ?></span></span>
