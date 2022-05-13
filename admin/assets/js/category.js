@@ -1,4 +1,11 @@
 // Danh muc me
+
+$(document).ready(function() {
+    $('#id_category').DataTable();
+} );
+$(document).ready(function() {
+    $('#id_categorychild').DataTable();
+} );
 function viewToAdd() {
     $.ajax({
         url: './process/category-process.php',

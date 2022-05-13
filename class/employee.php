@@ -33,6 +33,18 @@ class Employee{
         }
     }
 
+    public function getEmployeeByIdPosition($id_position) {
+        $id_position = $this->conn->real_escape_string($id_position);
+        $sql = "SELECT * FROM tbl_employee WHERE id_position = '$id_position'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function insert($id_employee, $id_position, $fullname, $gender, $birthday, $address, $phone, $email, $image, $cmnd){
         $id_employee = $this->conn->real_escape_string($id_employee);
         $id_position = $this->conn->real_escape_string($id_position);

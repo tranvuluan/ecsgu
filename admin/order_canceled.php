@@ -96,7 +96,7 @@ require_once $path . '/../class/customer.php';
                             </div>
                         </div>
                         <div class="table-responsive mt-2">
-                            <table class="table align-middle mb-0"  id="id_order">
+                            <table class="table align-middle mb-0" id="id_order">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Mã hóa đơn</th>
@@ -113,7 +113,7 @@ require_once $path . '/../class/customer.php';
                                     $listOrder = $orderModel->getOrders();
                                     if ($listOrder) {
                                         while ($row = $listOrder->fetch_assoc()) {
-                                            if ($row['status'] == '0' || $row['status'] == '1' || $row['status'] == '-1')
+                                            if ($row['status'] == '0' || $row['status'] == '1' || $row['status'] == '2')
                                                 continue;
 
                                     ?>
@@ -132,9 +132,9 @@ require_once $path . '/../class/customer.php';
                                                 <td><?php echo $row['date'] ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($row['status'] == 2) {
+                                                    if ($row['status'] == -1) {
                                                     ?>
-                                                        <div class="badge bg-success">Đã hoàn tất</div>
+                                                        <div class="badge bg-danger">Đã hủy</div>
                                                     <?php
                                                     }
                                                     ?>
@@ -143,7 +143,6 @@ require_once $path . '/../class/customer.php';
                                                     <div class="d-flex align-items-center gap-3 fs-6">
                                                         <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_order'] ?>')" data-toggle="modal" data-target="#viewDetailModalId">
                                                             <ion-icon name="eye-sharp"></ion-icon>
-                                                        </a>
                                                         </a>
                                                     </div>
                                                 </td>

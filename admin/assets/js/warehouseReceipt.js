@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_warehousereceipt').DataTable();
+} );
+
 var warehouseDetailTable = [];
 let imageUrl = '';
 console.log('run this');

@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_supplier').DataTable();
+} );
+
 function viewToAdd() {
 
     $.ajax({

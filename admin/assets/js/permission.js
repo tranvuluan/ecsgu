@@ -1,4 +1,7 @@
-console.log('chay file nay')
+$(document).ready(function() {
+    $('#id_permission').DataTable();
+} );
+
 function getPermissionByPositionId(id_position) {
     $.ajax({
         url: './process/permission.php',

@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_employee').DataTable();
+} );
+
 let imageUrl = '';
 
 function viewToAdd() {

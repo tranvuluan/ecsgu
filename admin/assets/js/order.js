@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_order').DataTable();
+} );
+
 function getDetail(id) {
     $.ajax({
         url: './process/order.php',
@@ -71,11 +75,11 @@ function orderComplete(id_order) {
     });
 }
 
-function removeOrder(id) {
+function cancelOrder(id) {
     event.preventDefault();
     document.getElementById("OrderRemove").style.display = "block";
-    let infoRemove = $('#infoRemove').val();
-    if (infoRemove == '') {
+    let txtReason = $('#txtReason').val();
+    if (txtReason == '') {
         alert('Please enter your reason');
     }
     else {
@@ -84,11 +88,12 @@ function removeOrder(id) {
             type: 'POST',
             data: {
                 id: id,
-                remove: true,
+                reason: txtReason,
+                cancelOrder: true,
             },
             success: function (response) {
                 if (response == 1) {
-                    alert('Order Removed');
+                    alert('Order Canceled');
                     $('#switchModel').modal('hide');
                     location.reload();
                 }

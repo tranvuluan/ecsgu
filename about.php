@@ -1,5 +1,8 @@
 <?php
-    $path = dirname(__FILE__);
+$path = dirname(__FILE__);
+require_once $path . '/class/position.php';
+$path = dirname(__FILE__);
+require_once $path . '/class/employee.php';
 ?>
 
 <!DOCTYPE html>
@@ -42,19 +45,27 @@
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/includes/header.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-    <?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
     <!-- About Intro Area start-->
@@ -72,11 +83,11 @@
                     </div>
                 </div>
             </div>
-            <div class="intro-left">
+            <!-- <div class="intro-left">
                 <img src="assets/images/about-image/intro-left.png" alt="" class="intro-left-image">
-            </div>
+            </div> -->
             <div class="intro-right">
-                <img src="assets/images/about-image/intro-right.png" alt="" class="intro-right-image">
+                <img src="assets/images/product-image/b.jpg" alt="" class="intro-right-image">
             </div>
         </div>
     </div>
@@ -84,7 +95,7 @@
     <!-- About Intro Area End-->
 
     <!-- Service Area Start -->
-
+<!-- 
     <div class="service-area">
         <div class="container">
             <div class="row">
@@ -100,13 +111,12 @@
                             Every Day</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius modjior tem incididunt
                             ut labore et dolore magna aliqua.</p>
-                        <a href="shop-left-sidebar.html" class="btn btn-primary service-btn"> Shop Now <i
-                                class="fa fa-shopping-basket ml-10px" aria-hidden="true"></i></a>
+                        <a href="shop-left-sidebar.html" class="btn btn-primary service-btn"> Shop Now <i class="fa fa-shopping-basket ml-10px" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Service Area End -->
 
@@ -122,63 +132,37 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 mb-lm-30px">
-                    <!-- Single Team -->
-                    <div class="team-wrapper">
-                        <div class="team-image overflow-hidden">
-                            <img src="assets/images/team/1.jpg" alt="">
+                <?php
+                $positionModel = new Position();
+                $id_position =  '62760247ba54f';
+                $employeeModel = new Employee();
+                $employee = $employeeModel->getEmployeeByIdPosition($id_position);
+                if ($employee) {
+                    while ($row = $employee->fetch_assoc()) {
+                ?>
+                        <div class="col-md-4 mb-lm-30px">
+                            <!-- Single Team -->
+                            <div class="team-wrapper">
+                                <div class="team-image overflow-hidden">
+                                    <img src="<?php echo $row['image'] ?>" alt="" width="100%">
+                                </div>
+                                <div class="team-content">
+                                    <h6 class="title"><?php echo $row['fullname'] ?></h6>
+                                    <span class="sub-title">Our Team</span>
+                                </div>
+                                <ul class="team-social d-flex">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- Single Team -->
                         </div>
-                        <div class="team-content">
-                            <h6 class="title">Howard Burns</h6>
-                            <span class="sub-title">Our Team</span>
-                        </div>
-                        <ul class="team-social d-flex">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- Single Team -->
-                </div>
-                <div class="col-md-4 mb-lm-30px">
-                    <!-- Single Team -->
-                    <div class="team-wrapper">
-                        <div class="team-image overflow-hidden">
-                            <img src="assets/images/team/2.jpg" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h6 class="title">Lester Houser</h6>
-                            <span class="sub-title">Our Team</span>
-                        </div>
-                        <ul class="team-social d-flex">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- Single Team -->
-                </div>
-                <div class="col-md-4">
-                    <!-- Single Team -->
-                    <div class="team-wrapper">
-                        <div class="team-image overflow-hidden">
-                            <img src="assets/images/team/3.jpg" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h6 class="title">Craig Chaney</h6>
-                            <span class="sub-title">Our Team</span>
-                        </div>
-                        <ul class="team-social d-flex">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- Single Team -->
-                </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -409,23 +393,23 @@
     <!-- Brand area end -->
 
     <!-- Footer Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
 
     <!-- Modals -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
-<!-- JavaScripts -->
-<?php 
-$path = dirname(__FILE__);
-require_once($path . '/includes/scripts.php')?>
-<!-- END JavaScripts -->
+    <!-- JavaScripts -->
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
+    <!-- END JavaScripts -->
 </body>
 
 </html>
