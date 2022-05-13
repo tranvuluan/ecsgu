@@ -88,23 +88,37 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                                 <div class="col-md-3" id="elementButton">
                                     <button onclick="orderProcess('<?php print $order['id_order'] ?>')" class="btn btn-primary">Xử lý</button>
                                 </div>
-                                <div class="col-md-3">
-                                    <button class="btn btn-danger" onclick="removeOrder('<?php print $order['id_order'] ?>')">Hủy đơn hàng</button>
-                                </div>
-                                <div class="col">
-                                    <div class="col-md-1">
-                                    </div>
-                                    <div class="col-md-11" id="OrderRemove">
+                                <div class="col-md-8">
+                                    <button class="btn btn-danger" onclick="cancelOrder('<?php print $order['id_order'] ?>')">Hủy đơn hàng</button>
+                                    <div class="col-md-12" id="OrderRemove">
                                         <br>
-                                        <input type="text" class="form-control" value="" id="infoRemove">
+                                        <label for="">Lý do hủy</label>
+                                        <input type="text" class="form-control" value="" id="txtReason">
                                     </div>
                                 </div>
 
                             <?php
                             } else if ($order['status'] == 1) {
                             ?>
-                                <div class="col-md-4" id="elementButton">
+                                <div class="col-md-3" id="elementButton">
                                     <button onclick="orderComplete('<?php print $order['id_order'] ?>')" class="btn btn-primary">Hoàn tất</button>
+                                </div>
+                                <div class="col-md-8">
+                                    <button class="btn btn-danger" onclick="cancelOrder('<?php print $order['id_order'] ?>')">Hủy đơn hàng</button>
+                                    <div class="col-md-12" id="OrderRemove">
+                                        <br>
+                                        <label for="">Lý do hủy</label>
+                                        <input type="text" class="form-control" value="Đơn hàng bị hoàn trả" id="txtReason">
+                                    </div>
+                                </div>
+                            <?php
+                            } else if ($order['status'] == -1) {
+                            ?>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-8" id="OrderRemove">
+                                    <br>
+                                    <label for="">Lý do hủy</label>
+                                    <input type="text" class="form-control" value="<?php echo $order['reason'] ?>" id="txtReason">
                                 </div>
                             <?php
                             }
@@ -292,9 +306,9 @@ if (isset($_POST['process']) && $_POST['id_order']) {
         if (!$checkStock) {
             $flag = 0;
             break;
-        } 
+        }
     }
-    if ($flag != 1){
+    if ($flag != 1) {
         echo $flag;
         return;
     }
@@ -305,9 +319,9 @@ if (isset($_POST['process']) && $_POST['id_order']) {
         if (!$checkStock) {
             $flag = 0;
             break;
-        } 
+        }
     }
-    if ($flag != 1){
+    if ($flag != 1) {
         echo $flag;
         return;
     }
@@ -355,7 +369,6 @@ if (isset($_POST['process']) && $_POST['id_order']) {
     $response = json_decode($make_call, true);
     if ($response['message'] != 'Successfully') {
         $flag = -1;
-        
     }
     echo $flag;
 }
@@ -384,7 +397,7 @@ if (isset($_POST['complete']) && isset($_POST['id_order'])) {
         if (!$increaseQuantitySold) {
             $flag = 0;
             break;
-        } 
+        }
     }
 
     if ($flag == 0) {
@@ -427,8 +440,22 @@ if (isset($_POST['complete']) && isset($_POST['id_order'])) {
     $response = json_decode($make_call, true);
     if ($response['message'] != 'Successfully') {
         $flag = -1;
-        
     }
     echo $flag;
+}
+?>
+
+<?php
+if (isset($_POST['cancelOrder']) && isset($_POST['id'])) {
+    $orderModel = new Order();
+    $id_order = $_POST['id'];
+    $reason = $_POST['reason'];
+    $status = '-1';
+    $cancelOrder = $orderModel->setReasonCancel($id_order, $reason, $status);
+    if ($cancelOrder) {
+        echo 1;
+    } else {
+        echo 0;
+    }
 }
 ?>

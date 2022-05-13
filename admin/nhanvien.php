@@ -107,7 +107,7 @@ require_once $path . '/../class/account.php';
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">
-                                    <table class="table align-middle mb-0 table-hover">
+                                    <table class="table align-middle mb-0 table-hover" id="id_employee">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Mã nhân viên</th>
@@ -151,7 +151,7 @@ require_once $path . '/../class/account.php';
                                                         }
 
                                                         ?>
-                                                        <td style="text-align: center;">
+                                                        <td>
                                                             <?php
                                                             $accountModel = new Account();
                                                             $getStatus = $accountModel->getAccountById($row['id_employee']);

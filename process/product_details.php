@@ -43,13 +43,14 @@ if (isset($_GET['id_product'])) {
                         </div>
                         <div class="pro-details-rating-wrap">
                             <div class="rating-product">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                                <?php
+                                for ($i = 0; $i < $result['rating']; $i++) {
+                                ?>
+                                    <i class="fa fa-star"></i>
+                                <?php
+                                }
+                                ?>
                             </div>
-                            <span class="read-review"><a class="reviews" href="#">( 5 Customer Review )</a></span>
                         </div>
                         <!-- <div class="pro-details-color-info d-flex align-items-center">
                                     <span>Color</span>
@@ -81,21 +82,19 @@ if (isset($_GET['id_product'])) {
                                 </ul>
                             </div>
                         </div>
-                        <p class="m-0">Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incidi ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi
-                            ut aliquip ex ea commodo </p>
-                            <div class="pro-details-quality">
-                                <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                </div>
-                                <div class="pro-details-cart">
-                                    <button class="add-cart" onclick="addToCart('<?php print $result['id_product'] ?>')" href="#"> Add To
-                                        Cart</button>
-                                </div>
-                                <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                    <a href="javascript:;" onclick="addToWishList('<?php print $result['id_product'] ?>')"><i class="pe-7s-like"></i></a>
-                                </div>
+                        <p class="m-0"><?php echo $result['description'] ?></p>
+                        <div class="pro-details-quality">
+                            <div class="cart-plus-minus">
+                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
                             </div>
+                            <div class="pro-details-cart">
+                                <button class="add-cart" onclick="addToCart('<?php print $result['id_product'] ?>')" href="#"> Add To
+                                    Cart</button>
+                            </div>
+                            <div class="pro-details-compare-wishlist pro-details-wishlist ">
+                                <a href="javascript:;" onclick="addToWishList('<?php print $result['id_product'] ?>')"><i class="pe-7s-like"></i></a>
+                            </div>
+                        </div>
                         <div id="viewSKU">
                         </div>
                         <div class="pro-details-social-info pro-details-same-style d-flex">
