@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#id_product').DataTable();
+} );
+
 let imageUrl = '';
 
 function getDetail(id){

@@ -1,5 +1,5 @@
 <?php
-    $path = realpath(dirname(__FILE__));
+$path = realpath(dirname(__FILE__));
 ?>
 
 <!DOCTYPE html>
@@ -42,112 +42,60 @@
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/includes/header.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-<?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-<?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-<?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
- 
+
     <!-- Wishlist Area Start -->
     <div class="cart-main-area pt-100px pb-100px">
-        <div class="container">
-            <h3 class="cart-page-title">Your cart items</h3>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <form action="#">
-                        <div class="table-content table-responsive cart-table-content">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Product Name</th>
-                                        <th>Until Price</th>
-                                        <th>Qty</th>
-                                        <th>Subtotal</th>
-                                        <th>Add To Cart</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img class="img-responsive ml-15px" src="assets/images/product-image/1.jpg" alt="" /></a>
-                                        </td>
-                                        <td class="product-name"><a href="#">Product Name</a></td>
-                                        <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">$70.00</td>
-                                        <td class="product-wishlist-cart">
-                                            <a href="#">add to cart</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img class="img-responsive ml-15px" src="assets/images/product-image/2.jpg" alt="" /></a>
-                                        </td>
-                                        <td class="product-name"><a href="#">Product Name</a></td>
-                                        <td class="product-price-cart"><span class="amount">$50.00</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">$80.00</td>
-                                        <td class="product-wishlist-cart">
-                                            <a href="#">add to cart</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img class="img-responsive ml-15px" src="assets/images/product-image/3.jpg" alt="" /></a>
-                                        </td>
-                                        <td class="product-name"><a href="#">Product Name</a></td>
-                                        <td class="product-price-cart"><span class="amount">$70.00</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">$90.00</td>
-                                        <td class="product-wishlist-cart">
-                                            <a href="#">add to cart</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="container" id="wishlist_body">
+            <?php
+            $path = dirname(__FILE__);
+            require_once $path . '/process/wishlist_body.php';
+            ?>
         </div>
     </div>
 
     <!-- Wishlist Area End -->
 
     <!-- Footer Area Start -->
-    <?php require_once($path .'/includes/footer.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php require_once($path . '/includes/modals.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
     <!-- JavaScripts -->
-    <?php require_once($path . '/includes/scripts.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
+    <script src="./assets/js/wishlist.js"></script>
 </body>
 
 </html>

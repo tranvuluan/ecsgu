@@ -1,25 +1,23 @@
 <?php
-    // session_start();
 
-    // $path = realpath(dirname(__FILE__));
+if (!isset($_SESSION)) session_start();
 
-    // require_once($path . '/../class/customer.php');
+function checkUserLogin()
+{
+    if (!isset($_SESSION['login']) && !isset($_SESSION['id_customer'])) {
+        header('Location: ./login.php');
+    }
+}
 
-    // $customerModel = new Customer();
-    // $username = $_POST['username'];
-    // $password = $_POST['password'];
-    // $checkLogin = $customerModel -> checkLogin($username, $password);
-    // if($checkLogin == false){
-    //     echo 0;
-    // }
-    // else {
-    //     echo 1;
-    //     $_SESSION['login'] = true;
-    //     $rs = $checkLogin->fetch_assoc();
-    //     $_SESSION['fullname'] = $rs['fullname'];
-    //     $_SESSION['id_customer'] = $rs['id_customer'];
-    //     echo $rs['id_customer'];
-    //     echo $rs['fullname'];
-    //     header("Refresh:0; url=../index.php");
-    // }
+
+function checkEmployeeLogin() {
+
+    if (!isset($_SESSION['login']) && !isset($_SESSION['id_employee'])) {
+        header('Location: ./login.php');
+    }
+}
+
+
 ?>
+
+<br>

@@ -1,4 +1,8 @@
 // Danh muc me
+
+$(document).ready(function () {
+    $('#id_category').DataTable();
+});
 function viewToAdd() {
     $.ajax({
         url: './process/category-process.php',
@@ -129,7 +133,7 @@ function getCategoryChild(id_category) {
             id_category: id_category
         },
         success: function (response) {
-            $('#tbody_categorychild').html(response); //innerHtml    
+            $('#tbody_categorychild').html(response); //innerHtml   
         }
     });
 }
@@ -267,3 +271,4 @@ function deleteCategoryChild(sub_id) {
     });
 }
 // end danh mục con
+

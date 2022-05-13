@@ -93,9 +93,9 @@ checkLogin();
                                         <tr>
                                             <th>ID Order</th>
                                             <th>ID Voucher</th>
-                                            <th>ID Employee</th>
                                             <th>Total price</th>
                                             <th>Date</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -111,13 +111,43 @@ checkLogin();
                                                     <tr>
                                                         <td><?php echo $row['id_order'] ?></td>
                                                         <td><?php echo $row['id_voucher'] ?></td>
-                                                        <td><?php echo $row['id_employee'] ?></td>
                                                         <td><?php echo $row['totalprice'] ?></td>
                                                         <td><?php echo $row['date'] ?></td>
                                                         <td>
-                                                            <div class="view">
-                                                                <span  class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span>
-                                                            </div>
+                                                            <?php
+                                                            if ($row['status'] == 0) {
+                                                                echo "Processing";
+                                                            } else if ($row['status'] == 1) {
+                                                                echo "Processed";
+                                                            } else if ($row['status'] == 2) {
+                                                                echo "Completed";
+                                                            } else if ($row['status'] == -1) {
+                                                                echo "Cancelled";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($row['status'] == 0) {
+                                                            ?>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View or Cancel</span></a>
+                                                                </div>
+                                                            <?php
+                                                            } else if ($row['status'] == 1) {
+                                                            ?>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View</span></a>
+                                                                </div>
+                                                            <?php
+                                                            } else if ($row['status'] == 2) {
+                                                            ?>
+                                                                <div class="view">
+                                                                    <a href="javascript:;"><span class="view" onclick="viewOrderDetail('<?php print($row['id_order']) ?>')">View and Rate</span></a>
+                                                                </div>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                     </tr>
@@ -128,7 +158,6 @@ checkLogin();
                                         }
                                     }
                                     ?>
-
                                 </table>
                             </div>
                         </div>
@@ -236,7 +265,7 @@ checkLogin();
         </div>
     </div>
     <!-- account area start -->
-    
+
     <!-- Footer Area Start -->
     <?php
     $path = dirname(__FILE__);
@@ -255,7 +284,7 @@ checkLogin();
     $path = dirname(__FILE__);
     ?>
     <!-- END JavaScripts -->
-    <script src="assets/js/account.js"></script>
+    <script src="assets/js/manageraccount.js"></script>
 </body>
 
 </html>

@@ -37,14 +37,16 @@ function login() {
                 password: password
             },
             success: function (response) {
+                if(response == 1){
+                    location.href = './index.php';
+                }
+                else if(response == 0){
+                    alert('Username or password is incorrect');
+                }
+                else if(response == 12){
+                    alert('Your user can not login');
+                }
 
-                console.log(response)
-                if (response == 0) {
-                    console.log(response);
-                }
-                else {
-                    window.location.href = "./index.php";
-                }
             }
 
         });
@@ -168,8 +170,7 @@ function logout() {
         url: './process/auth.php',
         type: 'POST',
         data: {
-            username: userReister.username,
-            email: userReister.email
+            logout: true
         },
         success: function (response) {
             console.log(response)
@@ -225,14 +226,18 @@ function verifyEmail() {
                     respassword: userReister.respassword,
                     register: true,
                 },
-                success: function (response) {
-                    if (response == 0) {
-                        console.log(response);
+                success: function (response1) {
+                    console.log(response1);
+                    if (response1 == 1) {
+                        location.href = './login.php'
                     }
                     else {
-                        console.log(response);
-                        location.reload();
+                        console.log('fail');
+                        console.log(response1);
                     }
+                },
+                error: function (error) {
+                    console.log(error);
                 }
             });
             console.log(response)
@@ -245,4 +250,25 @@ function verifyEmail() {
         }
 
     });
+}
+
+function viewDetailModal(){
+    event.preventDefault();
+    $.ajax({
+        url: './process/product_detail_modal.php',
+        type: 'POST',
+        data: {
+            viewDetailModal: true,
+        },
+        success: function (data) {
+            $('#switchModal').html($('<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">' + data + ' </div>').modal());
+            console.log(data);
+        }
+    });
+}
+
+
+function searchFromNavbar() {
+    let search = $('#searchFromNavbar').val().trim();
+    location.href = './categories.php?search=' + search;
 }

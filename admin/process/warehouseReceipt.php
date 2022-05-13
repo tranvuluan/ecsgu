@@ -1,12 +1,18 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/warehouseReceipt.php';
-require_once $path . '/../class/warehouseReceiptDetail.php';
-require_once $path . '/../class/supplier.php';
-require_once $path . '/../class/product.php';
-require_once $path . '/../class/categoryChild.php';
-require_once $path . '/../class/brand.php';
-require_once $path . '/../class/configurable_product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/warehouseReceiptDetail.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/supplier.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/categoryChild.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/configurable_product.php';
 ?>
 <?php
 if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceipt'])) {
@@ -22,7 +28,7 @@ if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceip
             <tr>
                 <td><?php echo $row['id_warehousereceipt'] ?></td>
                 <td><?php echo $row['id_product'] ?></td>
-                <td><img src="<?php echo $product['image'] ?>" style="width:150px;" alt=""></td>
+                <td><img src="<?php echo $product['image'] ?>" width="100%" alt=""></td>
                 <td><?php echo $row['price'] ?></td>
                 <td>
                     <div class="d-flex align-items-center gap-3 fs-6">
@@ -73,7 +79,7 @@ if (isset($_POST['viewToAdd'])) {
                                         </div>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Danh mục</label>
-                                            <select class="form-select" name="categorychild" id="">
+                                            <select class="form-select" name="categorychild" id="categorychild">
                                                 <?php
                                                 $categoryAll = $CagoryChildModel->getCategoryChilds();
                                                 if ($categoryAll) {
@@ -90,7 +96,7 @@ if (isset($_POST['viewToAdd'])) {
                                         </div>
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Thương hiệu</label>
-                                            <select class="form-select" name="brand" id="">
+                                            <select class="form-select" name="brand" id="brand">
                                                 <?php
                                                 $brandAll = $BrandModel->getBrands();
                                                 if ($categoryAll) {
@@ -111,8 +117,8 @@ if (isset($_POST['viewToAdd'])) {
                                             <input type="text" class="form-control" id="validationCustom02" name="price" value="" required>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="validationCustom04" class="form-label">Description</label>
-                                            <input type="text" class="form-control" id="validationCustom03" name="description" required>
+                                            <label for="validationCustom04" class="form-label">Mô tả</label>
+                                            <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
                                         </div>
                                         <div class="col-md-12">
                                             <br>
@@ -299,10 +305,13 @@ if (isset($_POST['viewToAdd'])) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-12">
                                 <button class="btn btn-primary" type="submit">Thêm vào chi tiết phiếu nhập</button>
                             </div>
+                            <div class="col-md-12"></div>
                         </form>
+                        <button class="btn btn-primary" onclick="addExistProduct()">Thêm vào chi tiết sản phẩm đã có</button>
+
                     </div>
                     <button class="btn btn-primary" onclick="addWarehouseReceipt()">Lưu phiếu nhập</button>
                 </div>
@@ -320,11 +329,13 @@ if (isset($_POST['add'])) {
     $WarehouseReceiptDetailModel = new WarehouseReceiptDetail();
     $ProductModel = new Product();
     $ConfigurableProductModel = new ConfigurableProduct();
+    $flag  = 1;
 
     // insert WarehouseReceiptent into db
     $insertWarehouseReceipt = $WarehouseReceiptModel->insert($_POST['id_warehousereceipt'], $_POST['id_suplier'], $_POST['id_employee'], $_POST['date'], $_POST['totalprice']);
     if (!$insertWarehouseReceipt) {
-        echo 0;
+        $flag = 0;
+        echo $flag;
         return;
     }
 
@@ -333,21 +344,52 @@ if (isset($_POST['add'])) {
         $insertWarehouseReceiptDetail = $WarehouseReceiptDetailModel->insert($_POST['id_warehousereceipt'], $value['id_product'], $value['price']);
         // insert product into db
         if (!$insertWarehouseReceiptDetail) {
-            echo 0;
+            $flag = 0;
+            echo $flag;
             return;
         }
         # code...
-        $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0');
-        foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
-            // insert configurable_product  into db
-            $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);
-            if (!$insertConfigurableProduct) {
-                echo 0;
+        $checkExistProduct = $ProductModel->getProductById($value['id_product']);
+        if (!$checkExistProduct) {
+            $insertProduct = $ProductModel->insert($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $value['images'], '0', $value['description']);
+            if (!$insertProduct) {
+                $flag = 0;
+                echo $flag;
+                return;
+            }
+        } else {
+            $getProduct = $checkExistProduct->fetch_assoc();
+            $updateProduct = $ProductModel->update($value['id_product'], $value['id_brand'], $value['id_categorychild'], $value['name_product'], $getProduct['price'], $value['images'], $getProduct['status'], $value['description']);
+            if (!$updateProduct) {
+                $flag = 0;
+                echo $flag;
                 return;
             }
         }
+        foreach ($value['configurable_products'] as $keyConfig => $valueConfig) {
+            $checkExistSKU = $ConfigurableProductModel->getConfigurableProductBySKU($valueConfig['sku']);
+            // var_dump($checkExistSKU);
+            if (!$checkExistSKU) {
+                // insert configurable_product  into db
+                $insertConfigurableProduct = $ConfigurableProductModel->insert($valueConfig['sku'], $value['id_product'], $valueConfig['stock'], $valueConfig['inventory_status'], $valueConfig['option']);
+                if (!$insertConfigurableProduct) {
+                    $flag = 0;
+                    echo $flag;
+                    return;
+                }
+            } else {
+                $getSKU = $checkExistSKU->fetch_assoc();
+                // update configruable product into db
+                $updateConfigurableProduct = $ConfigurableProductModel->update($valueConfig['sku'], $value['id_product'], $valueConfig['stock'] + $getSKU['stock'], $getSKU['quantity_sold'], $valueConfig['inventory_status'], $valueConfig['option']);
+                if (!$updateConfigurableProduct) {
+                    $flag = 0;
+                    echo $flag;
+                    return;
+                }
+            }
+        }
     }
-    echo 1;
+    echo $flag;
 }
 ?>
 
@@ -498,78 +540,49 @@ if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
                                                 <table class="table align-middle mb-0 table-hover">
                                                     <thead class="table-light">
                                                         <tr>
-                                                            <th>Chọn</th>
                                                             <th>SKU</th>
                                                             <th>Kích cỡ</th>
-                                                            <th>Số lượng</th>
                                                             <th>Trạng thái</th>
+                                                            <th>Số lượng</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_S"></td>
-                                                            <td style="width:10%"><input class="form-control" type="text" value="S"></td>
-                                                            <td style="width:10%"><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_M"></td>
-                                                            <td><input class="form-control" type="text" value="M"></td>
-                                                            <td><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_X"></td>
-                                                            <td><input class="form-control" type="text" value="X"></td>
-                                                            <td><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input class="form-control" type="text" value="PR9999_XL"></td>
-                                                            <td><input class="form-control" type="text" value="XL"></td>
-                                                            <td><input class="form-control" type="text"></td>
-                                                            <td>
-                                                                <select class="form-select" name="" id="">
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Còn hàng</div>
-                                                                    </option>
-                                                                    <option value="">
-                                                                        <div class="badge bg-primary">Hết hàng</div>
-                                                                    </option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
+                                                        <?php
+                                                        $configurableProductModel = new ConfigurableProduct();
+                                                        $getConfigurableProduct = $configurableProductModel->getConfigurableProductById($id);
+                                                        if ($getConfigurableProduct) {
+                                                            while ($rowCheck = $getConfigurableProduct->fetch_assoc()) {
+                                                        ?>
+
+                                                                <tr>
+                                                                    <td><?php echo $rowCheck['sku'] ?></td>
+                                                                    <td><?php echo $rowCheck['option'] ?></td>
+                                                                    <td>
+                                                                        <?php
+                                                                        $getStatus = $configurableProductModel->getConfigurableProductById($rowCheck['id_product']);
+                                                                        if ($getStatus) {
+                                                                            $rowStatus = $getStatus->fetch_assoc();
+                                                                            if ($rowStatus['inventory_status'] == 1) {
+                                                                        ?>
+                                                                                <div class="badge bg-primary">Còn hàng</div>
+                                                                            <?php
+
+                                                                            } else {
+                                                                            ?>
+                                                                                <div class="badge bg-danger">Hết</div>
+                                                                        <?php
+                                                                            }
+                                                                        }
+                                                                        ?>
+
+                                                                    </td>
+                                                                    <td><?php echo $rowCheck['stock'] ?></td>
+                                                                </tr>
+
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -587,4 +600,120 @@ if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
     }
 }
 
+?>
+
+<?php
+if (isset($_GET['showExistProduct'])) {
+    $productModel = new Product();
+    $brandModel = new Brand();
+    $categoryChildModel = new CategoryChild();
+?>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <table class="table align-middle mb-0 table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th>Thương hiệu</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <?php
+                $getDetailProduct = $productModel->getProducts();
+                if ($getDetailProduct) {
+                    while ($row = $getDetailProduct->fetch_assoc()) {
+
+                ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['id_product'] ?></td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="product-box border">
+                                            <img src="<?php echo $row['image'] ?>" alt="">
+                                        </div>
+                                        <div class="product-info">
+                                            <h6 class="product-name mb-1"><?php echo $row['name'] ?></h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <?php
+                                $getNameCategoryChild = $categoryChildModel->getCategoryChildByIds($row['id_categorychild'])->fetch_assoc();
+                                if ($getNameCategoryChild) {
+                                ?>
+                                    <td><?php echo $getNameCategoryChild['name'] ?></td>
+                                <?php
+                                }
+                                ?>
+
+                                <?php
+                                $getNameBrand = $brandModel->getBrandById($row['id_brand'])->fetch_assoc();
+                                if ($getNameBrand) {
+                                ?>
+                                    <td><?php echo $getNameBrand['name'] ?></td>
+                                <?php
+                                }
+                                ?>
+
+                                <td>
+                                    <button onclick="chooseExistProduct('<?php echo $row['id_product'] ?>')">Chọn</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                <?php
+                    }
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+<?php
+}
+?>
+
+<?php
+if (isset($_GET['chooseExistProduct'])) {
+    $id_product = $_GET['id_product'];
+    $productModel = new Product();
+    $productById = $productModel->getProductById($id_product);
+    if ($productById) {
+        $productById = $productById->fetch_assoc();
+    } else {
+        echo 0;
+        return;
+    }
+    $brandModel = new Brand();
+    $categoryChildModel = new CategoryChild();
+    $ConfigurableProduct = new ConfigurableProduct();
+    $getListSKU = $ConfigurableProduct->getConfigurableProductById($id_product);
+    $listSkuOfProduct = [];
+    while ($getListSKU && $row = $getListSKU->fetch_assoc()) {
+        $sku = array(
+            "sku" => $row['sku'],
+            "option" => $row['option'],
+            "stock" => $row['stock'],
+            "inventory_status" => $row['inventory_status']
+        );
+        array_push($listSkuOfProduct, $sku);
+    }
+    $data = array(
+        "product" => array(
+            "id_product" => $productById['id_product'],
+            "name" => $productById['name'],
+            "image" => $productById['image'],
+        ),
+        "categorychild" => array(
+            "id_categorychild" => $productById['id_categorychild'],
+            "name" => $categoryChildModel->getCategoryChildByIds($productById['id_categorychild'])->fetch_assoc()['name'],
+        ),
+        "brand" => array(
+            "id_brand" => $productById['id_brand'],
+            "name" => $brandModel->getBrandById($productById['id_brand'])->fetch_assoc()['name']
+        ),
+        "sku" =>  $listSkuOfProduct
+    );
+    echo json_encode($data);
+}
 ?>

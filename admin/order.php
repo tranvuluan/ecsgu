@@ -1,16 +1,58 @@
+<?php
+$path = dirname(__FILE__);
+require_once $path . '/../class/order.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/customer.php';
+?>
+
 <!doctype html>
 <html lang="en" class="semi-dark">
 
 <head>
     <!-- head html -->
-    <?php
-    $path = dirname(__FILE__);
-    require_once $path . '/includes/sidebar.php';
-    ?>
-    <?php
-    $path = dirname(__FILE__);
-    require_once $path . '/includes/headhtml.php';
-    ?>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- loader-->
+<link href="assets/css/pace.min.css" rel="stylesheet" />
+<script src="assets/js/pace.min.js"></script>
+
+<!--plugins-->
+<!-- <link href="assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" /> -->
+<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+
+<!-- CSS Files -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-extended.css" rel="stylesheet">
+
+<link href="assets/css/style.css" rel="stylesheet">
+<link href="assets/css/icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--Theme Styles-->
+<link href="assets/css/dark-theme.css" rel="stylesheet" />
+<link href="assets/css/semi-dark.css" rel="stylesheet" />
+<link href="assets/css/header-colors.css" rel="stylesheet" />
+
+<!-- date pick -->
+
+<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+<link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" />
+<link href="assets/plugins/datetimepicker/css/classic.time.css" rel="stylesheet" />
+<link href="assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" />
+<link rel="stylesheet" href="assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+<!-- <link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" /> -->
+<!-- <link href="assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" /> -->
+
+
+
     <!-- end header html -->
     >
     <title>Blackdash - Bootstrap5 Admin Template</title>
@@ -89,36 +131,61 @@
                             </div>
                         </div>
                         <div class="table-responsive mt-2">
-                            <table class="table align-middle mb-0">
+                            <table class="table align-middle mb-0"  id="id_order">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Mã hóa đơn</th>
                                         <th>Tên khách hàng</th>
                                         <th>Tổng tiền</th>
                                         <th>Ngày xuất</th>
+                                        <th>Trạng thái</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>#89742</td>
-                                        <td>Nguyễn Văn A</td>
-                                        <td>500$</td>
-                                        <td>Apr 8, 2021</td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3 fs-6">
-                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#viewDetailModalId">
-                                                    <ion-icon name="eye-sharp"></ion-icon>
-                                                </a>
-                                                <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
-                                                    <ion-icon name="pencil-sharp"></ion-icon>
-                                                </a>
-                                                <a href="javascript:;" class="text-dark">
-                                                    <ion-icon name="trash-sharp"></ion-icon>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $orderModel = new Order();
+                                    $listOrder = $orderModel->getOrders();
+                                    if ($listOrder) {
+                                        while ($row = $listOrder->fetch_assoc()) {
+                                            if ($row['status'] == '1' || $row['status'] == '2' || $row['status'] == '-1')
+                                                continue;
+
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $row['id_order'] ?></td>
+                            
+                                                    <td><?php echo $row['fullname'] ?></td>
+                                       
+                                                <td><?php echo $row['totalprice'] ?></td>
+                                                <td><?php echo $row['date'] ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($row['status'] == 0) {
+                                                    ?>
+                                                        <div class="badge bg-warning">Đang xử lý</div>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3 fs-6">
+                                                        <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_order'] ?>')" data-toggle="modal" data-target="#viewDetailModalId">
+                                                            <ion-icon name="eye-sharp"></ion-icon>
+                                                        </a>
+                                                        <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                            <ion-icon name="pencil-sharp"></ion-icon>
+                                                        </a>
+                                                        <a href="javascript:;" class="text-dark">
+                                                            <ion-icon name="trash-sharp"></ion-icon>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -206,87 +273,6 @@
             </div>
             <!--end wrapper-->
 
-            <!-- start modal xem chi tiết hóa đơn -->
-            <div class="modal fade" id="viewDetailModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="row">
-                            <!-- start view chi tiết hóa đơn -->
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 class="mb-0">Chi tiết hóa đơn</h6>
-                                        <div class="p-4 border rounded">
-                                            <form class="row g-3 needs-validation" novalidate>
-                                                <div class="col-md-6">
-                                                    <label for="validationCustom01" class="form-label">Mã hóa đơn</label>
-                                                    <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="validationCustom02" class="form-label">Mã nhân viên</label>
-                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="validationCustom02" class="form-label">Mã khách hàng</label>
-                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="validationCustom02" class="form-label">Tên khách hàng</label>
-                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="validationCustom02" class="form-label">Ngày lập</label>
-                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="validationCustom02" class="form-label">Voucher</label>
-                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="validationCustom02" class="form-label">Tổng tiền (đ)</label>
-                                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- start view chi tiết hóa đơn -->
-
-                            <!-- start table ds sản phâm trong chi tiết hóa đơn -->
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <label for="validationCustom01" class="form-label">Danh sách sản phẩm trong hóa đơn</label>
-                                        <div class="p-4 border rounded">
-                                            <table class="table align-middle mb-0">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Mã SP</th>
-                                                        <th>Tên SP</th>
-                                                        <th>Số lượng</th>
-                                                        <th>Giá tiền(đ)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>#89742</td>
-                                                        <td>Nguyễn Văn A</td>
-                                                        <td>500$</td>
-                                                        <td>Apr 8, 2021</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- start modal xem chi tiết hóa đơn -->
 
             <!-- start modal sửa chi tiết hóa đơn -->
             <div class="modal fade" id="updateModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -373,14 +359,14 @@
             </div>
             <!-- start modal sửa chi tiết hóa đơn -->
 
-
+            <div id="switchModel"></div>
             <!-- Scripts-->
             <?php
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
             <!-- END Scripts -->
-
+            <script src="./assets/js/order.js"></script>
 
 </body>
 

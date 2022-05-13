@@ -1,8 +1,10 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../../class/employee.php';
-require_once $path . '/../class/position.php';
-require_once $path . '/../class/account.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/position.php';
+$path = dirname(__FILE__);
+require_once $path . '/../../class/account.php';
 
 ?>
 
@@ -241,17 +243,21 @@ if (isset($_POST['viewToAdd'])) {
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationPassword" class="form-label">Mật khẩu</label>
-                                <input type="password" class="form-control" id="validationPassword" name="password" value="">
-                                <div id="txtPassword" class="invalid-feedback">Enter Password!</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="validationPassword" class="form-label">Mật khẩu</label>
+                                        <input type="password" class="form-control" id="validationPassword" name="password" value="">
+                                        <div id="txtPassword" class="invalid-feedback">Enter Password!</div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="validationConfirmPassword" class="form-label">Xác nhận mật khẩu</label>
+                                        <input type="password" class="form-control" id="validationConfirmPassword" name="confirm_password" value="">
+                                        <div id="txtConfirmPassword" class="invalid-feedback">Enter Confirm Password!</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="validationConfirmPassword" class="form-label">Xác nhận mật khẩu</label>
-                                <input type="password" class="form-control" id="validationConfirmPassword" name="confirm_password" value="">
-                                <div id="txtConfirmPassword" class="invalid-feedback">Enter Confirm Password!</div>
-                            </div>
+
                             <div class="col-md-12">
                                 <button class="btn btn-primary" type="submit">Thêm</button>
                             </div>

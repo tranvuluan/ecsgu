@@ -4,13 +4,19 @@
         session_start();
     }
 
+    if (isset($_SESSION['login'])) {
+        if (isset($_SESSION['id_employee'])) {
+            session_destroy();
+        }
+    }
+
 ?>
 
 <!-- Top Bar -->
 
     <div class="header-to-bar"> HELLO EVERYONE! 25% Off All Products </div>
 
-    <!-- Top Bar -->
+<!-- Top Bar -->
 
 <header>
         <div class="header-main sticky-nav ">
@@ -38,7 +44,7 @@
                                 <li class="dropdown"><a href="about.php">About us <i
                                     class="pe-7s-angle-down"></i></a>
                                     <ul class="sub-menu">
-                                        <li><a href="my-account.php">Account</a></li>
+                                        <!-- <li><a href="my-account.php">Account</a></li> -->
                                         <li><a href="privacy-policy.php">Privacy Policy</a></li>
                                         <li><a href="faq.php">Faq</a></li>
                                     </ul>
@@ -51,7 +57,7 @@
                     <div class="col col-lg-auto align-self-center pl-0">
                         <div class="header-actions">
                             <?php
-                                if(isset($_SESSION['login'])){
+                                if(isset($_SESSION['login']) && isset($_SESSION['id_customer'])){
                                     echo '<a href="my-account.php" class="header-action-btn login-btn">'.$_SESSION['fullname'].'</a>';
                                 }
                                 else {
@@ -73,7 +79,7 @@
                             <a href="#offcanvas-cart"
                                 class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                 <i class="pe-7s-shopbag"></i>
-                                <span class="header-action-num">01</span>
+                                <span class="header-action-num"><?php isset($_SESSION['cart']) ? print(count($_SESSION['cart'])): print(0)  ?></span>
                                 <!-- <span class="cart-amount">€30.00</span> -->
                             </a>
                             <a href="#offcanvas-mobile-menu"
@@ -86,3 +92,4 @@
                 </div>
             </div>
     </header>
+    <div id="switchModal"></div>

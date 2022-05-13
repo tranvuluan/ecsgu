@@ -57,15 +57,20 @@ require_once($path . '/class/product.php')
 
     <!-- OffCanvas Wishlist Start -->
     <?php
+    $path = dirname(__FILE__);
     require_once($path . '/includes/offcanvasWishlist.php')
     ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
     <!-- Hero/Intro Slider Start -->
@@ -248,11 +253,11 @@ require_once($path . '/class/product.php')
                 <!-- Tab Start -->
                 <div class="col-lg-auto col-md-auto col-12">
                     <ul class="product-tab-nav nav">
-                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">All</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-new">New</a>
+                        <li class="nav-item"><a class="nav-link active" data-option='all' onclick="filterProduct(this)">All</a></li>
+                        <li class="nav-item"><a class="nav-link" data-option='new' onclick="filterProduct(this)">New</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-bestsellers">Bestsellers</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-itemssale">Items
+                        <li class="nav-item"><a class="nav-link" data-option='bestseller' onclick="filterProduct(this)">Bestsellers</a></li>
+                        <li class="nav-item"><a class="nav-link" data-option='sale' onclick="filterProduct(this)">Items
                                 Sale</a></li>
                     </ul>
                 </div>
@@ -262,203 +267,13 @@ require_once($path . '/class/product.php')
 
             <div class="row">
                 <div class="col">
-                    <div class="tab-content top-borber">
-                        <!-- 1st tab start -->
-                        <div class="tab-pane fade show active" id="tab-product-all">
-                            <div class="row">
-                                <?php $showproduct = $productModel->getProducts();
-                                if ($showproduct) {
-                                    while ($row = $showproduct->fetch_assoc()) {
-                                ?>
-                                        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="200">
-                                            <!-- Single Prodect -->
-                                            <div class="product">
-                                                <div class="thumb">
-                                                    <a href="<?php echo 'product-details.php?id_product=' . $row['id_product'] ?>" class="image">
-                                                        <img src="<?php echo $row['image'] ?>" alt="Product" />
-                                                        <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
-                                                    </a>
-                                                    <span class="badges">
-                                                        <span class="new">New</span>
-                                                    </span>
-                                                    <div class="actions">
-                                                        <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                        <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                                    </div>
-                                                    <a href="#" title="Add To Cart" class=" add-to-cart">Add
-                                                        To Cart</a>
-                                                </div>
-                                                <div class="content">
-                                                    <span class="ratings">
-                                                        <span class="rating-wrap">
-                                                            <span class="star" style="width: 100%"></span>
-                                                        </span>
-                                                        <span class="rating-num">( 5 Review )</span>
-                                                    </span>
-                                                    <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?>
-                                                        </a>
-                                                    </h5>
-                                                    <span class="price">
-                                                        <span class="new"><?php echo $row['price'] ?></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <?php
-                                    }
-                                }
-                                ?>
+                    <div class="tab-content top-borber" >
+                        <!--  list product by filter -->
+                        <div class="tab-pane fade show active">
+                            <div class="row" id="filterProduct">
                             </div>
                         </div>
-
-                        <!-- 2st tab start -->
-                        <div class="tab-pane fade show active" id="tab-product-new">
-                            <div class="row">
-                                <?php $showproduct = $productModel->getProducts();
-                                if ($showproduct) {
-                                    while ($row = $showproduct->fetch_assoc()) {
-                                ?>
-                                        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="200">
-                                            <!-- Single Prodect -->
-                                            <div class="product">
-                                                <div class="thumb">
-                                                    <a href="product-details.php" class="image">
-                                                        <img src="<?php echo $row['image'] ?>" alt="Product" />
-                                                        <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
-                                                    </a>
-                                                    <span class="badges">
-                                                        <span class="new">New</span>
-                                                    </span>
-                                                    <div class="actions">
-                                                        <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                        <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                                        <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                    </div>
-                                                    <button title="Add To Cart" class=" add-to-cart">Add
-                                                        To Cart</button>
-                                                </div>
-                                                <div class="content">
-                                                    <span class="ratings">
-                                                        <span class="rating-wrap">
-                                                            <span class="star" style="width: 100%"></span>
-                                                        </span>
-                                                        <span class="rating-num">( 5 Review )</span>
-                                                    </span>
-                                                    <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?>
-                                                        </a>
-                                                    </h5>
-                                                    <span class="price">
-                                                        <span class="new"><?php echo $row['price'] ?></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <?php
-                                    }
-                                }
-                                ?>
-
-                            </div>
-                        </div>
-                        <!-- 2nd tab end -->
-                        <!-- 3rd tab start -->
-                        <div class="tab-pane fade" id="tab-product-bestsellers">
-                            <div class="row">
-                                <?php $showproduct = $productModel->getProducts();
-                                if ($showproduct) {
-                                    while ($row = $showproduct->fetch_assoc()) {
-                                ?>
-                                        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="200">
-                                            <!-- Single Prodect -->
-                                            <div class="product">
-                                                <div class="thumb">
-                                                    <a href="product-details.php" class="image">
-                                                        <img src="<?php echo $row['image'] ?>" alt="Product" />
-                                                        <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
-                                                    </a>
-                                                    <span class="badges">
-                                                        <span class="new">New</span>
-                                                    </span>
-                                                    <div class="actions">
-                                                        <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                        <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                                        <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                    </div>
-                                                    <button title="Add To Cart" class=" add-to-cart">Add
-                                                        To Cart</button>
-                                                </div>
-                                                <div class="content">
-                                                    <span class="ratings">
-                                                        <span class="rating-wrap">
-                                                            <span class="star" style="width: 100%"></span>
-                                                        </span>
-                                                        <span class="rating-num">( 5 Review )</span>
-                                                    </span>
-                                                    <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?>
-                                                        </a>
-                                                    </h5>
-                                                    <span class="price">
-                                                        <span class="new"><?php echo $row['price'] ?></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <!-- 3rd tab end -->
-                        <!-- 4th tab start -->
-                        <div class="tab-pane fade" id="tab-product-itemssale">
-                            <div class="row">
-                                <?php $showproduct = $productModel->getProducts();
-                                if ($showproduct) {
-                                    while ($row = $showproduct->fetch_assoc()) {
-                                ?>
-                                        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="200">
-                                            <!-- Single Prodect -->
-                                            <div class="product">
-                                                <div class="thumb">
-                                                    <a href="product-details.php" class="image">
-                                                        <img src="<?php echo $row['image'] ?>" alt="Product" />
-                                                        <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
-                                                    </a>
-                                                    <span class="badges">
-                                                        <span class="new">New</span>
-                                                    </span>
-                                                    <div class="actions">
-                                                        <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                        <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                                        <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                    </div>
-                                                    <button title="Add To Cart" class=" add-to-cart">Add
-                                                        To Cart</button>
-                                                </div>
-                                                <div class="content">
-                                                    <span class="ratings">
-                                                        <span class="rating-wrap">
-                                                            <span class="star" style="width: 100%"></span>
-                                                        </span>
-                                                        <span class="rating-num">( 5 Review )</span>
-                                                    </span>
-                                                    <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?>
-                                                        </a>
-                                                    </h5>
-                                                    <span class="price">
-                                                        <span class="new"><?php echo $row['price'] ?></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <!-- 4th tab end -->
+                        <!--  end list product by filter -->
                     </div>
                 </div>
             </div>
@@ -521,10 +336,10 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/1.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Daisy Morgan</h4>
+                                    <h4 class="name">Tran Vu Luan</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -547,10 +362,10 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/2.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Leah Chatman</h4>
+                                    <h4 class="name">Nguyen Duc Manh</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -573,10 +388,10 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/3.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Reyna Chung</h4>
+                                    <h4 class="name">Vu Ba Kiet</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -599,10 +414,10 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/1.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Daisy Morgan</h4>
+                                    <h4 class="name">Tran Vu Luan</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -625,10 +440,10 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/2.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Reyna Chung</h4>
+                                    <h4 class="name">Vu Ba Kiet</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -669,7 +484,9 @@ require_once($path . '/class/product.php')
     <!-- Brand area end -->
 
     <!-- Footer Area Start -->
-    <?php require_once($path . '/includes/footer.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
@@ -678,15 +495,16 @@ require_once($path . '/class/product.php')
     require_once($path . '/includes/modals.php')
     ?>
     <!-- END Modals -->
-
     <!-- Global Vendor, plugins JS -->
 
     <!-- JavaScripts -->
-    <?php require_once($path . '/includes/scripts.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
 
-
-
+    <script src="./assets/js/product-index.js"></script>
+    <script src="./assets/js/wishlist.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 </body>

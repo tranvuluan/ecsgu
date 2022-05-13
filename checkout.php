@@ -1,5 +1,8 @@
 <?php
-    $path = realpath(dirname(__FILE__));
+$path = dirname(__FILE__);
+require_once $path . '/lib/checklogin.php';
+checkUserLogin();
+$path = realpath(dirname(__FILE__));
 ?>
 
 <!DOCTYPE html>
@@ -42,19 +45,27 @@
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php require_once($path . '/includes/header.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-    <?php require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
 
@@ -70,72 +81,61 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>First Name</label>
-                                    <input type="text" />
+                                    <input name="firstname" value="" type="text" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Last Name</label>
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="billing-info mb-4">
-                                    <label>Company Name</label>
-                                    <input type="text" />
+                                    <input name="lastname" value="" type="text" />
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="billing-select mb-4">
                                     <label>Country</label>
-                                    <select>
-                                        <option>Select a country</option>
-                                        <option>Azerbaijan</option>
-                                        <option>Bahamas</option>
-                                        <option>Bahrain</option>
-                                        <option>Bangladesh</option>
-                                        <option>Barbados</option>
+                                    <select name="country">
+                                        <?php
+                                        $path = dirname(__FILE__);
+                                        require_once($path . '/process/load_countries.php') ?>
+                                        <?php
+                                        foreach ($countryList as $key => $value) {
+                                        ?>
+                                            <option value="<?php echo $key ?>"><?php echo $value ?></option>
+                                        <?php
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="billing-info mb-4">
                                     <label>Street Address</label>
-                                    <input class="billing-address" placeholder="House number and street name"
-                                        type="text" />
-                                    <input placeholder="Apartment, suite, unit etc." type="text" />
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="billing-info mb-4">
-                                    <label>Town / City</label>
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-4">
-                                    <label>State / County</label>
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-4">
-                                    <label>Postcode / ZIP</label>
-                                    <input type="text" />
+                                    <input class="billing-address" placeholder="House number and street name" name="address" value="" type="text" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Phone</label>
-                                    <input type="text" />
+                                    <input type="text" name="phone" value="" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Email Address</label>
-                                    <input type="text" />
+                                    <input type="text" name="email" value="" />
                                 </div>
                             </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-select mb-4">
+                                    <label>Payment Methods</label>
+                                    <select name="payment">
+                                        <option value="1">Paypal</option>
+                                        <option value="2">Credit Card</option>
+                                        <option value="3">Cash on Delivery</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="checkout-account mb-30px">
                             <input class="checkout-toggle2 w-auto h-auto" type="checkbox" />
@@ -150,85 +150,7 @@
                             <h4>Additional information</h4>
                             <div class="additional-info">
                                 <label>Order notes</label>
-                                <textarea placeholder="Notes about your order, e.g. special notes for delivery. "
-                                    name="message"></textarea>
-                            </div>
-                        </div>
-                        <div class="checkout-account mt-25">
-                            <input class="checkout-toggle w-auto h-auto" type="checkbox" />
-                            <label>Ship to a different address?</label>
-                        </div>
-                        <div class="different-address open-toggle mt-30px">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>First Name</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Last Name</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-info mb-4">
-                                        <label>Company Name</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-select mb-4">
-                                        <label>Country</label>
-                                        <select>
-                                            <option>Select a country</option>
-                                            <option>Azerbaijan</option>
-                                            <option>Bahamas</option>
-                                            <option>Bahrain</option>
-                                            <option>Bangladesh</option>
-                                            <option>Barbados</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-info mb-4">
-                                        <label>Street Address</label>
-                                        <input class="billing-address" placeholder="House number and street name"
-                                            type="text" />
-                                        <input placeholder="Apartment, suite, unit etc." type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-info mb-4">
-                                        <label>Town / City</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>State / County</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Postcode / ZIP</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Phone</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Email Address</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
+                                <textarea placeholder="Notes about your order, e.g. special notes for delivery. " value="" name="note"></textarea>
                             </div>
                         </div>
                     </div>
@@ -246,22 +168,27 @@
                                 </div>
                                 <div class="your-order-middle">
                                     <ul>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span
-                                                class="order-price">$100 </span></li>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span
-                                                class="order-price">$100 </span></li>
+                                        <?php
+                                        $total = 0;
+                                        foreach ($_SESSION['cart'] as $key => $value) {
+                                            $total += $value['price'] * $value['quantity'];
+                                        ?>
+                                            <li><span class="order-middle-left"><?php echo $value['name'] ?> X <?php echo $value['quantity'] ?></span> <span class="order-price"><?php echo $value['price'] ?> đ</span></li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                                 <div class="your-order-bottom">
                                     <ul>
                                         <li class="your-order-shipping">Shipping</li>
-                                        <li>Free shipping</li>
+                                        <li>30000 đ</li>
                                     </ul>
                                 </div>
                                 <div class="your-order-total">
                                     <ul>
                                         <li class="order-total">Total</li>
-                                        <li>$100</li>
+                                        <li><?php echo ($total + 30000).' đ' ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -270,13 +197,10 @@
                                     <div id="faq" class="panel-group">
                                         <div class="panel panel-default single-my-account m-0">
                                             <div class="panel-heading my-account-title">
-                                                <h4 class="panel-title"><a data-bs-toggle="collapse"
-                                                        href="#my-account-1" class="collapsed"
-                                                        aria-expanded="true">Direct bank transfer</a>
+                                                <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-1" class="collapsed" aria-expanded="true">Direct bank transfer</a>
                                                 </h4>
                                             </div>
-                                            <div id="my-account-1" class="panel-collapse collapse show"
-                                                data-bs-parent="#faq">
+                                            <div id="my-account-1" class="panel-collapse collapse show" data-bs-parent="#faq">
 
                                                 <div class="panel-body">
                                                     <p>Please send a check to Store Name, Store Street, Store Town,
@@ -286,12 +210,9 @@
                                         </div>
                                         <div class="panel panel-default single-my-account m-0">
                                             <div class="panel-heading my-account-title">
-                                                <h4 class="panel-title"><a data-bs-toggle="collapse"
-                                                        href="#my-account-2" aria-expanded="false"
-                                                        class="collapsed">Check payments</a></h4>
+                                                <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false" class="collapsed">Check payments</a></h4>
                                             </div>
-                                            <div id="my-account-2" class="panel-collapse collapse"
-                                                data-bs-parent="#faq">
+                                            <div id="my-account-2" class="panel-collapse collapse" data-bs-parent="#faq">
 
                                                 <div class="panel-body">
                                                     <p>Please send a check to Store Name, Store Street, Store Town,
@@ -301,11 +222,9 @@
                                         </div>
                                         <div class="panel panel-default single-my-account m-0">
                                             <div class="panel-heading my-account-title">
-                                                <h4 class="panel-title"><a data-bs-toggle="collapse"
-                                                        href="#my-account-3">Cash on delivery</a></h4>
+                                                <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-3">Cash on delivery</a></h4>
                                             </div>
-                                            <div id="my-account-3" class="panel-collapse collapse"
-                                                data-bs-parent="#faq">
+                                            <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
 
                                                 <div class="panel-body">
                                                     <p>Please send a check to Store Name, Store Street, Store Town,
@@ -318,7 +237,7 @@
                             </div>
                         </div>
                         <div class="Place-order mt-25">
-                            <a class="btn-hover" href="#">Place Order</a>
+                            <a class="btn-hover" onclick="checkout()" href="javascript:;">Place Order</a>
                         </div>
                     </div>
                 </div>
@@ -327,18 +246,25 @@
     </div>
     <!-- checkout area end -->
     <!-- Footer Area Start -->
-    <?php require_once($path . '/includes/footer.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php require_once($path . '/includes/modals.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
     <!-- Global Vendor, plugins JS -->
 
-<!-- JavaScripts -->
-<?php require_once($path . '/includes/scripts.php')?>
-<!-- END JavaScripts -->
+    <!-- JavaScripts -->
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
+    <!-- END JavaScripts -->
+    <script src="./assets/js/checkout.js"></script>
 </body>
 
 </html>
