@@ -38,7 +38,7 @@ function login() {
             },
             success: function (response) {
                 if(response == 1){
-                    location.reload();
+                    location.href = './index.php';
                 }
                 else if(response == 0){
                     alert('Username or password is incorrect');

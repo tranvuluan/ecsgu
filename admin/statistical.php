@@ -52,7 +52,7 @@ require_once $path . '/../class/permission.php';
 
 
     <!-- end header html -->
-    >
+
     <title>Blackdash - Bootstrap5 Admin Template</title>
 </head>
 

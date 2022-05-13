@@ -154,15 +154,9 @@ require_once $path . '/../class/customer.php';
                                     ?>
                                             <tr>
                                                 <td><?php echo $row['id_order'] ?></td>
-                                                <?php
-                                                $customerModel = new Customer();
-                                                $customer = $customerModel->getCustomerByIdCustomer($row['id_customer'])->fetch_assoc();
-                                                if ($customer) {
-                                                ?>
-                                                    <td><?php echo $customer['fullname'] ?></td>
-                                                <?php
-                                                }
-                                                ?>
+                            
+                                                    <td><?php echo $row['fullname'] ?></td>
+                                       
                                                 <td><?php echo $row['totalprice'] ?></td>
                                                 <td><?php echo $row['date'] ?></td>
                                                 <td>
