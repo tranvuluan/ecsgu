@@ -4,6 +4,8 @@ $path = realpath(dirname(__FILE__));
 require_once($path . '/class/product.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/category.php');
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/categoryChild.php');
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +52,7 @@ require_once($path . '/class/category.php');
     ?>
 
     <!--Top bar, Header Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
@@ -58,18 +60,18 @@ require_once($path . '/class/category.php');
     <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
@@ -125,9 +127,11 @@ require_once($path . '/class/category.php');
                                             <?php $showproduct = $productModel->getProducts();
                                             if ($showproduct) {
                                                 while ($row = $showproduct->fetch_assoc()) {
+                                                    if($row['status'] == 0)
+                                                    continue; 
                                             ?>
                                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="800">
-                                                        <!-- Single Prodect -->
+                                                        <!-- Single Product -->
                                                         <div class="product">
                                                             <div class="thumb">
                                                                 <a href="product-details.php?id_product=<?php echo $row['id_product'] ?>" class="image">
@@ -157,7 +161,7 @@ require_once($path . '/class/category.php');
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <!-- Single Prodect -->
+                                                        <!-- Single Product -->
                                                     </div>
                                             <?php
                                                 }
@@ -237,14 +241,14 @@ require_once($path . '/class/category.php');
                     <div class="shop-sidebar-wrap">
                         <!-- Sidebar single item -->
                         <div class="sidebar-widget-search">
-                            <form id="widgets-searchbox" action="#">
-                                <input class="input-field" type="text" placeholder="Search">
-                                <button class="widgets-searchbox-btn" type="submit">
+                            <div id="widgets-searchbox">
+                                <input class="input-field" type="text" name="search" placeholder="Search">
+                                <button onclick="filterProductByKeyword()" class="widgets-searchbox-btn">
                                     <i class="fa fa-search"></i>
                                 </button>
-                            </form>
+                            </div>
                         </div>
-                        
+
                         <!-- Sidebar single item -->
                         <div class="sidebar-widget">
                             <h4 class="sidebar-title">Category</h4>
@@ -255,7 +259,15 @@ require_once($path . '/class/category.php');
                                     if ($showcategory) {
                                         while ($row = $showcategory->fetch_assoc()) {
                                     ?>
-                                            <li><a class="selected m-0" onclick="filterCategory('<?php echo $row['id_category'] ?>')"><?php echo $row['name']; ?><span>(???)</span></a></li>
+                                            <?php
+                                            $categoryChildModel = new CategoryChild();
+                                            $categoryChild = $categoryChildModel->getCategoryChildsByCategoryId($row['id_category'])->fetch_assoc();
+                                            $productModel = new Product();
+                                            $product = $productModel->getProductByCategoryChildId($categoryChild['id_categorychild']);
+                                            ?>
+                                            <li><a class="selected m-0" onclick="filterCategory('<?php echo $row['id_category'] ?>')"><?php echo $row['name']; ?>
+                                                    <span> ( <?php $product ?  print($product->num_rows)  : print(0) ?> )
+                                                    </span></a></li>
                                             <br>
                                     <?php
                                         }
@@ -271,16 +283,16 @@ require_once($path . '/class/category.php');
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <!-- Sidebar single item -->
                         <div class="sidebar-widget">
                             <h4 class="sidebar-title">Size</h4>
                             <div class="sidebar-widget-list size">
                                 <ul>
-                                    <li><a onclick="filterSize('S')" class="active-2 gray" >S</a></li>
-                                    <li><a onclick="filterSize('M')" class="gray" >M</a></li>
-                                    <li><a onclick="filterSize('L')" class="gray" >L</a></li>
-                                    <li><a onclick="filterSize('XL')" class="gray" >XL</a></li>
+                                    <li><a onclick="filterSize('S')" class="active-2 gray">S</a></li>
+                                    <li><a onclick="filterSize('M')" class="gray">M</a></li>
+                                    <li><a onclick="filterSize('L')" class="gray">L</a></li>
+                                    <li><a onclick="filterSize('XL')" class="gray">XL</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -303,19 +315,19 @@ require_once($path . '/class/category.php');
     <!-- Shop Page End  -->
 
     <!-- Footer Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
     <!-- JavaScripts -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/scripts.php') ?>
     <script src="./assets/js/category.js"></script>

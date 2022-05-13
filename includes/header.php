@@ -4,6 +4,12 @@
         session_start();
     }
 
+    if (isset($_SESSION['login'])) {
+        if (isset($_SESSION['id_employee'])) {
+            session_destroy();
+        }
+    }
+
 ?>
 
 <!-- Top Bar -->

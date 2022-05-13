@@ -51,23 +51,23 @@ if (isset($_POST['view']) && isset($_POST['id'])) {
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="validationCustom02" class="form-label">Tên khách hàng</label>
-                                                <input type="text" class="form-control" id="validationCustom02" name="customerName" value="<?php echo $getDetailCustomer['fullname'] ?>" readonly>
+                                                <input type="text" class="form-control" id="validationCustom02" name="customerName" value="<?php echo $order['fullname'] ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="validationCustom04" class="form-label">Số điện thoại</label>
-                                                <input type="text" class="form-control" id="validationCustom03" name="phone" value="<?php echo $getDetailCustomer['phone'] ?>" readonly>
+                                                <input type="text" class="form-control" id="validationCustom03" name="phone" value="<?php echo $order['phone'] ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Ngày tạo</label>
-                                                <input type="text" class="form-control datepicker" name="createDate" value="<?php echo $getDetailCustomer['createdate'] ?>" readonly />
+                                                <input type="text" class="form-control datepicker" name="createDate" value="<?php echo $order['date'] ?>" readonly />
                                             </div>
                                             <div class="col-md-12">
                                                 <label for="validationCustom04" class="form-label">Email</label>
-                                                <input type="text" class="form-control" id="validationCustom03" name="email" value="<?php echo $getDetailCustomer['email'] ?>" readonly>
+                                                <input type="text" class="form-control" id="validationCustom03" name="email" value="<?php echo $order['email'] ?>" readonly>
                                             </div>
                                             <div class="col-md-8">
                                                 <label for="validationCustom04" class="form-label">Địa chỉ</label>
-                                                <input type="text" class="form-control" id="validationCustom03" name="address" value="<?php echo $getDetailCustomer['address'] ?>" readonly>
+                                                <input type="text" class="form-control" id="validationCustom03" name="address" value="<?php echo $order['address'] ?>" readonly>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="validationCustom04" class="form-label">Điểm</label>

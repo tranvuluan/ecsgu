@@ -114,12 +114,13 @@ if (isset($_POST['view']) && $_POST['id']) {
                                                 <th>Số lượng</th>
                                             </tr>
                                         </thead>
-                                        <?php
-                                        $getConfigurableProduct = $configurableProductModel->getConfigurableProductById($id);
-                                        if ($getConfigurableProduct) {
-                                            while ($rowCheck = $getConfigurableProduct->fetch_assoc()) {
-                                        ?>
-                                                <tbody>
+                                        <tbody>
+                                            <?php
+                                            $getConfigurableProduct = $configurableProductModel->getConfigurableProductById($id);
+                                            if ($getConfigurableProduct) {
+                                                while ($rowCheck = $getConfigurableProduct->fetch_assoc()) {
+                                            ?>
+
                                                     <tr>
                                                         <td><?php echo $rowCheck['sku'] ?></td>
                                                         <td><?php echo $rowCheck['option'] ?></td>
@@ -144,11 +145,12 @@ if (isset($_POST['view']) && $_POST['id']) {
                                                         </td>
                                                         <td><?php echo $rowCheck['stock'] ?></td>
                                                     </tr>
-                                                </tbody>
-                                        <?php
+
+                                            <?php
+                                                }
                                             }
-                                        }
-                                        ?>
+                                            ?>
+                                        </tbody>
                                     </table>
                                 </div>
 
@@ -299,14 +301,18 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="validationCustom01" class="form-label">Hình ảnh</label>
-                                </div>
-                                <div class="col-md-12">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="inputGroupFile01">Upload</label>
                                         <input type="file" class="form-control" id="fileImageProductInAddWarehouse" onchange="changeProductImage()">
                                     </div>
                                 </div>
+ 
+                                <div class="col-md-12">
+                                    <label for="validationCustom01" class="form-label">Hình ảnh</label>
+                                </div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
                                 <div class="col-md-12">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="spinner-border d-none" id="loadingImage" role="status">
@@ -317,7 +323,10 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                         </div>
                                     </div>
                                 </div>
-                                <br>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
                                 <div class="table-responsive mt-2">
                                     <table class="table align-middle mb-0 table-hover">
                                         <thead class="table-light">

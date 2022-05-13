@@ -153,61 +153,6 @@ $path = realpath(dirname(__FILE__));
                                 <textarea placeholder="Notes about your order, e.g. special notes for delivery. " value="" name="note"></textarea>
                             </div>
                         </div>
-                        <div class="checkout-account mt-25">
-                            <input class="checkout-toggle w-auto h-auto" type="checkbox" />
-                            <label>Ship to a different address?</label>
-                        </div>
-                        <div class="different-address open-toggle mt-30px">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>First Name</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Last Name</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-select mb-4">
-                                        <label>Country</label>
-                                        <select>
-                                            <?php
-                                            $path = dirname(__FILE__);
-                                            require_once($path . '/process/load_countries.php') ?>
-                                            <?php
-                                            foreach ($countryList as $key => $value) {
-                                            ?>
-                                                <option><?php echo $value ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-info mb-4">
-                                        <label>Street Address</label>
-                                        <input class="billing-address" placeholder="House number and street name" type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Phone</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Email Address</label>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5 mt-md-30px mt-lm-30px ">
