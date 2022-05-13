@@ -630,36 +630,29 @@ if (isset($_POST['update'])) {
     $startdate = $_POST['startdate'];
     $enddate = $_POST['enddate'];
 
-    $productModel = new Product();
-    $update = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status, $description);
-    if ($update) {
-        echo 1;
-    } else {
-        echo 0;
-    }
-
+    
     $productModel = new Product();
     $productSaleModel = new ProductSale();
-    $updateProduct = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status, $description);
+    $updateProduct = $productModel->update($id_product, $id_brand, $id_categorychild, $name, $price, $image, $status);
     if ($updateProduct) {
-        if ($status == 1 || $salepercent == "" || $startdate == "" || $enddate == "") {
+        if ($salepercent == "" || $startdate == "" || $enddate == "") {
             $deleteProductSale = $productSaleModel->delete($id_product);
-            echo "1";
+            echo "5";
         } else {
             $showProductSale = $productSaleModel->getProductSales();
             if ($showProductSale) {
                 while ($rowProductSale = $showProductSale->fetch_assoc()) {
                     if ($rowProductSale['id_product'] == $id_product) {
                         $updateProductSale = $productSaleModel->update($id_product, $salepercent, $startdate, $enddate);
-                        echo "1";
+                        echo "4";
                     } else {
                         $insertProductSale = $productSaleModel->insert($id_product, $salepercent, $startdate, $enddate);
-                        echo "1";
+                        echo "3";
                     }
                 }
             } else {
                 $insertProductSale = $productSaleModel->insert($id_product, $salepercent, $startdate, $enddate);
-                echo "1";
+                echo "2";
             }
             echo "1";
         }
