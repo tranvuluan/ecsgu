@@ -19,21 +19,6 @@ function viewOrderDetail(id_order) {
 
 
 
-function viewToUpdate(id_customer) {
-    console.log(id_customer);
-    $.ajax({
-        url: './process/account.php',
-        type: 'POST',
-        data: {
-            id_customer: id_customer,
-            viewToUpdate: true
-        },
-        success: function (data) {
-            console.log(data);
-            $('#switchModal').html($('<div class="modal fade">' + data + ' <div>').modal());
-        }
-    });
-}
 function update() {
     event.preventDefault();
     let id_customer = $('input[name="id_customer"]').val();

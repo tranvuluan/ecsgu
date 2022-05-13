@@ -61,7 +61,6 @@ if (isset($_POST['placeOrder'])) {
     } else {
         $flag = 0;
     }
-
     if ($flag == 1) {
         $items_send = [];
         foreach ($_SESSION['cart'] as $key => $value) {
