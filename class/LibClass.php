@@ -33,7 +33,7 @@ class LibClass
             $sql  = "SELECT * FROM tbl_product, tbl_product_sale WHERE tbl_product.id_product = tbl_product_sale.id_product";
 
         } elseif ($option == 'bestseller') {
-            $sql = "SELECT * FROM tbl_product, tbl_configurable_products WHERE tbl_product.id_product = tbl_configurable_products.id_product ORDER BY tbl_configurable_products.quantity_sold DESC";
+            $sql = "SELECT * FROM tbl_product, (SELECT `id_product`,COUNT(quantity_sold) AS 'count_sell' FROM tbl_configurable_products GROUP BY `id_product`) temp WHERE tbl_product.id_product = temp.id_product ORDER BY temp.count_sell DESC";
         } else {
             $sql = "SELECT * FROM `tbl_product`";
         }
