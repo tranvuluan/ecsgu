@@ -3,6 +3,13 @@ let filter = {
     size: null
 }
 
+let url = new URL(location.href);
+let search = url.searchParams.get("search");
+
+if (search) {
+    filterProductByKeyword(search);
+}
+
 
 function filterSize(size) {
     filter.size = size;
@@ -32,8 +39,12 @@ function getFilter() {
     })
 }
 
-function filterProductByKeyword(){
-    let search = $('input[name="search"]').val();
+function filterProductByKeyword(word) {
+    let search;
+    if (!word)
+         search = $('input[name="search"]').val();
+    else 
+        search = word
     $.ajax({
         url: './process/category.php',
         method: 'GET',

@@ -268,4 +268,7 @@ function viewDetailModal(){
 }
 
 
-
+function searchFromNavbar() {
+    let search = $('#searchFromNavbar').val().trim();
+    location.href = './categories.php?search=' + search;
+}

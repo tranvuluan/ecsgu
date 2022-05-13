@@ -127,6 +127,8 @@ require_once($path . '/class/categoryChild.php');
                                             <?php $showproduct = $productModel->getProducts();
                                             if ($showproduct) {
                                                 while ($row = $showproduct->fetch_assoc()) {
+                                                    if($row['status'] == 0)
+                                                    continue; 
                                             ?>
                                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="800">
                                                         <!-- Single Product -->
