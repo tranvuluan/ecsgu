@@ -129,7 +129,7 @@ require_once($path . '/class/categoryChild.php');
                                                 while ($row = $showproduct->fetch_assoc()) {
                                             ?>
                                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="800">
-                                                        <!-- Single Prodect -->
+                                                        <!-- Single Product -->
                                                         <div class="product">
                                                             <div class="thumb">
                                                                 <a href="product-details.php?id_product=<?php echo $row['id_product'] ?>" class="image">
@@ -159,7 +159,7 @@ require_once($path . '/class/categoryChild.php');
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <!-- Single Prodect -->
+                                                        <!-- Single Product -->
                                                     </div>
                                             <?php
                                                 }
@@ -241,7 +241,7 @@ require_once($path . '/class/categoryChild.php');
                         <div class="sidebar-widget-search">
                             <div id="widgets-searchbox">
                                 <input class="input-field" type="text" name="search" placeholder="Search">
-                                <button onclick="filterProducts()" class="widgets-searchbox-btn">
+                                <button onclick="filterProductByKeyword()" class="widgets-searchbox-btn">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>

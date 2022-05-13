@@ -272,7 +272,3 @@ function deleteCategoryChild(sub_id) {
 }
 // end danh mục con
 
-function filterProducts(){
-    let searchitem = $('input[name="search"]');
-    console.log(searchitem);
-}

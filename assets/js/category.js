@@ -26,9 +26,24 @@ function getFilter() {
 
         },
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             $('#grid_product').html(response);
         }
     })
 }
 
+function filterProductByKeyword(){
+    let search = $('input[name="search"]').val();
+    $.ajax({
+        url: './process/category.php',
+        method: 'GET',
+        data: {
+            search: search,
+            filterProductByKeyword: true
+        },
+        success: function (response) {
+            // console.log(response);
+            $('#grid_product').html(response);
+        }
+    })
+}

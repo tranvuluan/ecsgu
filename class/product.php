@@ -120,5 +120,17 @@ class Product{
         return $result;
     }
 
+    public function searchItem($keyword) {
+        $keyword = $this->conn->real_escape_string($keyword);
+        $sql = "SELECT * FROM tbl_product WHERE name LIKE '%$keyword%'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
 }
 ?>
