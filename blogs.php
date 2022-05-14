@@ -205,7 +205,7 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                                     <div class="blog-post-video position-relative">
                                         <a class="venobox venoboxvid video-icon overflow-hidden vbox-item"
                                             data-gall="gall-video" data-autoplay="true" data-vbtype="video"
-                                            href="https://youtu.be/Hx64uvCA_zQ">
+                                            href="https://www.youtube.com/watch?v=ERyXzNXgQMw&ab_channel=Whitemusic">
                                             <img class="img-responsive w-100 thumb-image"
                                                 src="assets/images/blog-image/1.jpg" alt="">
                                             <img class="icon" src="assets/images/icons/icon-youtube-play.png" alt="">
