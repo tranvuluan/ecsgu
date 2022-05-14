@@ -4,6 +4,8 @@ require_once($path . '/class/product.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/configurable_product.php');
 $path = realpath(dirname(__FILE__));
+require_once($path . '/class/productSale.php');
+$path = realpath(dirname(__FILE__));
 require_once($path . '/class/productEvaluate.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/customer.php');
@@ -108,13 +110,13 @@ if (!isset($_SESSION)) {
                         <a data-bs-toggle="tab" href="#des-details2" onclick="viewInformation('<?php print $_GET['id_product'] ?>')">Information</a>
                         <a class="active" data-bs-toggle="tab" href="#des-details1" onclick="viewDescription('<?php print $_GET['id_product'] ?>')">Description</a>
                         <a data-bs-toggle="tab" href="#des-details3" onclick="viewReview('<?php print $_GET['id_product'] ?>')">Reviews
-                        <span> ( 
-                            <?php 
-                            $productEvaluateModel = new ProductEvaluate();
-                            $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($_GET['id_product']);
-                            $productEvaluate ? print($productEvaluate->num_rows) : print(0);
-                         ?> )
-                         </span></a>
+                            <span> (
+                                <?php
+                                $productEvaluateModel = new ProductEvaluate();
+                                $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($_GET['id_product']);
+                                $productEvaluate ? print($productEvaluate->num_rows) : print(0);
+                                ?> )
+                            </span></a>
                     </div>
                     <div class="tab-content description-review-bottom">
                         <div id="des-details2" class="tab-pane">
@@ -147,6 +149,8 @@ if (!isset($_SESSION)) {
                         <?php $showRelatedProduct = $productModel->getProducts();
                         if ($showRelatedProduct) {
                             while ($row = $showRelatedProduct->fetch_assoc()) {
+                                if($row['status'] == 0)
+                                continue;
                         ?>
                                 <div class="new-product-item swiper-slide">
                                     <!-- Single Prodect -->
@@ -157,7 +161,22 @@ if (!isset($_SESSION)) {
                                                 <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                                             </a>
                                             <span class="badges">
-                                                <span class="new">New</span>
+                                                <span class="new">
+                                                    <?php
+                                                    $configurableProductModel = new ConfigurableProduct();
+                                                    $productSaleModel = new ProductSale();
+                                                    $configurableProduct = $configurableProductModel->getConfigurableProductById($row['id_product'])->fetch_assoc();
+                                                    if ($configurableProduct['id_product'] == $row['id_product']) {
+                                                        $productSale = $productSaleModel->getProductSales()->fetch_assoc();
+                                                        if ($productSale['id_product'] == $row['id_product']) {
+                                                            echo 'Sale';
+                                                        } else {
+                                                            $sumQuantitySold = $configurableProductModel->sumQuantitySoldByIdProduct($row['id_product']);
+                                                            echo $sumQuantitySold >= 5 ? 'Hot' : 'New';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </span>
                                             </span>
                                             <div class="actions">
                                                 <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
@@ -213,7 +232,7 @@ if (!isset($_SESSION)) {
     $path = realpath(dirname(__FILE__));
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
-<div id="AlertEvaluate"></div>
+    <div id="AlertEvaluate"></div>
     <!-- JavaScripts -->
     <?php
     $path = realpath(dirname(__FILE__));

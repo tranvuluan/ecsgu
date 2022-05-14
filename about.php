@@ -95,7 +95,7 @@ require_once $path . '/class/employee.php';
     <!-- About Intro Area End-->
 
     <!-- Service Area Start -->
-<!-- 
+    <!-- 
     <div class="service-area">
         <div class="container">
             <div class="row">
@@ -245,10 +245,10 @@ require_once $path . '/class/employee.php';
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/1.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Daisy Morgan</h4>
+                                    <h4 class="name">Tran Vu Luan</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -271,10 +271,10 @@ require_once $path . '/class/employee.php';
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/2.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Leah Chatman</h4>
+                                    <h4 class="name">Nguyen Duc Manh</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -297,10 +297,10 @@ require_once $path . '/class/employee.php';
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/3.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Reyna Chung</h4>
+                                    <h4 class="name">Vu Ba Kiet</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -323,10 +323,10 @@ require_once $path . '/class/employee.php';
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/1.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Daisy Morgan</h4>
+                                    <h4 class="name">Tran Vu Luan</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>
@@ -349,10 +349,10 @@ require_once $path . '/class/employee.php';
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="assets/images/testimonial-image/2.png" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
-                                    <h4 class="name">Reyna Chung</h4>
+                                    <h4 class="name">Vu Ba Kiet</h4>
                                     <span class="title">Happy Customer</span>
                                 </div>
                             </div>

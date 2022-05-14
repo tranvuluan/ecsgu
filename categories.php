@@ -3,6 +3,10 @@ $path = realpath(dirname(__FILE__));
 
 require_once($path . '/class/product.php');
 $path = realpath(dirname(__FILE__));
+require_once($path . '/class/configurable_product.php');
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/productSale.php');
+$path = realpath(dirname(__FILE__));
 require_once($path . '/class/category.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/categoryChild.php');
@@ -127,8 +131,8 @@ require_once($path . '/class/categoryChild.php');
                                             <?php $showproduct = $productModel->getProducts();
                                             if ($showproduct) {
                                                 while ($row = $showproduct->fetch_assoc()) {
-                                                    if($row['status'] == 0)
-                                                    continue; 
+                                                    if ($row['status'] == 0)
+                                                        continue;
                                             ?>
                                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="800">
                                                         <!-- Single Product -->
@@ -139,7 +143,22 @@ require_once($path . '/class/categoryChild.php');
                                                                     <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                                                                 </a>
                                                                 <span class="badges">
-                                                                    <span class="new">Sale</span>
+                                                                    <span class="new">
+                                                                        <?php
+                                                                        $configurableProductModel = new ConfigurableProduct();
+                                                                        $productSaleModel = new ProductSale();
+                                                                        $configurableProduct = $configurableProductModel->getConfigurableProductById($row['id_product'])->fetch_assoc();
+                                                                        if ($configurableProduct['id_product'] == $row['id_product']) {
+                                                                            $productSale = $productSaleModel->getProductSales()->fetch_assoc();
+                                                                            if ($productSale['id_product'] == $row['id_product']) {
+                                                                                echo 'Sale';
+                                                                            } else {
+                                                                                $sumQuantitySold = $configurableProductModel->sumQuantitySoldByIdProduct($row['id_product']);
+                                                                                echo $sumQuantitySold >= 5 ? 'Hot' : 'New';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </span>
                                                                 </span>
                                                                 <div class="actions">
                                                                     <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
@@ -174,6 +193,8 @@ require_once($path . '/class/categoryChild.php');
                                         <?php $showproduct = $productModel->getProducts();
                                         if ($showproduct) {
                                             while ($row = $showproduct->fetch_assoc()) {
+                                                if ($row['status'] == 0)
+                                                    continue;
                                         ?>
                                                 <div class="shop-list-wrapper">
                                                     <div class="row">
@@ -185,7 +206,22 @@ require_once($path . '/class/categoryChild.php');
                                                                         <img class="hover-image" src="assets/images/product-image/1.jpg" alt="Product" />
                                                                     </a>
                                                                     <span class="badges">
-                                                                        <span class="new">New</span>
+                                                                        <span class="new">
+                                                                            <?php
+                                                                            $configurableProductModel = new ConfigurableProduct();
+                                                                            $productSaleModel = new ProductSale();
+                                                                            $configurableProduct = $configurableProductModel->getConfigurableProductById($row['id_product'])->fetch_assoc();
+                                                                            if ($configurableProduct['id_product'] == $row['id_product']) {
+                                                                                $productSale = $productSaleModel->getProductSales()->fetch_assoc();
+                                                                                if ($productSale['id_product'] == $row['id_product']) {
+                                                                                    echo 'Sale';
+                                                                                } else {
+                                                                                    $sumQuantitySold = $configurableProductModel->sumQuantitySoldByIdProduct($row['id_product']);
+                                                                                    echo $sumQuantitySold >= 5 ? 'Hot' : 'New';
+                                                                                }
+                                                                            }
+                                                                            ?>
+                                                                        </span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -204,7 +240,7 @@ require_once($path . '/class/categoryChild.php');
                                                                 </div>
                                                                 <div class="box-inner">
                                                                     <span class="price">
-                                                                        <span class="new"><?php echo $row['price'] ?></span>
+                                                                        <span class="new"><?php echo number_format($row['price']) ?>đ</span>
                                                                     </span>
                                                                     <div class="actions">
                                                                         <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>

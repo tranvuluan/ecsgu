@@ -14,7 +14,7 @@
 
 <!-- Top Bar -->
 
-    <div class="header-to-bar"> HELLO EVERYONE! 25% Off All Products </div>
+    <div class="header-to-bar">Welcome to our shop! Wish you enjoy shopping</div>
 
 <!-- Top Bar -->
 
