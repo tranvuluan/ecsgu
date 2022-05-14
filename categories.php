@@ -142,7 +142,7 @@ require_once($path . '/class/categoryChild.php');
                                                                     <img src="<?php echo $row['image'] ?>" alt="Product" />
                                                                     <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                                                                 </a>
-                                                                <span class="badges">
+                                                                <!-- <span class="badges">
                                                                     <span class="new">
                                                                         <?php
                                                                         $configurableProductModel = new ConfigurableProduct();
@@ -159,7 +159,7 @@ require_once($path . '/class/categoryChild.php');
                                                                         }
                                                                         ?>
                                                                     </span>
-                                                                </span>
+                                                                </span> -->
                                                                 <div class="actions">
                                                                     <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
                                                                     <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
@@ -205,7 +205,7 @@ require_once($path . '/class/categoryChild.php');
                                                                         <img src="<?php echo $row['image'] ?>" alt="Product" />
                                                                         <img class="hover-image" src="assets/images/product-image/1.jpg" alt="Product" />
                                                                     </a>
-                                                                    <span class="badges">
+                                                                    <!-- <span class="badges">
                                                                         <span class="new">
                                                                             <?php
                                                                             $configurableProductModel = new ConfigurableProduct();
@@ -222,7 +222,7 @@ require_once($path . '/class/categoryChild.php');
                                                                             }
                                                                             ?>
                                                                         </span>
-                                                                    </span>
+                                                                    </span> -->
                                                                 </div>
                                                             </div>
                                                         </div>

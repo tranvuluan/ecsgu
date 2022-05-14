@@ -160,7 +160,7 @@ if (!isset($_SESSION)) {
                                                 <img src="<?php echo $row['image'] ?>" alt="Product" />
                                                 <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                                             </a>
-                                            <span class="badges">
+                                            <!-- <span class="badges">
                                                 <span class="new">
                                                     <?php
                                                     $configurableProductModel = new ConfigurableProduct();
@@ -177,7 +177,7 @@ if (!isset($_SESSION)) {
                                                     }
                                                     ?>
                                                 </span>
-                                            </span>
+                                            </span> -->
                                             <div class="actions">
                                                 <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
                                                 <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
