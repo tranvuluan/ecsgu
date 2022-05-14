@@ -81,7 +81,7 @@ if (isset($_POST['viewDetailModal']) && isset($_POST['id_product'])) {
                                     <p class="m-0"><?php echo $result['description'] ?></p>
                                     <div class="pro-details-quality">
                                         <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                                            <input class="cart-plus-minus-box" type="text" name="qtybutton"  value="1" />
                                         </div>
                                         <div class="pro-details-cart">
                                             <button class="add-cart" onclick="addToCart('<?php print $result['id_product'] ?>')" href="#"> Add To

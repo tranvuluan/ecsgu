@@ -4,41 +4,41 @@ function addToCart(id_product) {
     let qty = $('input[name="qtybutton"]').val().trim();
     console.log(qty);
 
-    // if (qty == '' || qty <= 0) {
-    //     alert("Please choose quantity and quantity must be greater than 0");
-    //     return;
-    // }
-    // if (!currentOption) {
-    //     alert("Please select a size");
-    //     return;
-    // }
-    // let sku = $('#viewSKU > div.pro-details-sku-info.pro-details-same-style.d-flex > ul > li > a').text();
+    if (qty == '' || qty <= 0) {
+        alert("Please choose quantity and quantity must be greater than 0");
+        return;
+    }
+    if (!currentOption) {
+        alert("Please select a size");
+        return;
+    }
+    let sku = $('#viewSKU > div.pro-details-sku-info.pro-details-same-style.d-flex > ul > li > a').text();
 
 
-    // let result = checkStock(sku, qty);
-    // if (result == 1) {
-    //     let item = {
-    //         sku: sku,
-    //         qty: qty,
-    //         size: currentOption
-    //     };
-    //     cart_items.push(item);
-    //     $.ajax({
-    //         url: './process/cart_items.php',
-    //         type: 'POST',
-    //         data: {
-    //             id_product: id_product,
-    //             sku: currentOption,
-    //             qty: qty,
-    //             addToCart: true
-    //         },
-    //         success: function (response) {
-    //             $('#cart_items').html(response);
-    //             alert("Product has been added to cart");
-    //             location.reload();
-    //         }
-    //     });
-    // }
+    let result = checkStock(sku, qty);
+    if (result == 1) {
+        let item = {
+            sku: sku,
+            qty: qty,
+            size: currentOption
+        };
+        cart_items.push(item);
+        // $.ajax({
+        //     url: './process/cart_items.php',
+        //     type: 'POST',
+        //     data: {
+        //         id_product: id_product,
+        //         sku: currentOption,
+        //         qty: qty,
+        //         addToCart: true
+        //     },
+        //     success: function (response) {
+        //         $('#cart_items').html(response);
+        //         alert("Product has been added to cart");
+        //         location.reload();
+        //     }
+        // });
+    }
 
 
 }
