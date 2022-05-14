@@ -336,7 +336,7 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
                                     <h4 class="name">Tran Vu Luan</h4>
@@ -362,7 +362,7 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
                                     <h4 class="name">Nguyen Duc Manh</h4>
@@ -388,7 +388,7 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
                                     <h4 class="name">Vu Ba Kiet</h4>
@@ -414,7 +414,7 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
                                     <h4 class="name">Tran Vu Luan</h4>
@@ -440,7 +440,7 @@ require_once($path . '/class/product.php')
                             </div>
                             <div class="testi-author">
                                 <div class="author-img">
-                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652326638/signed_upload_demo_form/uhmnio4xnbemrkssywsv.jpg" width="100%" height="100px" alt="">
+                                    <img src="http://res.cloudinary.com/luantransgu/image/upload/v1652435790/signed_upload_demo_form/uszujqtdl5fdjlqqiz2c.jpg" width="100%" height="100px" alt="">
                                 </div>
                                 <div class="author-name">
                                     <h4 class="name">Vu Ba Kiet</h4>

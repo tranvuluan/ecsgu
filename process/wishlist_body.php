@@ -34,7 +34,7 @@ if (count($_SESSION['wishlist']) > 0) {
                                         <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>"><img class="img-responsive ml-15px" src="<?php echo $value['image'] ?>" alt="" /></a>
                                     </td>
                                     <td class="product-name"><a href="#"><?php echo $value['name'] ?></a></td>
-                                    <td class="product-price-cart"><span class="amount"><?php echo $value['price'] ?></span></td>
+                                    <td class="product-price-cart"><span class="amount"><?php echo number_format($value['price']) ?>đ</span></td>
 
                                     <td class="product-wishlist-cart">
                                         <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>">view product</a>

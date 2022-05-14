@@ -38,7 +38,7 @@ if (isset($_GET['id_product'])) {
                         <h2><?php echo $result['name'] ?></h2>
                         <div class="pricing-meta">
                             <ul>
-                                <li class="old-price not-cut"><?php echo $result['price'] ?> VND</li>
+                                <li class="old-price not-cut"><?php echo number_format($result['price']) ?>đ</li>
                             </ul>
                         </div>
                         <div class="pro-details-rating-wrap">
