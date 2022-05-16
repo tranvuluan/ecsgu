@@ -71,23 +71,3 @@ if (isset($_POST['removeItem']) && isset($_POST['id_product'])) {
     unset($_SESSION['wishlist'][$id_product]);
 }
 ?>
-
-<?php
-if (isset($_POST['displayWishlist']) && isset($_POST['id_product'])) {
-    $wishlistModel = new Wishlist();
-    $checkWishlist = $wishlistModel->getWishlistById($_POST['id_product']);
-    if (isset($_SESSION['wishlist'][$_POST['id_product']]['id_wishlist'])) {
-?>
-        <a style="color:red" href="javascript:;" onclick="addToWishList('<?php print $_POST['id_product'] ?>')" class="action wishlist" title="Wishlist">
-            <ion-icon name="heart-circle-sharp"></ion-icon>
-        </a>
-    <?php
-    } else {
-    ?>
-        <a href="javascript:;" onclick="addToWishList('<?php print $_POST['id_product'] ?>')" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-    <?php
-    }
-    ?>
-<?php
-}
-?>

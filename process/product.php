@@ -10,6 +10,7 @@ require_once $path . '/../class/LibClass.php';
 
 if (!isset($_SESSION)) {
     session_start();
+    print_r($_SESSION);
 }
 
 if (isset($_GET['checkStock']) && isset($_GET['quantity'])) {
@@ -69,7 +70,20 @@ if (isset($_GET['filterProduct'])) {
                         </span> -->
                         <div class="actions">
                             <div id="displayWishlist">
-                                <a href="javascript:;" onclick="addToWishList('<?php print $row['id_product'] ?>')" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                <?php
+                                $id_wishlist = $_SESSION['wishlist'][$row['id_product']]['id_wishlist'];
+                                $id_customer = $_SESSION['wishlist'][$row['id_product']]['id_customer'];
+                                $id_product = $row['id_product'];
+                                $wishlistModel = new Wishlist();
+                                $checkWishlist = $wishlistModel->checkWishlist($id_wishlist, $id_customer, $id_product);
+                                if ($checkWishlist) {
+                                    echo '<a href="javascript:void(0)" class="add-to-wishlist" data-id-product="' . $row['id_product'] . '" data-id-wishlist="' . $id_wishlist . '" data-id-customer="' . $id_customer . '"><i class="fa fa-heart"></i></a>';
+                                } 
+                                else {
+                                    echo '<a href="javascript:void(0)" class="add-to-wishlist" data-id-product="' . $row['id_product'] . '" data-id-wishlist="' . $id_wishlist . '" data-id-customer="' . $id_customer . '"><i class="fa fa-heart-o"></i></a>';
+                                }
+                                ?>
+                                <!-- <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a> -->
                             </div>
                             <a href="#" onclick="viewDetailModal('<?php print $row['id_product'] ?>')" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                         </div>

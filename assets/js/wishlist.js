@@ -1,30 +1,36 @@
-function addToWishList(id_product) {
-    $.ajax({
-        url: './process/wishlist.php',
-        type: 'POST',
-        data: {
-            addToWishList: true,
-            id_product: id_product,
-        },
-        success: function (data) {
-            $('#wishlist_items').html(data);
-            console.log(data);
+function addToWishList(func) {
+    console.log(func);
+    let id_product = func.getAttribute("id");
 
-            $.ajax({
-
-                url: './process/wishlist.php',
-                type: 'POST',
-                data: {
-                    id_product: id_product,
-                    displayWishlist: true,
-                },
-                success: function (response) {
-                    // $('#displayWishlist').html(response1);
-                    console.log(response);
-                }
-            })
-        }
-    });
+    if(func.classList.contains('active')){
+        $.ajax({
+            url: './process/wishlist.php',
+            type: 'POST',
+            data: {
+                addToWishList: true,
+                id_product: id_product,
+            },
+            success: function (data) {
+                $('#wishlist_items').html(data);
+                // console.log(data);
+                func.classList.remove("active");
+            }
+        });
+    }else{
+        $.ajax({
+            url: './process/wishlist.php',
+            type: 'POST',
+            data: {
+                addToWishList: true,
+                id_product: id_product,
+            },
+            success: function (data) {
+                $('#wishlist_items').html(data);
+                // console.log(data);
+                func.classList.add("active");
+            }
+        });
+    }
 }
 
 function removeItem(id_product) {
