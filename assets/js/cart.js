@@ -23,21 +23,21 @@ function addToCart(id_product) {
             size: currentOption
         };
         cart_items.push(item);
-        // $.ajax({
-        //     url: './process/cart_items.php',
-        //     type: 'POST',
-        //     data: {
-        //         id_product: id_product,
-        //         sku: currentOption,
-        //         qty: qty,
-        //         addToCart: true
-        //     },
-        //     success: function (response) {
-        //         $('#cart_items').html(response);
-        //         alert("Product has been added to cart");
-        //         location.reload();
-        //     }
-        // });
+        $.ajax({
+            url: './process/cart_items.php',
+            type: 'POST',
+            data: {
+                id_product: id_product,
+                sku: currentOption,
+                qty: qty,
+                addToCart: true
+            },
+            success: function (response) {
+                $('#cart_items').html(response);
+                alert("Product has been added to cart");
+                location.reload();
+            }
+        });
     }
 
 
