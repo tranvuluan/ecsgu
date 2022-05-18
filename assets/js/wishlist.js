@@ -12,7 +12,7 @@ function addToWishList(func) {
             },
             success: function (data) {
                 $('#wishlist_items').html(data);
-                // console.log(data);
+                console.log(data);
                 func.classList.remove("active");
             }
         });
@@ -26,11 +26,15 @@ function addToWishList(func) {
             },
             success: function (data) {
                 $('#wishlist_items').html(data);
-                // console.log(data);
+                console.log(data);
                 func.classList.add("active");
             }
         });
     }
+}
+
+function confirmLogin() {
+    alert("Please login to begin");
 }
 
 function removeItem(id_product) {

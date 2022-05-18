@@ -9,49 +9,53 @@ if (!isset($_SESSION['wishlist'])) {
 
 ?>
 <?php
-if (count($_SESSION['wishlist']) > 0) {
+if (isset($_SESSION['login'])) {
+    $wishlistModel = new Wishlist();
+    $productModel = new Product();
+    $wishlist = $wishlistModel->getWishlists();
+    if ($wishlist) {
 ?>
-    <h3 class="cart-page-title">Your wishlist items</h3>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <form action="#">
-                <div class="table-content table-responsive cart-table-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>View</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($_SESSION['wishlist'] as $key => $value) {
-                            ?>
+        <h3 class="cart-page-title">Your wishlist items</h3>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <form action="#">
+                    <div class="table-content table-responsive cart-table-content">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>"><img class="img-responsive ml-15px" src="<?php echo $value['image'] ?>" alt="" /></a>
-                                    </td>
-                                    <td class="product-name"><a href="#"><?php echo $value['name'] ?></a></td>
-                                    <td class="product-price-cart"><span class="amount"><?php echo number_format($value['price']) ?>đ</span></td>
-
-                                    <td class="product-wishlist-cart">
-                                        <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>">view product</a>
-                                    </td>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>View</th>
                                 </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+                            </thead>
+                            <tbody>
+                                <?php
+                                while ($row = $wishlist->fetch_assoc()) {
+                                    $product = $productModel->getProductById($row['id_product'])->fetch_assoc();
+                                ?>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <a href="<?php echo 'product-details.php?id_product=' . $product['id_product'] ?>"><img class="img-responsive ml-15px" src="<?php echo $product['image'] ?>" alt="" /></a>
+                                        </td>
+                                        <td class="product-name"><a href="#"><?php echo $product['name'] ?></a></td>
+                                        <td class="product-price-cart"><span class="amount"><?php echo number_format($product['price']) ?>đ</span></td>
+
+                                        <td class="product-wishlist-cart">
+                                            <a href="<?php echo 'product-details.php?id_product=' . $product['id_product'] ?>">view product</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-<?php
-}
-else {
+    <?php
+    } else {
     ?>
         <div class="empty-cart-area pb-100px pt-100px">
             <div class="container">
@@ -73,6 +77,28 @@ else {
         </div>
     <?php
     }
+} else {
+    ?>
+    <div class="empty-cart-area pb-100px pt-100px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-heading">
+                        <h2>Your wishlist item</h2>
+                    </div>
+                    <div class="empty-text-contant text-center">
+                        <i class="pe-7s-like"></i>
+                        <h3>There are no more items in your wishlist</h3>
+                        <a class="empty-cart-btn" href="index.php">
+                            <i class="fa fa-arrow-left"> </i> Continue shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+}
 ?>
 
 <?php

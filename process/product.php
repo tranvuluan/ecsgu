@@ -2,16 +2,14 @@
 $path = dirname(__FILE__);
 require_once $path . '/../class/configurable_product.php';
 $path = dirname(__FILE__);
-require_once $path . '/../class/productSale.php';
-$path = dirname(__FILE__);
 require_once $path . '/../class/wishlist.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/LibClass.php';
 
 if (!isset($_SESSION)) {
     session_start();
-    print_r($_SESSION);
 }
+
 
 if (isset($_GET['checkStock']) && isset($_GET['quantity'])) {
     $ConfigurableProductModel = new ConfigurableProduct();
@@ -51,40 +49,33 @@ if (isset($_GET['filterProduct'])) {
                             <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                         </a>
                         <!-- <span class="badges">
-                            <span class="new">
-                                <?php
-                                $configurableProductModel = new ConfigurableProduct();
-                                $productSaleModel = new ProductSale();
-                                $configurableProduct = $configurableProductModel->getConfigurableProductById($row['id_product'])->fetch_assoc();
-                                if ($configurableProduct['id_product'] == $row['id_product']) {
-                                    $productSale = $productSaleModel->getProductSales()->fetch_assoc();
-                                    if ($productSale['id_product'] == $row['id_product']) {
-                                        echo 'Sale';
-                                    } else {
-                                        $sumQuantitySold = $configurableProductModel->sumQuantitySoldByIdProduct($row['id_product']);
-                                        echo $sumQuantitySold >= 5 ? 'Hot' : 'New';
-                                    }
-                                }
-                                ?>
-                            </span>
+                            <span class="new">New</span>
                         </span> -->
                         <div class="actions">
-                            <div id="displayWishlist">
-                                <?php
-                                $id_wishlist = $_SESSION['wishlist'][$row['id_product']]['id_wishlist'];
-                                $id_customer = $_SESSION['wishlist'][$row['id_product']]['id_customer'];
-                                $id_product = $row['id_product'];
+                            <?php
+                            if (isset($_SESSION['login'])) {
                                 $wishlistModel = new Wishlist();
-                                $checkWishlist = $wishlistModel->checkWishlist($id_wishlist, $id_customer, $id_product);
-                                if ($checkWishlist) {
-                                    echo '<a href="javascript:void(0)" class="add-to-wishlist" data-id-product="' . $row['id_product'] . '" data-id-wishlist="' . $id_wishlist . '" data-id-customer="' . $id_customer . '"><i class="fa fa-heart"></i></a>';
-                                } 
-                                else {
-                                    echo '<a href="javascript:void(0)" class="add-to-wishlist" data-id-product="' . $row['id_product'] . '" data-id-wishlist="' . $id_wishlist . '" data-id-customer="' . $id_customer . '"><i class="fa fa-heart-o"></i></a>';
+                                $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                if ($wishlist) {
+                                    while ($rowWishlist = $wishlist->fetch_assoc()) {
+                                        if ($rowWishlist['id_product'] == $row['id_product']) {
+                            ?>
+                                            <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                    <?php
+                                        }
+                                    }
+                                } else {
+                                    ?>
+                                    <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                <?php
                                 }
+                            } else {
                                 ?>
-                                <!-- <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a> -->
-                            </div>
+                                <a href="javascript:;" onclick="confirmLogin()" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                            <?php
+                            }
+                            ?>
+                            <!-- <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a> -->
                             <a href="#" onclick="viewDetailModal('<?php print $row['id_product'] ?>')" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                         </div>
                         <!-- <a href="#" onclick="addToCart('<?php print $row['id_product'] ?>')" title="Add To Cart" class=" add-to-cart">Add
