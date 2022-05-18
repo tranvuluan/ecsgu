@@ -79,6 +79,8 @@ if (isset($_SESSION['login'])) {
 <?php
 if (isset($_POST['removeItem']) && isset($_POST['id_product'])) {
     $id_product = $_POST['id_product'];
-    unset($_SESSION['wishlist'][$id_product]);
+    $wishlistModel = new Wishlist();
+    $wishlist = $wishlistModel->getWishlistByProductId($id_product)->fetch_assoc();
+    $wishlistModel->delete($wishlist['id_wishlist']);
 }
 ?>

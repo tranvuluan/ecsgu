@@ -8,6 +8,8 @@ require_once($path . '/class/productSale.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/productEvaluate.php');
 $path = realpath(dirname(__FILE__));
+require_once($path . '/class/wishlist.php');
+$path = realpath(dirname(__FILE__));
 require_once($path . '/class/customer.php');
 
 if (!isset($_SESSION)) {
@@ -149,8 +151,8 @@ if (!isset($_SESSION)) {
                         <?php $showRelatedProduct = $productModel->getProducts();
                         if ($showRelatedProduct) {
                             while ($row = $showRelatedProduct->fetch_assoc()) {
-                                if($row['status'] == 0)
-                                continue;
+                                if ($row['status'] == 0)
+                                    continue;
                         ?>
                                 <div class="new-product-item swiper-slide">
                                     <!-- Single Prodect -->
@@ -179,9 +181,31 @@ if (!isset($_SESSION)) {
                                                 </span>
                                             </span> -->
                                             <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                                <?php
+                                                if (isset($_SESSION['login'])) {
+                                                    $wishlistModel = new Wishlist();
+                                                    $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                                    if ($wishlist) {
+                                                        while ($rowWishlist = $wishlist->fetch_assoc()) {
+                                                            if ($rowWishlist['id_product'] == $row['id_product']) {
+                                                ?>
+                                                                <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                                        <?php
+                                                            }
+                                                        }
+                                                    } else {
+                                                        ?>
+                                                        <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                                    <?php
+                                                    }
+                                                } else {
+                                                    ?>
+                                                    <a href="javascript:;" onclick="confirmLogin()" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                                <?php
+                                                }
+                                                ?>
                                                 <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                                                <!-- <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a> -->
                                             </div>
                                             <button title="Add To Cart" class=" add-to-cart">Add
                                                 To Cart</button>
