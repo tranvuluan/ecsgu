@@ -45,7 +45,7 @@
                                                 </a></li>
                                             <li class="li"><a class="single-link" href="#">Helpline</a></li>
                                             <li class="li"><a class="single-link" href="#">Courses</a></li>
-                                            <li class="li"><a class="single-link" href="about.html">About</a></li>
+                                            <li class="li"><a class="single-link" href="#">About</a></li>
                                             <li class="li"><a class="single-link" href="#">Event</a></li>
                                         </ul>
                                     </div>
@@ -60,11 +60,11 @@
                                 <div class="footer-links">
                                     <div class="footer-row">
                                         <ul class="align-items-center">
-                                            <li class="li"><a class="single-link" href="about.html"> About </a>
+                                            <li class="li"><a class="single-link" href="./about.php"> About </a>
                                             </li>
-                                            <li class="li"><a class="single-link" href="blog-grid.html">Blog</a></li>
+                                            <li class="li"><a class="single-link" href="./blogs.php">Blog</a></li>
                                             <li class="li"><a class="single-link" href="#">Speakers</a></li>
-                                            <li class="li"><a class="single-link" href="contact.html">Contact</a></li>
+                                            <li class="li"><a class="single-link" href="./contact.php">Contact</a></li>
                                             <li class="li"><a class="single-link" href="#">Tricket</a></li>
                                         </ul>
                                     </div>
@@ -79,11 +79,11 @@
                                 <div class="footer-links">
                                     <div class="footer-row">
                                         <ul class="align-items-center">
-                                            <li class="li"><a class="single-link" href="index.html">Jesco</a>
+                                            <li class="li"><a class="single-link" href="./index.php">Jesco</a>
                                             </li>
-                                            <li class="li"><a class="single-link" href="shop-left-sidebar.html">Shop</a></li>
-                                            <li class="li"><a class="single-link" href="contact.html">Contact us</a></li>
-                                            <li class="li"><a class="single-link" href="login.html">Log in</a></li>
+                                            <li class="li"><a class="single-link" href="./categories.php">Shop</a></li>
+                                            <li class="li"><a class="single-link" href="./contact.php">Contact us</a></li>
+                                            <li class="li"><a class="single-link" href="./login.php">Log in</a></li>
                                             <li class="li"><a class="single-link" href="#">Help</a></li>
                                         </ul>
                                     </div>
@@ -98,8 +98,7 @@
                                 <h4 class="footer-herading">Store Information.</h4>
                                 <div class="footer-links">
                                     <!-- News letter area -->
-                                    <p class="address">2005 Your Address Goes Here. <br>
-                                        896, Address 10010, HGJ</p>
+                                    <p class="address">273 An Duong Vuong, Sub-district 3, District 5, Ho Chi Minh City </p>
                                     <p class="phone">Phone/Fax:<a href="tel:0123456789">0123456789</a></p>
                                     <p class="mail">Email:<a href="mailto:demo@example.com">demo@example.com</a></p>
                                     <img src="assets/images/icons/payment.png" alt="" class="payment-img img-fulid">
@@ -117,8 +116,7 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <p class="copy-text"> © 2021 <strong>Jesco</strong> Made With <i class="fa fa-heart"
-                                    aria-hidden="true"></i> By <a class="company-name" href="https://hasthemes.com/">
-                                    <strong> HasThemes</strong></a>.</p>
+                                    aria-hidden="true"></i> By <strong>Luan Manh Kiet</strong>.</p>
                         </div>
                     </div>
                 </div>
