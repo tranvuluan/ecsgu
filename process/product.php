@@ -61,6 +61,10 @@ if (isset($_GET['filterProduct'])) {
                                         if ($rowWishlist['id_product'] == $row['id_product']) {
                             ?>
                                             <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <!-- <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a> -->
                                     <?php
                                         }
                                     }
