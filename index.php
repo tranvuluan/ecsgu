@@ -127,7 +127,7 @@ require_once($path . '/class/product.php')
                                     <div class="hero-slide-image">
                                         <img src="assets/images/slider-image/slider2.jpg" alt="" width="70%" />
                                     </div>
-                                    <div class="display-wrapper">
+                                    <!-- <div class="display-wrapper">
                                         <div class="content-side">
                                             <h4 class="title">Full Dress</h4>
                                             <span class="price">$21.00</span>
@@ -136,7 +136,7 @@ require_once($path . '/class/product.php')
                                         <div class="image-side">
                                             <img src="assets/images/slider-image/display.jpg" alt="" width="97px" height="89px">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -330,8 +330,7 @@ require_once($path . '/class/product.php')
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Sản phẩm thoáng mát, không bí. Thích hợp cho các hoạt động thể thao với các loại quần áo thể thao
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -356,8 +355,7 @@ require_once($path . '/class/product.php')
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Nhiều chương trình ưu đãi. Giá cả hợp lý, chất liệu tốt. Sẽ luôn ủng hộ của hàng dài lâu.
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -382,8 +380,7 @@ require_once($path . '/class/product.php')
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Giao hàng nhanh chóng, chất lượng tốt. Sẽ tốt hơn khi có cửa hàng trực tiếp cho việc mua sắm thì tốt hơn.
                                 </p>
                             </div>
                             <div class="testi-author">

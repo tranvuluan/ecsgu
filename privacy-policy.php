@@ -72,10 +72,6 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
             <div class="container-inner">
                 <div class="row">
                     <div class="col-12">
-                        <div class="privacy_content section_1" data-aos="fade-up" data-aos-delay="200">
-                            <h2>Who we are</h2>
-                            <p>Our website address is: <a href="https://themeforest.net/user/hastech/portfolio">https://themeforest.net/user/hastech/portfolio</a></p>
-                        </div>
                         <div class="privacy_content section_2" data-aos="fade-up" data-aos-delay="400">
                             <h2>What personal data we collect and why we collect it</h2>
                             <h3>Comments</h3>
