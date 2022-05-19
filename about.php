@@ -75,11 +75,19 @@ require_once $path . '/class/employee.php';
                 <div class="col-lg-6 col-md-12">
                     <div class="about-intro-content">
                         <h2 class="title">About Us</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius modjior tem incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniamyl quinol exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duisau irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore euhti fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim</p>
+                        <h4>Giải pháp mua đồ mới lạ</h4>
+                        <p>Quên đi những khoản chi trả kha khá và phải đi nhiều nơi lẻ tẻ để có được những món
+                            đồ cơ bản nhất như áo thun, quần short, quần sịp, tất (vớ), chúng tôi mong muốn thay đổi mọi thứ.
+                            Chỉ bằng vài cú click chuột và một tủ đồ đầy đủ sẽ đến gõ cửa nhà bạn ngay sau đó.</p>
+                        <br>
+                        <h4>Trải nghiệm mua sắm thông minh</h4>
+                        <p>Coolmate đem lại sự thoải mái nhất trong mua sắm. Bạn có thể tự do xem bất kỳ món hàng nào,
+                            theo dõi những món đồ muốn mua, mua hàng trong tích tắc
+                            và thậm chí là có thể đổi trả 60 ngày miễn phí vì bất kỳ lý do gì.</p>
+                        <br>
+                        <h4>Giá cả hợp lý</h4>
+                        <p>Tất cả những gì bạn thấy trên web là tất cả những gì bạn phải trả,
+                            cam kết không có chi phí phát sinh trong quá trình mua và đổi trả hàng.</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +95,7 @@ require_once $path . '/class/employee.php';
                 <img src="assets/images/about-image/intro-left.png" alt="" class="intro-left-image">
             </div> -->
             <div class="intro-right">
-                <img src="assets/images/product-image/b.jpg" alt="" class="intro-right-image">
+                <img src="assets/images/product-image/a.jpg" alt="" class="intro-right-image">
             </div>
         </div>
     </div>
@@ -181,7 +189,7 @@ require_once $path . '/class/employee.php';
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Free Shipping</h4>
-                            <span class="sub-title">Capped at $39 per order</span>
+                            <span class="sub-title">Capped at 999.000đ</span>
                         </div>
                     </div>
                 </div>
@@ -239,8 +247,9 @@ require_once $path . '/class/employee.php';
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Giá cả hợp lý. <br>
+                                    Chất lượng tốt
+
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -307,7 +316,7 @@ require_once $path . '/class/employee.php';
                         </div>
                     </div>
                     <!-- Slider Single Item -->
-                    <div class="swiper-slide">
+                    <!-- <div class="swiper-slide">
                         <div class="testi-inner">
                             <div class="reating-wrap">
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -331,9 +340,9 @@ require_once $path . '/class/employee.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Slider Single Item -->
-                    <div class="swiper-slide">
+                    <!-- <div class="swiper-slide">
                         <div class="testi-inner">
                             <div class="reating-wrap">
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -357,7 +366,7 @@ require_once $path . '/class/employee.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Slider Single Item -->
                 </div>
             </div>

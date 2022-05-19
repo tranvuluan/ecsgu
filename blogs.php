@@ -1,5 +1,5 @@
 <?php
-    $path = dirname(__FILE__);
+$path = dirname(__FILE__);
 ?>
 
 <!DOCTYPE html>
@@ -42,27 +42,27 @@
 <body>
 
     <!--Top bar, Header Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/header.php') ?>
     <!--Top bar, Header Area End -->
-     <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
-<?php 
-$path = dirname(__FILE__);
-require_once($path . '/includes/offcanvasWishlist.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasWishlist.php') ?>
     <!-- OffCanvas Wishlist End -->
     <!-- OffCanvas Cart Start -->
-<?php 
-$path = dirname(__FILE__);
-require_once($path . '/includes/offcanvasCart.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasCart.php') ?>
     <!-- OffCanvas Cart End -->
 
     <!-- OffCanvas Menu Start -->
-<?php 
-$path = dirname(__FILE__);
-require_once($path . '/includes/offcanvasMenu.php') ?>
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- OffCanvas Menu End -->
 
     <!-- Blog Area Start -->
@@ -74,27 +74,20 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                         <div class="col-lg-6 col-md-6 mb-50px">
                             <div class="single-blog">
                                 <div class="blog-image">
-                                    <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/1.jpg"
-                                            class="img-responsive w-100" alt=""></a>
+                                    <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/1.jfif" class="img-responsive w-100" alt=""></a>
                                 </div>
                                 <div class="blog-text">
                                     <div class="blog-athor-date">
-                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar"
-                                                aria-hidden="true"></i> 24 Aug, 2021</a>
-                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting"
-                                                aria-hidden="true"></i> 1.5
+                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> 24 Aug, 2021</a>
+                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i> 1.5
                                             K</a>
                                     </div>
-                                    <h5 class="blog-heading"><a class="blog-heading-link"
-                                            href="blog-single-left-sidebar.html">There are many variations of
-                                            passages of Lorem</a></h5>
+                                    <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">What is cropped pants man?</a></h5>
 
-                                    <p>Lorem ipsum dolor, sit amet cons adipisicing elit. Cumque, quam aperiam alias
-                                        modi sed
-                                        totam possimus illo.</p>
+                                    <p>How high can you go? With menswear, you know what qualifies as a short and what
+                                        you’d wear as trousers, but cropped silhouettes</p>
 
-                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i
-                                            class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
+                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -102,27 +95,21 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                         <div class="col-lg-6 col-md-6 mb-50px">
                             <div class="single-blog ">
                                 <div class="blog-image">
-                                    <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/2.jpg"
-                                            class="img-responsive w-100" alt=""></a>
+                                    <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/2.jpg" class="img-responsive w-100" alt=""></a>
                                 </div>
                                 <div class="blog-text">
                                     <div class="blog-athor-date">
-                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar"
-                                                aria-hidden="true"></i> 24 Aug, 2021</a>
-                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting"
-                                                aria-hidden="true"></i> 1.5
+                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> 24 Aug, 2021</a>
+                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i> 1.5
                                             K</a>
                                     </div>
-                                    <h5 class="blog-heading"><a class="blog-heading-link"
-                                            href="blog-single-left-sidebar.html">It is a long established factoi
-                                            ader will be distracted</a></h5>
+                                    <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">How to Choose the Ideal Polo shirt</a></h5>
 
-                                    <p>Lorem ipsum dolor, sit amet cons adipisicing elit. Cumque, quam aperiam alias
-                                        modi sed
-                                        totam possimus illo.</p>
+                                    <p>On the spectrum of style, the polo shirt falls between a t-shirt and a dress shirt."
 
-                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i
-                                            class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
+                                        When looking to outfit your team, there are three main factors to consider when choosing a polo shirt: material, knit, and fit.</p>
+
+                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -149,22 +136,18 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                                 </div>
                                 <div class="blog-text">
                                     <div class="blog-athor-date">
-                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar"
-                                                aria-hidden="true"></i> 24 Aug, 2021</a>
-                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting"
-                                                aria-hidden="true"></i> 1.5
+                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> 24 Aug, 2021</a>
+                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i> 1.5
                                             K</a>
                                     </div>
-                                    <h5 class="blog-heading"><a class="blog-heading-link"
-                                            href="blog-single-left-sidebar.html">Contrary to popular belieflo
+                                    <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">Contrary to popular belieflo
                                             lorem Ipsum is not</a></h5>
 
                                     <p>Lorem ipsum dolor, sit amet cons adipisicing elit. Cumque, quam aperiam alias
                                         modi sed
                                         totam possimus illo.</p>
 
-                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i
-                                            class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
+                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -173,28 +156,23 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                             <div class="single-blog">
                                 <div class="blog-post-media">
                                     <div class="blog-post-audio sidebar">
-                                        <iframe class="embed-responsive-item" width="500" height="320" allow="autoplay"
-                                            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/182537870&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>
+                                        <iframe class="embed-responsive-item" width="500" height="320" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/182537870&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>
                                     </div>
                                 </div>
                                 <div class="blog-text">
                                     <div class="blog-athor-date">
-                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar"
-                                                aria-hidden="true"></i> 24 Aug, 2021</a>
-                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting"
-                                                aria-hidden="true"></i> 1.5
+                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> 24 Aug, 2021</a>
+                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i> 1.5
                                             K</a>
                                     </div>
-                                    <h5 class="blog-heading"><a class="blog-heading-link"
-                                            href="blog-single-left-sidebar.html">Contrary to popular belieflo
+                                    <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">Contrary to popular belieflo
                                             lorem Ipsum is not</a></h5>
 
                                     <p>Lorem ipsum dolor, sit amet cons adipisicing elit. Cumque, quam aperiam alias
                                         modi sed
                                         totam possimus illo.</p>
 
-                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i
-                                            class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
+                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -203,33 +181,29 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                             <div class="single-blog">
                                 <div class="blog-post-media">
                                     <div class="blog-post-video position-relative">
-                                        <a class="venobox venoboxvid video-icon overflow-hidden vbox-item"
-                                            data-gall="gall-video" data-autoplay="true" data-vbtype="video"
-                                            href="https://youtu.be/Hx64uvCA_zQ">
-                                            <img class="img-responsive w-100 thumb-image"
-                                                src="assets/images/blog-image/1.jpg" alt="">
+                                        <a class="venobox venoboxvid video-icon overflow-hidden vbox-item" data-gall="gall-video" data-autoplay="true" data-vbtype="video" 
+                                        href="https://www.youtube.com/watch?v=K2Jw6LDN8gg" target=_blank>
+
+
+                                            <img class="img-responsive w-100 thumb-image" src="assets/images/blog-image/1.jpg" alt="">
                                             <img class="icon" src="assets/images/icons/icon-youtube-play.png" alt="">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="blog-text">
                                     <div class="blog-athor-date">
-                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar"
-                                                aria-hidden="true"></i> 24 Aug, 2021</a>
-                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting"
-                                                aria-hidden="true"></i> 1.5
+                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> 24 Aug, 2021</a>
+                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i> 1.5
                                             K</a>
                                     </div>
-                                    <h5 class="blog-heading"><a class="blog-heading-link"
-                                            href="blog-single-left-sidebar.html">Contrary to popular belieflo
+                                    <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">Contrary to popular belieflo
                                             lorem Ipsum is not</a></h5>
 
                                     <p>Lorem ipsum dolor, sit amet cons adipisicing elit. Cumque, quam aperiam alias
                                         modi sed
                                         totam possimus illo.</p>
 
-                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i
-                                            class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
+                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -237,27 +211,22 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                         <div class="col-lg-6 col-md-6 mb-50px">
                             <div class="single-blog">
                                 <div class="blog-image">
-                                    <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/2.jpg"
-                                            class="img-responsive w-100" alt=""></a>
+                                    <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/2.jpg" class="img-responsive w-100" alt=""></a>
                                 </div>
                                 <div class="blog-text">
                                     <div class="blog-athor-date">
-                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar"
-                                                aria-hidden="true"></i> 24 Aug, 2021</a>
-                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting"
-                                                aria-hidden="true"></i> 1.5
+                                        <a class="blog-date height-shape" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> 24 Aug, 2021</a>
+                                        <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i> 1.5
                                             K</a>
                                     </div>
-                                    <h5 class="blog-heading"><a class="blog-heading-link"
-                                            href="blog-single-left-sidebar.html">Contrary to popular belieflo
+                                    <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">Contrary to popular belieflo
                                             lorem Ipsum is not</a></h5>
 
                                     <p>Lorem ipsum dolor, sit amet cons adipisicing elit. Cumque, quam aperiam alias
                                         modi sed
                                         totam possimus illo.</p>
 
-                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i
-                                            class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
+                                    <a href="#" class="btn btn-primary blog-btn"> Read More<i class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -279,8 +248,7 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                     </div>
                 </div>
                 <!-- Sidebar Area Start -->
-                <div class="col-lg-4 order-lg-first col-md-12 order-md-last mt-md-50px mt-lm-50px" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="col-lg-4 order-lg-first col-md-12 order-md-last mt-md-50px mt-lm-50px" data-aos="fade-up" data-aos-delay="200">
                     <div class="blog-sidebar mr-20px">
                         <!-- Sidebar single item -->
                         <div class="sidebar-widget">
@@ -313,8 +281,17 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                             <div class="recent-post-widget">
                                 <div class="recent-single-post d-flex">
                                     <div class="thumb-side">
-                                        <a href="blog-single-left-sidebar.html"><img
-                                                src="assets/images/blog-image/1.jpg" alt="" /></a>
+                                        <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/1.jfif" alt="" /></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <span class="date"> <i class="fa fa-calendar"></i> 24 Aug, 2021</span>
+                                        <h5><a href="blog-single-left-sidebar.html">What is cropped pants man?</a>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side">
+                                        <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/2.jpg" alt="" /></a>
                                     </div>
                                     <div class="media-side">
                                         <span class="date"> <i class="fa fa-calendar"></i> 24 Aug, 2021</span>
@@ -325,8 +302,7 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                                 </div>
                                 <div class="recent-single-post d-flex">
                                     <div class="thumb-side">
-                                        <a href="blog-single-left-sidebar.html"><img
-                                                src="assets/images/blog-image/2.jpg" alt="" /></a>
+                                        <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/3.jpg" alt="" /></a>
                                     </div>
                                     <div class="media-side">
                                         <span class="date"> <i class="fa fa-calendar"></i> 24 Aug, 2021</span>
@@ -337,20 +313,7 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                                 </div>
                                 <div class="recent-single-post d-flex">
                                     <div class="thumb-side">
-                                        <a href="blog-single-left-sidebar.html"><img
-                                                src="assets/images/blog-image/3.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="media-side">
-                                        <span class="date"> <i class="fa fa-calendar"></i> 24 Aug, 2021</span>
-                                        <h5><a href="blog-single-left-sidebar.html">Lorem ipsum dolorlo
-                                                conse tetur adipi.</a>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="recent-single-post d-flex">
-                                    <div class="thumb-side">
-                                        <a href="blog-single-left-sidebar.html"><img
-                                                src="assets/images/blog-image/1.jpg" alt="" /></a>
+                                        <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/1.jpg" alt="" /></a>
                                     </div>
                                     <div class="media-side">
                                         <span class="date"> <i class="fa fa-calendar"></i> 24 Aug, 2021</span>
@@ -397,22 +360,22 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
     <!-- Blag Area End -->
 
     <!-- Footer Area Start -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/footer.php') ?>
     <!-- Footer Area End -->
 
     <!-- Modals -->
-    <?php 
+    <?php
     $path = dirname(__FILE__);
     require_once($path . '/includes/modals.php') ?>
     <!-- END Modals -->
 
-<!-- JavaScripts -->
-<?php 
-$path = dirname(__FILE__);
-require_once($path . '/includes/scripts.php')?>
-<!-- END JavaScripts -->
+    <!-- JavaScripts -->
+    <?php
+    $path = dirname(__FILE__);
+    require_once($path . '/includes/scripts.php') ?>
+    <!-- END JavaScripts -->
 </body>
 
 </html>
