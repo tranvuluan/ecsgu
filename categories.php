@@ -9,6 +9,8 @@ require_once($path . '/class/productSale.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/category.php');
 $path = realpath(dirname(__FILE__));
+require_once($path . '/class/LibClass.php');
+$path = realpath(dirname(__FILE__));
 require_once($path . '/class/categoryChild.php');
 ?>
 
@@ -293,16 +295,31 @@ require_once($path . '/class/categoryChild.php');
                                     <?php
                                     $showcategory = $categoryModel->getCategories();
                                     if ($showcategory) {
-                                        while ($row = $showcategory->fetch_assoc()) {
+                                        while ($row1 = $showcategory->fetch_assoc()) {
                                     ?>
                                             <?php
-                                            $categoryChildModel = new CategoryChild();
-                                            $categoryChild = $categoryChildModel->getCategoryChildsByCategoryId($row['id_category'])->fetch_assoc();
-                                            $productModel = new Product();
-                                            $product = $productModel->getProductByCategoryChildId($categoryChild['id_categorychild']);
+                                            // $categoryChildModel = new CategoryChild();
+                                            // $categoryChild = $categoryChildModel->getCategoryChildsByCategoryId($row['id_category'])->fetch_assoc();
+                                            // $productModel = new Product();
+                                            // $product = $productModel->getProductByCategoryChildId($categoryChild['id_categorychild']);
+
+                                            // var_dump($libclass);
                                             ?>
-                                            <li><a class="selected m-0" onclick="filterCategory('<?php echo $row['id_category'] ?>')"><?php echo $row['name']; ?>
-                                                    <span> ( <?php $product ?  print($product->num_rows)  : print(0) ?> )
+                                            <li><a class="selected m-0" onclick="filterCategory('<?php echo $row1['id_category'] ?>')"><?php echo $row1['name']; ?>
+                                                    <span> ( <?php $LibClassModel = new LibClass();
+                                                                $libclass = $LibClassModel->countProductOfCategory();
+                                                                $countProductOfCategory = 0 ;
+                                                                if ($libclass) {
+                                                                    while ($rowlib = $libclass->fetch_assoc()) {
+                                                                        if ($rowlib['id_category'] == $row1['id_category']) {
+                                                                            $countProductOfCategory = $rowlib['count'];
+                                                                            break;
+                                                                        } 
+                                                                        
+                                                                    }
+                                                                } 
+                                                                echo $countProductOfCategory;
+                                                                ?> )
                                                     </span></a></li>
                                             <br>
                                     <?php

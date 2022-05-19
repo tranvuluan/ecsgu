@@ -4,6 +4,8 @@ require_once $path . '/../class/configurable_product.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/wishlist.php';
 $path = dirname(__FILE__);
+require_once $path . '/../class/productEvaluate.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/LibClass.php';
 
 if (!isset($_SESSION)) {
@@ -56,19 +58,21 @@ if (isset($_GET['filterProduct'])) {
                             if (isset($_SESSION['login'])) {
                                 $wishlistModel = new Wishlist();
                                 $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                $flag = 0;
                                 if ($wishlist) {
                                     while ($rowWishlist = $wishlist->fetch_assoc()) {
                                         if ($rowWishlist['id_product'] == $row['id_product']) {
+                                            $flag = 1;
+                                            if ($flag == 1) {
                             ?>
-                                            <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <!-- <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a> -->
+                                                <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
                                     <?php
+                                                break;
+                                            }
                                         }
                                     }
-                                } else {
+                                }
+                                if ($flag == 0) {
                                     ?>
                                     <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
                                 <?php
@@ -88,9 +92,16 @@ if (isset($_GET['filterProduct'])) {
                     <div class="content">
                         <span class="ratings">
                             <span class="rating-wrap">
-                                <span class="star" style="width: 100%"></span>
+                                <?php $rating = $row['rating'] ?>
+                                <span class="star" style="width: <?php echo $rating * 20 ?>%"></span> <!-- width = 100% -> 5star -->
                             </span>
-                            <span class="rating-num">( 5 Review )</span>
+
+                            <span class="rating-num">( <?php
+                                                        $productEvaluateModel = new ProductEvaluate();
+                                                        $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($row['id_product']);
+                                                        $productEvaluate ? print($productEvaluate->num_rows) : print(0);
+                                                        ?> Review )
+                            </span>
                         </span>
                         <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?>
                             </a>
