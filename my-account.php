@@ -19,10 +19,38 @@ require_once($path . '/class/orderItem.php');
 <html lang="zxx">
 
 <head>
-    <?php
-    $path = dirname(__FILE__);
-    require_once($path . '/includes/headerhtml.php');
-    ?>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="robots" content="index, follow" />
+    <title>Jesco - Fashoin eCommerce HTML Template</title>
+    <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Add site Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/png">
+
+
+    <!-- vendor css (Icon Font) -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/vendor/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="assets/css/vendor/font.awesome.css" />
+
+    <!-- plugins css (All Plugins Files) -->
+    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
+    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/plugins/venobox.css" />
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/vendor.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css" />
+    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="admin/assets/css/pace.min.css" rel="stylesheet" />
+    <script src="admin/assets/js/pace.min.js"></script>
 </head>
 
 <body>
@@ -70,10 +98,8 @@ require_once($path . '/class/orderItem.php');
                         <ul role="tablist" class="nav flex-column dashboard-list">
                             <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Dashboard</a></li>
                             <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
-                            <!-- <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
-                            <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li> -->
-                            <li onclick="viewToUpdate('<?php print($_SESSION['id_customer']) ?>')"><a href="#" class="nav-link">Account details</a> </li>
-                            <li onclick="logout()"><a href="#" data-bs-toggle="tab" class="nav-link">logout</a> </li>
+                            <li ><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a> </li>
+                            <li onclick="logout()"><a class="nav-link">Logout</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -161,57 +187,12 @@ require_once($path . '/class/orderItem.php');
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="downloads">
-                            <h4>Downloads</h4>
-                            <div class="table_page table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Downloads</th>
-                                            <th>Expires</th>
-                                            <th>Download</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Shopnovilla - Free Real Estate PSD Template</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="danger">Expired</span></td>
-                                            <td><a href="#" class="view">Click Here To Download Your File</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Organic - ecommerce html template</td>
-                                            <td>Sep 11, 2018</td>
-                                            <td>Never</td>
-                                            <td><a href="#" class="view">Click Here To Download Your File</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="address">
-                            <p>The following addresses will be used on the checkout page by default.</p>
-                            <h5 class="billing-address">Billing address</h5>
-                            <a href="#" class="view">Edit</a>
-                            <p class="mb-2"><strong>Michael M Hoskins</strong></p>
-                            <address>
-                                <span class="mb-1 d-inline-block"><strong>City:</strong> Seattle</span>,
-                                <br>
-                                <span class="mb-1 d-inline-block"><strong>State:</strong> Washington(WA)</span>,
-                                <br>
-                                <span class="mb-1 d-inline-block"><strong>ZIP:</strong> 98101</span>,
-                                <br>
-                                <span><strong>Country:</strong> USA</span>
-                            </address>
-                        </div>
                         <div class="tab-pane fade" id="account-details">
                             <h3>Account details </h3>
                             <div class="login">
                                 <div class="login_form_container">
                                     <div class="account_login_form">
                                         <form action="#">
-                                            <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginActive">Log in instead!</a></p>
                                             <div class="input-radio">
                                                 <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mr.</span>
                                                 <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mrs.</span>
@@ -282,7 +263,7 @@ require_once($path . '/class/orderItem.php');
     <!-- JavaScripts -->
     <?php
     $path = dirname(__FILE__);
-    ?>
+    require_once($path . '/includes/scripts.php') ?>
     <!-- END JavaScripts -->
     <script src="assets/js/manageraccount.js"></script>
 </body>
