@@ -9,8 +9,10 @@
                                 <div class="footer-logo">
                                     <a href="index.html"><img src="assets/images/logo/logo-white.png" alt=""></a>
                                 </div>
-                                <p class="about-text">Lorem ipsum dolor sit amet consectet adipisicing elit, sed do
-                                    eiusmod templ incididunt ut labore et dolore magnaol aliqua Ut enim ad minim.
+                                <p class="about-text">Jesco applies the power of technology to fashion 
+                                    to offer a basic men's shopping solution with a more convenient, 
+                                    more economical model - customers can buy a whole wardrobe. 
+                                    Quality items, great prices, prompt delivery, and outstanding care.
                                 </p>
                                 <ul class="link-follow">
                                     <li>
