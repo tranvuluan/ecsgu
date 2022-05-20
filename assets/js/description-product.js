@@ -65,6 +65,7 @@ function rateProduct(id_product){
         success: function (response) {
             $('#AlertEvaluate').html(response);
             location.reload();
+            // console.log(response);
         }
     });
 }

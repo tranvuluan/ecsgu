@@ -188,6 +188,7 @@ if (isset($_POST['viewInformation']) && isset($_POST['id_product'])) {
 
 <?php 
     if(isset($_POST['rate']) && isset($_POST['id_product'])){
+        $productModel = new Product();
         if(!isset($_SESSION['login'])){
             echo '<script>alert("You need to login first!")</script>';
         }
@@ -200,7 +201,11 @@ if (isset($_POST['viewInformation']) && isset($_POST['id_product'])) {
             $insertEvaluateProduct = $productEvaluateModel->insertEvaluate($id_product, $id_customer, $rating, $evaluate);
             if ($insertEvaluateProduct) {
                 $avgProduct = $productEvaluateModel->ratingProduct($id_product)->fetch_assoc();
+                // echo $avgProduct['avg'];
                 $updateRating = $productModel->updateRating($id_product, $avgProduct['avg']);
+                if($updateRating){
+                    echo 'good';
+                }
                 echo '<script>alert("Evaluate success!")</script>';
             } else {
                 echo '<script>alert("Evaluate fail!")</script>';
