@@ -7,7 +7,11 @@ require_once($path . '/class/configurable_product.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/productSale.php');
 $path = realpath(dirname(__FILE__));
+require_once($path . '/class/productEvaluate.php');
+$path = realpath(dirname(__FILE__));
 require_once($path . '/class/category.php');
+$path = realpath(dirname(__FILE__));
+require_once($path . '/class/LibClass.php');
 $path = realpath(dirname(__FILE__));
 require_once($path . '/class/categoryChild.php');
 ?>
@@ -161,19 +165,55 @@ require_once($path . '/class/categoryChild.php');
                                                                     </span>
                                                                 </span> -->
                                                                 <div class="actions">
-                                                                    <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                                    <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                                                                    <?php
+                                                                    if (isset($_SESSION['login'])) {
+                                                                        $wishlistModel = new Wishlist();
+                                                                        $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                                                        $flag = 0;
+                                                                        if ($wishlist) {
+                                                                            while ($rowWishlist = $wishlist->fetch_assoc()) {
+                                                                                if ($rowWishlist['id_product'] == $row['id_product']) {
+                                                                                    $flag = 1;
+                                                                                    if ($flag == 1) {
+                                                                    ?>
+                                                                                        <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                                                            <?php
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if ($flag == 0) {
+                                                                            ?>
+                                                                            <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                                                        <?php
+                                                                        }
+                                                                    } else {
+                                                                        ?>
+                                                                        <a href="javascript:;" onclick="confirmLogin()" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                    <!-- <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
+                                                                    <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
                                                                 </div>
-                                                                <button title="Add To Cart" class=" add-to-cart">Add
-                                                                    To Cart</button>
+                                                                <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                                                                    To Cart</button> -->
                                                             </div>
                                                             <div class="content">
                                                                 <span class="ratings">
                                                                     <span class="rating-wrap">
-                                                                        <span class="star" style="width: 60%"></span>
+                                                                        <?php $rating = $row['rating'] ?>
+                                                                        <span class="star" style="width: <?php echo $rating * 20 ?>%"></span> <!-- width = 100% -> 5star -->
                                                                     </span>
-                                                                    <span class="rating-num">( 3 Review )</span>
+
+                                                                    <span class="rating-num">( <?php
+                                                                                                $productEvaluateModel = new ProductEvaluate();
+                                                                                                $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($row['id_product']);
+                                                                                                $productEvaluate ? print($productEvaluate->num_rows) : print(0);
+                                                                                                ?> Review )
+                                                                    </span>
                                                                 </span>
+
                                                                 <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?></a></h5>
                                                                 <span class="price">
                                                                     <span class="new"><?php echo number_format($row['price']) ?>đ</span>
@@ -203,7 +243,7 @@ require_once($path . '/class/categoryChild.php');
                                                                 <div class="thumb">
                                                                     <a href="product-details.php" class="image">
                                                                         <img src="<?php echo $row['image'] ?>" alt="Product" />
-                                                                        <img class="hover-image" src="assets/images/product-image/1.jpg" alt="Product" />
+                                                                        <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                                                                     </a>
                                                                     <!-- <span class="badges">
                                                                         <span class="new">
@@ -231,9 +271,16 @@ require_once($path . '/class/categoryChild.php');
                                                                 <div class="content">
                                                                     <span class="ratings">
                                                                         <span class="rating-wrap">
-                                                                            <span class="star" style="width: 100%"></span>
+                                                                            <?php $rating = $row['rating'] ?>
+                                                                            <span class="star" style="width: <?php echo $rating * 20 ?>%"></span> <!-- width = 100% -> 5star -->
                                                                         </span>
-                                                                        <span class="rating-num">( 5 Review )</span>
+
+                                                                        <span class="rating-num">( <?php
+                                                                                                    $productEvaluateModel = new ProductEvaluate();
+                                                                                                    $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($row['id_product']);
+                                                                                                    $productEvaluate ? print($productEvaluate->num_rows) : print(0);
+                                                                                                    ?> Review )
+                                                                        </span>
                                                                     </span>
                                                                     <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?></a></h5>
                                                                     <p><?php echo $row['description'] ?></p>
@@ -243,12 +290,40 @@ require_once($path . '/class/categoryChild.php');
                                                                         <span class="new"><?php echo number_format($row['price']) ?>đ</span>
                                                                     </span>
                                                                     <div class="actions">
-                                                                        <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                                        <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                                                        <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                                                                        <?php
+                                                                        if (isset($_SESSION['login'])) {
+                                                                            $wishlistModel = new Wishlist();
+                                                                            $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                                                            $flag = 0;
+                                                                            if ($wishlist) {
+                                                                                while ($rowWishlist = $wishlist->fetch_assoc()) {
+                                                                                    if ($rowWishlist['id_product'] == $row['id_product']) {
+                                                                                        $flag = 1;
+                                                                                        if ($flag == 1) {
+                                                                        ?>
+                                                                                            <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                                                                <?php
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            if ($flag == 0) {
+                                                                                ?>
+                                                                                <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                                                            <?php
+                                                                            }
+                                                                        } else {
+                                                                            ?>
+                                                                            <a href="javascript:;" onclick="confirmLogin()" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <!-- <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
+                                                                        <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
+                                                                        <!-- <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a> -->
                                                                     </div>
-                                                                    <button title="Add To Cart" class=" add-to-cart">Add
-                                                                        To Cart</button>
+                                                                    <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                                                                        To Cart</button> -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -293,16 +368,30 @@ require_once($path . '/class/categoryChild.php');
                                     <?php
                                     $showcategory = $categoryModel->getCategories();
                                     if ($showcategory) {
-                                        while ($row = $showcategory->fetch_assoc()) {
+                                        while ($row1 = $showcategory->fetch_assoc()) {
                                     ?>
                                             <?php
-                                            $categoryChildModel = new CategoryChild();
-                                            $categoryChild = $categoryChildModel->getCategoryChildsByCategoryId($row['id_category'])->fetch_assoc();
-                                            $productModel = new Product();
-                                            $product = $productModel->getProductByCategoryChildId($categoryChild['id_categorychild']);
+                                            // $categoryChildModel = new CategoryChild();
+                                            // $categoryChild = $categoryChildModel->getCategoryChildsByCategoryId($row['id_category'])->fetch_assoc();
+                                            // $productModel = new Product();
+                                            // $product = $productModel->getProductByCategoryChildId($categoryChild['id_categorychild']);
+
+                                            // var_dump($libclass);
                                             ?>
-                                            <li><a class="selected m-0" onclick="filterCategory('<?php echo $row['id_category'] ?>')"><?php echo $row['name']; ?>
-                                                    <span> ( <?php $product ?  print($product->num_rows)  : print(0) ?> )
+                                            <li><a class="selected m-0" onclick="filterCategory('<?php echo $row1['id_category'] ?>')"><?php echo $row1['name']; ?>
+                                                    <span> ( <?php $LibClassModel = new LibClass();
+                                                                $libclass = $LibClassModel->countProductOfCategory();
+                                                                $countProductOfCategory = 0;
+                                                                if ($libclass) {
+                                                                    while ($rowlib = $libclass->fetch_assoc()) {
+                                                                        if ($rowlib['id_category'] == $row1['id_category']) {
+                                                                            $countProductOfCategory = $rowlib['count'];
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                echo $countProductOfCategory;
+                                                                ?> )
                                                     </span></a></li>
                                             <br>
                                     <?php
@@ -333,7 +422,7 @@ require_once($path . '/class/categoryChild.php');
                             </div>
                         </div>
                         <!-- Sidebar single item -->
-                        <div class="sidebar-widget-image">
+                        <!-- <div class="sidebar-widget-image">
                             <div class="single-banner">
                                 <img src="assets/images/banner/2.jpg" alt="">
                                 <div class="item-disc">
@@ -341,7 +430,7 @@ require_once($path . '/class/categoryChild.php');
                                     <a href="single-product-variable.html" class="shop-link">Shop Now</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Sidebar single item -->
                     </div>
                 </div>

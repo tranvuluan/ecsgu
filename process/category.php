@@ -2,7 +2,15 @@
 $path = dirname(__FILE__);
 require_once $path . '/../class/LibClass.php';
 $path = dirname(__FILE__);
+require_once $path . '/../class/productEvaluate.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/product.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/wishlist.php';
+
+if(!isset($_SESSION)){
+    session_start();
+}
 
 if (isset($_GET['filterProduct'])) {
     $category = $_GET['category'];
@@ -20,22 +28,57 @@ if (isset($_GET['filterProduct'])) {
                             <img src="<?php echo $row['image'] ?>" alt="Product" />
                             <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                         </a>
-                        <span class="badges">
+                        <!-- <span class="badges">
                             <span class="new">Sale</span>
-                        </span>
+                        </span> -->
                         <div class="actions">
-                            <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                            <?php
+                            if (isset($_SESSION['login'])) {
+                                $wishlistModel = new Wishlist();
+                                $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                $flag = 0;
+                                if ($wishlist) {
+                                    while ($rowWishlist = $wishlist->fetch_assoc()) {
+                                        if ($rowWishlist['id_product'] == $row['id_product']) {
+                                            $flag = 1;
+                                            if ($flag == 1) {
+                            ?>
+                                                <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                    <?php
+                                            }
+                                        }
+                                    }
+                                }
+                                if ($flag == 0) {
+                                    ?>
+                                    <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <a href="javascript:;" onclick="confirmLogin()" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                            <?php
+                            }
+                            ?>
+                            <!-- <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
+                            <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
                         </div>
-                        <button title="Add To Cart" class=" add-to-cart">Add
-                            To Cart</button>
+                        <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                            To Cart</button> -->
                     </div>
                     <div class="content">
                         <span class="ratings">
                             <span class="rating-wrap">
-                                <span class="star" style="width: 60%"></span>
+                                <?php $rating = $row['rating'] ?>
+                                <span class="star" style="width: <?php echo $rating * 20 ?>%"></span> <!-- width = 100% -> 5star -->
                             </span>
-                            <span class="rating-num">( 3 Review )</span>
+
+                            <span class="rating-num">( <?php
+                                                        $productEvaluateModel = new ProductEvaluate();
+                                                        $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($row['id_product']);
+                                                        $productEvaluate ? print($productEvaluate->num_rows) : print(0);
+                                                        ?> Review )
+                            </span>
                         </span>
                         <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?></a></h5>
                         <span class="price">
@@ -58,6 +101,8 @@ if (isset($_GET['filterProductByKeyword']) && isset($_GET['search'])) {
     $searchItem = $productModel->searchItem($keyword);
     if ($searchItem) {
         while ($row = $searchItem->fetch_assoc()) {
+            if ($row['status'] == 0)
+                continue;
 ?>
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="800">
                 <!-- Single Prodect -->
@@ -67,22 +112,57 @@ if (isset($_GET['filterProductByKeyword']) && isset($_GET['search'])) {
                             <img src="<?php echo $row['image'] ?>" alt="Product" />
                             <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                         </a>
-                        <span class="badges">
+                        <!-- <span class="badges">
                             <span class="new">Sale</span>
-                        </span>
+                        </span> -->
                         <div class="actions">
-                            <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                        <?php
+                            if (isset($_SESSION['login'])) {
+                                $wishlistModel = new Wishlist();
+                                $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                $flag = 0;
+                                if ($wishlist) {
+                                    while ($rowWishlist = $wishlist->fetch_assoc()) {
+                                        if ($rowWishlist['id_product'] == $row['id_product']) {
+                                            $flag = 1;
+                                            if ($flag == 1) {
+                            ?>
+                                                <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist active" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                    <?php
+                                            }
+                                        }
+                                    }
+                                }
+                                if ($flag == 0) {
+                                    ?>
+                                    <a href="javascript:;" onclick="addToWishList(this)" class="action wishlist" title="Wishlist" id="<?php print $row['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <a href="javascript:;" onclick="confirmLogin()" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                            <?php
+                            }
+                            ?>
+                            <!-- <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
+                            <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
                         </div>
-                        <button title="Add To Cart" class=" add-to-cart">Add
-                            To Cart</button>
+                        <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                            To Cart</button> -->
                     </div>
                     <div class="content">
                         <span class="ratings">
                             <span class="rating-wrap">
-                                <span class="star" style="width: 60%"></span>
+                                <?php $rating = $row['rating'] ?>
+                                <span class="star" style="width: <?php echo $rating * 20 ?>%"></span> <!-- width = 100% -> 5star -->
                             </span>
-                            <span class="rating-num">( 3 Review )</span>
+
+                            <span class="rating-num">( <?php
+                                                        $productEvaluateModel = new ProductEvaluate();
+                                                        $productEvaluate = $productEvaluateModel->getProductEvaluatesByProductId($row['id_product']);
+                                                        $productEvaluate ? print($productEvaluate->num_rows) : print(0);
+                                                        ?> Review )
+                            </span>
                         </span>
                         <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?></a></h5>
                         <span class="price">

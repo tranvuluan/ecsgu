@@ -199,6 +199,8 @@ if (isset($_POST['viewInformation']) && isset($_POST['id_product'])) {
             $productEvaluateModel = new ProductEvaluate();
             $insertEvaluateProduct = $productEvaluateModel->insertEvaluate($id_product, $id_customer, $rating, $evaluate);
             if ($insertEvaluateProduct) {
+                $avgProduct = $productEvaluateModel->ratingProduct($id_product)->fetch_assoc();
+                $updateRating = $productModel->updateRating($id_product, $avgProduct['avg']);
                 echo '<script>alert("Evaluate success!")</script>';
             } else {
                 echo '<script>alert("Evaluate fail!")</script>';
