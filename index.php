@@ -95,16 +95,16 @@ require_once($path . '/class/product.php')
                                     <div class="hero-slide-image">
                                         <img src="assets/images/slider-image/slider1.jpg" alt="" width="90%" />
                                     </div>
-                                    <div class="display-wrapper">
-                                        <div class="content-side">
-                                            <h4 class="title">Full Dress</h4>
-                                            <span class="price">$21.00</span>
-                                            <a href="categories.php" class="shop-link">Shop Now</a>
-                                        </div>
-                                        <div class="image-side">
-                                            <img src="assets/images/slider-image/display.jpg" alt="" width="97px" height="89px">
-                                        </div>
-                                    </div>
+                                        <!-- <div class="display-wrapper">
+                                            <div class="content-side">
+                                                <h4 class="title">Full Dress</h4>
+                                                <span class="price">$21.00</span>
+                                                <a href="categories.php" class="shop-link">Shop Now</a>
+                                            </div>
+                                            <div class="image-side">
+                                                <img src="assets/images/slider-image/display.jpg" alt="" width="97px" height="89px">
+                                            </div>
+                                        </div> -->
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ require_once($path . '/class/product.php')
                                     <div class="hero-slide-image">
                                         <img src="assets/images/slider-image/slider2.jpg" alt="" width="70%" />
                                     </div>
-                                    <div class="display-wrapper">
+                                    <!-- <div class="display-wrapper">
                                         <div class="content-side">
                                             <h4 class="title">Full Dress</h4>
                                             <span class="price">$21.00</span>
@@ -136,7 +136,7 @@ require_once($path . '/class/product.php')
                                         <div class="image-side">
                                             <img src="assets/images/slider-image/display.jpg" alt="" width="97px" height="89px">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -203,7 +203,7 @@ require_once($path . '/class/product.php')
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Free Shipping</h4>
-                            <span class="sub-title">Capped at $39 per order</span>
+                            <span class="sub-title">Capped at 999.000đ per order</span>
                         </div>
                     </div>
                 </div>
@@ -330,8 +330,7 @@ require_once($path . '/class/product.php')
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Sản phẩm thoáng mát, không bí. Thích hợp cho các hoạt động thể thao với các loại quần áo thể thao
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -356,8 +355,7 @@ require_once($path . '/class/product.php')
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Nhiều chương trình ưu đãi. Giá cả hợp lý, chất liệu tốt. Sẽ luôn ủng hộ của hàng dài lâu.
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -382,8 +380,7 @@ require_once($path . '/class/product.php')
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Giao hàng nhanh chóng, chất lượng tốt. Sẽ tốt hơn khi có cửa hàng trực tiếp cho việc mua sắm thì tốt hơn.
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -458,29 +455,7 @@ require_once($path . '/class/product.php')
     <!-- Testimonial Area End -->
 
     <!-- Brand area start -->
-    <div class="brand-area pb-100px">
-        <div class="container">
-            <div class="brand-slider swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/1.png" alt="" /></a>
-                    </div>
-                    <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/2.png" alt="" /></a>
-                    </div>
-                    <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/3.png" alt="" /></a>
-                    </div>
-                    <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/4.png" alt="" /></a>
-                    </div>
-                    <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/5.png" alt="" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Brand area end -->
 
     <!-- Footer Area Start -->

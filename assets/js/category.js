@@ -58,3 +58,39 @@ function filterProductByKeyword(word) {
         }
     })
 }
+
+function addToWishList(func) {
+    console.log(func);
+    let id_product = func.getAttribute("id");
+
+    if(func.classList.contains('active')){
+        $.ajax({
+            url: './process/wishlist.php',
+            type: 'POST',
+            data: {
+                addToWishList: true,
+                id_product: id_product,
+            },
+            success: function (data) {
+                $('#wishlist_items').html(data);
+                // console.log(data);
+                func.classList.remove("active");
+
+            }
+        });
+    }else{
+        $.ajax({
+            url: './process/wishlist.php',
+            type: 'POST',
+            data: {
+                addToWishList: true,
+                id_product: id_product,
+            },
+            success: function (data) {
+                $('#wishlist_items').html(data);
+                // console.log(data);
+                func.classList.add("active");
+            }
+        });
+    }
+}

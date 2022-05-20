@@ -68,6 +68,16 @@ class LibClass
         $id_product = $this->conn->real_escape_string($id_product);
         // $sql1 = "SELECT SUM("
     }
+
+    public function countProductOfCategory() {
+        $sql = "SELECT tbl_category.id_category , COUNT(tbl_product.id_product) AS 'count' FROM tbl_categorychild, tbl_category, tbl_product WHERE tbl_categorychild.id_category = tbl_category.id_category AND tbl_product.id_categorychild = tbl_categorychild.id_categorychild GROUP BY tbl_category.id_category;";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>

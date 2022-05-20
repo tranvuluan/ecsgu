@@ -32,6 +32,31 @@ class Wishlist{
         }
     }
 
+    public function getWishlistByProductId($id_product) {
+        $id_product = $this->conn->real_escape_string($id_product);
+        $sql = "SELECT * FROM tbl_wishlist WHERE id_product = '$id_product'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    public function getWishlistByCustomerId($id_customer) {
+        $id_customer = $this->conn->real_escape_string($id_customer);
+        $sql = "SELECT * FROM tbl_wishlist WHERE id_customer = '$id_customer'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function insert($id_wishlist, $id_customer, $id_product){
         $id_wishlist = $this->conn->real_escape_string($id_wishlist);
         $id_customer = $this->conn->real_escape_string($id_customer);
@@ -55,6 +80,20 @@ class Wishlist{
         $sql = "DELETE FROM tbl_wishlist WHERE `id_wishlist` = '$id_wishlist'";
         $result = $this->conn->query($sql);
         return $result;
+    }
+
+    public function checkWishlist($id_wishlist, $id_customer, $id_product){
+        $id_wishlist = $this->conn->real_escape_string($id_wishlist);
+        $id_customer = $this->conn->real_escape_string($id_customer);
+        $id_product = $this->conn->real_escape_string($id_product);
+        $sql = "SELECT * FROM tbl_wishlist WHERE `id_wishlist` = '$id_wishlist' AND `id_customer` = '$id_customer' AND `id_product` = '$id_product'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            return $result;
+        }
+        else {
+            return false;
+        }
     }
 }
 ?>

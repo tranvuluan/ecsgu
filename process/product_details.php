@@ -92,7 +92,36 @@ if (isset($_GET['id_product'])) {
                                     Cart</button>
                             </div>
                             <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                <a href="javascript:;" onclick="addToWishList('<?php print $result['id_product'] ?>')"><i class="pe-7s-like"></i></a>
+                                <?php
+                                if (isset($_SESSION['login'])) {
+                                    $wishlistModel = new Wishlist();
+                                    $wishlist = $wishlistModel->getWishlistByCustomerId($_SESSION['id_customer']);
+                                    $flag = 0;
+                                    if ($wishlist) {
+                                        while ($rowWishlist = $wishlist->fetch_assoc()) {
+                                            if ($rowWishlist['id_product'] == $result['id_product']) {
+                                                $flag = 1;
+                                                if ($flag == 1) {
+                                ?>
+                                                    <a style="color: red;" href="javascript:;" onclick="addToWishListProductDetail(this)" id="<?php print $result['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                        <?php
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if ($flag == 0) {
+                                        ?>
+                                        <a href="javascript:;" onclick="addToWishListProductDetail(this)" id="<?php print $result['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <a style="color: white;" href="javascript:;" onclick="addToWishListProductDetail(this)" id="<?php print $result['id_product'] ?>"><i class="pe-7s-like"></i></a>
+                                <?php
+                                }
+                                ?>
+                                <!-- <a href="javascript:;" onclick="addToWishListProductDetail(this)" id="<?php print $result['id_product'] ?>"><i class="pe-7s-like"></i></a> -->
                             </div>
                         </div>
                         <div id="viewSKU">
