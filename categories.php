@@ -194,10 +194,10 @@ require_once($path . '/class/categoryChild.php');
                                                                     }
                                                                     ?>
                                                                     <!-- <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
-                                                                    <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                                                                    <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
                                                                 </div>
-                                                                <button title="Add To Cart" class=" add-to-cart">Add
-                                                                    To Cart</button>
+                                                                <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                                                                    To Cart</button> -->
                                                             </div>
                                                             <div class="content">
                                                                 <span class="ratings">
@@ -243,7 +243,7 @@ require_once($path . '/class/categoryChild.php');
                                                                 <div class="thumb">
                                                                     <a href="product-details.php" class="image">
                                                                         <img src="<?php echo $row['image'] ?>" alt="Product" />
-                                                                        <img class="hover-image" src="assets/images/product-image/1.jpg" alt="Product" />
+                                                                        <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                                                                     </a>
                                                                     <!-- <span class="badges">
                                                                         <span class="new">
@@ -319,11 +319,11 @@ require_once($path . '/class/categoryChild.php');
                                                                         }
                                                                         ?>
                                                                         <!-- <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
-                                                                        <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                                                                        <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
                                                                         <!-- <a href="compare.html" class="action compare" title="Compare"><i class="pe-7s-refresh-2"></i></a> -->
                                                                     </div>
-                                                                    <button title="Add To Cart" class=" add-to-cart">Add
-                                                                        To Cart</button>
+                                                                    <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                                                                        To Cart</button> -->
                                                                 </div>
                                                             </div>
                                                         </div>

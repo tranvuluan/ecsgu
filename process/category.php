@@ -61,10 +61,10 @@ if (isset($_GET['filterProduct'])) {
                             }
                             ?>
                             <!-- <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
-                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                            <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
                         </div>
-                        <button title="Add To Cart" class=" add-to-cart">Add
-                            To Cart</button>
+                        <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                            To Cart</button> -->
                     </div>
                     <div class="content">
                         <span class="ratings">
@@ -145,10 +145,10 @@ if (isset($_GET['filterProductByKeyword']) && isset($_GET['search'])) {
                             }
                             ?>
                             <!-- <a href="wishlist.php" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a> -->
-                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                            <!-- <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a> -->
                         </div>
-                        <button title="Add To Cart" class=" add-to-cart">Add
-                            To Cart</button>
+                        <!-- <button title="Add To Cart" class=" add-to-cart">Add
+                            To Cart</button> -->
                     </div>
                     <div class="content">
                         <span class="ratings">
