@@ -68,3 +68,18 @@ function rateProduct(id_product){
         }
     });
 }
+
+function pickSize(sku) {
+    currentOption = sku;
+    $.ajax({
+        url: 'process/product_details.php',
+        type: 'POST',
+        data: {
+            sku: sku,
+            pickSize: true
+        },
+        success: function (response) {
+            $('#viewSKU').html(response);
+        }
+    })
+}
