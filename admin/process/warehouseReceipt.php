@@ -29,7 +29,7 @@ if (isset($_GET['getWarehouseReceiptDetail']) && isset($_GET['id_warehousereceip
                 <td><?php echo $row['id_warehousereceipt'] ?></td>
                 <td><?php echo $row['id_product'] ?></td>
                 <td><img src="<?php echo $product['image'] ?>" width="100%" alt=""></td>
-                <td><?php echo number_format($row['price']) ?>đ</td>
+                <td><?php echo $row['price'] ?></td>
                 <td>
                     <div class="d-flex align-items-center gap-3 fs-6">
                         <a href="javascript:;" class="text-dark" onclick="viewDetail('<?php print $row['id_product'] ?>')">
@@ -490,11 +490,11 @@ if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
 
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="validationCustom01" class="form-label">Giá nhập</label>
+                                    <label for="validationCustom01" class="form-label">Giá nhập (đồng)</label>
                                     <?php
                                     $getPrice = $warehouseReceiptDetailModel->getWarehouseReceiptDetailsByProductId($getProduct['id_product'])->fetch_assoc();
                                     ?>
-                                    <input type="text" class="form-control" id="validationCustom01" name="price" value="<?php echo number_format($getPrice['price']) ?> đ" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="price" value="<?php echo $getPrice['price'] ?>" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Thương hiệu</label>
