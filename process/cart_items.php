@@ -64,7 +64,7 @@ if (count($_SESSION['cart']) > 0) {
                 <div class="content">
                     <a href="product-details.php" class="title"><?php echo $value['name'] ?></a>
                     <span class="quantity-price">Size: <?php echo $value['option'] ?></span>
-                    <span class="quantity-price"><?php echo $value['quantity'] ?> x <span class="amount"><?php echo $value['price'] ?></span></span>
+                    <span class="quantity-price"><?php echo $value['quantity'] ?> x <span class="amount"><?php echo number_format($value['price']) ?>đ</span></span>
                     <a href="#" onclick=" confirm('Bạn có muốn xóa không?') ? removeItem('<?php print $key ?>') : event.preventDefault() " class="remove">×</a>
                 </div>
             </li>

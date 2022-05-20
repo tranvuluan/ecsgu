@@ -252,17 +252,18 @@ function verifyEmail() {
     });
 }
 
-function viewDetailModal(){
+function viewDetailModal(id){
     event.preventDefault();
     $.ajax({
         url: './process/product_detail_modal.php',
         type: 'POST',
         data: {
+            id_product: id,
             viewDetailModal: true,
         },
         success: function (data) {
             $('#switchModal').html($('<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">' + data + ' </div>').modal());
-            console.log(data);
+            // console.log(data);
         }
     });
 }

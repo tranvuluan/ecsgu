@@ -117,6 +117,19 @@ class ConfigurableProduct{
         $result = $this->conn->query($sql) or die($this->conn->error);
         return $result;
     }
+    
+    public function sumQuantitySoldByIdProduct($id_product){
+        $id_product = $this->conn->real_escape_string($id_product);
+        $sql = "SELECT SUM(quantity_sold) AS quantity_sold FROM tbl_configurable_products WHERE `id_product` = '$id_product'";
+        $result = $this->conn->query($sql);
+        if($result -> num_rows > 0){
+            $row = $result->fetch_assoc();
+            return $row['quantity_sold'];
+        }
+        else {
+            return false;
+        }
+    }
 
 }
 ?>

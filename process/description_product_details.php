@@ -5,10 +5,13 @@ $path = dirname(__FILE__);
 require_once $path . '/../class/productEvaluate.php';
 $path = dirname(__FILE__);
 require_once $path . '/../class/customer.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/brand.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/categoryChild.php';
 if(!isset($_SESSION)){
     session_start();
-}
-print_r($_SESSION)
+}   
 ?>
 
 <?php
@@ -162,10 +165,21 @@ if (isset($_POST['viewInformation']) && isset($_POST['id_product'])) {
 ?>
     <div class="product-anotherinfo-wrapper text-start">
         <ul>
-            <li><span>Weight</span> 400 g</li>
-            <li><span>Dimensions</span>10 x 10 x 15 cm</li>
-            <li><span>Materials</span> 60% cotton, 40% polyester</li>
-            <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
+            <li><span>Brand</span>
+            <?php 
+            $brandModel = new Brand();
+            $brand = $brandModel->getBrandById($product['id_brand'])->fetch_assoc();
+            echo $brand['name'];
+            ?>
+            </li>
+            <li><span>Category</span>
+            <?php 
+            $categoryChildModel = new CategoryChild();
+            $categoryChild = $categoryChildModel->getCategoryChildByIds($product['id_categorychild'])->fetch_assoc();
+            echo $categoryChild['name'];
+            ?>
+        </li>
+            <li><span>Rating</span><?php echo $product['rating'] ?>/5<i class="fa fa-star"></i></li>
         </ul>
     </div>
 <?php

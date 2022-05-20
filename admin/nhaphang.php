@@ -166,7 +166,7 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
                                 <td><?php echo $row['id_supplier'] ?></td>
                                 <td><?php echo $row['id_employee'] ?></td>
                                 <td><?php echo $row['date'] ?></td>
-                                <td><?php echo $row['totalprice'] ?></td>
+                                <td><?php echo number_format($row['totalprice']) ?>đ</td>
                                 <td>
                                   <div class="d-flex align-items-center gap-3 fs-6">
                                     <a href="javascript:;" class="text-dark" onclick="view('<?php print $row['id_warehousereceipt'] ?>')">

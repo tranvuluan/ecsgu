@@ -2,8 +2,15 @@
 $path = dirname(__FILE__);
 require_once $path . '/../class/configurable_product.php';
 $path = dirname(__FILE__);
+require_once $path . '/../class/productSale.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/wishlist.php';
+$path = dirname(__FILE__);
 require_once $path . '/../class/LibClass.php';
 
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 if (isset($_GET['checkStock']) && isset($_GET['quantity'])) {
     $ConfigurableProductModel = new ConfigurableProduct();
@@ -43,11 +50,28 @@ if (isset($_GET['filterProduct'])) {
                             <img class="hover-image" src="<?php echo $row['image'] ?>" alt="Product" />
                         </a>
                         <!-- <span class="badges">
-                            <span class="new">New</span>
+                            <span class="new">
+                                <?php
+                                $configurableProductModel = new ConfigurableProduct();
+                                $productSaleModel = new ProductSale();
+                                $configurableProduct = $configurableProductModel->getConfigurableProductById($row['id_product'])->fetch_assoc();
+                                if ($configurableProduct['id_product'] == $row['id_product']) {
+                                    $productSale = $productSaleModel->getProductSales()->fetch_assoc();
+                                    if ($productSale['id_product'] == $row['id_product']) {
+                                        echo 'Sale';
+                                    } else {
+                                        $sumQuantitySold = $configurableProductModel->sumQuantitySoldByIdProduct($row['id_product']);
+                                        echo $sumQuantitySold >= 5 ? 'Hot' : 'New';
+                                    }
+                                }
+                                ?>
+                            </span>
                         </span> -->
                         <div class="actions">
-                            <a href="javascript:;" onclick="addToWishList('<?php print $row['id_product'] ?>')" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
-                            <a href="#" onclick="viewDetailModal()" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
+                            <div id="displayWishlist">
+                                <a href="javascript:;" onclick="addToWishList('<?php print $row['id_product'] ?>')" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                            </div>
+                            <a href="#" onclick="viewDetailModal('<?php print $row['id_product'] ?>')" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
                         </div>
                         <!-- <a href="#" onclick="addToCart('<?php print $row['id_product'] ?>')" title="Add To Cart" class=" add-to-cart">Add
                                                         To Cart</a> -->

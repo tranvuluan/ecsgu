@@ -36,7 +36,9 @@ if (isset($_POST['addToWishList']) && isset($_POST['id_product'])) {
                 'price' => $product['price'],
             ];
             $_SESSION['wishlist'][$id_product] = $wishlistItems;
+            $wishlistModel->insert($id_wishlist, $id_customer, $id_product);
         } else {
+            $wishlistModel->delete($_SESSION['wishlist'][$id_product]['id_wishlist']);
             unset($_SESSION['wishlist'][$id_product]);
         }
     }
@@ -49,11 +51,11 @@ if (count($_SESSION['wishlist']) > 0) {
 ?>
         <ul class="minicart-product-list">
             <li>
-                <a href="product-details.php" class="image"><img src="<?php echo $value['image'] ?>" alt="Cart product Image"></a>
+                <a href="<?php echo 'product-details.php?id_product=' . $value['id_product'] ?>" class="image"><img src="<?php echo $value['image'] ?>" alt="Cart product Image"></a>
                 <div class="content">
                     <a href="product-details.php" class="title"><?php echo $value['name'] ?></a>
-                    <span class="quantity-price"><span class="amount"><?php echo $value['price'] ?></span></span>
-                    <a href="#"  onclick=" confirm('Bạn có muốn xóa không?') ? removeItem('<?php print $key ?>') : event.preventDefault() " class="remove">×</a>
+                    <span class="quantity-price"><span class="amount"><?php echo number_format($value['price']) ?>đ</span></span>
+                    <a href="#" onclick=" confirm('Bạn có muốn xóa không?') ? removeItem('<?php print $key ?>') : event.preventDefault() " class="remove">×</a>
                 </div>
             </li>
         </ul>
@@ -63,9 +65,29 @@ if (count($_SESSION['wishlist']) > 0) {
 }
 ?>
 
-<?php 
-    if (isset($_POST['removeItem']) && isset($_POST['id_product'])) {
-        $id_product = $_POST['id_product'];
-        unset($_SESSION['wishlist'][$id_product]);
+<?php
+if (isset($_POST['removeItem']) && isset($_POST['id_product'])) {
+    $id_product = $_POST['id_product'];
+    unset($_SESSION['wishlist'][$id_product]);
+}
+?>
+
+<?php
+if (isset($_POST['displayWishlist']) && isset($_POST['id_product'])) {
+    $wishlistModel = new Wishlist();
+    $checkWishlist = $wishlistModel->getWishlistById($_POST['id_product']);
+    if (isset($_SESSION['wishlist'][$_POST['id_product']]['id_wishlist'])) {
+?>
+        <a style="color:red" href="javascript:;" onclick="addToWishList('<?php print $_POST['id_product'] ?>')" class="action wishlist" title="Wishlist">
+            <ion-icon name="heart-circle-sharp"></ion-icon>
+        </a>
+    <?php
+    } else {
+    ?>
+        <a href="javascript:;" onclick="addToWishList('<?php print $_POST['id_product'] ?>')" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+    <?php
     }
+    ?>
+<?php
+}
 ?>
