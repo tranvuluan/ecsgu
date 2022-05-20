@@ -274,8 +274,9 @@ require_once $path . '/class/employee.php';
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Giá cả hợp lý. <br>
+                                    Chất lượng tốt
+
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -300,8 +301,9 @@ require_once $path . '/class/employee.php';
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Giá cả hợp lý. <br>
+                                    Chất lượng tốt
+
                                 </p>
                             </div>
                             <div class="testi-author">

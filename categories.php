@@ -422,7 +422,7 @@ require_once($path . '/class/categoryChild.php');
                             </div>
                         </div>
                         <!-- Sidebar single item -->
-                        <div class="sidebar-widget-image">
+                        <!-- <div class="sidebar-widget-image">
                             <div class="single-banner">
                                 <img src="assets/images/banner/2.jpg" alt="">
                                 <div class="item-disc">
@@ -430,7 +430,7 @@ require_once($path . '/class/categoryChild.php');
                                     <a href="single-product-variable.html" class="shop-link">Shop Now</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Sidebar single item -->
                     </div>
                 </div>
