@@ -522,6 +522,8 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                         <input type="file" class="form-control" id="fileImageProductInAddWarehouse" onchange="changeProductImage()">
                                     </div>
                                 </div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
                                 <div class="col-md-12">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="spinner-border d-none" id="loadingImage" role="status">
@@ -532,6 +534,10 @@ if (isset($_POST['viewToUpdate']) && $_POST['id']) {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
                                 <br>
                                 <div class="table-responsive mt-2">
                                     <table class="table align-middle mb-0 table-hover">
