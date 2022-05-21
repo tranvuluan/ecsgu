@@ -490,7 +490,7 @@ if (isset($_POST['viewDetail']) && isset($_POST['id'])) {
 
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="validationCustom01" class="form-label">Giá nhập</label>
+                                    <label for="validationCustom01" class="form-label">Giá nhập (đồng)</label>
                                     <?php
                                     $getPrice = $warehouseReceiptDetailModel->getWarehouseReceiptDetailsByProductId($getProduct['id_product'])->fetch_assoc();
                                     ?>

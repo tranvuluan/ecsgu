@@ -21,9 +21,9 @@ if (count($_SESSION['cart']) > 0) {
                             <tr>
                                 <th>Image</th>
                                 <th>Product Name</th>
-                                <th>Until Price</th>
+                                <th>Until Price (đ)</th>
                                 <th>Qty</th>
-                                <th>Subtotal</th>
+                                <th>Subtotal (đ)</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
