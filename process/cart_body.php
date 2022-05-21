@@ -41,13 +41,13 @@ if (count($_SESSION['cart']) > 0) {
                                     <td class="product-name"><a href="#"><?php echo $value['name'] ?></a>
                                         <p>Size: <?php echo $value['option'] ?></p>
                                     </td>
-                                    <td class="product-price-cart"><span class="amount"><?php echo number_format($value['price']) ?>đ</span></td>
+                                    <td class="product-price-cart"><span class="amount"><?php echo $value['price'] ?></span></td>
                                     <td class="product-quantity">
                                         <div class="cart-plus-minus">
                                             <input class="cart-plus-minus-box" type="text" onchange="changeQuantity('<?php print $value['stock'] ?>')" value="<?php echo $value['quantity'] ?>" />
                                         </div>
                                     </td>
-                                    <td class="product-subtotal"><?php echo number_format($value['quantity'] * $value['price']) ?>đ</td>
+                                    <td class="product-subtotal"><?php echo $value['quantity'] * $value['price'] ?></td>
                                     <td class="product-remove">
                                         <!-- <a href="#" for="qtybutton" onclick="editCartItem('<?php print $key ?>')"><i class="fa fa-pencil"></i></a> -->
                                         <a href="#" onclick="confirm('Bạn có muốn xóa không?') ? deleteCartItem('<?php print $key ?>') : event.preventDefault()"><i class="fa fa-times"></i></a>
