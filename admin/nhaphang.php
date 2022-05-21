@@ -55,7 +55,7 @@ require_once $path . '/../class/warehouseReceiptDetail.php';
 
   <!-- end header html -->
   >
-  <title>EC Shop</title>
+  <title>EC Shop - Admin</title>
 </head>
 
 <body>
