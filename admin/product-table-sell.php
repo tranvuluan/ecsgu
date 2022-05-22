@@ -58,7 +58,6 @@ require_once $path . '/../class/configurable_product.php';
 
 
     <!-- end header html -->
-    >
     <title>EC Shop - Admin</title>
 </head>
 

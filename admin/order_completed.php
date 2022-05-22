@@ -54,7 +54,7 @@ require_once $path . '/../class/customer.php';
 
 
     <!-- end header html -->
-    >
+    
     <title>EC Shop - Admin</title>
 </head>
 

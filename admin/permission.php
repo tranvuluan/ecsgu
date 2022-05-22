@@ -53,7 +53,6 @@ require_once $path . '/../class/permission.php';
 
 
     <!-- end header html -->
-    >
     <title>EC Shop - Admin</title>
 </head>
 
