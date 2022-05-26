@@ -1,6 +1,8 @@
 <?php
 $path = dirname(__FILE__);
 require_once $path . '/../class/permission.php';
+$path = dirname(__FILE__);
+require_once $path . '/../class/LibClass.php';
 
 ?>
 
@@ -53,7 +55,7 @@ require_once $path . '/../class/permission.php';
 
     <!-- end header html -->
 
-    <title>Blackdash - Bootstrap5 Admin Template</title>
+    <title>EC Shop - Admin</title>
 </head>
 
 <body>
@@ -108,7 +110,7 @@ require_once $path . '/../class/permission.php';
                 </div>
                 <!--end breadcrumb-->
 
-                <h6 class="mb-0 text-uppercase">Thống kê doanh thu</h6>
+                <!-- <h6 class="mb-0 text-uppercase">Thống kê doanh thu</h6>
                 <hr />
                 <div class="card">
                     <div class="card-body">
@@ -121,9 +123,63 @@ require_once $path . '/../class/permission.php';
                     <div class="card-body">
                         <div id="chart5"></div>
                     </div>
-                </div>
+                </div> -->
                 <!--end page content wrapper-->
 
+                
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2" id="elementButton">
+                <button onclick="ProductHot()" class="btn btn-primary">Sản phẩm bán chạy</button>
+            </div>
+            <div class="col-md-2" id="elementButton">
+                <button onclick="ProductNearlySoldOut()" class="btn btn-primary">Sản phẩm sắp hết</button>
+            </div>
+            <div class="col-md-2" id="elementButton">
+                <button onclick="ProductSoldOut()" class="btn btn-primary">Sản phẩm đã hết</button>
+            </div>
+        </div>
+        <br><br><br>
+        <div id="StatisticalTable"> 
+            <h6 class="mb-0 text-uppercase">Sản phẩm bán chạy</h6>
+            <hr />
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" id="StatisticalTable">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Mã sản phẩm</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $LibClassModel = new LibClass();
+                                $getProductHot = $LibClassModel->getProductHot();
+                                if ($getProductHot) {
+                                    while ($row = $getProductHot->fetch_assoc()) {
+                                ?>
+                                        <tr>
+                                            <td><?php echo $row['id_product'] ?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <tr>
+                                        <td>Không có sản phẩm nào</td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
                 <!--start footer-->
                 <?php
@@ -204,6 +260,8 @@ require_once $path . '/../class/permission.php';
             $path = dirname(__FILE__);
             require_once $path . '/includes/scripts.php';
             ?>
+
+            <script src="./assets/js/statistical.js"></script>
             <!-- END Scripts -->
 
             <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>

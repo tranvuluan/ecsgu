@@ -48,7 +48,7 @@ require_once $path . '/../class/voucher.php';
     <!-- <link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" /> -->
     <!-- <link href="assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" /> -->
 
-    <title>Blackdash - Bootstrap5 Admin Template</title>
+    <title>EC Shop - Admin</title>
 </head>
 
 <body>
