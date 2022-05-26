@@ -152,17 +152,11 @@ require_once $path . '/../class/customer.php';
                                                 continue;
 
                                     ?>
-                                            <tr>
+<tr>
                                                 <td><?php echo $row['id_order'] ?></td>
-                                                <?php
-                                                $customerModel = new Customer();
-                                                $customer = $customerModel->getCustomerByIdCustomer($row['id_customer'])->fetch_assoc();
-                                                if ($customer) {
-                                                ?>
-                                                    <td><?php echo $customer['fullname'] ?></td>
-                                                <?php
-                                                }
-                                                ?>
+                            
+                                                    <td><?php echo $row['fullname'] ?></td>
+                                       
                                                 <td><?php echo $row['totalprice'] ?></td>
                                                 <td><?php echo $row['date'] ?></td>
                                                 <td>
@@ -179,7 +173,12 @@ require_once $path . '/../class/customer.php';
                                                         <a href="javascript:;" class="text-dark" onclick="getDetail('<?php print $row['id_order'] ?>')" data-toggle="modal" data-target="#viewDetailModalId">
                                                             <ion-icon name="eye-sharp"></ion-icon>
                                                         </a>
+                                                        <!-- <a href="javascript:;" class="text-dark" data-toggle="modal" data-target="#updateModalId">
+                                                            <ion-icon name="pencil-sharp"></ion-icon>
                                                         </a>
+                                                        <a href="javascript:;" class="text-dark">
+                                                            <ion-icon name="trash-sharp"></ion-icon>
+                                                        </a> -->
                                                     </div>
                                                 </td>
                                             </tr>
