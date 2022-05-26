@@ -3,6 +3,8 @@ $path = dirname(__FILE__);
 require_once $path . '/lib/checklogin.php';
 checkUserLogin();
 $path = realpath(dirname(__FILE__));
+
+if (!isset($_SESSION)) session_start();
 ?>
 
 <!DOCTYPE html>

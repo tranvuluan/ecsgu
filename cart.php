@@ -1,5 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
+
+if (!isset($_SESSION)) session_start();
 ?>
 
 <!DOCTYPE html>

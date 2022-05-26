@@ -1,6 +1,8 @@
 <?php
 $path = dirname(__FILE__);
-require_once($path . '/class/product.php')
+require_once($path . '/class/product.php');
+
+if (!isset($_SESSION)) session_start();
 ?>
 
 <!DOCTYPE html>
