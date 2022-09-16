@@ -1,5 +1,7 @@
 <?php
 $path = realpath(dirname(__FILE__));
+
+if (!isset($_SESSION)) session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +11,7 @@ $path = realpath(dirname(__FILE__));
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="robots" content="index, follow" />
-    <title>Jesco - Fashoin eCommerce HTML Template</title>
+    <title>EC Shop</title>
     <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -185,7 +187,7 @@ $path = realpath(dirname(__FILE__));
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="">
+                                            <!-- <div class="">
                                                 <div class="position-relative border-bottom my-3">
                                                     <div class="position-absolute seperator translate-middle-y">or continue with</div>
                                                 </div>
@@ -196,7 +198,8 @@ $path = realpath(dirname(__FILE__));
                                                     <a href="javascript:;" class=""><img src="assets/images/icons/apple-black-logo.png" alt=""></a>
                                                     <a href="javascript:;" class=""><img src="assets/images/icons/google.png" alt=""></a>
                                                 </div>
-                                            </div>
+                                            </div> -->
+                                            <br><br>
                                             <div class="text-center">
                                                 <p class="mb-0">Already have an account? <a href="authentication-sign-in-simple.html">Sign in</a></p>
                                             </div>

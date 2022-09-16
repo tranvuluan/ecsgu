@@ -131,5 +131,13 @@ class Product{
         }
     }
 
+    public function updateRating($id_product, $rating) {
+        $id_product = $this->conn->real_escape_string($id_product);
+        $rating = $this->conn->real_escape_string($rating);
+        $sql = "UPDATE tbl_product SET rating = $rating WHERE `id_product` = '$id_product'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
 }
 ?>

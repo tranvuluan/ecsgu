@@ -21,6 +21,8 @@ $path = dirname(__FILE__);
 require_once $path . '/../class/LibClass.php';
 $path = dirname(__FILE__);
 require_once $path . '/../lib/callAPI.php';
+
+if (!isset($_SESSION)) session_start();
 ?>
 
 <?php

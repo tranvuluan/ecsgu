@@ -103,7 +103,7 @@ if (isset($_GET['filterProduct'])) {
                                                         ?> Review )
                             </span>
                         </span>
-                        <h5 class="title"><a href="product-details.php"><?php echo $row['name'] ?>
+                        <h5 class="title"><a href="<?php echo 'product-details.php?id_product=' . $row['id_product'] ?>"><?php echo $row['name'] ?>
                             </a>
                         </h5>
                         <span class="price">

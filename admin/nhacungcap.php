@@ -52,8 +52,8 @@ require_once $path . '/../class/supplier.php'
 
 
     <!-- end header html -->
-    >
-    <title>Blackdash - Bootstrap5 Admin Template</title>
+    
+    <title>EC Shop - Admin</title>
 </head>
 
 <body>

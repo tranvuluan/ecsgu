@@ -3,6 +3,8 @@ $path = dirname(__FILE__);
 require_once $path . '/lib/checklogin.php';
 checkUserLogin();
 $path = realpath(dirname(__FILE__));
+
+if (!isset($_SESSION)) session_start();
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +14,7 @@ $path = realpath(dirname(__FILE__));
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="robots" content="index, follow" />
-    <title>Jesco - Fashoin eCommerce HTML Template</title>
+    <title>EC Shop</title>
     <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 

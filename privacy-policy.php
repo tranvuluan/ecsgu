@@ -1,5 +1,7 @@
 <?php
     $path = realpath(dirname(__FILE__));
+
+    if (!isset($_SESSION)) session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="robots" content="index, follow" />
-    <title>Jesco - Fashoin eCommerce HTML Template</title>
+    <title>EC Shop</title>
     <meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -73,24 +75,49 @@ require_once($path . '/includes/offcanvasMenu.php') ?>
                 <div class="row">
                     <div class="col-12">
                         <div class="privacy_content section_2" data-aos="fade-up" data-aos-delay="400">
-                            <h2>What personal data we collect and why we collect it</h2>
-                            <h3>Comments</h3>
-                            <p>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor’s IP address and browser user agent string to help spam detection.</p>
-                            <p>An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/.
-                                After approval of your comment, your profile picture is visible to the public in the context of your comment.</p>
-                            <h3>Media</h3>
-                            <p>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p>
+                            <h1><strong>PRIVACY POLICY</strong></h1>
+                            <h3>Our Privacy Policy</h3>
+                            <p>We are committed to the protection of personal data we process – below you’ll find the Privacy Policy, 
+                            which guides how we collect, use, transfer and store the information that you provide us with or that we 
+                            collect about you when interacting with Fashion for Good. The following information is provided by Fashion 
+                            for Good to show how we comply with applicable rules and regulations such as GDPR and to help keep you fully 
+                            informed about your rights (and how to enforce them). By visiting <a href="">www.jesco.com</a> , you accept and consent to the practices described in this Privacy Policy.</p>
+                            <h3>Our contact details</h3>
+                            <p>Fashion for Good is the data administrator and located on Rokin 102 in Amsterdam, The Netherlands. You can reach us by phone on +31 20 261 9680 or by email at <a href="mailto:demo@example.com">demo@example.com</a> </p>
+                            <h3>To whom does this Privacy Policy apply?</h3>
+                            <ul >
+                                <li>Visitors to the exhibition(s) of Fashion for Good;</li>
+                                <li>Visitors to the Fashion for Good website;</li>
+                                <li>Recipients of newsletters and emails sent by Fashion for Good to visitors of our exhibitions and/or website;</li>
+                                <li>All other persons who contact Fashion for Good or of whom Fashion for Good processes personal data.</li>
+                            </ul>
+                            <p>This Privacy Policy does not apply to partners, employees, secondees, student interns and applicants.</p>
+                            <h3>What personal data do we process?</h3>
+                            <p>We process personal data you have provided to us, personal data generated during your visit to our exhibitions and/or our website and when reading newsletters and emails sent by us to visitors of our exhibitions. We also process personal data we have obtained from other sources such as Social Media platforms.</p>
+                            <p>Potential personal data we collect:</p>
+                            <ul>
+                                <li>Name, email address and/or your photo when you visit our exhibitions and make use of the technologies we offer to you to receive a Good GIF or your Good Fashion Action Plan</li>
+                                <li>Personal data obtained through or generated on our website, newsletters, commercial emails or related technologies:</li>
+                                <li>IP address</li>
+                                <li>Your browsing behaviour on the website such as information on your first visit, previous visit and current visit, the visited pages and the manner in which you navigate on the website;</li>
+                                <li>Whether you open a newsletter of email and what sections you select.</li>
+                            </ul><br>
                             <h3>Cookies</h3>
-                            <p>If you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment.
-                                These cookies will last for one year.</p>
-                            <p>If you have an account and you log in to this site, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.</p>
-                            <p>When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select “Remember Me”,
-                                your login will persist for two weeks. If you log out of your account, the login cookies will be removed.</p>
-                            <p>If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.</p>
-                            <h3>Embedded content from other websites</h3>
-                            <p>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website.</p>
-                            <p>These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have
-                                an account and are logged in to that website.</p>
+                            <p>Cookies are files with small amount of data, which may include an anonymous unique identifier. Cookies are sent to your browser from a web site and stored on your computer’s hard drive. For certain sites on the Fashion for Good Web Site, registering or supplying personal information sets such a cookie. By setting this cookie, Fashion for Good will remember your details the next time you visit our Web Site, so you do not have to re-enter the information.</p>
+                            <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent at any time you would like. However, if you do not accept cookies, you may not be able to use some portions of our Web Site. Cookies can be easily disabled or erased. Simply click on your respective browser type below to go directly to the respective user guide and to learn how to disable or erase cookies:</p>
+                            <ul>
+                                <li>Internet Explorer: <a href="">http://windows.microsoft.com/en-us/internet-explorer/delete-manage-cookies</a></li>
+                                <li>Firefox: <a href="">https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences</a></li>
+                                <li>Chrome: <a href="">https://support.google.com/accounts/answer/61416?hl=en</a></li>
+                                <li>Safari: <a href="">https://support.apple.com/en-us/HT201265</a></li>
+                            </ul><br>
+                            <h3>What do we use your personal data for?</h3>
+                            <p>We use your personal data for the following purposes:</p>
+                            <p>Maintaining contact with the visitors of our exhibitions and website.</p>
+                            <p>Your contact details and photo will be recorded in our system and can be used to send you updates on your Good Fashion Action Plan and additional sustainable fashion related information.</p>
+                            <p>Improving our communications on fashion appetite and behaviour.</p>
+                            <p>We believe it is important to approach you with information that is relevant to you. We combine and analyse the personal data in our possession to do this. We correspondingly determine what information and channels are relevant and what the best times to provide information or to establish contact are. We do not process any special personal data or confidential information for marketing campaigns. We will need to ask your prior permission if we want to create a personal, individual profile. You can always withdraw this permission at a later time.</p>
+
                         </div>
                         <div class="privacy_content section_3" data-aos="fade-up" data-aos-delay="400">
                             <h2>How long we retain your data</h2>

@@ -33,7 +33,7 @@ class LibClass
             $sql  = "SELECT * FROM tbl_product, tbl_product_sale WHERE tbl_product.id_product = tbl_product_sale.id_product";
 
         } elseif ($option == 'bestseller') {
-            $sql = "SELECT * FROM tbl_product, (SELECT `id_product`,COUNT(quantity_sold) AS 'count_sell' FROM tbl_configurable_products GROUP BY `id_product`) temp WHERE tbl_product.id_product = temp.id_product ORDER BY temp.count_sell DESC";
+            $sql = "SELECT * FROM tbl_product, (COUNT(quantity_sold)) temp WHERE tbl_product.id_product = temp.id_product ORDER BY temp.count_sell DESC";
         } else {
             $sql = "SELECT * FROM `tbl_product`";
         }
@@ -71,6 +71,37 @@ class LibClass
 
     public function countProductOfCategory() {
         $sql = "SELECT tbl_category.id_category , COUNT(tbl_product.id_product) AS 'count' FROM tbl_categorychild, tbl_category, tbl_product WHERE tbl_categorychild.id_category = tbl_category.id_category AND tbl_product.id_categorychild = tbl_categorychild.id_categorychild GROUP BY tbl_category.id_category;";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function getProductHot(){
+        $sql = "SELECT id_product FROM tbl_configurable_products WHERE quantity_sold >= '1' GROUP BY id_product";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getProductNearlySoldout(){
+        $sql = "SELECT id_product, stock FROM tbl_configurable_products WHERE stock < '7'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getProductSoldout(){
+        $sql = "SELECT id_product, stock FROM tbl_configurable_products WHERE stock = '0'";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
             return $result;
